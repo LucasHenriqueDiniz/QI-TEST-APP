@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 173 105" style="enable-background:new 0 0 173 105;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#59778E;}
+	.st2{fill:#000000;}
+	.st3{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st4{clip-path:url(#SVGID_2_);}
+	.st5{clip-path:url(#SVGID_4_);}
+	.st6{clip-path:url(#SVGID_6_);}
+	.st7{clip-path:url(#SVGID_8_);}
+	.st8{clip-path:url(#SVGID_10_);}
+	.st9{clip-path:url(#SVGID_12_);}
+	.st10{display:inline;}
+	.st11{clip-path:url(#SVGID_13_);}
+	.st12{clip-path:url(#SVGID_19_);}
+</style>
+<g id="Camada_2" class="st0">
+	<rect x="-1111.5" y="-209.5" class="st1" width="2269" height="1089"/>
+</g>
+<g id="Camada_1">
+	<g>
+		<path class="st2" d="M125.64,1c3.69,2.6,45.86,32.7,45.86,51.25s-42.17,48.65-45.86,51.25H1V1H125.64 M125.96,0H0v104.5h125.96
+			c0,0,46.54-32.2,46.54-52.25S125.96,0,125.96,0L125.96,0z"/>
+	</g>
+	<g>
+		<polygon class="st2" points="0,98.16 16.82,0 34.49,0 50.31,93.41 66.1,0.3 83.19,0 99.94,93.41 116.11,0 125.96,0 132.92,5.11 
+			147,87.88 125.96,104.5 0,104.5 		"/>
+	</g>
+	<g>
+		<g>
+			<defs>
+				<path id="SVGID_11_" d="M323.41,0H200v104.5h123.41c0,0,49.28-32.2,49.28-52.25S323.41,0,323.41,0L323.41,0z"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_11_"  style="overflow:visible;"/>
+			</clipPath>
+			<g class="st4">
+				<polygon class="st2" points="369.46,-161.3 -35.09,-137.59 369.46,-118.87 -35.09,-95.15 369.46,-76.43 -35.09,-52.71 
+					369.46,-33.99 -35.09,-10.28 369.46,8.44 -35.09,32.16 369.46,50.88 -35.09,74.6 369.46,93.32 -35.09,117.03 369.46,135.75 
+					404.14,135.75 404.14,93.32 404.14,50.88 404.14,8.44 404.14,-33.99 404.14,-76.43 404.14,-118.87 404.14,-161.3 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="Camada_3" class="st0">
+</g>
+</svg>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 335" style="enable-background:new 0 0 500 335;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#59778E;}
+	.st2{fill:#000000;}
+	.st3{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st4{clip-path:url(#SVGID_2_);}
+	.st5{clip-path:url(#SVGID_4_);}
+	.st6{clip-path:url(#SVGID_6_);}
+	.st7{clip-path:url(#SVGID_8_);}
+	.st8{clip-path:url(#SVGID_10_);}
+	.st9{clip-path:url(#SVGID_12_);}
+	.st10{display:inline;}
+	.st11{clip-path:url(#SVGID_13_);}
+	.st12{clip-path:url(#SVGID_19_);}
+</style>
+<g id="Camada_2" class="st0">
+	<rect x="-228" y="-209.5" class="st1" width="2269" height="1089"/>
+</g>
+<g id="Camada_1">
+	<g>
+		<path class="st2" d="M498.5,1.09V334H1V1.09H498.5 M499.5,0.09H0V335h499.5V0.09L499.5,0.09z"/>
+	</g>
+	<g>
+		<path class="st2" d="M409.32,182.88c4.01,2.66,54.78,36.8,54.78,57.82s-50.77,55.16-54.78,57.82H271.69V182.88H409.32
+			 M409.62,181.88H270.69v117.64h138.93c0,0,55.48-36.25,55.48-58.82S409.62,181.88,409.62,181.88L409.62,181.88z"/>
+	</g>
+	<g>
+		<defs>
+			<path id="SVGID_9_" d="M0.49,0.04v334.91h499.02V0.04H0.49z M409.63,299.48H270.7V181.84h138.93c0,0,55.48,36.25,55.48,58.82
+				S409.63,299.48,409.63,299.48z"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_9_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st4">
+			<g>
+				<polygon class="st2" points="500,48.07 460.96,48.07 5.54,74.76 460.96,95.84 500,95.84 				"/>
+			</g>
+			<g>
+				<polygon class="st2" points="500,0.3 460.96,0.3 5.54,26.99 460.96,48.07 500,48.07 				"/>
+			</g>
+			<g>
+				<polygon class="st2" points="500,143.61 460.96,143.61 5.54,170.31 460.96,191.39 500,191.39 				"/>
+			</g>
+			<g>
+				<polygon class="st2" points="500,95.84 460.96,95.84 5.54,122.54 460.96,143.61 500,143.61 				"/>
+			</g>
+			<g>
+				<polygon class="st2" points="500,191.39 460.96,191.39 5.54,218.08 460.96,239.16 500,239.16 				"/>
+			</g>
+			<g>
+				<polygon class="st2" points="500,286.93 460.96,286.93 5.54,313.63 460.96,334.7 500,334.7 				"/>
+			</g>
+			<g>
+				<polygon class="st2" points="500,239.16 460.96,239.16 5.54,265.86 460.96,286.93 500,286.93 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="Camada_3" class="st0">
+</g>
+</svg>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 335" style="enable-background:new 0 0 500 335;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#000000;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{clip-path:url(#SVGID_4_);}
+</style>
+<g id="Camada_1_1_">
+	<g>
+		<path class="st0" d="M498.5,1.09V334H1V1.09H498.5 M499.5,0.09H0V335h499.5V0.09L499.5,0.09z"/>
+	</g>
+	<g>
+		<path class="st0" d="M409.32,182.88c4.01,2.66,54.78,36.8,54.78,57.82s-50.77,55.16-54.78,57.82H271.69V182.88H409.32
+			 M409.62,181.88H270.69v117.64h138.93c0,0,55.48-36.25,55.48-58.82S409.62,181.88,409.62,181.88L409.62,181.88z"/>
+	</g>
+	<g>
+		<g>
+			<defs>
+				<path id="SVGID_1_" d="M0.49,0.04v334.91h499.02V0.04H0.49z M409.63,299.48H270.7V181.84h138.93c0,0,55.48,36.25,55.48,58.82
+					S409.63,299.48,409.63,299.48z"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<g class="st1">
+				<g>
+					<rect x="49" class="st0" width="5.81" height="334.36"/>
+				</g>
+				<g>
+					<rect x="98" class="st0" width="9.28" height="334.36"/>
+				</g>
+				<g>
+					<rect x="145.52" class="st0" width="17.78" height="334.36"/>
+				</g>
+				<g>
+					<rect x="191.25" class="st0" width="29.32" height="334.36"/>
+				</g>
+				<g>
+					<rect x="238.02" class="st0" width="41.06" height="334.36"/>
+				</g>
+				<g>
+					<rect x="291.32" class="st0" width="41.06" height="334.36"/>
+				</g>
+				<g>
+					<rect x="340.08" class="st0" width="45.53" height="334.36"/>
+				</g>
+				<g>
+					<rect x="389.94" class="st0" width="50.44" height="334.36"/>
+				</g>
+				<g>
+					<rect x="442.55" class="st0" width="57.45" height="334.36"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<defs>
+				<path id="SVGID_3_" d="M806.77,104.38H683.5V0h123.27c0,0,49.23,32.16,49.23,52.19S806.77,104.38,806.77,104.38z"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+			</clipPath>
+			<g class="st2">
+				<g>
+					<rect x="486.8" y="-161.39" class="st0" width="5.16" height="296.67"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="Camada_3">
+</g>
+</svg>

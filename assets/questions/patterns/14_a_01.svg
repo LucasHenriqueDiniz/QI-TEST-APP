@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 173 105" style="enable-background:new 0 0 173 105;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#000000;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{display:none;}
+</style>
+<g id="Camada_1_1_">
+	<g>
+		<g>
+			<path class="st0" d="M125.83,104.5H0V0h125.83l0.21,0.14c1.9,1.3,46.46,32.16,46.46,52.11s-44.57,50.8-46.46,52.11L125.83,104.5z
+				 M1.65,102.83h123.67c3.35-2.34,45.53-32.18,45.53-50.58S128.67,4.01,125.32,1.67H1.65V102.83z"/>
+		</g>
+		<g>
+			<path class="st0" d="M117.22,97.06H10.45V7.44h106.78l0.21,0.15c1.61,1.12,39.42,27.55,39.42,44.66s-37.81,43.55-39.42,44.66
+				L117.22,97.06z M12.09,95.39h104.62c3.06-2.16,38.49-27.52,38.49-43.14s-35.43-40.97-38.49-43.14H12.09V95.39z"/>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<path id="SVGID_1_" d="M116.97,96.22H11.27V8.28h105.7c0,0,39.06,27.1,39.06,43.97S116.97,96.22,116.97,96.22z"/>
+				</defs>
+				<clipPath id="SVGID_2_">
+					<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+				</clipPath>
+				<g class="st1">
+					<g>
+						<rect x="106.43" y="8.28" class="st0" width="9.56" height="87.95"/>
+					</g>
+					<g>
+						<rect x="11.27" y="47.2" class="st0" width="149.15" height="10.1"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="Camada_3" class="st2">
+</g>
+</svg>

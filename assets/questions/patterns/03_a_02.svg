@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 173 105" style="enable-background:new 0 0 173 105;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#000000;}
+	.st2{fill:#000000;}
+	.st3{clip-path:url(#SVGID_00000016039513749485430200000002762140542747753630_);}
+	.st4{clip-path:url(#SVGID_00000089544550884803342990000012959667098380256649_);}
+</style>
+<g id="Camada_2_00000154385000457390175410000006006157466911376821_" class="st0">
+	<rect x="-1111.5" y="-209.5" class="st1" width="2269" height="1089"/>
+</g>
+<g id="Camada_1_00000154398674546411539030000016435726151473191051_">
+	<g>
+		<path class="st2" d="M123,1c3.8,2.5,48.5,32.7,48.5,51.2c0,18.5-44.8,48.7-48.5,51.2H1V1H123 M123.3,0H0v104.4h123.3
+			c0,0,49.2-32.2,49.2-52.2S123.3,0,123.3,0L123.3,0z"/>
+	</g>
+	<g>
+		<g>
+			<defs>
+				<path id="SVGID_1_" d="M123.3,104.4H0V0h123.3c0,0,49.2,32.2,49.2,52.2S123.3,104.4,123.3,104.4z"/>
+			</defs>
+			<clipPath id="SVGID_00000070120658751104751900000008025239463160882107_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<g style="clip-path:url(#SVGID_00000070120658751104751900000008025239463160882107_);">
+				<g>
+					<g>
+						<rect x="-245.5" y="11.8" class="st2" width="449.4" height="4.8"/>
+					</g>
+					<g>
+						<rect x="-245.5" y="29.8" class="st2" width="449.4" height="4.8"/>
+					</g>
+					<g>
+						<rect x="-245.5" y="47.8" class="st2" width="449.4" height="4.8"/>
+					</g>
+					<g>
+						<rect x="-245.5" y="65.8" class="st2" width="449.4" height="4.8"/>
+					</g>
+					<g>
+						<rect x="-245.5" y="83.8" class="st2" width="449.4" height="4.8"/>
+					</g>
+					<g>
+						<rect x="-245.5" y="101.8" class="st2" width="449.4" height="4.8"/>
+					</g>
+				</g>
+			</g>
+		</g>
+		<g>
+			<defs>
+				<path id="SVGID_00000139987880839466605180000013051246273269199549_" d="M123.3,104.4H0V0h123.3c0,0,49.2,32.2,49.2,52.2
+					S123.3,104.4,123.3,104.4z"/>
+			</defs>
+			<clipPath id="SVGID_00000127764621640212311790000015398274947232403363_">
+				<use xlink:href="#SVGID_00000139987880839466605180000013051246273269199549_"  style="overflow:visible;"/>
+			</clipPath>
+			<g style="clip-path:url(#SVGID_00000127764621640212311790000015398274947232403363_);">
+				<path class="st2" d="M202.2-160.3v295.2H-239v-295.2H202.2 M203.2-161.3H-240v297.2h443.2V-161.3L203.2-161.3z"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="Camada_3" class="st0">
+</g>
+</svg>

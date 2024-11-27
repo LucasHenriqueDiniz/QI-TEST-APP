@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 173 105" style="enable-background:new 0 0 173 105;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#59778E;}
+	.st2{fill:#000000;}
+	.st3{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st4{clip-path:url(#SVGID_2_);}
+	.st5{clip-path:url(#SVGID_4_);}
+	.st6{fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:10;}
+	.st7{fill:#1D1D1B;stroke:#1D1D1B;stroke-width:0.5;stroke-miterlimit:10;}
+	.st8{fill:#1D1D1B;}
+	.st9{clip-path:url(#SVGID_6_);}
+	.st10{clip-path:url(#SVGID_8_);}
+	.st11{fill:none;stroke:#000000;stroke-width:0.75;stroke-miterlimit:10;}
+	.st12{clip-path:url(#SVGID_10_);}
+	.st13{clip-path:url(#SVGID_12_);}
+	.st14{display:inline;}
+	.st15{clip-path:url(#SVGID_13_);}
+	.st16{clip-path:url(#SVGID_19_);}
+</style>
+<g id="Camada_2" class="st0">
+	<rect x="-911.5" y="-209.5" class="st1" width="2269" height="1089"/>
+</g>
+<g id="Camada_1">
+	<g>
+		<path class="st2" d="M125.64,1c3.69,2.6,45.86,32.7,45.86,51.25s-42.17,48.65-45.86,51.25H1V1H125.64 M125.96,0H0v104.5h125.96
+			c0,0,46.54-32.2,46.54-52.25S125.96,0,125.96,0L125.96,0z"/>
+	</g>
+	<g>
+		<defs>
+			<path id="SVGID_1_" d="M125.29,104.75H0.25V0.25h125.04c0,0,46.21,32.2,46.21,52.25S125.29,104.75,125.29,104.75z"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st4">
+			<g>
+				<g>
+					<line class="st3" x1="-251.52" y1="54.66" x2="214.13" y2="93.9"/>
+					<line class="st3" x1="-251.52" y1="54.66" x2="214.13" y2="80.41"/>
+					<line class="st3" x1="-251.52" y1="54.66" x2="214.13" y2="64.68"/>
+					<line class="st3" x1="-251.52" y1="54.66" x2="214.13" y2="50.28"/>
+					<line class="st3" x1="-251.52" y1="54.66" x2="214.13" y2="38.12"/>
+					<line class="st3" x1="-251.52" y1="54.66" x2="214.13" y2="24.5"/>
+					<line class="st3" x1="-251.52" y1="54.66" x2="214.13" y2="8.38"/>
+				</g>
+				<g>
+					<line class="st3" x1="63.42" y1="-181.41" x2="25.33" y2="140.71"/>
+					<line class="st3" x1="63.42" y1="-181.41" x2="38.42" y2="140.71"/>
+					<line class="st3" x1="63.42" y1="-181.41" x2="53.69" y2="140.71"/>
+					<line class="st3" x1="63.42" y1="-181.41" x2="66.26" y2="140.71"/>
+					<line class="st3" x1="63.42" y1="-181.41" x2="79.47" y2="140.71"/>
+					<line class="st3" x1="63.42" y1="-181.41" x2="94.97" y2="140.71"/>
+					<line class="st3" x1="63.42" y1="-181.41" x2="108.33" y2="140.71"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="Camada_3" class="st0">
+</g>
+</svg>
