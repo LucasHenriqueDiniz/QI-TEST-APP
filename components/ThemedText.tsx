@@ -1,54 +1,43 @@
-import { Text, type TextProps, StyleSheet } from "react-native";
+import React from "react";
+import { StyleProp, Text, TextProps, TextStyle } from "react-native";
+import { TypographyVariant } from "@/constants/theme";
+import { useAppTheme } from "@/context/ThemeContext";
 
-import { useThemeColor } from "@/hooks/useThemeColor";
+type ToneName = "default" | "muted" | "faint" | "primary" | "accent" | "success" | "danger" | "onPrimary";
 
 export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
-  type?: "default" | "title" | "defaultSemiBold" | "subtitle" | "link";
+  variant?: TypographyVariant;
+  tone?: ToneName;
+  /** Sobrescreve a cor resolvida pelo `tone`. */
+  color?: string;
+  center?: boolean;
 };
 
-export function ThemedText({ style, lightColor, darkColor, type = "default", ...rest }: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+export function ThemedText({ variant = "body", tone = "default", color, center, style, ...rest }: ThemedTextProps) {
+  const { colors, typography } = useAppTheme();
+
+  const tones: Record<ToneName, string> = {
+    default: colors.text,
+    muted: colors.textMuted,
+    faint: colors.textFaint,
+    primary: colors.primary,
+    accent: colors.accent,
+    success: colors.success,
+    danger: colors.danger,
+    onPrimary: colors.onPrimary,
+  };
+
+  const resolved: StyleProp<TextStyle> = [
+    typography[variant] as TextStyle,
+    { color: color ?? tones[tone] },
+    center && { textAlign: "center" as const },
+    style,
+  ];
 
   return (
     <Text
-      style={[
-        { color },
-        type === "default" ? styles.default : undefined,
-        type === "title" ? styles.title : undefined,
-        type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
-        type === "subtitle" ? styles.subtitle : undefined,
-        type === "link" ? styles.link : undefined,
-        style,
-      ]}
+      style={resolved}
       {...rest}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  default: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  defaultSemiBold: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: "600",
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    lineHeight: 32,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: "#0a7ea4",
-  },
-});

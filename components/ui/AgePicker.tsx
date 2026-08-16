@@ -1,67 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Modal, View, StyleSheet, ScrollView, Animated } from "react-native";
-import { ThemedText } from "../ThemedText";
-import { Button } from "./Button";
+import React, { useMemo } from "react";
+import { FlatList, Modal, Pressable, StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ThemedText } from "@/components/ThemedText";
+import { useAppTheme } from "@/context/ThemeContext";
+
+const MIN_AGE = 6;
+const MAX_AGE = 99;
+const ROW_HEIGHT = 52;
 
 interface AgePickerProps {
   visible: boolean;
-  onClose: () => void;
+  selected?: number;
   onSelect: (age: number) => void;
-  selectedAge?: number;
+  onClose: () => void;
 }
 
-export function AgePicker({ visible, onClose, onSelect, selectedAge }: AgePickerProps) {
+/** Seletor de idade em folha inferior. */
+export function AgePicker({ visible, selected, onSelect, onClose }: AgePickerProps) {
   const { t } = useTranslation();
-  const scrollViewRef = useRef<ScrollView>(null);
-  const [tempSelectedAge, setTempSelectedAge] = useState(selectedAge);
-  const scrollY = useRef(new Animated.Value(0)).current;
-  const ages = Array.from({ length: 120 }, (_, i) => i + 1);
-  const itemHeight = 50;
-  const visibleItems = 5;
-  const containerHeight = itemHeight * visibleItems;
-  const paddingTop = (containerHeight - itemHeight) / 2;
+  const { colors, radius, spacing } = useAppTheme();
+  const insets = useSafeAreaInsets();
 
-  useEffect(() => {
-    if (visible && selectedAge && scrollViewRef.current) {
-      setTempSelectedAge(selectedAge);
-      scrollViewRef.current?.scrollTo({
-        y: (selectedAge - 1) * itemHeight,
-        animated: false,
-      });
-    }
-  }, [visible, selectedAge]);
+  const ages = useMemo(() => Array.from({ length: MAX_AGE - MIN_AGE + 1 }, (_, i) => MIN_AGE + i), []);
 
-  const handleScroll = Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
-    useNativeDriver: true,
-    listener: (event: any) => {
-      const y = event.nativeEvent.contentOffset.y;
-      const centerIndex = Math.round(y / itemHeight);
-      const newAge = ages[centerIndex];
-
-      if (newAge && newAge !== tempSelectedAge) {
-        setTempSelectedAge(newAge);
-      }
-    },
-  });
-
-  const handleMomentumScrollEnd = (event: any) => {
-    const y = event.nativeEvent.contentOffset.y;
-    const centerIndex = Math.round(y / itemHeight);
-
-    // Ajusta o scroll para centralizar perfeitamente
-    scrollViewRef.current?.scrollTo({
-      y: centerIndex * itemHeight,
-      animated: true,
-    });
-  };
-
-  const handleConfirm = () => {
-    if (tempSelectedAge) {
-      onSelect(tempSelectedAge);
-      onClose();
-    }
-  };
+  const initialIndex = selected ? Math.max(ages.indexOf(selected) - 3, 0) : 0;
 
   return (
     <Modal
@@ -70,53 +33,65 @@ export function AgePicker({ visible, onClose, onSelect, selectedAge }: AgePicker
       animationType="slide"
       onRequestClose={onClose}
     >
-      <View
+      <Pressable
         style={styles.overlay}
-        onTouchEnd={(e) => {
-          if (e.target === e.currentTarget) {
-            onClose();
-          }
-        }}
+        onPress={onClose}
       >
-        <View style={styles.container}>
+        {/* Bloqueia o toque de fechar dentro do conteúdo. */}
+        <Pressable
+          onPress={(event) => event.stopPropagation()}
+          style={[
+            styles.sheet,
+            {
+              backgroundColor: colors.background,
+              borderTopLeftRadius: radius.xl,
+              borderTopRightRadius: radius.xl,
+              paddingBottom: insets.bottom || spacing.lg,
+            },
+          ]}
+        >
+          <View style={[styles.grabber, { backgroundColor: colors.border }]} />
+
           <ThemedText
-            type="subtitle"
+            variant="subheading"
+            center
             style={styles.title}
           >
-            {t("profile.editProfile.ageLabel")}
+            {t("settings.age.label")}
           </ThemedText>
 
-          <View style={[styles.pickerContainer, { height: containerHeight }]}>
-            <View style={styles.selectionHighlight} />
-            <Animated.ScrollView
-              ref={scrollViewRef}
-              style={styles.scrollView}
-              showsVerticalScrollIndicator={false}
-              snapToInterval={itemHeight}
-              decelerationRate="fast"
-              onMomentumScrollEnd={handleMomentumScrollEnd}
-              onScroll={handleScroll}
-              scrollEventThrottle={16}
-              contentContainerStyle={{ paddingVertical: paddingTop }}
-            >
-              {ages.map((age) => (
-                <View
-                  key={age}
-                  style={[styles.ageItem, tempSelectedAge === age && styles.selectedAgeRow]}
-                >
-                  <ThemedText style={[styles.ageText, tempSelectedAge === age && styles.selectedAgeText]}>{age}</ThemedText>
-                </View>
-              ))}
-            </Animated.ScrollView>
-          </View>
+          <FlatList
+            data={ages}
+            keyExtractor={(age) => String(age)}
+            initialScrollIndex={initialIndex}
+            getItemLayout={(_, index) => ({ length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index })}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => {
+              const active = item === selected;
 
-          <Button
-            title={t("common.confirm")}
-            onPress={handleConfirm}
-            style={styles.button}
+              return (
+                <Pressable
+                  accessibilityRole="radio"
+                  accessibilityState={{ selected: active }}
+                  onPress={() => onSelect(item)}
+                  style={({ pressed }) => [
+                    styles.row,
+                    { backgroundColor: active ? colors.primarySoft : "transparent", borderRadius: radius.md },
+                    pressed && { opacity: 0.6 },
+                  ]}
+                >
+                  <ThemedText
+                    variant={active ? "bodyStrong" : "body"}
+                    tone={active ? "primary" : "default"}
+                  >
+                    {item}
+                  </ThemedText>
+                </Pressable>
+              );
+            }}
           />
-        </View>
-      </View>
+        </Pressable>
+      </Pressable>
     </Modal>
   );
 }
@@ -124,61 +99,27 @@ export function AgePicker({ visible, onClose, onSelect, selectedAge }: AgePicker
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
     justifyContent: "flex-end",
+    backgroundColor: "rgba(0,0,0,0.45)",
   },
-  container: {
-    backgroundColor: "#fff",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    padding: 20,
+  sheet: {
+    maxHeight: "70%",
+    paddingHorizontal: 20,
+    paddingTop: 10,
+  },
+  grabber: {
+    width: 40,
+    height: 4,
+    borderRadius: 2,
+    alignSelf: "center",
   },
   title: {
-    textAlign: "center",
-    marginBottom: 20,
-    color: "#000",
+    marginTop: 14,
+    marginBottom: 12,
   },
-  pickerContainer: {
-    position: "relative",
-    marginBottom: 20,
-    overflow: "hidden",
-    borderRadius: 8,
-  },
-  scrollView: {
-    height: "100%",
-  },
-  selectionHighlight: {
-    position: "absolute",
-    top: "40%",
-    left: 0,
-    right: 0,
-    height: 50,
-    backgroundColor: "rgba(0, 122, 255, 0.1)",
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: "#007AFF",
-    zIndex: -1,
-  },
-  ageItem: {
-    height: 50,
+  row: {
+    height: ROW_HEIGHT,
     justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-  },
-  selectedAgeRow: {
-    backgroundColor: "rgba(0, 0, 0, 0.1)",
-  },
-  ageText: {
-    fontSize: 24,
-    color: "#000",
-    opacity: 0.5,
-  },
-  selectedAgeText: {
-    color: "#007AFF",
-    fontWeight: "600",
-    opacity: 1,
-  },
-  button: {
-    marginTop: 10,
+    paddingHorizontal: 16,
   },
 });

@@ -1,36 +1,42 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { STORAGE_KEYS, StorageKeys, StorageData } from "@/types/storage";
+import { useMemo } from "react";
+import { StorageData, StorageKeys } from "@/types/storage";
 
+/**
+ * Acesso tipado ao AsyncStorage.
+ *
+ * A referência retornada é estável entre renders — pode entrar em listas de
+ * dependência de `useEffect`/`useFocusEffect` sem causar loop.
+ */
 export function useStorage() {
-  const getItem = async <K extends StorageKeys>(key: K): Promise<StorageData[K] | null> => {
-    try {
-      const value = await AsyncStorage.getItem(key);
-      return value ? JSON.parse(value) : null;
-    } catch (error) {
-      console.error(`Error getting ${key}:`, error);
-      return null;
-    }
-  };
+  return useMemo(
+    () => ({
+      async getItem<K extends StorageKeys>(key: K): Promise<StorageData[K] | null> {
+        try {
+          const value = await AsyncStorage.getItem(key);
+          return value ? (JSON.parse(value) as StorageData[K]) : null;
+        } catch (error) {
+          console.error(`Error reading ${key}:`, error);
+          return null;
+        }
+      },
 
-  const setItem = async <K extends StorageKeys>(key: K, value: StorageData[K]): Promise<void> => {
-    try {
-      await AsyncStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.error(`Error setting ${key}:`, error);
-    }
-  };
+      async setItem<K extends StorageKeys>(key: K, value: StorageData[K]): Promise<void> {
+        try {
+          await AsyncStorage.setItem(key, JSON.stringify(value));
+        } catch (error) {
+          console.error(`Error writing ${key}:`, error);
+        }
+      },
 
-  const removeItem = async (key: StorageKeys): Promise<void> => {
-    try {
-      await AsyncStorage.removeItem(key);
-    } catch (error) {
-      console.error(`Error removing ${key}:`, error);
-    }
-  };
-
-  return {
-    getItem,
-    setItem,
-    removeItem,
-  };
+      async removeItem(key: StorageKeys): Promise<void> {
+        try {
+          await AsyncStorage.removeItem(key);
+        } catch (error) {
+          console.error(`Error removing ${key}:`, error);
+        }
+      },
+    }),
+    []
+  );
 }

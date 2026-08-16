@@ -1,22 +1,15 @@
-export type Theme = "light" | "dark";
+export type QuestionCategory = "similarities" | "vocabulary" | "matrix" | "comprehension" | "patterns";
 
-export interface ThemeColors {
-  light: ColorScheme;
-  dark: ColorScheme;
-}
+export type Difficulty = "easy" | "medium" | "hard";
 
-interface ColorScheme {
-  primary: string;
-  background: string;
-  card: string;
-  text: string;
-  border: string;
-  notification: string;
-}
-
-export interface TestHistory {
-  date: string;
-  score: number;
+export interface Question {
+  id: string;
+  category: QuestionCategory;
+  questionKey: string;
+  difficulty: Difficulty;
+  correctAnswer: number;
+  weight: number;
+  type?: "text" | "image";
 }
 
 export interface Answer {
@@ -25,21 +18,23 @@ export interface Answer {
   timeSpent: number;
 }
 
-export type QuestionCategory = "similarities" | "vocabulary" | "matrix" | "comprehension" | "patterns";
-
-export interface Question {
-  id: string;
+/** Desempenho agregado em uma categoria de questões. */
+export interface CategoryScore {
   category: QuestionCategory;
-  questionKey: string;
-  difficulty: "easy" | "medium" | "hard";
-  correctAnswer: number;
-  weight: number;
-  type?: "text" | "image";
+  correct: number;
+  total: number;
+  weightEarned: number;
+  weightTotal: number;
 }
 
-export interface QuestionWithTranslation {
-  id: string;
-  questionKey: string;
-  options: string[];
-  correctAnswer: number;
+/** Resultado consolidado de um teste. */
+export interface TestOutcome {
+  iq: number;
+  /** Posição estimada na população, de 1 a 99. */
+  percentile: number;
+  /** Chave de tradução, ex.: `classifications.average`. */
+  classification: string;
+  correct: number;
+  total: number;
+  categories: CategoryScore[];
 }

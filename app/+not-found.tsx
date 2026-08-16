@@ -1,38 +1,44 @@
-import { Link, Stack } from "expo-router";
-import { StyleSheet } from "react-native";
+import { router, Stack } from "expo-router";
+import React from "react";
 import { useTranslation } from "react-i18next";
+import { StyleSheet } from "react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { Button } from "@/components/ui/Button";
+import { Screen } from "@/components/ui/Screen";
 
-import { ThemedText } from "components/ThemedText";
-import { ThemedView } from "components/ThemedView";
-
-export default function NotFoundScreen() {
+export default function NotFound() {
   const { t } = useTranslation();
 
   return (
     <>
       <Stack.Screen options={{ title: t("notFound.title") }} />
-      <ThemedView style={styles.container}>
-        <ThemedText type="title">{t("notFound.message")}</ThemedText>
-        <Link
-          href="/"
-          style={styles.link}
+      <Screen contentStyle={styles.content}>
+        <ThemedText
+          variant="heading"
+          center
         >
-          <ThemedText type="link">{t("notFound.backHome")}</ThemedText>
-        </Link>
-      </ThemedView>
+          {t("notFound.title")}
+        </ThemedText>
+        <ThemedText
+          variant="body"
+          tone="muted"
+          center
+        >
+          {t("notFound.message")}
+        </ThemedText>
+        <Button
+          title={t("common.home")}
+          onPress={() => router.replace("/")}
+        />
+      </Screen>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
+  content: {
     justifyContent: "center",
-    padding: 20,
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
+    alignItems: "center",
+    gap: 14,
   },
 });

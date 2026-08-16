@@ -1,56 +1,102 @@
-import { Answer } from "@/types";
 import { questions } from "@/data/questions";
+import { Answer, CategoryScore, QuestionCategory, TestOutcome } from "@/types";
 
 const MEAN_IQ = 100;
 const STANDARD_DEVIATION = 15;
 
-interface QuestionScore {
-  isCorrect: boolean;
-  weight: number;
-  timeSpent: number;
+/**
+ * Calibração da pontuação bruta.
+ *
+ * Não é um teste normatizado — não temos amostra populacional. Assumimos que
+ * o acerto ponderado médio fica em torno de 55% com desvio de 18 p.p., que é
+ * o que produz uma distribuição plausível sobre este banco de questões.
+ * Trocar estes números é o único ponto a mexer caso um dia haja dados reais.
+ */
+const EXPECTED_RATIO = 0.55;
+const RATIO_SPREAD = 0.18;
+
+/** Limites de exibição. Fora disso a estimativa não tem qualquer significado. */
+const MIN_IQ = 55;
+const MAX_IQ = 145;
+
+/** Função de distribuição acumulada da normal padrão (Abramowitz & Stegun 26.2.17). */
+function normalCdf(z: number): number {
+  const sign = z < 0 ? -1 : 1;
+  const x = Math.abs(z) / Math.SQRT2;
+
+  const t = 1 / (1 + 0.3275911 * x);
+  const y = 1 - ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+
+  return 0.5 * (1 + sign * y);
 }
 
-export function calculateIQ(answers: Answer[], age: number): number {
-  // Calculate raw score
-  const totalPossibleScore = 30 * 3; // 30 questions, max weight 3
-  let rawScore = 0;
-  let timeBonus = 0;
+/** Ajuste etário leve. Questões verbais favorecem adultos; matriciais, jovens. */
+function ageAdjustment(age: number | undefined): number {
+  if (!age || Number.isNaN(age)) return 0;
+  if (age < 14) return 4;
+  if (age < 18) return 2;
+  if (age > 65) return -3;
+  return 0;
+}
+
+/**
+ * Consolida as respostas em um resultado completo.
+ *
+ * Pontua sobre as questões efetivamente respondidas, e não sobre um total
+ * fixo — assim um teste interrompido não é penalizado como se todas as
+ * questões restantes estivessem erradas.
+ */
+export function evaluateTest(answers: Answer[], age?: number): TestOutcome {
+  const byCategory = new Map<QuestionCategory, CategoryScore>();
+
+  let weightEarned = 0;
+  let weightTotal = 0;
+  let correct = 0;
 
   answers.forEach((answer) => {
-    if (answer.isCorrect) {
-      const question = questions.find((q) => q.id === answer.questionId);
-      if (question) {
-        rawScore += question.weight;
+    const question = questions.find((q) => q.id === answer.questionId);
+    if (!question) return;
 
-        // Time bonus for quick correct answers
-        if (answer.timeSpent < 20) {
-          // If answered correctly in less than 20 seconds
-          timeBonus += 0.1 * question.weight;
-        }
-      }
+    const entry = byCategory.get(question.category) ?? {
+      category: question.category,
+      correct: 0,
+      total: 0,
+      weightEarned: 0,
+      weightTotal: 0,
+    };
+
+    entry.total += 1;
+    entry.weightTotal += question.weight;
+    weightTotal += question.weight;
+
+    if (answer.isCorrect) {
+      entry.correct += 1;
+      entry.weightEarned += question.weight;
+      weightEarned += question.weight;
+      correct += 1;
     }
+
+    byCategory.set(question.category, entry);
   });
 
-  // Add time bonus to raw score
-  rawScore += timeBonus;
+  const ratio = weightTotal > 0 ? weightEarned / weightTotal : 0;
+  const z = (ratio - EXPECTED_RATIO) / RATIO_SPREAD;
 
-  // Convert to scaled score (similar to Wechsler scaling)
-  const scaledScore = (rawScore / totalPossibleScore) * 100;
+  const rawIq = MEAN_IQ + z * STANDARD_DEVIATION + ageAdjustment(age);
+  const iq = Math.min(Math.max(Math.round(rawIq), MIN_IQ), MAX_IQ);
 
-  // Apply age adjustment (simplified version of Wechsler age adjustment)
-  let ageAdjustment = 0;
-  if (age < 16) {
-    ageAdjustment = 5; // Bonus for younger test takers
-  } else if (age > 60) {
-    ageAdjustment = -5; // Adjustment for older test takers
-  }
+  // Percentil derivado do QI final (e não do z bruto) para manter coerência
+  // com o número que o usuário vê depois do ajuste e do clamp.
+  const percentile = Math.min(Math.max(Math.round(normalCdf((iq - MEAN_IQ) / STANDARD_DEVIATION) * 100), 1), 99);
 
-  // Calculate final IQ using normal distribution
-  const zScore = (scaledScore - 50) / 20; // Convert to z-score
-  const iq = Math.round(MEAN_IQ + zScore * STANDARD_DEVIATION + ageAdjustment);
-
-  // Clamp IQ between 40 and 160
-  return Math.min(Math.max(iq, 40), 160);
+  return {
+    iq,
+    percentile,
+    classification: getIQClassification(iq),
+    correct,
+    total: answers.length,
+    categories: Array.from(byCategory.values()),
+  };
 }
 
 export function getIQClassification(iq: number): string {

@@ -1,27 +1,25 @@
 import React from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
-import { useTheme } from "context/ThemeContext";
+import { useAppTheme } from "@/context/ThemeContext";
 
 interface CardProps extends ViewProps {
-  variant?: "elevated" | "outlined";
+  variant?: "elevated" | "outlined" | "soft";
+  padded?: boolean;
 }
 
-export function Card({ children, style, variant = "elevated", ...props }: CardProps) {
-  const { theme, colors } = useTheme();
+export function Card({ children, style, variant = "elevated", padded = true, ...rest }: CardProps) {
+  const { colors, radius, spacing, shadow } = useAppTheme();
+
+  const variants = {
+    elevated: { backgroundColor: colors.surface, ...shadow(1) },
+    outlined: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
+    soft: { backgroundColor: colors.surfaceAlt },
+  };
 
   return (
     <View
-      style={[
-        styles.card,
-        variant === "elevated" && styles.elevated,
-        variant === "outlined" && styles.outlined,
-        {
-          backgroundColor: colors[theme].card,
-          borderColor: colors[theme].border,
-        },
-        style,
-      ]}
-      {...props}
+      style={[styles.card, { borderRadius: radius.lg }, padded && { padding: spacing.lg }, variants[variant], style]}
+      {...rest}
     >
       {children}
     </View>
@@ -30,22 +28,6 @@ export function Card({ children, style, variant = "elevated", ...props }: CardPr
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 15,
-    padding: 16,
-    marginVertical: 8,
-    backgroundColor: "#fff",
-  },
-  elevated: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  outlined: {
-    borderWidth: 1,
+    overflow: "hidden",
   },
 });

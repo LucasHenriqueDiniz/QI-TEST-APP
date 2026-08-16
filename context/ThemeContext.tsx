@@ -1,47 +1,70 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useColorScheme } from "react-native";
-import { Theme, ThemeColors } from "@/types";
+import { ColorMode, Palette, elevation, palettes, radius, spacing, typography } from "@/constants/theme";
 
-type ThemeContextType = {
-  theme: Theme;
-  colors: ThemeColors;
-  toggleTheme: () => void;
-};
+/** Preferência do usuário. `system` acompanha o aparelho. */
+export type ThemePreference = ColorMode | "system";
 
-const ThemeContext = createContext<ThemeContextType>({} as ThemeContextType);
+const STORAGE_KEY = "themePreference";
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const systemColorScheme = useColorScheme();
-  const [theme, setTheme] = useState<Theme>(systemColorScheme || "light");
-
-  const colors = {
-    light: {
-      primary: "#007AFF",
-      background: "#FFFFFF",
-      card: "#F2F2F7",
-      text: "#000000",
-      border: "#C6C6C8",
-      notification: "#FF3B30",
-    },
-    dark: {
-      primary: "#0A84FF",
-      background: "#000000",
-      card: "#1C1C1E",
-      text: "#FFFFFF",
-      border: "#38383A",
-      notification: "#FF453A",
-    },
-  };
-
-  const toggleTheme = () => {
-    setTheme((current) => (current === "light" ? "dark" : "light"));
-  };
-
-  useEffect(() => {
-    setTheme(systemColorScheme || "light");
-  }, [systemColorScheme]);
-
-  return <ThemeContext.Provider value={{ theme, colors, toggleTheme }}>{children}</ThemeContext.Provider>;
+interface ThemeContextValue {
+  /** Modo efetivo, já resolvido a partir da preferência + sistema. */
+  mode: ColorMode;
+  preference: ThemePreference;
+  colors: Palette;
+  spacing: typeof spacing;
+  radius: typeof radius;
+  typography: typeof typography;
+  /** Sombra pronta para o modo atual. */
+  shadow: (level: 0 | 1 | 2 | 3) => object;
+  setPreference: (preference: ThemePreference) => void;
 }
 
-export const useTheme = () => useContext(ThemeContext);
+const ThemeContext = createContext<ThemeContextValue | null>(null);
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const systemMode = useColorScheme();
+  const [preference, setPreferenceState] = useState<ThemePreference>("system");
+
+  useEffect(() => {
+    AsyncStorage.getItem(STORAGE_KEY)
+      .then((stored) => {
+        if (stored === "light" || stored === "dark" || stored === "system") {
+          setPreferenceState(stored);
+        }
+      })
+      .catch((error) => console.error("Error loading theme preference:", error));
+  }, []);
+
+  const setPreference = useCallback((next: ThemePreference) => {
+    setPreferenceState(next);
+    AsyncStorage.setItem(STORAGE_KEY, next).catch((error) => console.error("Error saving theme preference:", error));
+  }, []);
+
+  const mode: ColorMode = preference === "system" ? (systemMode === "dark" ? "dark" : "light") : preference;
+
+  const value = useMemo<ThemeContextValue>(() => {
+    const colors = palettes[mode];
+    return {
+      mode,
+      preference,
+      colors,
+      spacing,
+      radius,
+      typography,
+      shadow: (level) => elevation(level, colors.shadow),
+      setPreference,
+    };
+  }, [mode, preference, setPreference]);
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+}
+
+export function useAppTheme() {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("useAppTheme precisa estar dentro de <ThemeProvider>");
+  }
+  return context;
+}

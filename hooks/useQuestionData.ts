@@ -1,30 +1,43 @@
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { questions } from "@/data/questions";
+import { Question } from "@/types";
 
-export const useQuestionData = () => {
+interface TranslatedQuestion extends Question {
+  question: string;
+  options: string[];
+}
+
+/** Junta a questão (dados) com o texto traduzido (i18n). */
+export function useQuestionData() {
   const { t } = useTranslation();
 
-  const getQuestionData = (questionId: string) => {
-    const question = questions.find((q) => q.id === questionId);
-    if (!question) return null;
+  const getQuestionData = useCallback(
+    (questionId: string): TranslatedQuestion | null => {
+      const question = questions.find((q) => q.id === questionId);
+      if (!question) return null;
 
-    const translationKey = `questions.items.${question.category}.${question.questionKey}`;
+      // Questões de padrão são puramente visuais — não têm texto nem alternativas.
+      if (question.type === "image") {
+        return { ...question, question: "", options: [] };
+      }
 
-    // Get the question text and options from translations
-    const questionText = t(`${translationKey}.question`);
-    const options = t(`${translationKey}.options`, { returnObjects: true });
+      const base = `questions.items.${question.category}.${question.questionKey}`;
+      const options = t(`${base}.options`, { returnObjects: true });
 
-    // Debug log
-    console.log("Translation Key:", translationKey);
-    console.log("Question Text:", questionText);
-    console.log("Options:", options);
+      if (!Array.isArray(options)) {
+        console.warn(`Alternativas ausentes para ${base}`);
+        return null;
+      }
 
-    return {
-      ...question,
-      question: questionText,
-      options: options as string[],
-    };
-  };
+      return {
+        ...question,
+        question: t(`${base}.question`),
+        options: options as string[],
+      };
+    },
+    [t]
+  );
 
   return { getQuestionData };
-};
+}

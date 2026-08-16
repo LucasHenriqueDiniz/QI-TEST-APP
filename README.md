@@ -1,50 +1,89 @@
-# Welcome to your Expo app 👋
+# Teste de QI
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo de teste de QI em React Native (Expo Router), com 30 questões
+sorteadas por rodada entre um banco de mais de 100, resultado com percentil e
+desempenho por área, histórico de evolução e três idiomas.
 
-## Get started
+Gratuito e sem compras. Funciona offline — nenhum dado sai do aparelho.
 
-1. Install dependencies
+| | |
+|---|---|
+| **Package** | `com.lhdiniz.testeqi` (imutável após o 1º upload) |
+| **Expo SDK** | 52 |
+| **Idiomas** | pt · en · es |
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Rodando localmente
 
 ```bash
-npm run reset-project
+yarn install
+yarn start          # Metro; abra no Expo Go ou num dev build
+yarn android        # direto no emulador/aparelho Android
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Verificações:
 
-## Learn more
+```bash
+npx tsc --noEmit                          # tipos
+npx expo export --platform android        # confirma que o bundle fecha
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Estrutura
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```
+app/                 6 telas planas (expo-router)
+  _layout.tsx        Stack raiz + ThemeProvider
+  index.tsx          Home
+  test.tsx           Teste
+  results.tsx        Resultado
+  history.tsx        Histórico
+  settings.tsx       Ajustes
 
-## Join the community
+components/ui/       Primitivas (Button, Card, Screen, ProgressBar, ScoreCurve…)
+constants/theme.ts   Tokens de design — fonte única de cor/espaço/tipografia
+context/             ThemeContext (claro/escuro/sistema, persistido)
+data/questions.ts    Metadados das questões (categoria, peso, dificuldade)
+assets/i18n/         Textos das questões e da interface, por idioma
+assets/questions/    150 SVGs das matrizes de padrão
+utils/iqCalculator   Pontuação, percentil e recorte por categoria
+store/               Material de publicação (ASO, fichas, privacidade)
+```
 
-Join our community of developers creating universal apps.
+### Convenções
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Cores só via `useAppTheme()`.** Nada de hex solto nas telas — os tokens
+  ficam em `constants/theme.ts` e existem em claro e escuro.
+- **Texto só via `<ThemedText variant="…">`.** A escala tipográfica define
+  `lineHeight` explicitamente porque o padrão do Android corta acentos.
+- **Todo texto visível passa por `t()`.** Chaves novas vão nos três arquivos de
+  `assets/i18n/translations/`.
+
+## Como a pontuação é calculada
+
+`utils/iqCalculator.ts` soma o peso das questões acertadas, divide pelo peso
+total **das questões respondidas** (um teste interrompido não é penalizado),
+converte para z-score contra uma calibração fixa e mapeia para a escala de média
+100 e desvio 15. O percentil sai da CDF normal.
+
+Não é um teste normatizado — não há amostra populacional. As constantes de
+calibração (`EXPECTED_RATIO`, `RATIO_SPREAD`) são o único ponto a ajustar se um
+dia houver dados reais.
+
+## Publicação
+
+Todo o material está em `store/`:
+
+- `ASO.md` — estratégia de palavras-chave e por que os textos são o que são
+- `listing-pt-BR.md`, `listing-es-419.md`, `listing-en-US.md` — prontos para colar
+- `PRIVACY.md` — política de privacidade (precisa ir para uma URL pública)
+- `CHECKLIST.md` — passo a passo até a produção
+- `screenshots/` — rascunhos gerados do build web, para enquadramento
+
+## Anúncios
+
+Ainda não integrados. Os pontos de inserção já estão marcados no layout pelo
+componente `components/ui/AdSlot.tsx`, que não renderiza nada em produção.
+
+Para ligar o AdMob: instalar `react-native-google-mobile-ads`, adicionar o
+plugin no `app.json` com o App ID, trocar o corpo do `AdSlot` por um `BannerAd`
+e **atualizar a política de privacidade e o formulário Data safety antes de
+publicar** (ver a seção final de `store/PRIVACY.md`).
