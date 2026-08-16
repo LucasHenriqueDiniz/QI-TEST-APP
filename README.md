@@ -97,6 +97,10 @@ anúncio real em build de desenvolvimento é violação dos termos do AdMob.
 | Intersticial com trava de frequência | `hooks/useGatedInterstitial.ts` |
 | IDs e limites | `constants/ads.ts` |
 
-O banner só ocupa altura depois de carregar, para não deixar faixa vazia quando
-a requisição falha. O intersticial aparece apenas no "Refazer teste", nunca no
-primeiro teste e no máximo uma vez a cada 3 minutos.
+Banner ancorado no rodapé das cinco telas; só ocupa altura depois de carregar,
+para não deixar faixa vazia quando a requisição falha.
+
+O intersticial aparece entre o fim do teste e o resultado, inclusive no primeiro
+teste — decisão deliberada para um app de sessão única, explicada em
+`store/ADMOB.md`. O resultado é gravado no histórico antes do anúncio, então
+nada se perde se ele falhar.

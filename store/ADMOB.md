@@ -20,33 +20,55 @@ colá-los em dois lugares.
 
 ## Onde os anúncios aparecem, e por quê
 
-**Banner ancorado** no rodapé de Início, Teste, Resultado e Histórico. Formato
-`ANCHORED_ADAPTIVE_BANNER`, que se ajusta à largura do aparelho e rende mais que
-o banner fixo de 320×50.
+**Banner ancorado** no rodapé de todas as cinco telas — Início, Teste,
+Resultado, Histórico e Ajustes. Formato `ANCHORED_ADAPTIVE_BANNER`, que se
+ajusta à largura do aparelho e rende mais que o banner fixo de 320×50.
 
 O contêiner tem altura zero até o anúncio carregar. Sem isso, sobraria uma faixa
 cinza toda vez que a requisição falhasse — offline, sem preenchimento ou
 consentimento negado — que é exatamente quando o app precisa parecer normal.
 
-**Intersticial** só no botão "Refazer teste", com duas travas:
+**Intersticial entre o fim do teste e o resultado**, em `app/test.tsx`. É o
+ponto de maior receita: 100% de quem termina o teste passa por ali, e a
+expectativa pelo número segura a pessoa durante o anúncio.
 
-- Nunca no primeiro teste (`INTERSTITIAL_AFTER_TESTS`)
-- No máximo um a cada 3 minutos (`INTERSTITIAL_COOLDOWN_MS`)
+O resultado é gravado no histórico **antes** do anúncio aparecer. Se o anúncio
+falhar, ou o usuário matar o app durante ele, nada se perde — a navegação é o
+único passo represado, e `useGatedInterstitial` a executa mesmo em caso de erro.
 
-### O que eu deliberadamente não fiz
+### Por que sem trava no primeiro teste
 
-**Intersticial entre o fim do teste e o resultado.** É o ponto de maior receita
-e o mais tentador — e também o momento em que a pessoa decide se o app presta.
-Bloquear o resultado com um anúncio de 5 segundos aumenta desinstalação, e taxa
-de desinstalação pesa no ranqueamento da Play Store. Você perderia em ASO mais
-do que ganharia em eCPM.
+`INTERSTITIAL_AFTER_TESTS = 0`. A recomendação padrão seria poupar a primeira
+sessão, porque é ela que define se a pessoa desinstala — e desinstalação pesa no
+ranqueamento.
 
-Se quiser testar mesmo assim, é uma linha em `app/test.tsx`: envolva o
-`router.replace("/results")` com o `run()` do `useGatedInterstitial`.
+Só que essa lógica pressupõe um app de uso recorrente. Teste de QI é de sessão
+única: a maioria faz o teste uma vez e não volta. Poupar o primeiro teste
+significaria não monetizar quase ninguém, e a mudança não valeria nada.
 
-**Anúncio premiado (rewarded).** Não faz sentido aqui: o app é 100% gratuito e
-não há nada bloqueado para desbloquear. Rewarded sem recompensa é só um
-intersticial com passos a mais.
+**O custo existe e vale monitorar.** Anúncio na primeira experiência aumenta a
+chance de avaliação de 1 estrela, e nota média é fator de ranqueamento — além
+de aparecer direto no resultado de busca. Se as avaliações começarem a reclamar
+de anúncio, subir `INTERSTITIAL_AFTER_TESTS` para `1` reverte a decisão numa
+linha.
+
+### O que ainda não existe
+
+**Anúncio premiado (rewarded).** Não há o que desbloquear num app 100% gratuito
+— rewarded sem recompensa é só um intersticial com passos a mais.
+
+Para isso valer a pena seria preciso criar conteúdo que as pessoas queiram
+depois do resultado. O candidato natural: **revisão das questões erradas, com a
+resposta certa e a explicação**. A curiosidade é genuína naquele momento, e o
+resultado principal continua grátis, então não é paywall disfarçado.
+
+**Anúncio ao abrir (app open).** Disponível no SDK já instalado
+(`useAppOpenAd`), mas irrita quem abre o app só para consultar o histórico.
+Se for testar, vale mostrar apenas a partir da segunda abertura.
+
+**Anúncio em notificação.** Não existe no AdMob, e a política de anúncios da
+Play Store proíbe exibir anúncio fora da interface do app. Redes que oferecem
+"push monetization" são caminho direto para remoção da loja.
 
 ---
 

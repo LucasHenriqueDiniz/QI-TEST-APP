@@ -73,6 +73,7 @@ export default function Settings() {
   return (
     <Screen
       scroll
+      adPlacement="settings-bottom"
       contentStyle={styles.content}
     >
       <Section title={t("settings.section.test")}>

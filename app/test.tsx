@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { useAppTheme } from "@/context/ThemeContext";
+import { useGatedInterstitial } from "@/hooks/useGatedInterstitial";
 import { useQuestionData } from "@/hooks/useQuestionData";
 import { buildTest, restoreTest } from "@/hooks/useQuestionSelection";
 import { useStorage } from "@/hooks/useStorage";
@@ -29,6 +30,11 @@ export default function Test() {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [selected, setSelected] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const [completedTests, setCompletedTests] = useState(0);
+
+  // O anúncio começa a carregar assim que o teste abre, então já está pronto
+  // quando o usuário chega na última questão — sem espera na hora de mostrar.
+  const { run } = useGatedInterstitial({ completedTests });
 
   const scrollRef = useRef<ScrollView>(null);
   const questionStartedAt = useRef(Date.now());
@@ -38,8 +44,14 @@ export default function Test() {
     let active = true;
 
     const bootstrap = async () => {
-      const [progress, userData] = await Promise.all([storage.getItem("testProgress"), storage.getItem("userData")]);
+      const [progress, userData, history] = await Promise.all([
+        storage.getItem("testProgress"),
+        storage.getItem("userData"),
+        storage.getItem("testHistory"),
+      ]);
       if (!active) return;
+
+      setCompletedTests(history?.length ?? 0);
 
       // Só retoma se conseguirmos reconstruir exatamente o mesmo teste;
       // caso contrário as respostas salvas apontariam para outras questões.
@@ -90,7 +102,10 @@ export default function Test() {
     await storage.setItem("testHistory", [entry, ...existing]);
     await storage.removeItem("testProgress");
 
-    router.replace({ pathname: "/results", params: { entry: JSON.stringify(entry) } });
+    // O resultado já está salvo no histórico neste ponto. Se o anúncio falhar
+    // ou o usuário matar o app durante ele, nada se perde — a navegação é o
+    // único passo represado, e `run` a executa mesmo em caso de erro.
+    run(() => router.replace({ pathname: "/results", params: { entry: JSON.stringify(entry) } }));
   };
 
   const handleConfirm = async () => {
