@@ -73,7 +73,7 @@ Escreva para lucas.diniz.hdo@gmail.com. Feedback sobre questões confusas ou tra
 - **Tags:** teste, quiz, lógica, raciocínio, educação
 - **Classificação indicativa:** Livre (não há conteúdo sensível, violência ou compras)
 - **E-mail de contato:** lucas.diniz.hdo@gmail.com
-- **Política de privacidade:** publicar `store/PRIVACY.md` numa URL pública e colar aqui
+- **Política de privacidade:** publicar `store/privacy-page/index.html` numa URL pública e colar aqui
 
 ## Legendas das capturas de tela
 

@@ -74,16 +74,29 @@ Todo o material está em `store/`:
 
 - `ASO.md` — estratégia de palavras-chave e por que os textos são o que são
 - `listing-pt-BR.md`, `listing-es-419.md`, `listing-en-US.md` — prontos para colar
-- `PRIVACY.md` — política de privacidade (precisa ir para uma URL pública)
+- `privacy-page/` — política de privacidade em HTML, pronta para hospedar
+- `ADMOB.md` — integração de anúncios e passo a passo do console
+- `ICON-BRIEF.md` — prompts para gerar ícone e feature graphic
 - `CHECKLIST.md` — passo a passo até a produção
 - `screenshots/` — rascunhos gerados do build web, para enquadramento
 
 ## Anúncios
 
-Ainda não integrados. Os pontos de inserção já estão marcados no layout pelo
-componente `components/ui/AdSlot.tsx`, que não renderiza nada em produção.
+AdMob integrado via `react-native-google-mobile-ads`, rodando com os **IDs de
+teste oficiais do Google**. Para ativar os IDs reais, crie `.env.local`
+(ignorado pelo git) e troque o App ID no `app.json` — passo a passo em
+`store/ADMOB.md`.
 
-Para ligar o AdMob: instalar `react-native-google-mobile-ads`, adicionar o
-plugin no `app.json` com o App ID, trocar o corpo do `AdSlot` por um `BannerAd`
-e **atualizar a política de privacidade e o formulário Data safety antes de
-publicar** (ver a seção final de `store/PRIVACY.md`).
+Em `__DEV__` o app usa IDs de teste mesmo com os reais configurados: servir
+anúncio real em build de desenvolvimento é violação dos termos do AdMob.
+
+| Peça | Onde |
+|---|---|
+| Inicialização + consentimento UMP | `context/AdsContext.tsx` |
+| Banner ancorado adaptativo | `components/ui/AdSlot.tsx` |
+| Intersticial com trava de frequência | `hooks/useGatedInterstitial.ts` |
+| IDs e limites | `constants/ads.ts` |
+
+O banner só ocupa altura depois de carregar, para não deixar faixa vazia quando
+a requisição falha. O intersticial aparece apenas no "Refazer teste", nunca no
+primeiro teste e no máximo uma vez a cada 3 minutos.

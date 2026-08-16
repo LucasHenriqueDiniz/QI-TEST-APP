@@ -96,6 +96,7 @@ export const en = {
         dark: "Dark",
       },
       rate: "Rate on the Play Store",
+      privacyOptions: "Ad privacy options",
       clear: {
         button: "Clear history",
         title: "Clear history",

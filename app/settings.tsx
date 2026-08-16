@@ -9,6 +9,7 @@ import { AgePicker } from "@/components/ui/AgePicker";
 import { Card } from "@/components/ui/Card";
 import { Screen } from "@/components/ui/Screen";
 import { STORE_URL } from "@/constants/app";
+import { useAds } from "@/context/AdsContext";
 import { ThemePreference, useAppTheme } from "@/context/ThemeContext";
 import { useStorage } from "@/hooks/useStorage";
 
@@ -21,6 +22,7 @@ const LANGUAGES = [
 export default function Settings() {
   const { t, i18n } = useTranslation();
   const { colors, radius, preference, setPreference } = useAppTheme();
+  const { canShowPrivacyOptions, showPrivacyOptions } = useAds();
   const storage = useStorage();
 
   const [age, setAge] = useState<string | undefined>(undefined);
@@ -172,6 +174,18 @@ export default function Settings() {
             divided
             onPress={() => Linking.openURL(STORE_URL).catch(() => {})}
           />
+          {/* Só aparece onde o UMP exige — fora do EEE/Reino Unido não há
+              formulário a reabrir e a linha seria um beco sem saída. */}
+          {canShowPrivacyOptions && (
+            <PlainRow
+              icon="options-outline"
+              label={t("settings.privacyOptions")}
+              divided
+              onPress={() => {
+                showPrivacyOptions();
+              }}
+            />
+          )}
           <PlainRow
             icon="trash-outline"
             label={t("settings.clear.button")}

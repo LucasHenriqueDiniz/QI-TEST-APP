@@ -10,6 +10,8 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { ScoreCurve } from "@/components/ui/ScoreCurve";
 import { Screen } from "@/components/ui/Screen";
 import { useAppTheme } from "@/context/ThemeContext";
+import { useGatedInterstitial } from "@/hooks/useGatedInterstitial";
+import { useStorage } from "@/hooks/useStorage";
 import { HistoryItem } from "@/types/storage";
 import { getIQClassification } from "@/utils/iqCalculator";
 
@@ -21,6 +23,7 @@ export default function Results() {
   const { colors, spacing } = useAppTheme();
   const { width } = useWindowDimensions();
   const params = useLocalSearchParams<{ entry?: string }>();
+  const storage = useStorage();
 
   const entry = useMemo<HistoryItem | null>(() => {
     if (!params.entry) return null;
@@ -33,6 +36,16 @@ export default function Results() {
   }, [params.entry]);
 
   const [revealed, setRevealed] = useState(0);
+  const [completedTests, setCompletedTests] = useState(0);
+
+  useEffect(() => {
+    storage
+      .getItem("testHistory")
+      .then((history) => setCompletedTests(history?.length ?? 0))
+      .catch((error) => console.error("Error counting tests:", error));
+  }, [storage]);
+
+  const { run } = useGatedInterstitial({ completedTests });
 
   useEffect(() => {
     if (!entry) return;
@@ -192,7 +205,7 @@ export default function Results() {
           variant="outline"
           icon="refresh-outline"
           title={t("results.retake")}
-          onPress={() => router.replace("/test")}
+          onPress={() => run(() => router.replace("/test"))}
         />
         <Button
           block

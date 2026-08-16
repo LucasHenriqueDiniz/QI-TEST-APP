@@ -96,6 +96,7 @@ export const pt = {
         dark: "Escuro",
       },
       rate: "Avaliar na Play Store",
+      privacyOptions: "Opções de privacidade dos anúncios",
       clear: {
         button: "Apagar histórico",
         title: "Apagar histórico",

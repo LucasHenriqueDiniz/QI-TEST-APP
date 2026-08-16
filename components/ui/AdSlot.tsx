@@ -1,64 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { useAppTheme } from "@/context/ThemeContext";
-import { ThemedText } from "@/components/ThemedText";
-
-/** Alturas padrão do AdMob, em dp. */
-const HEIGHTS = {
-  banner: 50,
-  largeBanner: 100,
-  mediumRectangle: 250,
-} as const;
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+import { AD_UNITS } from "@/constants/ads";
+import { useAds } from "@/context/AdsContext";
 
 interface AdSlotProps {
-  size?: keyof typeof HEIGHTS;
-  /** Identifica o ponto de inserção nos logs e na futura configuração de ad units. */
+  /** Identifica o ponto de inserção nos logs. */
   placement: string;
 }
 
 /**
- * Ponto de inserção de anúncio.
+ * Banner adaptativo ancorado.
  *
- * O AdMob ainda não está integrado — este componente marca *onde* o banner
- * vai entrar sem renderizar nada em produção, para não ocupar espaço com uma
- * caixa vazia (e para não parecer um anúncio falso na revisão da Play Store).
- *
- * Para ligar: instalar `react-native-google-mobile-ads`, adicionar o plugin no
- * app.json com o App ID, e trocar o corpo abaixo por um `<BannerAd />` usando
- * `placement` para escolher a ad unit.
+ * Só ocupa espaço depois que o anúncio carrega — um contêiner de altura fixa
+ * deixaria uma faixa vazia sempre que a requisição falhasse (offline, sem
+ * preenchimento, consentimento negado), que é justamente quando o app precisa
+ * parecer normal.
  */
-export function AdSlot({ size = "banner", placement }: AdSlotProps) {
-  const { colors, radius } = useAppTheme();
+export function AdSlot({ placement }: AdSlotProps) {
+  const { ready } = useAds();
+  const [loaded, setLoaded] = useState(false);
 
-  if (!__DEV__) return null;
+  if (!ready) return null;
 
   return (
-    <View
-      style={[
-        styles.placeholder,
-        {
-          height: HEIGHTS[size],
-          borderColor: colors.border,
-          borderRadius: radius.md,
-        },
-      ]}
-      pointerEvents="none"
-    >
-      <ThemedText
-        variant="overline"
-        tone="faint"
-      >
-        AD · {placement}
-      </ThemedText>
+    <View style={[styles.container, !loaded && styles.collapsed]}>
+      <BannerAd
+        unitId={AD_UNITS.banner}
+        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+        onAdLoaded={() => setLoaded(true)}
+        onAdFailedToLoad={(error) => {
+          setLoaded(false);
+          console.error(`Ad failed at ${placement}:`, error);
+        }}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  placeholder: {
+  container: {
     alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderStyle: "dashed",
+  },
+  collapsed: {
+    height: 0,
+    overflow: "hidden",
   },
 });

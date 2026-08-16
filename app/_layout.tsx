@@ -6,6 +6,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { AdsProvider } from "@/context/AdsContext";
 import { ThemeProvider, useAppTheme } from "@/context/ThemeContext";
 
 function RootNavigator() {
@@ -59,7 +60,9 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider>
-          <RootNavigator />
+          <AdsProvider>
+            <RootNavigator />
+          </AdsProvider>
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

@@ -96,6 +96,7 @@ export const es = {
         dark: "Oscuro",
       },
       rate: "Valorar en Play Store",
+      privacyOptions: "Opciones de privacidad de anuncios",
       clear: {
         button: "Borrar historial",
         title: "Borrar historial",
