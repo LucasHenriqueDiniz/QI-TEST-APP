@@ -2,8 +2,11 @@ import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import React from "react";
 import { ActivityIndicator, Platform, Pressable, StyleSheet, View, ViewStyle } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { useAppTheme } from "@/context/ThemeContext";
 import { ThemedText } from "@/components/ThemedText";
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 type Variant = "primary" | "secondary" | "outline" | "ghost";
 type Size = "medium" | "large";
@@ -22,9 +25,14 @@ interface ButtonProps {
 }
 
 export function Button({ title, onPress, variant = "primary", size = "medium", icon, disabled, loading, block, style }: ButtonProps) {
-  const { colors, radius, shadow } = useAppTheme();
+  const { colors, radius, shadow, motion } = useAppTheme();
 
   const isDisabled = disabled || loading;
+
+  // Mola em vez de degrau: o botão assenta ao ser pressionado e volta com
+  // inércia. `transform` estático dá um salto seco que lê como travamento.
+  const scale = useSharedValue(1);
+  const animatedStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
 
   const surfaces: Record<Variant, ViewStyle> = {
     primary: { backgroundColor: colors.primary, ...shadow(2) },
@@ -50,21 +58,25 @@ export function Button({ title, onPress, variant = "primary", size = "medium", i
   };
 
   return (
-    <Pressable
+    <AnimatedPressable
       accessibilityRole="button"
       accessibilityState={{ disabled: !!isDisabled, busy: !!loading }}
       onPress={handlePress}
+      onPressIn={() => {
+        if (!isDisabled) scale.value = withSpring(0.97, motion.spring);
+      }}
+      onPressOut={() => {
+        scale.value = withSpring(1, motion.spring);
+      }}
       disabled={isDisabled}
-      style={({ pressed }) => [
+      style={[
         styles.base,
         size === "large" ? styles.large : styles.medium,
         { borderRadius: radius.lg },
         surfaces[variant],
         block && styles.block,
-        // Feedback de toque sem depender de opacity no container inteiro,
-        // que apagaria a sombra no Android.
-        pressed && !isDisabled && styles.pressed,
         isDisabled && styles.disabled,
+        animatedStyle,
         style,
       ]}
     >
@@ -88,7 +100,7 @@ export function Button({ title, onPress, variant = "primary", size = "medium", i
           </ThemedText>
         </View>
       )}
-    </Pressable>
+    </AnimatedPressable>
   );
 }
 
@@ -114,10 +126,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-  },
-  pressed: {
-    transform: [{ scale: 0.98 }],
-    opacity: 0.9,
   },
   disabled: {
     opacity: 0.45,

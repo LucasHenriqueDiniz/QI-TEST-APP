@@ -14,7 +14,7 @@ export type ThemedTextProps = TextProps & {
 };
 
 export function ThemedText({ variant = "body", tone = "default", color, center, style, ...rest }: ThemedTextProps) {
-  const { colors, typography } = useAppTheme();
+  const { colors, typography, fonts, fontByVariant } = useAppTheme();
 
   const tones: Record<ToneName, string> = {
     default: colors.text,
@@ -27,9 +27,14 @@ export function ThemedText({ variant = "body", tone = "default", color, center, 
     onPrimary: colors.onPrimary,
   };
 
+  // O peso vem embutido no arquivo da fonte (Manrope_700Bold já é bold). Manter
+  // `fontWeight` junto faria o Android sintetizar um negrito por cima do
+  // negrito real, engordando o traço. Por isso o peso sai quando há família.
+  const { fontWeight, ...scale } = typography[variant] as TextStyle;
+
   const resolved: StyleProp<TextStyle> = [
-    typography[variant] as TextStyle,
-    { color: color ?? tones[tone] },
+    scale,
+    { fontFamily: fonts[fontByVariant[variant]], color: color ?? tones[tone] },
     center && { textAlign: "center" as const },
     style,
   ];

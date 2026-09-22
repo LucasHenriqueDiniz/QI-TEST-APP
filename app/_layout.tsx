@@ -1,5 +1,7 @@
 import "@/config/i18n";
 
+import { Inter_400Regular } from "@expo-google-fonts/inter";
+import { Manrope_600SemiBold, Manrope_700Bold, useFonts } from "@expo-google-fonts/manrope";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
@@ -11,7 +13,7 @@ import { ThemeProvider, useAppTheme } from "@/context/ThemeContext";
 
 function RootNavigator() {
   const { t } = useTranslation();
-  const { colors, mode, typography } = useAppTheme();
+  const { colors, mode, typography, fonts } = useAppTheme();
 
   return (
     <>
@@ -20,7 +22,7 @@ function RootNavigator() {
         screenOptions={{
           headerStyle: { backgroundColor: colors.background },
           headerTintColor: colors.text,
-          headerTitleStyle: { ...typography.subheading, color: colors.text },
+          headerTitleStyle: { ...typography.subheading, fontFamily: fonts.heading, color: colors.text },
           headerShadowVisible: false,
           contentStyle: { backgroundColor: colors.background },
         }}
@@ -56,6 +58,11 @@ function RootNavigator() {
 }
 
 export default function RootLayout() {
+  // Não bloqueamos a renderização esperando a fonte: a splash já cobre a
+  // abertura, e travar aqui atrasaria a primeira tela em rede ruim. Enquanto
+  // não carrega, o texto sai na fonte do sistema e troca sem piscar.
+  useFonts({ Manrope_700Bold, Manrope_600SemiBold, Inter_400Regular });
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>

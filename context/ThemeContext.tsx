@@ -1,7 +1,18 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useColorScheme } from "react-native";
-import { ColorMode, Palette, elevation, palettes, radius, spacing, typography } from "@/constants/theme";
+import {
+  ColorMode,
+  Palette,
+  elevation,
+  fontByVariant,
+  fonts,
+  motion,
+  palettes,
+  radius,
+  spacing,
+  typography,
+} from "@/constants/theme";
 
 /** Preferência do usuário. `system` acompanha o aparelho. */
 export type ThemePreference = ColorMode | "system";
@@ -16,6 +27,9 @@ interface ThemeContextValue {
   spacing: typeof spacing;
   radius: typeof radius;
   typography: typeof typography;
+  fonts: typeof fonts;
+  fontByVariant: typeof fontByVariant;
+  motion: typeof motion;
   /** Sombra pronta para o modo atual. */
   shadow: (level: 0 | 1 | 2 | 3) => object;
   setPreference: (preference: ThemePreference) => void;
@@ -53,6 +67,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       spacing,
       radius,
       typography,
+      fonts,
+      fontByVariant,
+      motion,
       shadow: (level) => elevation(level, colors.shadow),
       setPreference,
     };

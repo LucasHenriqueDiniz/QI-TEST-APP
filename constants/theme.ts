@@ -30,6 +30,13 @@ export interface Palette {
   primarySoft: string;
   /** Texto sobre `primary`. */
   onPrimary: string;
+  /** Extremo escuro da marca. Âncora de gradiente e estado pressionado. */
+  primaryDeep: string;
+
+  /** Halo de foco e seleção. Já vem com alfa. */
+  ring: string;
+  /** Véu atrás de modal e folha. Já vem com alfa. */
+  overlay: string;
 
   /** Acento quente — sequências, conquistas, destaques. */
   accent: string;
@@ -57,6 +64,10 @@ const light: Palette = {
   primary: "#5B4FE9",
   primarySoft: "#EDEBFE",
   onPrimary: "#FFFFFF",
+  primaryDeep: "#3F35C9",
+
+  ring: "rgba(91, 79, 233, 0.22)",
+  overlay: "rgba(20, 20, 43, 0.45)",
 
   accent: "#E8890C",
   accentSoft: "#FDF0DC",
@@ -82,6 +93,10 @@ const dark: Palette = {
   primary: "#6E63F0",
   primarySoft: "#221F44",
   onPrimary: "#FFFFFF",
+  primaryDeep: "#8A7FF5",
+
+  ring: "rgba(110, 99, 240, 0.30)",
+  overlay: "rgba(0, 0, 0, 0.60)",
 
   accent: "#F0A93C",
   accentSoft: "#33260F",
@@ -132,6 +147,53 @@ export const typography = {
 } as const;
 
 export type TypographyVariant = keyof typeof typography;
+
+/**
+ * Famílias tipográficas.
+ *
+ * Manrope carrega os títulos, Inter o texto corrido — Manrope tem contraste
+ * alto e cabe bem em número grande (a pontuação do resultado), enquanto Inter
+ * foi desenhada para leitura em tela pequena.
+ *
+ * As chaves batem com os nomes registrados no `useFonts` de `app/_layout.tsx`.
+ * Enquanto as fontes não carregam, o app cai na do sistema — por isso nenhum
+ * componente deve assumir que `fontFamily` existe.
+ */
+export const fonts = {
+  display: "Manrope_700Bold",
+  heading: "Manrope_700Bold",
+  strong: "Manrope_600SemiBold",
+  body: "Inter_400Regular",
+} as const;
+
+/** Qual família cada variante tipográfica usa. */
+export const fontByVariant: Record<TypographyVariant, keyof typeof fonts> = {
+  display: "display",
+  title: "display",
+  heading: "heading",
+  subheading: "heading",
+  body: "body",
+  bodyStrong: "strong",
+  caption: "body",
+  captionStrong: "strong",
+  overline: "strong",
+};
+
+/**
+ * Presets de animação.
+ *
+ * Existem para que movimento no app inteiro tenha a mesma sensação. Duração
+ * solta em cada tela é o que faz interface parecer remendada.
+ */
+export const motion = {
+  /** Reação a toque: entra rápido e assenta. */
+  spring: { damping: 18, stiffness: 220, mass: 0.9 },
+  /** Entrada de conteúdo: mais macio, sem sobressalto. */
+  springGentle: { damping: 26, stiffness: 140, mass: 1 },
+  fast: 160,
+  base: 280,
+  slow: 460,
+} as const;
 
 /** Sombras já resolvidas para iOS (shadow*) e Android (elevation). */
 export function elevation(level: 0 | 1 | 2 | 3, shadowColor: string) {
