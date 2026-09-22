@@ -83,13 +83,18 @@ O gerador entrega 1024×1024. Você precisa de três recortes:
 |---|---|---|
 | Upload na Play Store | 512×512 PNG | 32 bits, **sem transparência**, **sem cantos arredondados** (a loja arredonda sozinha) |
 | `assets/images/icon.png` | 1024×1024 PNG | Ícone completo, usado no iOS e como fallback |
-| `assets/images/adaptive-icon.png` | 1024×1024 PNG | **Só o símbolo**, centralizado, ocupando no máximo 66% da largura — o Android corta as bordas em formatos variados |
+| `assets/images/adaptive-icon.png` | 1024×1024 PNG | **Só o símbolo**, centralizado, contido no **círculo** central de 66% de diâmetro — o Android corta as bordas em formatos variados |
 
 O `adaptive-icon` é o que mais gente erra: o Android recorta em círculo,
 squircle ou gota conforme o launcher. Qualquer coisa fora do círculo central de
 66% pode sumir. O fundo violeta já está definido no `app.json`
 (`adaptiveIcon.backgroundColor: "#5B4FE9"`), então esse arquivo deve ter **só o
 símbolo branco em fundo transparente**.
+
+Atenção ao "66%": o limite é **radial**, não de largura. Um símbolo quadrado
+escalado a 66% da largura tem diagonal de 93% e perde os cantos no recorte
+circular do Pixel. Para a grade 3×3 deste app, caber no círculo significa
+~48% da largura. Escale pelo raio do símbolo, não pelo lado.
 
 Também vale regerar `assets/images/splash-icon.png` (o símbolo sozinho, ~180px
 de largura visual) e `favicon.png` (48×48).
@@ -108,6 +113,20 @@ violet space, left clear for text to be added later. Flat 2D vector style, no
 gradients, no shadows, no text. Wide 1024:500 aspect ratio.
 ```
 
-Deixe a direita vazia de propósito — você sobrepõe "Teste de QI · 30 questões
-de lógica" depois, num editor, com fonte legível. Texto gerado por modelo de
-imagem sai deformado.
+Deixe a direita vazia de propósito — texto gerado por modelo de imagem sai
+deformado, com acento errado ou letra derretida.
+
+**Já está feito.** Os quatro arquivos estão em `store/`, gerados do mesmo
+símbolo do ícone, com o texto desenhado em Segoe UI a partir das fichas:
+
+| Arquivo | Uso |
+|---|---|
+| `feature-graphic-pt-BR.png` | ficha pt-BR |
+| `feature-graphic-es-419.png` | ficha es-419 / es-ES |
+| `feature-graphic-en-US.png` | ficha en-US |
+| `feature-graphic-base.png` | só o símbolo, para montar outros idiomas |
+
+Uma restrição que não é óbvia: a loja recorta o feature graphic para **16:9**
+em algumas posições, o que em 1024×500 deixa visível apenas `x` de 67 a 956.
+O subtítulo em inglês estourava esse limite e seria cortado. Mantenha todo o
+conteúdo dentro de ~940 px de largura.

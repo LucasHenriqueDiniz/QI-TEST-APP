@@ -7,9 +7,10 @@
     "icon": "./assets/images/icon.png",
     "scheme": "testeqi",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "primaryColor": "#5B4FE9",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "package": "com.lhdiniz.testeqi",
       "versionCode": 1,
@@ -22,8 +23,7 @@
         "android.permission.RECORD_AUDIO",
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE"
-      ],
-      "edgeToEdgeEnabled": true
+      ]
     },
     "ios": {
       "bundleIdentifier": "com.lhdiniz.testeqi",
@@ -36,12 +36,13 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      "./plugins/withKotlinMetadataCheck",
       "expo-router",
       "expo-localization",
       [
         "react-native-google-mobile-ads",
         {
-          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
+          "androidAppId": "ca-app-pub-2600827684802809~1177399578",
           "iosAppId": "ca-app-pub-3940256099942544~1458002511",
           "userTrackingUsageDescription": "Isto permite exibir anúncios mais relevantes para você."
         }
@@ -50,8 +51,8 @@
         "expo-build-properties",
         {
           "android": {
-            "compileSdkVersion": 35,
-            "targetSdkVersion": 35,
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
             "minSdkVersion": 24
           }
         }
@@ -71,6 +72,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "85170fd9-8039-43b8-bd70-dda2288b98c4"
+      }
+    },
+    "owner": "lucasdinizostrosli"
   }
 }

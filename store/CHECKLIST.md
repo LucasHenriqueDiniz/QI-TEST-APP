@@ -2,6 +2,58 @@
 
 Ordem sugerida. Os itens marcados já estão feitos no código.
 
+## 0. Bloqueador de 16 KB — RESOLVIDO
+
+Ficou registrado aqui porque o diagnóstico custou caro e a armadilha volta a
+cada SDK novo.
+
+Ao instalar o build de desenvolvimento num Galaxy A15 com Android 16, o próprio
+sistema abriu este aviso:
+
+> **Este app não é compatível com 16 KB. Falha na verificação de alinhamento ELF.**
+>
+> `libgesturehandler.so`, `libexpo-modules-core.so`, `libreanimated.so`,
+> `libappmodules.so`, `libhermestooling.so`, `libhermes.so`,
+> `libreact_codegen_rnsvg.so` — segmento LOAD não alinhado
+
+A regra do Google: *apps com `targetSdk` 35 ou maior precisam suportar páginas
+de memória de 16 KB em dispositivos 64-bit para serem distribuídos na Play
+Store.* A partir de **1º de fevereiro de 2027** nem atualização passa.
+
+Nenhuma configuração resolvia isso no SDK 52 — o alinhamento vem das
+bibliotecas nativas compiladas dentro do próprio React Native. Suporte a 16 KB
+entrou no **RN 0.77 = Expo SDK 53**.
+
+- [x] **Migrar o Expo SDK** — feito, e além do planejado: o projeto foi para o
+      **SDK 57 (RN 0.86.2, React 19.2.3)**, não para o 54
+
+O upgrade resolveu de uma vez:
+
+| Problema | Situação agora |
+|---|---|
+| 16 KB — bloqueio de publicação | RN 0.86 já alinhado |
+| `react-native-google-mobile-ads` travado na 15.7.0 | trava removida, hoje em `^16.4.0` |
+| 15 pacotes desatualizados (`expo doctor`) | resolvidos no upgrade |
+| Plugin `withKotlinMetadataCheck` | **continua obrigatório** — ver abaixo |
+
+O plugin foi o único item que o upgrade **não** apagou, e isso era esperado: a
+defasagem de Kotlin entre o Expo e o `play-services-ads` é estrutural, não um
+bug de versão. Já foi observada dos dois lados da migração:
+
+| Expo | Kotlin do projeto | play-services-ads | metadata |
+|------|-------------------|-------------------|----------|
+| 52   | 1.9               | 24.5.0            | 2.1      |
+| 57   | 2.1               | 25.4.0            | 2.3      |
+
+Detalhe completo em `ADMOB.md` e no cabeçalho de
+`plugins/withKotlinMetadataCheck.js`.
+
+> ⚠ **Pendência técnica real:** o único build nativo já feito neste projeto é um
+> APK de desenvolvimento gerado **ainda no SDK 52** (EAS `e32118c6`). Nenhum
+> build nativo foi rodado no SDK 57. `tsc` e `expo export` passam limpos com o
+> nativo quebrado — são cegos para essa classe de erro por construção. **Rode um
+> build EAS antes de confiar que está tudo certo.**
+
 ## 1. Código — pronto
 
 - [x] Roteamento funcionando (`app/_layout.tsx` e `app/index.tsx` existem)
@@ -13,22 +65,27 @@ Ordem sugerida. Os itens marcados já estão feitos no código.
 - [x] Nenhuma permissão sensível declarada
 - [x] Link da política de privacidade dentro do app
 - [x] AdMob integrado com consentimento UMP (ver `ADMOB.md`)
-- [ ] Trocar os IDs de teste do AdMob pelos reais
+- [x] Trocar os IDs de teste do AdMob pelos reais — App ID no `app.json`, ad
+      units no `.env.local`. Confirmado no bundle com `expo export --clear`
+- [ ] Publicar a mensagem de consentimento UMP no console do AdMob (`ADMOB.md` §5)
+- [ ] Vincular o app à ficha da Play Store depois de publicar — o status hoje é
+      "Requer revisão", e a revisão só começa quando o app estiver vinculado
 
-## 2. Arte — falta fazer
+## 2. Arte — ícone e feature graphic prontos, faltam as capturas
 
-O app ainda usa os ícones padrão do Expo. **Isso reprova na revisão de
-qualidade** e derruba a taxa de clique na busca.
+O ícone é a grade 3×3 com a célula faltando, do prompt principal de
+`ICON-BRIEF.md`. Todos os derivados saem do mesmo arquivo de origem.
 
-- [ ] Ícone 512×512 PNG, sem transparência, sem cantos arredondados
-- [ ] `assets/images/icon.png` (1024×1024) e `adaptive-icon.png` (foreground 1024×1024, área segura central de 66%)
-- [ ] `splash-icon.png` coerente com o ícone
-- [ ] Feature graphic 1024×500 — obrigatório
+- [x] Ícone 512×512 PNG, sem transparência, sem cantos arredondados — `store/play-icon-512.png`
+- [x] `assets/images/icon.png` (1024×1024) e `adaptive-icon.png` (foreground 1024×1024, dentro do círculo seguro de 66%)
+- [x] `splash-icon.png` coerente com o ícone
+- [x] Feature graphic 1024×500 — `feature-graphic-pt-BR.png`, `-es-419`, `-en-US`,
+      mais `feature-graphic-base.png` sem texto, para outros idiomas
 - [ ] 6 capturas por idioma, com legendas (roteiro em `ASO.md` §4)
 
-Sugestão de direção: fundo violeta `#5B4FE9` (a cor de marca já usada no app)
-com uma lâmpada ou matriz de padrão em branco. O ícone precisa ser legível a
-48×48 — nada de texto.
+O violeta do arquivo gerado saiu em `#523CE6`; os derivados foram normalizados
+para o `#5B4FE9` da marca, senão o `icon.png` e o fundo do ícone adaptativo
+(definido no `app.json`) apareceriam em tons diferentes no mesmo aparelho.
 
 ## 3. Política de privacidade — falta publicar
 
@@ -61,15 +118,74 @@ GitHub Pages, que muda de URL se você renomear o repositório.
 
 ## 5. Build
 
+O `eas.json` já está no repositório com três perfis. **Não rode
+`eas build:configure`** — ele sobrescreve o arquivo.
+
+| Perfil | Saída | Para quê |
+|---|---|---|
+| `development` | APK + dev client | O app não roda no Expo Go desde que o AdMob entrou; é este perfil que devolve um app rodável na sua máquina |
+| `preview` | APK | Instalável direto, para testar em aparelho real e para os testadores |
+| `production` | AAB | O que sobe na Play Store |
+
 ```bash
 npm install -g eas-cli
 eas login
-eas build:configure
-eas build --platform android --profile production   # gera .aab
+eas build --platform android --profile development   # primeiro: prova que o AdMob compila
+eas build --platform android --profile production    # gera o .aab
 ```
 
-- [ ] Deixar o EAS gerar e guardar a keystore (perder a keystore = perder o app)
+### Antes do primeiro build de produção
+
+O `.env.local` é ignorado pelo git, e o **EAS empacota o projeto a partir do
+git** — ou seja, os ad unit IDs não chegam ao build na nuvem, e o app cai nos
+IDs de teste sem dar erro nenhum. Registre as variáveis no próprio EAS:
+
+```bash
+eas env:set --name EXPO_PUBLIC_ADMOB_BANNER_ANDROID --value ca-app-pub-2600827684802809/6014793287 --environment production --visibility plaintext
+eas env:set --name EXPO_PUBLIC_ADMOB_INTERSTITIAL_ANDROID --value ca-app-pub-2600827684802809/7500737524 --environment production --visibility plaintext
+```
+
+(`env:create` também funciona, mas está depreciado a partir do eas-cli 22.)
+
+`plaintext` é correto aqui: valores `EXPO_PUBLIC_*` são inlinados no bundle que
+vai para o aparelho de todo mundo, então não são segredo — tratá-los como
+segredo só esconde o problema.
+
+- [x] Registrar as duas variáveis no EAS — feitas no ambiente `production`.
+      Ficaram **de fora** de `preview` de propósito: se o APK dos testadores
+      servisse anúncio real, 12 pessoas clicando vira tráfego inválido
+- [x] Deixar o EAS gerar e guardar a keystore — gerada na nuvem no 1º build.
+      **Perder a keystore = perder o app**, não há como assinar atualização
+      com outra chave
+- [x] **Primeiro build nativo concluído** — EAS `e32118c6`, perfil
+      `development`, APK gerado. Foi a primeira vez que o AdMob compilou.
+      ⚠ **Esse build é do SDK 52 e não vale mais como prova:** o projeto migrou
+      para o SDK 57 depois dele, e nada foi compilado nativamente desde então
+- [ ] **Rodar um build `development` no SDK 57** — é a única verificação que
+      enxerga quebra de codegen/Kotlin. Faça isto antes de qualquer outra coisa
+      da lista de build
+- [ ] Instalar o APK num aparelho e confirmar que o app abre e o banner carrega
+- [ ] Gerar o AAB de produção e testá-lo em aparelho real antes de subir
+- [ ] Build `preview` e depois `production`
 - [ ] Testar o `.aab` num aparelho real antes de enviar
+
+### O que o EAS envia, e o que ele deixa para trás
+
+O EAS empacota a **pasta de trabalho**, respeitando o `.gitignore` — não o
+último commit. Mudanças sem commit vão junto; a página do build marca isso com
+um asterisco no hash (`8e5e90e*`).
+
+O que fica de fora é o que o `.gitignore` cobre. Na prática, isso significa
+exatamente uma coisa neste projeto: **o `.env.local` não sobe**, e é por isso
+que os ad unit IDs precisam estar registrados como variáveis do EAS.
+
+### Por que `appVersionSource: "remote"`
+
+Durante os 14 dias de teste fechado você vai subir várias versões, e cada uma
+precisa de um `versionCode` inédito. Com `remote` + `autoIncrement`, o EAS
+cuida disso. Com o controle manual no `app.json`, o erro só aparece no upload,
+depois de esperar o build inteiro. O `versionCode: 1` do `app.json` passa a ser
+ignorado — é esperado, não é bug.
 
 ## 6. Teste fechado — o gargalo real
 
@@ -84,11 +200,37 @@ rodando o app por 14 dias seguidos** antes de poder publicar em produção.
 
 Comece isso **cedo**. É o item de maior prazo do projeto e não depende de código.
 
+### Trabalho para rodar durante os 14 dias
+
+O contador corre sozinho, então este é o momento de mexer no app sem custo de
+prazo. Decidido: **três modos de teste — Rápido 15, Padrão 30, Completo 60.**
+
+Por que 60 e não 75 ou 110: o banco tem 110 questões (padrões 30, semelhanças
+20, matrizes 20, vocabulário 20, compreensão 20), e o `BLUEPRINT` mantém a
+proporção por categoria. Em 75 a fatia de padrões daria exatamente 30 — todo
+teste usaria o pool inteiro da maior categoria, e o rejogo perderia variedade.
+Em 60, padrões usa 24 de 30 e as demais sobram. Passar disso exige ampliar o
+banco de padrões, a um custo de 5 SVGs por questão nova.
+
+- [ ] `hooks/useQuestionSelection.ts` — um `BLUEPRINT` por modo
+- [ ] **`utils/iqCalculator.ts` — `RATIO_SPREAD` por modo.** Hoje é `0.18` fixo.
+      O ruído amostral do acerto cai com √n, então o mesmo divisor aplicado a 15
+      e a 60 questões faz o modo curto cuspir scores mais extremos e o longo
+      achatar todo mundo perto de 100. Sem isso, a mesma pessoa tira 132 no
+      Rápido e 106 no Completo — e isso vira avaliação de 1 estrela dizendo que
+      o app é aleatório
+- [ ] Seletor de modo na home
+- [ ] Guardar o modo em `types/storage.ts`, senão o histórico compara maçã com
+      laranja
+- [ ] Chaves novas nos **três** arquivos de `assets/i18n/translations/`
+- [ ] Atualizar as 3 fichas, os 3 feature graphics e o README — todos dizem
+      "30 questões" hoje. Na descrição curta, "15, 30 ou 60" cabe em 66 dos 80
+      caracteres e é diferencial real: o concorrente típico tem 20–30 fixas
+
 ## 7. Depois de publicar
 
 - [ ] Monitorar Android vitals (ANR e crash rate) na primeira semana
 - [ ] Deixar título e descrição parados por 30 dias antes de avaliar ASO
-- [ ] Trocar os IDs de teste do AdMob pelos reais (ver `store/ADMOB.md`)
 
 ---
 

@@ -7,7 +7,9 @@ module.exports = (() => {
 
   config.transformer = {
     ...transformer,
-    babelTransformerPath: require.resolve("react-native-svg-transformer"),
+    // A partir da 1.5.1 o transformer exige entrada por plataforma; a raiz do
+    // pacote deixou de exportar `transform` e quebra o bundle sem avisar.
+    babelTransformerPath: require.resolve("react-native-svg-transformer/expo"),
   };
   config.resolver = {
     ...resolver,

@@ -2,14 +2,67 @@
 
 ## Estado atual
 
-O código está **inteiro e funcionando com os IDs de teste oficiais do Google**.
-Você não precisa mexer em nada de programação — só criar a conta, gerar 3 IDs e
-colá-los em dois lugares.
+Integração completa. O projeto está no **Expo SDK 57 (RN 0.86.2)** com
+`react-native-google-mobile-ads@^16.4.0`.
+
+> ## ⚠ Uma trava mantém o build nativo de pé. Não mexa sem ler.
+>
+> ### O plugin `withKotlinMetadataCheck` é obrigatório
+>
+> O `play-services-ads` é publicado compilado com um Kotlin mais novo do que o
+> que o Expo usa, e um compilador não lê metadata de versão superior à sua. O
+> build morre em `:react-native-google-mobile-ads:compileDebugKotlin`:
+>
+> ```
+> Module was compiled with an incompatible version of Kotlin.
+> The binary version of its metadata is 2.3.0, expected version is 2.1.0.
+> ```
+>
+> `plugins/withKotlinMetadataCheck.js` injeta `-Xskip-metadata-version-check`,
+> que é a saída indicada pelo próprio compilador. Removê-lo quebra o build.
+>
+> **A defasagem é estrutural, não um bug de versão.** Já foi observada duas
+> vezes, com uma migração de cinco versões maiores do Expo no meio:
+>
+> | Expo | Kotlin do projeto | play-services-ads | metadata |
+> |------|-------------------|-------------------|----------|
+> | 52   | 1.9               | 24.5.0            | 2.1      |
+> | 57   | 2.1               | 25.4.0            | 2.3      |
+>
+> Subir os dois lados não resolve: o Google continua à frente. Perseguir uma
+> versão do wrapper que "encaixe" congelaria o app num SDK de anúncios antigo,
+> que o Google acaba depreciando.
+>
+> **Não tente resolver subindo o `kotlinVersion` do `expo-build-properties`.**
+> Isso troca a versão das bibliotecas, não a do compilador — que o gradle plugin
+> do RN fixa. Já foi tentado no SDK 52: o resultado é o mesmo erro invertido,
+> agora derrubando o `expo-modules-core`.
+>
+> ### Trava que deixou de existir
+>
+> Até o SDK 52 o pacote precisava ficar **fixado em `15.7.0`**, sem circunflexo:
+> da `16.0.2` em diante os specs de TurboModule importam `{ CodegenTypes } from
+> 'react-native'`, namespace que só existe no **RN ≥ 0.80**, e o SDK 52 era RN
+> 0.76.3. Como agora o projeto é RN 0.86, a trava caiu e o pacote voltou a
+> aceitar circunflexo.
+>
+> ### Por que isso passa despercebido
+>
+> **`tsc` e `expo export` passam limpos com tudo quebrado.** Os specs só são
+> lidos pelo codegen nativo e o Kotlin só é compilado no Gradle — nada disso
+> toca o bundle JS. As duas verificações do projeto são cegas para essa classe
+> de erro por construção. Só um build nativo detecta.
+>
+> ⚠ **O único build nativo já feito foi no SDK 52** (EAS `e32118c6`). Nada foi
+> compilado nativamente desde a migração — rode um build EAS antes de assumir
+> que está tudo de pé.
 
 | Peça | Arquivo | Estado |
 |---|---|---|
-| SDK | `react-native-google-mobile-ads@16.4.0` | instalado |
-| Plugin nativo | `app.json` | configurado (App ID de teste) |
+| SDK | `react-native-google-mobile-ads@^16.4.0` | instalado |
+| Compat. Kotlin | `plugins/withKotlinMetadataCheck.js` | obrigatório |
+| Plugin nativo | `app.json` | App ID **real** do Android; iOS segue no de teste |
+| Ad unit IDs reais | `.env.local` | banner e intersticial criados |
 | Inicialização + consentimento UMP | `context/AdsContext.tsx` | pronto |
 | Banner | `components/ui/AdSlot.tsx` | pronto |
 | Intersticial com trava de frequência | `hooks/useGatedInterstitial.ts` | pronto |
@@ -131,6 +184,27 @@ EXPO_PUBLIC_ADMOB_INTERSTITIAL_ANDROID=ca-app-pub-SEUID/SEUINTERSTICIAL
 
 Não coloque no `.env` versionado. Ad unit ID não é segredo crítico, mas o hábito
 de separar evita o dia em que uma chave de verdade for parar no repositório.
+
+**c)** Depois de mexer em qualquer `.env*`, rode o build com `--clear`:
+
+```bash
+npx expo export --platform android --clear
+```
+
+O cache do Metro **não invalida quando só variáveis de ambiente mudam**. As
+`EXPO_PUBLIC_*` são inlinadas no bundle por transformação do Babel, e um
+transform em cache devolve o valor antigo sem erro nenhum. Isso foi observado
+neste projeto: o primeiro export depois de criar o `.env.local` saiu com o
+**hash idêntico** ao anterior e com os ad unit IDs de teste dentro.
+
+O modo de falha é silencioso e caro — um build de produção servindo ad unit de
+teste não dá erro, não aparece no console e rende exatamente zero. Para conferir
+sem depender de fé:
+
+```bash
+npx expo export --platform android --clear
+grep -c "SEU-ID-DE-PUBLISHER" dist/_expo/static/js/android/*.hbc
+```
 
 ### 5. Configurar o consentimento (UMP)
 

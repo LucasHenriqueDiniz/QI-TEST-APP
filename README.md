@@ -82,10 +82,14 @@ Todo o material está em `store/`:
 
 ## Anúncios
 
-AdMob integrado via `react-native-google-mobile-ads`, rodando com os **IDs de
-teste oficiais do Google**. Para ativar os IDs reais, crie `.env.local`
-(ignorado pelo git) e troque o App ID no `app.json` — passo a passo em
+AdMob integrado via `react-native-google-mobile-ads`, com App ID real no
+`app.json` e ad unit IDs em `.env.local` (ignorado pelo git) — detalhes em
 `store/ADMOB.md`.
+
+> Uma trava mantém o build nativo de pé: o plugin
+> `plugins/withKotlinMetadataCheck.js` é **obrigatório**. A incompatibilidade
+> não aparece no `tsc` nem no `expo export` — só num build nativo. Leia o aviso
+> no topo de `store/ADMOB.md` antes de atualizar qualquer coisa.
 
 Em `__DEV__` o app usa IDs de teste mesmo com os reais configurados: servir
 anúncio real em build de desenvolvimento é violação dos termos do AdMob.
