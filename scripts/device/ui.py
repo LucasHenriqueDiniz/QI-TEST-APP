@@ -57,7 +57,9 @@ def open_dev_round():
     adb("shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", DEV_ROUND_URL, PACKAGE)
 
 
-RESULTS_TITLE = r"(?i)^(Seu resultado|Your result|Tu resultado)$"
+# Results has no stack header since slice 03; the hero's overline is the
+# screen's first text, upper-cased in JS.
+RESULTS_TITLE = r"(?i)^(Seu resultado|Your result|Tu resultado|Seu QI estimado|Your estimated IQ|Tu CI estimado)$"
 
 
 def reach_results(timeout=45):

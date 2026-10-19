@@ -1,27 +1,49 @@
 import { router, useLocalSearchParams } from "expo-router";
-import React, { useEffect, useMemo, useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Share, StyleSheet, useWindowDimensions, View } from "react-native";
+import { LayoutRectangle, Share, StyleSheet, useWindowDimensions, View } from "react-native";
+import { useReducedMotion } from "react-native-reanimated";
+import { ResultHero, HERO_OVERLAP, ResultHeroTimeline } from "@/components/ResultHero";
 import { ThemedText } from "@/components/ThemedText";
+import { BellCurve } from "@/components/ui/BellCurve";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { Chip } from "@/components/ui/Chip";
-import { ProgressBar } from "@/components/ui/ProgressBar";
-import { ScoreCurve } from "@/components/ui/ScoreCurve";
+import { CategoryBars, CategoryBarRow } from "@/components/ui/CategoryBars";
+import { Confetti } from "@/components/ui/Confetti";
 import { Screen } from "@/components/ui/Screen";
 import { STORE_URL } from "@/constants/app";
+import { CATEGORY_ICONS } from "@/constants/categories";
 import { useAppTheme } from "@/context/ThemeContext";
+import { useStorage } from "@/hooks/useStorage";
 import { HistoryItem } from "@/types/storage";
+import * as haptics from "@/utils/haptics";
 import { getIQClassification } from "@/utils/iqCalculator";
 
-/** Duração da contagem animada do score, em ms. */
-const REVEAL_MS = 900;
+/**
+ * Linha do tempo da revelação, em ms a partir da montagem. Os números são os
+ * da pesquisa (§5.5): a contagem termina em 1350, quando o chip pousa e o
+ * aparelho vibra uma vez; a curva varre em seguida e as barras fecham.
+ */
+const TIMELINE: ResultHeroTimeline = { countDelayMs: 150, countMs: 1200, chipAtMs: 1350 };
+const CURVE_AT_MS = 1400;
+const BARS_AT_MS = 2200;
+
+/** A partir deste percentil a linha de leitura fala em "melhor que N%"; abaixo, no ponto forte. */
+const PERCENTILE_LINE_MIN = 30;
+/** Primeiro resultado que já merece confete. */
+const FIRST_SCORE_CELEBRATION = 110;
+
+/** Altura da curva, em dp. */
+const CURVE_HEIGHT = 128;
 
 export default function Results() {
   const { t } = useTranslation();
-  const { colors, spacing } = useAppTheme();
+  const { colors, spacing, radius } = useAppTheme();
   const { width } = useWindowDimensions();
-  const params = useLocalSearchParams<{ entry?: string }>();
+  const params = useLocalSearchParams<{ entry?: string; mode?: string }>();
+  const storage = useStorage();
+  const reducedMotion = useReducedMotion();
 
   const entry = useMemo<HistoryItem | null>(() => {
     if (!params.entry) return null;
@@ -33,33 +55,66 @@ export default function Results() {
     }
   }, [params.entry]);
 
-  const [revealed, setRevealed] = useState(0);
+  // Do histórico a tela já abre pronta: nada a revelar, nada a comemorar.
+  const historyMode = params.mode === "history";
+  const revealing = !historyMode && !reducedMotion;
 
+  const [skipped, setSkipped] = useState(false);
+  const animate = revealing && !skipped;
+
+  const hapticFired = useRef(false);
+  const [celebrate, setCelebrate] = useState(false);
+  const [confettiDue, setConfettiDue] = useState(false);
+  const [heroLayout, setHeroLayout] = useState<LayoutRectangle | null>(null);
+
+  // Uma vibração marca o resultado revelado: no fim da contagem, ou na hora
+  // quando não há contagem. Do histórico, nenhuma.
   useEffect(() => {
-    if (!entry) return;
+    if (!entry || historyMode || hapticFired.current) return;
+    if (!animate) {
+      hapticFired.current = true;
+      haptics.confirm();
+      return;
+    }
+    const timer = setTimeout(() => {
+      hapticFired.current = true;
+      haptics.confirm();
+    }, TIMELINE.chipAtMs);
+    return () => clearTimeout(timer);
+  }, [entry, historyMode, animate]);
 
-    const target = entry.iqScore;
-    const startedAt = Date.now();
-    let frame: number;
-
-    const tick = () => {
-      const progress = Math.min((Date.now() - startedAt) / REVEAL_MS, 1);
-      // Ease-out cúbico: acelera na largada e assenta no número final.
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setRevealed(Math.round(target * eased));
-
-      if (progress < 1) frame = requestAnimationFrame(tick);
+  // Confete só para recorde pessoal com dois ou mais testes, ou para um
+  // primeiro resultado alto. O teste já gravou esta entrada no histórico.
+  useEffect(() => {
+    if (!entry || !revealing) return;
+    let active = true;
+    storage
+      .getItem("testHistory")
+      .then((history) => {
+        if (!active) return;
+        const others = (history ?? []).filter((item) => item.date !== entry.date);
+        const previousBest = others.reduce((best, item) => Math.max(best, item.iqScore), 0);
+        const eligible = others.length >= 1 ? entry.iqScore > previousBest : entry.iqScore >= FIRST_SCORE_CELEBRATION;
+        setCelebrate(eligible);
+      })
+      .catch((error) => console.error("Error reading history for the result:", error));
+    return () => {
+      active = false;
     };
+  }, [entry, revealing, storage]);
 
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [entry]);
+  // O confete entra junto com o chip; pular antes disso cancela a festa.
+  useEffect(() => {
+    if (!animate) return;
+    const timer = setTimeout(() => setConfettiDue(true), TIMELINE.chipAtMs);
+    return () => clearTimeout(timer);
+  }, [animate]);
 
   if (!entry) {
     return (
       <Screen contentStyle={styles.centered}>
         <ThemedText
-          tone="danger"
+          tone="muted"
           center
         >
           {t("results.missing")}
@@ -73,7 +128,38 @@ export default function Results() {
     );
   }
 
-  const accuracy = entry.totalQuestions > 0 ? entry.correctAnswers / entry.totalQuestions : 0;
+  const rows: CategoryBarRow[] = entry.categories.map((category) => ({
+    key: category.category,
+    label: t(`categories.${category.category}`),
+    icon: CATEGORY_ICONS[category.category],
+    colour: colors.category[category.category],
+    correct: category.correct,
+    total: category.total,
+  }));
+
+  const strongest = rows
+    .filter((row) => row.total > 0)
+    .reduce<CategoryBarRow | null>((best, row) => (!best || row.correct / row.total > best.correct / best.total ? row : best), null);
+
+  const headline =
+    entry.percentile >= PERCENTILE_LINE_MIN || !strongest
+      ? t("results.betterThan", { percentile: entry.percentile })
+      : t("results.strongest", { area: strongest.label, correct: strongest.correct, total: strongest.total });
+
+  const strip = [t("results.strip.correct", { correct: entry.correctAnswers, total: entry.totalQuestions })];
+  if (entry.durationSeconds !== undefined) strip.push(formatDuration(entry.durationSeconds, t));
+  strip.push(t("results.strip.areas", { count: entry.categories.length }));
+
+  const skip = () => {
+    if (!animate) return;
+    setSkipped(true);
+    if (!hapticFired.current) {
+      hapticFired.current = true;
+      haptics.confirm();
+    }
+  };
+
+  const goHome = () => router.replace("/");
 
   const handleShare = () => {
     // O link vai numa linha própria para os apps de mensagem gerarem a prévia
@@ -83,182 +169,139 @@ export default function Results() {
     }).catch((error) => console.error("Error sharing:", error));
   };
 
+  const gutter = spacing.xl;
+  const cardPadding = spacing.lg;
+
   return (
     <Screen
       scroll
-      glow
       adPlacement="results-bottom"
       contentStyle={styles.content}
     >
-      <View style={styles.scoreBlock}>
-        <ThemedText
-          variant="overline"
-          tone="faint"
-          center
-        >
-          {t("results.yourScore").toUpperCase()}
-        </ThemedText>
-        <ThemedText
-          variant="display"
-          tone="primary"
-          center
-          style={styles.score}
-        >
-          {revealed}
-        </ThemedText>
-        <Chip
-          label={t(getIQClassification(entry.iqScore))}
-          tone="primary"
-          style={styles.selfCenter}
-        />
-      </View>
+      {/* O herói é violeta nos dois temas; os ícones do sistema ficam claros. */}
+      <StatusBar style="light" />
 
-      <Card variant="outlined">
-        <ThemedText
-          variant="bodyStrong"
-          center
-        >
-          {t("results.percentile", { percentile: entry.percentile })}
-        </ThemedText>
-        <ScoreCurve
-          score={entry.iqScore}
-          width={width - spacing.xl * 2 - spacing.lg * 2}
-        />
+      <ResultHero
+        score={entry.iqScore}
+        tierLabel={t(getIQClassification(entry.iqScore))}
+        headline={headline}
+        strip={strip}
+        overline={t("results.overline")}
+        closeLabel={t("common.close")}
+        skipHint={t("results.skipReveal")}
+        animate={animate}
+        timeline={TIMELINE}
+        onClose={goHome}
+        onSkip={skip}
+        onLayout={(event) => setHeroLayout(event.nativeEvent.layout)}
+      >
+        {confettiDue && celebrate && heroLayout && (
+          <Confetti
+            width={heroLayout.width}
+            height={heroLayout.height}
+            onDone={() => setConfettiDue(false)}
+          />
+        )}
+      </ResultHero>
+
+      <View style={[styles.below, { paddingHorizontal: gutter, marginTop: -HERO_OVERLAP }]}>
+        <Card style={{ borderRadius: radius.xl }}>
+          <ThemedText
+            variant="bodyStrong"
+            style={styles.cardTitle}
+          >
+            {t("results.whereYouAre")}
+          </ThemedText>
+          <BellCurve
+            score={entry.iqScore}
+            width={width - gutter * 2 - cardPadding * 2}
+            height={CURVE_HEIGHT}
+            label={t("results.you", { score: entry.iqScore })}
+            animate={animate}
+            delayMs={CURVE_AT_MS}
+          />
+          <ThemedText
+            variant="caption"
+            tone="faint"
+            center
+            style={styles.caption}
+          >
+            {t("results.populationMean")}
+          </ThemedText>
+        </Card>
+
+        <View style={styles.actions}>
+          <Button
+            block
+            size="large"
+            icon="share-social-outline"
+            title={t("results.share")}
+            onPress={handleShare}
+          />
+          <Button
+            block
+            variant="outline"
+            icon="refresh-outline"
+            title={t("results.retake")}
+            onPress={() => router.replace("/test")}
+          />
+        </View>
+
+        <Card style={{ borderRadius: radius.xl }}>
+          <ThemedText
+            variant="subheading"
+            style={styles.profileTitle}
+          >
+            {t("results.profile")}
+          </ThemedText>
+          <CategoryBars
+            rows={rows}
+            strengthLabel={t("results.strength")}
+            animate={animate}
+            delayMs={BARS_AT_MS}
+          />
+        </Card>
+
         <ThemedText
           variant="caption"
           tone="faint"
           center
         >
-          {t("results.curveCaption")}
+          {t("about.disclaimerShort")}
         </ThemedText>
-      </Card>
-
-      <Card variant="outlined">
-        <View style={styles.cardHeader}>
-          <ThemedText variant="subheading">{t("results.accuracy")}</ThemedText>
-          <ThemedText
-            variant="subheading"
-            tone="primary"
-          >
-            {entry.correctAnswers}/{entry.totalQuestions}
-          </ThemedText>
-        </View>
-        <ProgressBar value={accuracy} />
-      </Card>
-
-      <Card variant="outlined">
-        <ThemedText
-          variant="subheading"
-          style={styles.cardTitle}
-        >
-          {t("results.byCategory")}
-        </ThemedText>
-
-        <View style={styles.categories}>
-          {entry.categories.map((category) => {
-            const ratio = category.total > 0 ? category.correct / category.total : 0;
-
-            return (
-              <View
-                key={category.category}
-                style={styles.categoryRow}
-              >
-                <View style={styles.categoryLabel}>
-                  <ThemedText variant="caption">{t(`categories.${category.category}`)}</ThemedText>
-                  <ThemedText
-                    variant="captionStrong"
-                    tone={ratio >= 0.6 ? "success" : ratio >= 0.4 ? "muted" : "danger"}
-                  >
-                    {category.correct}/{category.total}
-                  </ThemedText>
-                </View>
-                <ProgressBar
-                  value={ratio}
-                  height={6}
-                />
-              </View>
-            );
-          })}
-        </View>
-      </Card>
-
-      <View style={styles.actions}>
-        <Button
-          block
-          size="large"
-          icon="share-social-outline"
-          title={t("common.share")}
-          onPress={handleShare}
-        />
-        <Button
-          block
-          variant="outline"
-          icon="refresh-outline"
-          title={t("results.retake")}
-          onPress={() => router.replace("/test")}
-        />
-        <Button
-          block
-          variant="ghost"
-          title={t("common.home")}
-          onPress={() => router.replace("/")}
-        />
       </View>
-
-      <ThemedText
-        variant="caption"
-        tone="faint"
-        center
-      >
-        {t("about.disclaimerShort")}
-      </ThemedText>
     </Screen>
   );
 }
 
+/** "11 min" a partir de um minuto; abaixo disso, segundos. */
+function formatDuration(seconds: number, t: (key: string, options: { count: number }) => string): string {
+  if (seconds >= 60) return t("results.strip.minutes", { count: Math.round(seconds / 60) });
+  return t("results.strip.seconds", { count: Math.max(1, Math.round(seconds)) });
+}
+
 const styles = StyleSheet.create({
   content: {
-    paddingTop: 16,
-    gap: 16,
+    paddingHorizontal: 0,
+    paddingTop: 0,
   },
   centered: {
     justifyContent: "center",
     gap: 16,
   },
-  scoreBlock: {
-    alignItems: "center",
-    gap: 6,
-    marginBottom: 8,
-  },
-  score: {
-    fontSize: 76,
-    lineHeight: 84,
-  },
-  selfCenter: {
-    alignSelf: "center",
-  },
-  cardHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 12,
+  below: {
+    gap: 16,
   },
   cardTitle: {
-    marginBottom: 16,
+    marginBottom: 4,
   },
-  categories: {
-    gap: 14,
-  },
-  categoryRow: {
-    gap: 6,
-  },
-  categoryLabel: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+  caption: {
+    marginTop: 2,
   },
   actions: {
     gap: 10,
-    marginTop: 8,
+  },
+  profileTitle: {
+    marginBottom: 14,
   },
 });

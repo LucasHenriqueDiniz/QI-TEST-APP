@@ -17,6 +17,12 @@ export interface HistoryItem {
   correctAnswers: number;
   totalQuestions: number;
   categories: CategoryScore[];
+  /**
+   * Tempo respondendo, em segundos: soma do `timeSpent` de cada resposta, que
+   * recomeça a cada questão — pausas e retomadas não contam. Ausente nos
+   * testes gravados antes de o campo existir.
+   */
+  durationSeconds?: number;
 }
 
 export interface UserData {

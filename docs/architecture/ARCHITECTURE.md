@@ -15,7 +15,7 @@ AsyncStorage on the device.
 ```
 app/             screens, one file per route (expo-router)
 components/      PatternQuestion, AboutSheet, ThemedText
-components/ui/   design-system primitives (Button, Card, Screen, AdSlot, ScoreCurve…)
+components/ui/   design-system primitives (Button, Screen, AdSlot, TopBar, BellCurve, ScoreCountUp…)
 constants/       theme tokens, ad unit resolution, app constants
 context/         ThemeContext (light/dark/system), AdsContext (UMP consent + SDK init)
 data/            question metadata (category, weight, difficulty, correct answer)

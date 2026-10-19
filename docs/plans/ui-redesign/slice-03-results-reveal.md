@@ -1,5 +1,5 @@
 ---
-status: todo
+status: done
 ---
 
 # Slice 03 — Results: hero and reveal
@@ -35,3 +35,18 @@ exits 0 after the interstitial is closed.
 
 **If stuck.** If the digit roller misbehaves on Fabric, fall back to the
 `AnimatedTextInput` path named in the research and say so in the commit.
+
+**Result (2026-10-19).** Implemented by a Fable agent; the orchestrator re-ran
+the gate. After `answer_all.py` 30/30 and the interstitial,
+`check_fit.py --require "Compartilhar resultado"` → FIT (score, curve, share and
+retake in the first viewport). Reduce motion (all three Android animation
+scales at 0 — `animator_duration_scale` alone is not what RN reads): final
+state at +282 ms after mount, the first frame Results paints. Dev-build
+reveal, one run: 294 frames, 3 janky (1.02%), 90th percentile 73 ms (dev
+baseline; the fps gate is on the release build, slice 11). No `danger` colour
+left on Results. Duration is persisted as `durationSeconds` (sum of per-answer
+time). Deviation: the curve fill is revealed by a translateX window, not an
+SVG ClipPath Rect — react-native-svg 15.15.4 on Android never repaints when a
+Rect inside ClipPath animates (`VirtualView.invalidate()` returns early with
+no path). `ResultHero` takes an optional `band` and `CategoryBars` takes
+generic rows, ready for slice 03b.

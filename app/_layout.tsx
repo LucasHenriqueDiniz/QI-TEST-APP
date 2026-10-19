@@ -47,6 +47,9 @@ function RootNavigator() {
           name="results"
           options={{
             title: t("results.title"),
+            // O herói ocupa o topo inteiro e traz o próprio X; o cabeçalho
+            // da pilha sairia por cima do gradiente.
+            headerShown: false,
             // Impede voltar para o teste já finalizado.
             headerBackVisible: false,
             gestureEnabled: false,

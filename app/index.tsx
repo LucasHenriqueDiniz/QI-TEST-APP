@@ -8,20 +8,11 @@ import { AboutSheet } from "@/components/AboutSheet";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Screen } from "@/components/ui/Screen";
+import { CATEGORY_ICONS, CATEGORY_ORDER } from "@/constants/categories";
 import { useAppTheme } from "@/context/ThemeContext";
 import { TEST_LENGTH } from "@/hooks/useQuestionSelection";
 import { useStorage } from "@/hooks/useStorage";
-import { QuestionCategory } from "@/types";
 import { HistoryItem } from "@/types/storage";
-
-/** Áreas avaliadas, na ordem em que aparecem na home. */
-const CATEGORY_ICONS: { category: QuestionCategory; icon: keyof typeof Ionicons.glyphMap }[] = [
-  { category: "patterns", icon: "grid-outline" },
-  { category: "matrix", icon: "calculator-outline" },
-  { category: "similarities", icon: "git-compare-outline" },
-  { category: "vocabulary", icon: "book-outline" },
-  { category: "comprehension", icon: "bulb-outline" },
-];
 
 export default function Home() {
   const { t } = useTranslation();
@@ -170,13 +161,13 @@ export default function Home() {
         </ThemedText>
 
         <View style={styles.measureGrid}>
-          {CATEGORY_ICONS.map(({ category, icon }) => (
+          {CATEGORY_ORDER.map((category) => (
             <View
               key={category}
               style={[styles.measureChip, { backgroundColor: colors.surface, borderColor: colors.border, borderRadius: radius.md }]}
             >
               <Ionicons
-                name={icon}
+                name={CATEGORY_ICONS[category]}
                 size={15}
                 color={colors.primary}
               />

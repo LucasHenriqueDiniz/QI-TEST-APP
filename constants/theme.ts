@@ -77,6 +77,17 @@ export interface Palette {
   accentSoft: string;
   /** Texto sobre `accentSoft` (chip "Ponto forte"); `accent` puro não passa. */
   onAccentSoft: string;
+  /**
+   * Texto sobre `accent` cheio (balão "Você · 112" no marcador da curva).
+   * Branco no claro; no escuro o acento é um âmbar claro, então a tinta é
+   * escura.
+   */
+  onAccent: string;
+  /**
+   * Fundo de chip sobre `gradientBrand` (chip da faixa no herói do resultado).
+   * Já vem com alfa; texto branco por cima passa em 6.64:1 no ponto claro.
+   */
+  gradientChip: string;
 
   /** Cor de ícone, barra e destaque de cada área avaliada. */
   category: Record<QuestionCategory, string>;
@@ -121,6 +132,8 @@ const light: Palette = {
   accent: "#A35F00",
   accentSoft: "#FDF0DC",
   onAccentSoft: "#8F5600",
+  onAccent: "#FFFFFF",
+  gradientChip: "rgba(0, 0, 0, 0.20)",
 
   category: {
     patterns: "#5B4FE9",
@@ -169,6 +182,8 @@ const dark: Palette = {
   accent: "#F0A93C",
   accentSoft: "#33260F",
   onAccentSoft: "#F0A93C",
+  onAccent: "#14142B",
+  gradientChip: "rgba(0, 0, 0, 0.20)",
 
   category: {
     patterns: "#8B7CFF",

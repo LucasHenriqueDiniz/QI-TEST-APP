@@ -104,6 +104,7 @@ export default function Test() {
       correctAnswers: outcome.correct,
       totalQuestions: outcome.total,
       categories: outcome.categories,
+      durationSeconds: Math.round(finalAnswers.reduce((sum, answer) => sum + answer.timeSpent, 0)),
     };
 
     // A rodada de conferência não entra no histórico nem mexe no progresso
