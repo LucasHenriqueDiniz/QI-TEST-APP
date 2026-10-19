@@ -55,6 +55,18 @@ export function buildTest(): Question[] {
   return shuffle(selected);
 }
 
+/**
+ * Todas as questões de uma categoria, na ordem da `questionKey` (p1, p2, …).
+ *
+ * Não é um teste: serve para conferir cada item de uma área na tela — a
+ * rodada `__DEV__` do `/test?only=patterns`. Ordem fixa para que "7 de 30"
+ * seja sempre o mesmo item.
+ */
+export function buildCategoryRound(category: QuestionCategory): Question[] {
+  const number = (q: Question) => Number(q.questionKey.replace(/\D/g, "")) || 0;
+  return questions.filter((q) => q.category === category).sort((a, b) => number(a) - number(b));
+}
+
 /** Reconstrói um teste a partir dos ids salvos, preservando a ordem original. */
 export function restoreTest(questionIds: string[]): Question[] {
   return questionIds.map((id) => questions.find((q) => q.id === id)).filter((q): q is Question => !!q);

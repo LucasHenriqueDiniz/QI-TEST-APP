@@ -4,22 +4,70 @@ import { Modal, Pressable, StyleSheet, useWindowDimensions, View } from "react-n
 import { useTranslation } from "react-i18next";
 import { patternImages } from "@/assets/questions/patterns";
 import { ThemedText } from "@/components/ThemedText";
+import { FigureOption, cellHeightFor, figureWidthFor } from "@/components/ui/FigureOption";
 import { useAppTheme } from "@/context/ThemeContext";
+
+/**
+ * Proporção largura/altura dos SVGs. As 30 matrizes têm `viewBox="0 0 500 335"`
+ * e as 120 alternativas `viewBox="0 0 173 105"` (conferido arquivo a arquivo em
+ * 2026-10-19). Os arquivos não trazem width/height, então cada figura
+ * preenche a caixa que recebe mantendo a proporção — a caixa é que precisa
+ * vir na proporção certa para não sobrar faixa vazia.
+ */
+const MATRIX_ASPECT = 500 / 335;
+const OPTION_ASPECT = 173 / 105;
+
+/**
+ * Altura da figura da matriz, em dp. Abaixo de 140 o traço fica ilegível;
+ * acima de 220 a sobra não ajuda a ler e come o espaço das alternativas.
+ */
+const MATRIX_MIN_HEIGHT = 140;
+const MATRIX_MAX_HEIGHT = 220;
+
+/** Linha da instrução com o botão de ampliar, em dp. */
+const TOOLBAR_HEIGHT = 32;
+const TOOLBAR_GAP = 8;
+const CARD_BORDER = 1;
+const CARD_PAD = 8;
+const CARD_GRID_GAP = 12;
+const GRID_GAP = 10;
+/** Folga entre a grade e o fio do rodapé, para as células não encostarem nele. */
+const BOTTOM_GAP = 8;
+const LETTERS = ["A", "B", "C", "D"];
 
 interface PatternQuestionProps {
   /** Chave no formato `p12`. */
   questionKey: string;
   selected: number | null;
   onSelect: (index: number) => void;
+  /** Largura disponível, em dp. Sem ela, a da janela menos as margens da tela. */
+  width?: number;
+  /**
+   * Altura em que tudo precisa caber sem rolar, em dp (o viewport medido com
+   * `onLayout`). Sem ela a matriz usa o máximo que a largura permite.
+   */
+  availableHeight?: number;
 }
 
 type PatternKey = keyof typeof patternImages;
 
-/** Questão de matriz visual: um enunciado em SVG e quatro alternativas em SVG. */
-export function PatternQuestion({ questionKey, selected, onSelect }: PatternQuestionProps) {
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
+}
+
+/**
+ * Questão de matriz visual: enunciado em SVG e quatro alternativas em SVG.
+ *
+ * A grade de alternativas tem altura fixa pela largura; a matriz recebe o que
+ * sobra do viewport, entre 140 e 220 dp, para a tela inteira caber sem rolar.
+ * A instrução e o botão de ampliar ficam numa linha própria acima do cartão,
+ * e não sobre ele: as matrizes desenham até a borda do viewBox, e um botão
+ * sobreposto esconderia um canto do estímulo.
+ */
+export function PatternQuestion({ questionKey, selected, onSelect, width, availableHeight }: PatternQuestionProps) {
   const { t } = useTranslation();
   const { colors, radius, spacing } = useAppTheme();
-  const { width } = useWindowDimensions();
+  const { width: windowWidth } = useWindowDimensions();
   const [zoomed, setZoomed] = useState(false);
 
   const slot = questionKey.replace(/^p/, "").padStart(2, "0");
@@ -37,82 +85,83 @@ export function PatternQuestion({ questionKey, selected, onSelect }: PatternQues
     );
   }
 
-  const contentWidth = width - spacing.xl * 2;
-  const optionSize = (contentWidth - spacing.md) / 2;
+  const contentWidth = width ?? windowWidth - spacing.xl * 2;
+
+  const cellWidth = Math.floor((contentWidth - GRID_GAP) / 2);
+  const optionWidth = figureWidthFor(cellWidth);
+  const optionHeight = Math.floor(optionWidth / OPTION_ASPECT);
+  const cellHeight = cellHeightFor(optionHeight);
+  const gridHeight = 2 * cellHeight + GRID_GAP;
+
+  const matrixByWidth = (contentWidth - 2 * (CARD_PAD + CARD_BORDER)) / MATRIX_ASPECT;
+  const matrixByHeight =
+    availableHeight === undefined
+      ? MATRIX_MAX_HEIGHT
+      : availableHeight - TOOLBAR_HEIGHT - TOOLBAR_GAP - 2 * (CARD_PAD + CARD_BORDER) - CARD_GRID_GAP - gridHeight - BOTTOM_GAP;
+  const matrixHeight = Math.floor(Math.min(matrixByWidth, clamp(matrixByHeight, MATRIX_MIN_HEIGHT, MATRIX_MAX_HEIGHT)));
+  const matrixWidth = Math.floor(matrixHeight * MATRIX_ASPECT);
+
+  const zoomWidth = windowWidth - spacing.md * 2;
 
   return (
-    <View style={styles.container}>
-      <ThemedText
-        variant="subheading"
-        center
-      >
-        {t("questions.patterns.prompt")}
-      </ThemedText>
+    <View>
+      <View style={styles.toolbar}>
+        <ThemedText
+          variant="caption"
+          tone="muted"
+          numberOfLines={2}
+          style={styles.instruction}
+        >
+          {t("questions.patterns.prompt")}
+        </ThemedText>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={t("questions.patterns.zoom")}
+          hitSlop={8}
+          onPress={() => setZoomed(true)}
+          style={({ pressed }) => [
+            styles.zoomButton,
+            { backgroundColor: colors.surfaceAlt, borderRadius: radius.pill },
+            pressed && { opacity: 0.6 },
+          ]}
+        >
+          <Ionicons
+            name="expand-outline"
+            size={18}
+            color={colors.text}
+          />
+        </Pressable>
+      </View>
 
       <Pressable
         accessibilityRole="imagebutton"
         accessibilityLabel={t("questions.patterns.zoom")}
         onPress={() => setZoomed(true)}
-        style={[styles.promptBox, { backgroundColor: colors.paper, borderRadius: radius.lg, borderColor: colors.border }]}
+        style={[styles.card, { backgroundColor: colors.paper, borderRadius: radius.lg, borderColor: colors.border }]}
       >
         <Prompt
-          width={contentWidth - spacing.xl}
-          height={190}
+          width={matrixWidth}
+          height={matrixHeight}
         />
-        <View style={[styles.zoomHint, { backgroundColor: colors.surfaceAlt, borderRadius: radius.pill }]}>
-          <Ionicons
-            name="expand-outline"
-            size={13}
-            color={colors.textMuted}
-          />
-          <ThemedText
-            variant="overline"
-            tone="faint"
-          >
-            {t("questions.patterns.zoom").toUpperCase()}
-          </ThemedText>
-        </View>
       </Pressable>
 
       <View style={styles.grid}>
-        {Options.map((Option, index) => {
-          const isSelected = selected === index;
-
-          return (
-            <Pressable
-              key={index}
-              accessibilityRole="radio"
-              accessibilityState={{ selected: isSelected }}
-              accessibilityLabel={t("questions.patterns.option", { number: index + 1 })}
-              onPress={() => onSelect(index)}
-              style={({ pressed }) => [
-                styles.option,
-                {
-                  width: optionSize,
-                  height: optionSize,
-                  borderRadius: radius.lg,
-                  backgroundColor: isSelected ? colors.paperSelected : colors.paper,
-                  borderColor: isSelected ? colors.primary : colors.outline,
-                },
-                pressed && { opacity: 0.75 },
-              ]}
-            >
-              <Option
-                width="78%"
-                height="78%"
-              />
-              {isSelected && (
-                <View style={[styles.check, { backgroundColor: colors.primary }]}>
-                  <Ionicons
-                    name="checkmark"
-                    size={13}
-                    color={colors.onPrimary}
-                  />
-                </View>
-              )}
-            </Pressable>
-          );
-        })}
+        {Options.map((Option, index) => (
+          <FigureOption
+            key={index}
+            letter={LETTERS[index]}
+            selected={selected === index}
+            onPress={() => onSelect(index)}
+            accessibilityLabel={t("questions.patterns.option", { number: index + 1 })}
+            width={cellWidth}
+            height={cellHeight}
+          >
+            <Option
+              width={optionWidth}
+              height={optionHeight}
+            />
+          </FigureOption>
+        ))}
       </View>
 
       <Modal
@@ -122,21 +171,24 @@ export function PatternQuestion({ questionKey, selected, onSelect }: PatternQues
         onRequestClose={() => setZoomed(false)}
       >
         <Pressable
-          style={styles.zoomOverlay}
+          style={[styles.zoomOverlay, { backgroundColor: colors.overlay }]}
           onPress={() => setZoomed(false)}
         >
+          {/* A legenda vai dentro do cartão: sobre o véu, que é translúcido,
+              nenhuma cor do tema lê bem nos dois modos. */}
           <View style={[styles.zoomCard, { backgroundColor: colors.paper, borderRadius: radius.xl }]}>
             <Prompt
-              width={width * 0.8}
-              height={width * 0.8}
+              width={zoomWidth - 2 * spacing.lg}
+              height={(zoomWidth - 2 * spacing.lg) / MATRIX_ASPECT}
             />
+            <ThemedText
+              variant="caption"
+              color={colors.onPaper}
+              center
+            >
+              {t("common.tapToClose")}
+            </ThemedText>
           </View>
-          <ThemedText
-            variant="caption"
-            color="#FFFFFF"
-          >
-            {t("common.tapToClose")}
-          </ThemedText>
         </Pressable>
       </Modal>
     </View>
@@ -144,53 +196,42 @@ export function PatternQuestion({ questionKey, selected, onSelect }: PatternQues
 }
 
 const styles = StyleSheet.create({
-  container: {
-    gap: 20,
-  },
-  promptBox: {
-    alignItems: "center",
-    paddingVertical: 20,
-    borderWidth: 1,
-  },
-  zoomHint: {
-    position: "absolute",
-    top: 10,
-    right: 10,
+  toolbar: {
+    height: TOOLBAR_HEIGHT,
     flexDirection: "row",
     alignItems: "center",
-    gap: 4,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
     gap: 12,
   },
-  option: {
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 2,
+  instruction: {
+    flex: 1,
   },
-  check: {
-    position: "absolute",
-    top: 8,
-    right: 8,
-    width: 22,
-    height: 22,
-    borderRadius: 11,
+  zoomButton: {
+    width: TOOLBAR_HEIGHT,
+    height: TOOLBAR_HEIGHT,
     alignItems: "center",
     justifyContent: "center",
+  },
+  card: {
+    marginTop: TOOLBAR_GAP,
+    alignItems: "center",
+    padding: CARD_PAD,
+    borderWidth: CARD_BORDER,
+  },
+  grid: {
+    marginTop: CARD_GRID_GAP,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: GRID_GAP,
   },
   zoomOverlay: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     gap: 16,
-    padding: 24,
-    backgroundColor: "rgba(0,0,0,0.85)",
+    padding: 12,
   },
   zoomCard: {
     padding: 16,
+    gap: 12,
   },
 });

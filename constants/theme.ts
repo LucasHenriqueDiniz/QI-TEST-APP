@@ -34,6 +34,12 @@ export interface Palette {
   paper: string;
   /** `paper` tingido de marca, para a alternativa selecionada. */
   paperSelected: string;
+  /**
+   * Tinta sobre `paper`: a letra do badge da alternativa, qualquer texto ao
+   * lado de uma figura. Escura nos dois modos, como o traço dos SVGs — `text`
+   * fica claro no escuro e sumiria sobre o papel.
+   */
+  onPaper: string;
 
   /** Texto principal. */
   text: string;
@@ -95,6 +101,7 @@ const light: Palette = {
 
   paper: "#FFFFFF",
   paperSelected: "#EDEBFE",
+  onPaper: "#14142B",
 
   text: "#14142B",
   textMuted: "#63637E",
@@ -140,6 +147,7 @@ const dark: Palette = {
 
   paper: "#DCDCE8",
   paperSelected: "#D6D2FC",
+  onPaper: "#14142B",
 
   text: "#F3F3F8",
   textMuted: "#A2A2C0",

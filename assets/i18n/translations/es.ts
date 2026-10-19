@@ -121,7 +121,7 @@ export const es = {
     },
     questions: {
       patterns: {
-        prompt: "¿Qué figura completa la secuencia?",
+        prompt: "Completa la secuencia",
         zoom: "Ampliar",
         option: "Opción {{number}}",
       },

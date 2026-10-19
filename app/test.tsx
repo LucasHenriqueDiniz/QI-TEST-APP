@@ -1,7 +1,7 @@
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { ActivityIndicator, LayoutRectangle, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { PatternQuestion } from "@/components/PatternQuestion";
 import { AdSlot } from "@/components/ui/AdSlot";
@@ -11,7 +11,7 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { useAppTheme } from "@/context/ThemeContext";
 import { useGatedInterstitial } from "@/hooks/useGatedInterstitial";
 import { useQuestionData } from "@/hooks/useQuestionData";
-import { buildTest, restoreTest } from "@/hooks/useQuestionSelection";
+import { buildCategoryRound, buildTest, restoreTest } from "@/hooks/useQuestionSelection";
 import { useStorage } from "@/hooks/useStorage";
 import { Answer, Question } from "@/types";
 import { HistoryItem } from "@/types/storage";
@@ -22,6 +22,12 @@ export default function Test() {
   const { colors, spacing, radius } = useAppTheme();
   const storage = useStorage();
   const { getQuestionData } = useQuestionData();
+  const params = useLocalSearchParams<{ only?: string }>();
+
+  // Rodada de conferência, só no bundle de desenvolvimento: `/test?only=patterns`
+  // abre os 30 itens visuais em ordem, sem ler nem gravar progresso. O
+  // `__DEV__` na frente deixa o minificador descartar o ramo na release.
+  const devRound = __DEV__ && params.only === "patterns";
 
   const [testQuestions, setTestQuestions] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
@@ -29,6 +35,8 @@ export default function Test() {
   const [selected, setSelected] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [completedTests, setCompletedTests] = useState(0);
+  // Viewport da rolagem, para a questão visual se dimensionar e caber sem rolar.
+  const [viewport, setViewport] = useState<LayoutRectangle | null>(null);
 
   // O anúncio começa a carregar assim que o teste abre, então já está pronto
   // quando o usuário chega na última questão — sem espera na hora de mostrar.
@@ -55,7 +63,9 @@ export default function Test() {
       // caso contrário as respostas salvas apontariam para outras questões.
       const restored = progress?.questionIds ? restoreTest(progress.questionIds) : [];
 
-      if (progress && restored.length === progress.questionIds.length && restored.length > 0) {
+      if (devRound) {
+        setTestQuestions(buildCategoryRound("patterns"));
+      } else if (progress && restored.length === progress.questionIds.length && restored.length > 0) {
         setTestQuestions(restored);
         setIndex(progress.currentIndex);
         setAnswers(progress.savedAnswers);
@@ -79,7 +89,7 @@ export default function Test() {
     return () => {
       active = false;
     };
-  }, [storage]);
+  }, [storage, devRound]);
 
   const current = testQuestions[index];
   const questionData = useMemo(() => (current ? getQuestionData(current.id) : null), [current, getQuestionData]);
@@ -96,9 +106,13 @@ export default function Test() {
       categories: outcome.categories,
     };
 
-    const existing = (await storage.getItem("testHistory")) ?? [];
-    await storage.setItem("testHistory", [entry, ...existing]);
-    await storage.removeItem("testProgress");
+    // A rodada de conferência não entra no histórico nem mexe no progresso
+    // de um teste de verdade que esteja pela metade.
+    if (!devRound) {
+      const existing = (await storage.getItem("testHistory")) ?? [];
+      await storage.setItem("testHistory", [entry, ...existing]);
+      await storage.removeItem("testProgress");
+    }
 
     // O resultado já está salvo no histórico neste ponto. Se o anúncio falhar
     // ou o usuário matar o app durante ele, nada se perde — a navegação é o
@@ -129,6 +143,8 @@ export default function Test() {
     setIndex(nextIndex);
     questionStartedAt.current = Date.now();
     scrollRef.current?.scrollTo({ y: 0, animated: false });
+
+    if (devRound) return;
 
     // Grava os valores já calculados — ler do state aqui salvaria a questão
     // anterior, porque `setState` só reflete no próximo render.
@@ -183,10 +199,13 @@ export default function Test() {
         <ProgressBar value={index / testQuestions.length} />
       </View>
 
+      {/* A questão visual se dimensiona pelo viewport medido aqui e dispensa a
+          folga inferior: o que a separa do botão é o recuo do rodapé. */}
       <ScrollView
         ref={scrollRef}
         style={styles.flex}
-        contentContainerStyle={[styles.scrollContent, { paddingHorizontal: spacing.xl }]}
+        onLayout={(event) => setViewport(event.nativeEvent.layout)}
+        contentContainerStyle={{ paddingHorizontal: spacing.xl, paddingBottom: isImage ? 0 : spacing.xxl }}
         showsVerticalScrollIndicator={false}
       >
         {isImage ? (
@@ -194,6 +213,8 @@ export default function Test() {
             questionKey={current.questionKey}
             selected={selected}
             onSelect={setSelected}
+            width={viewport ? viewport.width - spacing.xl * 2 : undefined}
+            availableHeight={viewport?.height}
           />
         ) : (
           <>
@@ -297,9 +318,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  scrollContent: {
-    paddingBottom: 32,
   },
   prompt: {
     marginBottom: 24,
