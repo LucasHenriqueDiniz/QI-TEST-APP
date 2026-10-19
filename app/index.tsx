@@ -76,6 +76,7 @@ export default function Home() {
 
   return (
     <Screen
+      scroll
       glow
       adPlacement="home-bottom"
       contentStyle={{ paddingTop: insets.top + spacing.sm }}

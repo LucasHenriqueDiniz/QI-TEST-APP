@@ -29,7 +29,7 @@ export function Screen({ children, scroll = false, glow = false, adPlacement, co
   const body = scroll ? (
     <ScrollView
       style={styles.flex}
-      contentContainerStyle={[padding, contentStyle]}
+      contentContainerStyle={[styles.grow, padding, contentStyle]}
       showsVerticalScrollIndicator={false}
     >
       {children}
@@ -62,6 +62,12 @@ export function Screen({ children, scroll = false, glow = false, adPlacement, co
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+  },
+  // O conteúdo ocupa ao menos a altura da tela, para que um espaçador com
+  // `flex: 1` ainda empurre as ações para baixo quando sobra espaço — e role
+  // quando não sobra.
+  grow: {
+    flexGrow: 1,
   },
   glow: {
     position: "absolute",
