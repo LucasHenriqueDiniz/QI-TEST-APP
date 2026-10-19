@@ -19,9 +19,9 @@ export const pt = {
       high: "Superior",
       aboveAverage: "Acima da média",
       average: "Média",
-      belowAverage: "Abaixo da média",
-      borderline: "Limítrofe",
-      veryLow: "Muito abaixo",
+      belowAverage: "Média baixa",
+      borderline: "Abaixo da média",
+      veryLow: "Bem abaixo da média",
     },
     home: {
       title: "Teste de QI",

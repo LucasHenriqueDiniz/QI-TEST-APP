@@ -19,8 +19,8 @@ export const en = {
       high: "Superior",
       aboveAverage: "Above average",
       average: "Average",
-      belowAverage: "Below average",
-      borderline: "Borderline",
+      belowAverage: "Low average",
+      borderline: "Below average",
       veryLow: "Well below average",
     },
     home: {

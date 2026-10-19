@@ -19,9 +19,9 @@ export const es = {
       high: "Superior",
       aboveAverage: "Por encima de la media",
       average: "Media",
-      belowAverage: "Por debajo de la media",
-      borderline: "Límite",
-      veryLow: "Muy por debajo",
+      belowAverage: "Media baja",
+      borderline: "Por debajo de la media",
+      veryLow: "Muy por debajo de la media",
     },
     home: {
       title: "Test de CI",
