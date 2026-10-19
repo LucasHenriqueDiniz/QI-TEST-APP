@@ -9,6 +9,7 @@ import { Chip } from "@/components/ui/Chip";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { ScoreCurve } from "@/components/ui/ScoreCurve";
 import { Screen } from "@/components/ui/Screen";
+import { STORE_URL } from "@/constants/app";
 import { useAppTheme } from "@/context/ThemeContext";
 import { HistoryItem } from "@/types/storage";
 import { getIQClassification } from "@/utils/iqCalculator";
@@ -75,8 +76,10 @@ export default function Results() {
   const accuracy = entry.totalQuestions > 0 ? entry.correctAnswers / entry.totalQuestions : 0;
 
   const handleShare = () => {
+    // O link vai numa linha própria para os apps de mensagem gerarem a prévia
+    // da loja — quem recebe o desafio instala dali mesmo.
     Share.share({
-      message: t("results.shareMessage", { score: entry.iqScore, percentile: entry.percentile }),
+      message: `${t("results.shareMessage", { score: entry.iqScore, percentile: entry.percentile })}\n${STORE_URL}`,
     }).catch((error) => console.error("Error sharing:", error));
   };
 
