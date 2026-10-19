@@ -53,7 +53,7 @@ export function PatternQuestion({ questionKey, selected, onSelect }: PatternQues
         accessibilityRole="imagebutton"
         accessibilityLabel={t("questions.patterns.zoom")}
         onPress={() => setZoomed(true)}
-        style={[styles.promptBox, { backgroundColor: colors.surface, borderRadius: radius.lg, borderColor: colors.border }]}
+        style={[styles.promptBox, { backgroundColor: colors.paper, borderRadius: radius.lg, borderColor: colors.border }]}
       >
         <Prompt
           width={contentWidth - spacing.xl}
@@ -91,7 +91,7 @@ export function PatternQuestion({ questionKey, selected, onSelect }: PatternQues
                   width: optionSize,
                   height: optionSize,
                   borderRadius: radius.lg,
-                  backgroundColor: isSelected ? colors.primarySoft : colors.surface,
+                  backgroundColor: isSelected ? colors.paperSelected : colors.paper,
                   borderColor: isSelected ? colors.primary : colors.border,
                 },
                 pressed && { opacity: 0.75 },
@@ -125,7 +125,7 @@ export function PatternQuestion({ questionKey, selected, onSelect }: PatternQues
           style={styles.zoomOverlay}
           onPress={() => setZoomed(false)}
         >
-          <View style={[styles.zoomCard, { backgroundColor: colors.surface, borderRadius: radius.xl }]}>
+          <View style={[styles.zoomCard, { backgroundColor: colors.paper, borderRadius: radius.xl }]}>
             <Prompt
               width={width * 0.8}
               height={width * 0.8}

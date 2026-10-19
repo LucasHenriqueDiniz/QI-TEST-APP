@@ -17,6 +17,14 @@ export interface Palette {
   /** Divisores e contornos. */
   border: string;
 
+  /**
+   * Fundo das figuras das questões. Os SVGs vêm com traço preto embutido, então
+   * este fundo é claro nos dois modos — no escuro, preto sobre `surface` some.
+   */
+  paper: string;
+  /** `paper` tingido de marca, para a alternativa selecionada. */
+  paperSelected: string;
+
   /** Texto principal. */
   text: string;
   /** Texto de apoio, legendas. */
@@ -57,6 +65,9 @@ const light: Palette = {
   surfaceAlt: "#EFEFF7",
   border: "#E4E4EF",
 
+  paper: "#FFFFFF",
+  paperSelected: "#EDEBFE",
+
   text: "#14142B",
   textMuted: "#63637E",
   textFaint: "#9797AF",
@@ -85,6 +96,9 @@ const dark: Palette = {
   surface: "#171728",
   surfaceAlt: "#1F1F36",
   border: "#2C2C48",
+
+  paper: "#E8E8F1",
+  paperSelected: "#D6D2FC",
 
   text: "#F3F3F8",
   textMuted: "#A2A2C0",
