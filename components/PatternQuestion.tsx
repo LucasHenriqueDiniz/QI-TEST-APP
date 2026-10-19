@@ -92,7 +92,7 @@ export function PatternQuestion({ questionKey, selected, onSelect }: PatternQues
                   height: optionSize,
                   borderRadius: radius.lg,
                   backgroundColor: isSelected ? colors.paperSelected : colors.paper,
-                  borderColor: isSelected ? colors.primary : colors.border,
+                  borderColor: isSelected ? colors.primary : colors.outline,
                 },
                 pressed && { opacity: 0.75 },
               ]}

@@ -18,8 +18,8 @@ export function Chip({ label, tone = "neutral", icon, style }: ChipProps) {
 
   const tones: Record<ChipTone, { bg: string; fg: string }> = {
     neutral: { bg: colors.surfaceAlt, fg: colors.textMuted },
-    primary: { bg: colors.primarySoft, fg: colors.primary },
-    accent: { bg: colors.accentSoft, fg: colors.accent },
+    primary: { bg: colors.primarySoft, fg: colors.primaryText },
+    accent: { bg: colors.accentSoft, fg: colors.onAccentSoft },
     success: { bg: colors.successSoft, fg: colors.success },
     danger: { bg: colors.dangerSoft, fg: colors.danger },
   };

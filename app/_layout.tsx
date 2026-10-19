@@ -1,7 +1,7 @@
 import "@/config/i18n";
 
 import { Inter_400Regular } from "@expo-google-fonts/inter";
-import { Manrope_600SemiBold, Manrope_700Bold, useFonts } from "@expo-google-fonts/manrope";
+import { Manrope_600SemiBold, Manrope_700Bold, Manrope_800ExtraBold, useFonts } from "@expo-google-fonts/manrope";
 import { NavigationBar } from "expo-navigation-bar";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -12,6 +12,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AdsProvider } from "@/context/AdsContext";
 import { ThemeProvider, useAppTheme } from "@/context/ThemeContext";
+import { loadHapticsPreference } from "@/utils/haptics";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -69,12 +70,23 @@ export default function RootLayout() {
   // medido uma vez: medido na fonte do sistema e pintado em Manrope, que é mais
   // larga, ele sai cortado ("Começar te…"). As fontes vêm do próprio APK, não
   // da rede, então a espera é de milissegundos — e a splash cobre.
-  const [fontsLoaded, fontError] = useFonts({ Manrope_700Bold, Manrope_600SemiBold, Inter_400Regular });
+  const [fontsLoaded, fontError] = useFonts({
+    Manrope_800ExtraBold,
+    Manrope_700Bold,
+    Manrope_600SemiBold,
+    Inter_400Regular,
+  });
   const ready = fontsLoaded || fontError !== null;
 
   useEffect(() => {
     if (ready) SplashScreen.hideAsync();
   }, [ready]);
+
+  // A preferência de vibração vai para uma flag de módulo; ler aqui, uma vez,
+  // evita que cada toque consulte o storage.
+  useEffect(() => {
+    loadHapticsPreference();
+  }, []);
 
   // Se a fonte falhar, segue com a do sistema: texto medido e pintado na mesma
   // fonte não corta.

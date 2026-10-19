@@ -20,7 +20,8 @@ export function ThemedText({ variant = "body", tone = "default", color, center, 
     default: colors.text,
     muted: colors.textMuted,
     faint: colors.textFaint,
-    primary: colors.primary,
+    // Texto na cor da marca usa o tom próprio para texto, não o de fundo.
+    primary: colors.primaryText,
     accent: colors.accent,
     success: colors.success,
     danger: colors.danger,
@@ -30,7 +31,10 @@ export function ThemedText({ variant = "body", tone = "default", color, center, 
   // O peso vem embutido no arquivo da fonte (Manrope_700Bold já é bold). Manter
   // `fontWeight` junto faria o Android sintetizar um negrito por cima do
   // negrito real, engordando o traço. Por isso o peso sai quando há família.
-  const { fontWeight, ...scale } = typography[variant] as TextStyle;
+  // O teto de escala não é estilo: vai como prop do `Text`.
+  const { fontWeight, maxFontSizeMultiplier, ...scale } = typography[variant] as TextStyle & {
+    maxFontSizeMultiplier?: number;
+  };
 
   const resolved: StyleProp<TextStyle> = [
     scale,
@@ -41,6 +45,7 @@ export function ThemedText({ variant = "body", tone = "default", color, center, 
 
   return (
     <Text
+      maxFontSizeMultiplier={maxFontSizeMultiplier}
       style={resolved}
       {...rest}
     />

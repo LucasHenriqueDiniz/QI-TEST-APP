@@ -108,14 +108,14 @@ export default function Settings() {
                   {
                     borderRadius: radius.md,
                     backgroundColor: active ? colors.primarySoft : colors.surface,
-                    borderColor: active ? colors.primary : colors.border,
+                    borderColor: active ? colors.primary : colors.outline,
                   },
                 ]}
               >
                 <Ionicons
                   name={option.icon}
                   size={18}
-                  color={active ? colors.primary : colors.textMuted}
+                  color={active ? colors.primaryText : colors.textMuted}
                 />
                 <ThemedText
                   variant="caption"
@@ -150,7 +150,7 @@ export default function Settings() {
                   <Ionicons
                     name="checkmark"
                     size={20}
-                    color={colors.primary}
+                    color={colors.primaryText}
                   />
                 )}
               </Pressable>

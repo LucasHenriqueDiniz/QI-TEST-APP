@@ -4,6 +4,7 @@ export const STORAGE_KEYS = {
   testProgress: "testProgress",
   testHistory: "testHistory",
   userData: "userData",
+  hapticsEnabled: "hapticsEnabled",
 } as const;
 
 export type StorageKeys = keyof typeof STORAGE_KEYS;
@@ -35,4 +36,6 @@ export interface StorageData {
   testProgress: TestProgress;
   testHistory: HistoryItem[];
   userData: UserData;
+  /** Preferência "Vibração"; lida e gravada por `utils/haptics.ts`. */
+  hapticsEnabled: boolean;
 }

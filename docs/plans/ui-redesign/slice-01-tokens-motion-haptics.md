@@ -1,5 +1,5 @@
 ---
-status: todo
+status: done
 ---
 
 # Slice 01 — tokens, typography, motion, haptics
@@ -38,3 +38,16 @@ prints `OK`, and `answer_all.py` prints `30/30`.
 **If stuck.** If a DS-1 hex fails the checker on a surface the research did
 not list, adjust that hex until the pair passes and note it in the commit body;
 the checker, not the table, is the oracle.
+
+**Result (2026-10-19).** Implemented by a Fable agent, re-checked by the
+orchestrator on the A15. `check_contrast.py`: 13 failing pairs → 0 (tightest:
+dark `outline` on surface 3.05:1, dark white-on-`primary` 4.71:1 after dark
+`primary` moved to `#6A5CF5`); every DS-1 hex is the research value. `tsc` 0.
+`answer_all.py`: 30/30 in light, dark and system, 31 `[haptics] press` lines per
+run (1 start + 30 confirms), 0 JS errors. Interactive boundaries moved from
+`border` to `outline`; text in brand colour moved to `primaryText`. `score`,
+`tick()` and `confirm()` exist but are wired by slices 03, 05, 06.
+
+Left for later slices: `ProgressBar` still animates `width` (06); Results
+colours a weak area red (03); the Home disclaimer sits at the scroll edge above
+the banner (02/08).

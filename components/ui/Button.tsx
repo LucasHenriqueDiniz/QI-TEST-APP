@@ -1,10 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
-import * as Haptics from "expo-haptics";
 import React from "react";
-import { ActivityIndicator, Platform, Pressable, StyleSheet, View, ViewStyle } from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { useAppTheme } from "@/context/ThemeContext";
 import { ThemedText } from "@/components/ThemedText";
+import * as haptics from "@/utils/haptics";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -37,7 +37,7 @@ export function Button({ title, onPress, variant = "primary", size = "medium", i
   const surfaces: Record<Variant, ViewStyle> = {
     primary: { backgroundColor: colors.primary, ...shadow(2) },
     secondary: { backgroundColor: colors.surfaceAlt },
-    outline: { backgroundColor: "transparent", borderWidth: 1.5, borderColor: colors.border },
+    outline: { backgroundColor: "transparent", borderWidth: 1.5, borderColor: colors.outline },
     ghost: { backgroundColor: "transparent" },
   };
 
@@ -45,15 +45,13 @@ export function Button({ title, onPress, variant = "primary", size = "medium", i
     primary: colors.onPrimary,
     secondary: colors.text,
     outline: colors.text,
-    ghost: colors.primary,
+    ghost: colors.primaryText,
   };
 
   const contentColor = contentColors[variant];
 
   const handlePress = () => {
-    if (Platform.OS !== "web") {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
-    }
+    haptics.press();
     onPress();
   };
 
@@ -63,10 +61,10 @@ export function Button({ title, onPress, variant = "primary", size = "medium", i
       accessibilityState={{ disabled: !!isDisabled, busy: !!loading }}
       onPress={handlePress}
       onPressIn={() => {
-        if (!isDisabled) scale.value = withSpring(0.97, motion.spring);
+        if (!isDisabled) scale.value = withSpring(0.97, motion.fastSpatial);
       }}
       onPressOut={() => {
-        scale.value = withSpring(1, motion.spring);
+        scale.value = withSpring(1, motion.fastSpatial);
       }}
       disabled={isDisabled}
       style={[

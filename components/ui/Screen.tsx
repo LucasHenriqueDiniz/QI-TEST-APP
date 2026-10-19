@@ -47,7 +47,7 @@ export function Screen({ children, scroll = false, glow = false, adPlacement, in
     <View style={[styles.flex, { backgroundColor: colors.background }, insetTop && { paddingTop: insets.top }]}>
       {glow && (
         <LinearGradient
-          colors={[colors.primarySoft, colors.background]}
+          colors={colors.gradientGlow}
           style={styles.glow}
           pointerEvents="none"
         />

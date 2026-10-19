@@ -87,7 +87,7 @@ export function AboutSheet({ visible, onClose }: AboutSheetProps) {
             <View style={[styles.notice, { backgroundColor: colors.accentSoft, borderRadius: radius.lg }]}>
               <ThemedText
                 variant="captionStrong"
-                tone="accent"
+                color={colors.onAccentSoft}
               >
                 {t("about.disclaimerTitle")}
               </ThemedText>
@@ -106,7 +106,7 @@ export function AboutSheet({ visible, onClose }: AboutSheetProps) {
               <Ionicons
                 name="shield-checkmark-outline"
                 size={16}
-                color={colors.primary}
+                color={colors.primaryText}
               />
               <ThemedText
                 variant="caption"

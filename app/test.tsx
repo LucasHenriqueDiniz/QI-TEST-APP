@@ -221,7 +221,7 @@ export default function Test() {
                       {
                         borderRadius: radius.lg,
                         backgroundColor: isSelected ? colors.primarySoft : colors.surface,
-                        borderColor: isSelected ? colors.primary : colors.border,
+                        borderColor: isSelected ? colors.primary : colors.outline,
                       },
                       pressed && { opacity: 0.75 },
                     ]}
@@ -230,7 +230,7 @@ export default function Test() {
                       style={[
                         styles.bullet,
                         {
-                          borderColor: isSelected ? colors.primary : colors.border,
+                          borderColor: isSelected ? colors.primary : colors.outline,
                           backgroundColor: isSelected ? colors.primary : "transparent",
                         },
                       ]}
