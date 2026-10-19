@@ -230,6 +230,13 @@ rodando o app por 14 dias seguidos** antes de poder publicar em produção.
 
 Comece isso **cedo**. É o item de maior prazo do projeto e não depende de código.
 
+> **Superado em 19/10/2026** pelas decisões D6–D9 (`docs/architecture/ARCHITECTURE.md`)
+> e por `docs/research/scoring-modes/README.md`: os modos passam a ser
+> **Rápido 20 / Normal 40 / Detalhado 90**, o banco cresce para 188 questões, o
+> cálculo vira EAP com faixa, entra uma tarefa de velocidade opcional, e o
+> lançamento espera tudo isso. O texto abaixo fica como registro da análise
+> anterior (15/30/60).
+
 ### Trabalho para rodar durante os 14 dias
 
 O contador corre sozinho, então este é o momento de mexer no app sem custo de

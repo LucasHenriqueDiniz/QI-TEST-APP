@@ -12,9 +12,12 @@ cronômetro", gradient "Começar teste", disclaimer line, "Como funciona");
 returning user ("Seu recorde" gradient card with sparkline, "Fazer novo
 teste"); test in progress (ring "12/30", "Continuar teste", "Recomeçar" with a
 confirm sheet, replacing the `Alert`). The chip grid moves to About (slice 10).
-No duration promise.
+No duration promise. A mode chooser (Rápido 20 · Normal 40 · Detalhado 90,
+Normal preselected, a one-line description each, and "inclui teste de
+velocidade opcional" on Normal and Detalhado) starts the round with that mode
+(slice 05b's `mode` param).
 
-**Needs.** Slices 01, 02, 06 (the pause flow creates the in-progress state).
+**Needs.** Slices 01, 02, 05b, 06 (the pause flow creates the in-progress state).
 
 **Tests.**
 - Each variant at font scale 1.0 and 1.3

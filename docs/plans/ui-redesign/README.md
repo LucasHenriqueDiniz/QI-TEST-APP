@@ -1,6 +1,9 @@
 # Plan — UI redesign
 
-From `docs/pitches/ui-redesign.md` (accepted 2026-10-19). The per-screen spec
+From `docs/pitches/ui-redesign.md` (accepted 2026-10-19), extended the same
+day by the modes and scoring research (`docs/research/scoring-modes/`,
+decisions D6–D9): slices 05b–05e and 03b were inserted, which is why they carry
+fractional numbers. The release waits for 05d/05e (D9). The per-screen spec
 is `docs/research/ui-redesign/README.md`; each slice names the section it
 implements. Decisions D1–D5 are in `docs/architecture/ARCHITECTURE.md`; when a
 slice and a decision disagree, the decision wins.
@@ -11,8 +14,13 @@ slice and a decision disagree, the decision wins.
 | 01 | tokens, typography, motion, haptics | — |
 | 02 | `AdSlot` v2 on every screen | — |
 | 03 | Results: hero, count-up, curve reveal, area bars | — |
+| 03b | Results: band, Verbal/Raciocínio indices, speed (after 05b, 05c) | — |
 | 04 | share card image | `react-native-view-shot`, `expo-sharing` |
 | 05 | Test — pattern question without scroll | — |
+| 05b | modes 20/40/90 and the EAP scoring engine (D6, D8) | — |
+| 05c | optional 90 s speed task (D7) | — |
+| 05d | bank: +54 text items in pt/en/es, blind-solved (D8) | — |
+| 05e | bank: +24 pattern items from a generator (D8) | — |
 | 06 | Test — text question, segmented progress, pause sheet | — |
 | 07 | finish moment `/finishing` + interstitial | — |
 | 08 | Home, three variants | — |
@@ -22,8 +30,11 @@ slice and a decision disagree, the decision wins.
 
 ## How a slice gets done
 
-One slice at a time, in order: every slice touches `components/ui/` or
-`constants/theme.ts`, and there is one test phone.
+One device slice at a time: they share `components/ui/`, `constants/theme.ts`
+and one test phone. The bank slices (05d, 05e) need no phone and write to
+staging files, so they can run next to a device slice; they merge into
+`data/questions.ts` and the translation files only when no screen slice is
+open.
 
 1. **Implement.** A Fable agent gets the slice file, the research section it
    names, and this README. It works in the main checkout with Metro running

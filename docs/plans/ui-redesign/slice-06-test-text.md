@@ -8,22 +8,23 @@ status: todo
 `SegmentedProgress`, `MilestoneChip`.
 
 **Delivers.** The test shell of §5.2 shared with slice 05: `TopBar` with X ·
-`SegmentedProgress` (3×10, `scaleX`) · counter "7/30" (reads "faltam N" from
-question 26), category line in `category.*` colour, `OptionCard`s with letter
-badges, gradient "Confirmar" ("Ver meu resultado" on 30). Select → pop +
+`SegmentedProgress` (segments sized to the mode — Rápido 2×10, Normal 4×10,
+Detalhado 3×30 — filled with `scaleX`) · counter "7/40" (reads "faltam N" for
+the last 5), category line in `category.*` colour, `OptionCard`s with letter
+badges, gradient "Confirmar" ("Ver meu resultado" on the last question). Select → pop +
 `tick()`; commit → `confirm()`, exit/enter transition ≤ 300 ms. Milestone chips
-after questions 3, 10 and 20. X and system back open the pause sheet
+after question 3 and at each segment boundary. X and system back open the pause sheet
 ("Pausar o teste? Seu progresso fica salvo."). Stack header removed. A
 `__DEV__`-only `/test?q=<id>` opens a single question for fit checks.
 
-**Needs.** Slices 01, 02, 05.
+**Needs.** Slices 01, 02, 05, 05b (round length comes from the mode).
 
 **Tests.**
 - The longest text question in pt, en and es (found by string length in the
   translation files) fits: `check_fit.py` 3/3.
-- `answer_all.py` → `30/30`.
+- `answer_all.py` → `N/N` for each mode (20, 40, 90).
 - Pause sheet: answer 5, press back, choose "Sair e continuar depois", reopen,
-  "Continuar" → counter reads 6/30.
+  "Continuar" → counter reads 6/N.
 - First visual change on tap within 6 frames of a 60 fps screen recording
   (`adb shell screenrecord`), noted in the commit.
 
