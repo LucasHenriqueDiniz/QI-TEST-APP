@@ -59,7 +59,7 @@ Detalhe completo em `ADMOB.md` e no cabeçalho de
 - [x] Roteamento funcionando (`app/_layout.tsx` e `app/index.tsx` existem)
 - [x] `package` definitivo: `com.lhdiniz.testeqi` — **imutável após o 1º upload**
 - [x] Nome do app: "Teste de QI"
-- [x] `versionCode: 1` e `version: 1.0.0`
+- [x] `version: 1.0.0` — o `versionCode` é do EAS (`appVersionSource: "remote"`, §5)
 - [x] Nenhuma compra no app (removidas loja e tela de desbloqueio)
 - [x] Aviso de "apenas entretenimento" visível na home, no resultado e em Sobre
 - [x] Nenhuma permissão sensível declarada
@@ -184,8 +184,8 @@ que os ad unit IDs precisam estar registrados como variáveis do EAS.
 Durante os 14 dias de teste fechado você vai subir várias versões, e cada uma
 precisa de um `versionCode` inédito. Com `remote` + `autoIncrement`, o EAS
 cuida disso. Com o controle manual no `app.json`, o erro só aparece no upload,
-depois de esperar o build inteiro. O `versionCode: 1` do `app.json` passa a ser
-ignorado — é esperado, não é bug.
+depois de esperar o build inteiro. Por isso o `app.json` não tem `versionCode`:
+o EAS o ignoraria e ainda avisaria a cada build. Não recoloque.
 
 ## 6. Teste fechado — o gargalo real
 

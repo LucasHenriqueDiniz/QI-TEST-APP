@@ -13,7 +13,6 @@
     ],
     "android": {
       "package": "com.lhdiniz.testeqi",
-      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#5B4FE9"
