@@ -24,6 +24,13 @@ band, selection, defects); decisions D6, D8.
   default `normal` until the Home chooser of slice 08), and `timeSpent` stops
   counting while the app is in the background (AppState), so durations mean
   active time.
+- **Option order is shuffled per round.** Today options render in stored
+  order and the key is position 0 in 20/20 similarities and 16/20
+  comprehension items (52/110 overall), so "always pick A" scores high.
+  Text options are permuted when the round is built, the permutation is
+  stored in `TestProgress` so a resumed test shows the same order, and
+  `correctAnswer` is mapped through it. Pattern options stay fixed (their
+  SVGs are files named by position) but their keys are already spread.
 - Unit tests (the repo has none yet: add Jest via `jest-expo` or a plain
   `node --test` on the pure functions — pick the lighter one and say why) for
   the estimator and the blueprints.
@@ -40,6 +47,9 @@ band, selection, defects); decisions D6, D8.
   least 2× its blueprint count (a test asserts the guard).
 - Two consecutive Normal rounds share 0 items (LRU), checked in a test with a
   fake storage.
+- Over 1 000 seeded rounds, the displayed position of the correct text option
+  is within 25% ± 3 points for each of A–D; reverting the shuffle makes it fail
+  (A is the key in 47 of the 80 text items today, 59%).
 - `answer_all.py` on the device: `20/20` with `mode=rapido`, `40/40` with
   `mode=normal` (open the route with
   `adb shell am start -a android.intent.action.VIEW -d "testeqi://test?mode=rapido" com.lhdiniz.testeqi`).
