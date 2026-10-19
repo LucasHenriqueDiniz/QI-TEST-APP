@@ -1,6 +1,6 @@
 ---
 tags: [pitch, area/frontend, ui-redesign]
-status: proposed
+status: accepted
 date: 2026-10-19
 research: docs/research/ui-redesign/README.md
 ---
@@ -38,8 +38,7 @@ Measured defects the redesign must remove, not just restyle
 
 Redesign every screen against the per-screen targets in the research note,
 in this order: **design system → Results + share card → Test (pattern) →
-Test (text) → finish moment → Home → History + answer review → Settings /
-About**. Each step ships alone and is checked on the A15 before the next.
+Test (text) → finish moment → Home → History → Settings / About**. Each step ships alone and is checked on the A15 before the next.
 
 Shape it implies:
 
@@ -56,14 +55,11 @@ Shape it implies:
 - **New route** `app/finishing.tsx` between the last answer and Results:
   ~2 s "calculating" screen with no banner, then the pre-loaded interstitial,
   then the result.
-- **New route** `app/review.tsx` (answer review), which needs the chosen
-  option persisted per answer in `HistoryItem`.
 
 ## Interfaces it touches
 
-- Storage schema: `types/storage.ts` gains per-answer chosen index and total
-  test time. Old history entries without them keep working and hide the review
-  entry point.
+- Storage schema: `types/storage.ts` gains the total test time (for the
+  Results strip and History). Old entries without it keep working.
 - Ads: `components/ui/AdSlot.tsx` (fixed height, gap, one per screen) and
   `hooks/useGatedInterstitial.ts` (shown from `/finishing`, never after
   Results renders). Ad unit IDs and the consent flow do not change.
@@ -75,34 +71,27 @@ Shape it implies:
 
 ## Scope
 
-**In:** the eight steps above, the share card, the answer review shell (rows,
-read-only question, correct answer shown), the haptics switch in Settings,
+**In:** the steps above, the share card, the haptics switch in Settings,
 store screenshots composed at 1080×1920 in pt-BR, es-419 and en-US after the
 redesign lands.
 
-**Out:** written explanations per question (the review ships with a slot for
-them, content later), test modes 15/30/60 (planned in `store/CHECKLIST.md` §6
+**Out:** answer review and per-question explanations (D4: built during the
+closed test), test modes 15/30/60 (planned in `store/CHECKLIST.md` §6
 for the 14-day closed test), onboarding/intro screen (rejected in research
 §5.11), streaks/badges, iOS-specific work, any paywall.
 
-## Decisions the owner must make before the plan
+## Decisions (settled 2026-10-19)
 
-1. **Banner on the test screen.** Keep it with the 24 dp gap and fixed height
-   (mitigation, still a policy risk per research), or remove it from the test
-   screen only (zero risk, one fewer impression per question screen).
-2. **Interstitial placement.** Keep it before Results, now behind the
-   `/finishing` screen with a disclosure line ("Um anúncio rápido e já
-   mostramos seu resultado"), or move it after Results (Play's own safe
-   example). `INTERSTITIAL_AFTER_TESTS = 0` (ad on the very first test) also
-   stays a business choice.
-3. **Answer review now or later.** It is the most requested feature in
-   competitor reviews, but it changes the storage schema and its value grows
-   only once explanations are written.
-4. **"Grátis" in the store copy.** The short descriptions just saved in the
-   Play Console start with "grátis" / "gratis" / "Free". Google's binding
-   Metadata policy only forbids price words in the title, icon, developer name
-   and screenshots; its best-practice page also says not to use "free" in
-   descriptions. Rewording costs nothing until the listing is published.
+Recorded in `docs/architecture/ARCHITECTURE.md`:
+
+| # | question | decision |
+|---|---|---|
+| D2 | banner on the test screen | kept, bottom edge below the button, 24 dp gap, fixed height |
+| D3 | interstitial placement | before Results, behind `/finishing` with a disclosure line |
+| D4 | answer review | after this redesign, during the closed test |
+| D5 | "grátis" in store copy | removed from the three short descriptions (done in the Play Console) |
+
+Plan: `docs/plans/ui-redesign/`.
 
 ## How it gets tested
 
