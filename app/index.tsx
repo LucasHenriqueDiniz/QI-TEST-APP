@@ -2,8 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Pressable, StyleSheet, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Alert, Image, Pressable, StyleSheet, View } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { AboutSheet } from "@/components/AboutSheet";
 import { Button } from "@/components/ui/Button";
@@ -27,7 +26,6 @@ const CATEGORY_ICONS: { category: QuestionCategory; icon: keyof typeof Ionicons.
 export default function Home() {
   const { t } = useTranslation();
   const { colors, spacing, radius } = useAppTheme();
-  const insets = useSafeAreaInsets();
   const storage = useStorage();
 
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -79,16 +77,16 @@ export default function Home() {
       scroll
       glow
       adPlacement="home-bottom"
-      contentStyle={{ paddingTop: insets.top + spacing.sm }}
+      insetTop
+      contentStyle={{ paddingTop: spacing.sm }}
     >
       <View style={styles.topBar}>
-        <View style={[styles.badge, { backgroundColor: colors.primary, borderRadius: radius.md }]}>
-          <Ionicons
-            name="bulb"
-            size={20}
-            color={colors.onPrimary}
-          />
-        </View>
+        {/* O mesmo desenho do ícone da loja: quem instalou reconhece o app. */}
+        <Image
+          source={require("@/assets/images/brand-mark.png")}
+          style={[styles.badge, { borderRadius: radius.md }]}
+          accessibilityIgnoresInvertColors
+        />
 
         <View style={styles.topActions}>
           <IconButton
@@ -283,8 +281,6 @@ const styles = StyleSheet.create({
   badge: {
     width: 40,
     height: 40,
-    alignItems: "center",
-    justifyContent: "center",
   },
   topActions: {
     flexDirection: "row",

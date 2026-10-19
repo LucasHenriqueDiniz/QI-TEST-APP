@@ -14,10 +14,15 @@ interface ScreenProps {
   glow?: boolean;
   /** Renderiza o slot de anúncio fixo no rodapé. */
   adPlacement?: string;
+  /**
+   * Reserva a altura da barra de status fora da área que rola. Para telas sem
+   * cabeçalho: sem isso o conteúdo rolado passa por baixo dos ícones do sistema.
+   */
+  insetTop?: boolean;
   contentStyle?: ViewStyle;
 }
 
-export function Screen({ children, scroll = false, glow = false, adPlacement, contentStyle }: ScreenProps) {
+export function Screen({ children, scroll = false, glow = false, adPlacement, insetTop = false, contentStyle }: ScreenProps) {
   const { colors, spacing } = useAppTheme();
   const insets = useSafeAreaInsets();
 
@@ -39,7 +44,7 @@ export function Screen({ children, scroll = false, glow = false, adPlacement, co
   );
 
   return (
-    <View style={[styles.flex, { backgroundColor: colors.background }]}>
+    <View style={[styles.flex, { backgroundColor: colors.background }, insetTop && { paddingTop: insets.top }]}>
       {glow && (
         <LinearGradient
           colors={[colors.primarySoft, colors.background]}
