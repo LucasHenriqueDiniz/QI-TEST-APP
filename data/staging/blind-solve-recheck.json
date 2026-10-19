@@ -1,0 +1,284 @@
+[
+  {
+    "id": "t22",
+    "pt": {
+      "answer": 3,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Distractors 0 (fim de semana) and 1 (logo depois do domingo, false for sexta) are plainly false, so the item is really a 2-way choice between 2 (24 horas, true but superficial) and 3. Fine for 'easy', but weak distractors.",
+        "Nitpick: a feriado can make a segunda/sexta not a dia útil, and DST days can have 23/25 h; neither changes the key."
+      ]
+    },
+    "en": {
+      "answer": 3,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Same as pt: options 0 and 1 are obviously false; effective choice is 2 vs 3.",
+        "'Weekdays' is correct (Mon-Fri), but a non-native reader could take it as 'days of the week', which would make it also true of Saturday/Sunday; still the best option."
+      ]
+    },
+    "es": {
+      "answer": 3,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Same as pt: options 0 and 1 are obviously false; effective choice is 2 vs 3. 'Días hábiles' is fine in LatAm."
+      ]
+    }
+  },
+  {
+    "id": "t23",
+    "pt": {
+      "answer": 2,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Difficulty probably easier than 'medium': 'órgãos dos sentidos' is the textbook answer and option 3 (lágrimas) is false for the ear.",
+        "Options 0 and 1 are true-but-superficial, as intended."
+      ]
+    },
+    "en": {
+      "answer": 2,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Difficulty probably easier than 'medium' (textbook answer; option 3 false for the ear)."
+      ]
+    },
+    "es": {
+      "answer": 2,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Difficulty probably easier than 'medium'.",
+        "Option 1 'aparato' fits 'aparato auditivo' but is an odd word for anteojos/lentes; minor."
+      ]
+    }
+  },
+  {
+    "id": "t27",
+    "pt": {
+      "answer": 1,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": []
+    },
+    "en": {
+      "answer": 1,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Options mix forms ('Spending...', 'Giving...', 'Chatting...' vs 'Fond of...'); harmless.",
+        "Only the 'person' sense of generous is covered (not 'generous portion' = ample), but no option competes."
+      ]
+    },
+    "es": {
+      "answer": 1,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Option 3 'Que le gusta recibir regalos' is non-standard as a relative clause (the person is the experiencer of 'gustar'); standard would be 'A quien le gusta recibir regalos'. Minor grammar."
+      ]
+    }
+  },
+  {
+    "id": "t33",
+    "pt": {
+      "answer": 3,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": []
+    },
+    "en": {
+      "answer": 3,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "'Rare' also means undercooked (meat); no option uses that sense, so no ambiguity."
+      ]
+    },
+    "es": {
+      "answer": 3,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "In LatAm Spanish 'raro' most often means 'extraño' (strange); 'Poco común' still covers both senses, so the key holds, but the item tests a less salient sense for es speakers.",
+        "es options are phrases ('Muy conocido', 'De gran valor'...) while pt/en are single words; style inconsistency only."
+      ]
+    }
+  },
+  {
+    "id": "t35",
+    "pt": {
+      "answer": 2,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Possibly easier than 'medium': distractors map cleanly to other traits (medroso, meticuloso, procrastinador)."
+      ]
+    },
+    "en": {
+      "answer": 2,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Possibly easier than 'medium'; 'carefully' is a near-synonym gloss of 'cautious', so the key is easy to spot."
+      ]
+    },
+    "es": {
+      "answer": 2,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Possibly easier than 'medium'."
+      ]
+    }
+  },
+  {
+    "id": "t37",
+    "pt": {
+      "answer": 0,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Option 1 (critica tudo) is a good lay-confusion distractor (cínico/hipercrítico); not defensible as best."
+      ]
+    },
+    "en": {
+      "answer": 0,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": []
+    },
+    "es": {
+      "answer": 0,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": []
+    }
+  },
+  {
+    "id": "t44",
+    "pt": {
+      "answer": 0,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "'Nocivo' is fairly common in pt ('nocivo à saúde'), so pt is likely easier than en; 'medium' ok to easy.",
+        "Question wording 'Qual o significado de' differs from the other vocabulary items ('O que significa a palavra'); style only."
+      ]
+    },
+    "en": {
+      "answer": 0,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "'Noxious' is rarer/more formal in English than 'nocivo' in pt/es, and 'Noisy' is a sound-alike trap that only exists in English; en version is harder than pt/es (cross-language difficulty mismatch)."
+      ]
+    },
+    "es": {
+      "answer": 0,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "'Nocivo' is common in es; likely easier than en. 'Medium' ok to easy."
+      ]
+    }
+  },
+  {
+    "id": "t52",
+    "pt": {
+      "answer": 3,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Key is the only non-self-serving option (others are avoidance, fear of anger, seeking praise); pattern makes it easy to spot, acceptable for 'easy'."
+      ]
+    },
+    "en": {
+      "answer": 3,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Same prosocial-vs-self-serving pattern as pt; acceptable for 'easy'."
+      ]
+    },
+    "es": {
+      "answer": 3,
+      "confidence": "high",
+      "defensible_alternatives": [],
+      "issues": [
+        "Same pattern as pt. 'Se enoje' is good LatAm usage."
+      ]
+    }
+  },
+  {
+    "id": "t53",
+    "pt": {
+      "answer": 1,
+      "confidence": "high",
+      "defensible_alternatives": [
+        { "option": 0, "why": "Loss of respect is a real, true reason, but it is a self-interested consequence that derives from broken trust; weaker." }
+      ],
+      "issues": [
+        "Labeled 'hard' but the key is the only option framed as a social principle (others: reputation, parental teaching, avoiding arguments); feels medium, maybe easy."
+      ]
+    },
+    "en": {
+      "answer": 1,
+      "confidence": "high",
+      "defensible_alternatives": [
+        { "option": 0, "why": "Reputation loss is true, but narrower and self-interested; derivative of trust." }
+      ],
+      "issues": [
+        "Difficulty likely overstated ('hard' -> medium).",
+        "Key is the shortest option in en; mild length cue."
+      ]
+    },
+    "es": {
+      "answer": 1,
+      "confidence": "high",
+      "defensible_alternatives": [
+        { "option": 0, "why": "Loss of respect is true but narrower and self-interested." }
+      ],
+      "issues": [
+        "Difficulty likely overstated ('hard' -> medium).",
+        "'Desde chicos' is fine in much of LatAm (Rioplatense, Chile) but 'desde pequeños/niños' is more neutral (in Mexico 'chicos' for kids is less usual)."
+      ]
+    }
+  },
+  {
+    "id": "t54",
+    "pt": {
+      "answer": 0,
+      "confidence": "high",
+      "defensible_alternatives": [
+        { "option": 2, "why": "Mutual error correction is a genuine reason teams outperform; but it explains quality more than output and is narrower than skill complementarity + division of labor." }
+      ],
+      "issues": [
+        "Option 1 (motivação em grupo) is contestable on its own (social loafing), which is fine for a distractor.",
+        "Key is the broadest option; label 'hard' is reasonable since 3 options are true."
+      ]
+    },
+    "en": {
+      "answer": 0,
+      "confidence": "high",
+      "defensible_alternatives": [
+        { "option": 2, "why": "Error-catching is a real benefit, but narrower and about quality rather than amount achieved." }
+      ],
+      "issues": [
+        "en option 2 says mistakes are 'caught' (detected) while pt/es say 'corrigidos/corregidos' (corrected); slight translation drift, does not change the key."
+      ]
+    },
+    "es": {
+      "answer": 0,
+      "confidence": "high",
+      "defensible_alternatives": [
+        { "option": 2, "why": "Mutual error correction is real but narrower than skill complementarity + shared effort." }
+      ],
+      "issues": []
+    }
+  }
+]

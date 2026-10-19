@@ -1,0 +1,1784 @@
+[
+  {
+    "id": "t01",
+    "category": "matrix",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Complete a sequência: 30, 25, 20, 15, __",
+      "options": [
+        "5",
+        "10",
+        "12",
+        "14"
+      ]
+    },
+    "en": {
+      "question": "Complete the sequence: 30, 25, 20, 15, __",
+      "options": [
+        "5",
+        "10",
+        "12",
+        "14"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 30, 25, 20, 15, __?",
+      "options": [
+        "5",
+        "10",
+        "12",
+        "14"
+      ]
+    }
+  },
+  {
+    "id": "t02",
+    "category": "matrix",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual número completa a sequência: 80, 40, 20, 10, __?",
+      "options": [
+        "0",
+        "2",
+        "5",
+        "8"
+      ]
+    },
+    "en": {
+      "question": "What number completes the sequence: 80, 40, 20, 10, __?",
+      "options": [
+        "0",
+        "2",
+        "5",
+        "8"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 80, 40, 20, 10, __?",
+      "options": [
+        "0",
+        "2",
+        "5",
+        "8"
+      ]
+    }
+  },
+  {
+    "id": "t03",
+    "category": "matrix",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Complete a sequência: 1, 10, 100, 1000, __",
+      "options": [
+        "1900",
+        "2000",
+        "11000",
+        "10000"
+      ]
+    },
+    "en": {
+      "question": "Complete the sequence: 1, 10, 100, 1000, __",
+      "options": [
+        "1900",
+        "2000",
+        "11000",
+        "10000"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 1, 10, 100, 1000, __?",
+      "options": [
+        "1900",
+        "2000",
+        "11000",
+        "10000"
+      ]
+    }
+  },
+  {
+    "id": "t04",
+    "category": "matrix",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual número completa a sequência: 1, 3, 5, 7, 9, __?",
+      "options": [
+        "11",
+        "10",
+        "12",
+        "13"
+      ]
+    },
+    "en": {
+      "question": "What number completes the sequence: 1, 3, 5, 7, 9, __?",
+      "options": [
+        "11",
+        "10",
+        "12",
+        "13"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 1, 3, 5, 7, 9, __?",
+      "options": [
+        "11",
+        "10",
+        "12",
+        "13"
+      ]
+    }
+  },
+  {
+    "id": "t05",
+    "category": "matrix",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Complete a sequência: 2, 7, 2, 7, 2, __",
+      "options": [
+        "2",
+        "5",
+        "7",
+        "9"
+      ]
+    },
+    "en": {
+      "question": "Complete the sequence: 2, 7, 2, 7, 2, __",
+      "options": [
+        "2",
+        "5",
+        "7",
+        "9"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 2, 7, 2, 7, 2, __?",
+      "options": [
+        "2",
+        "5",
+        "7",
+        "9"
+      ]
+    }
+  },
+  {
+    "id": "t06",
+    "category": "matrix",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual número completa a sequência: 1, 1, 2, 2, 3, 3, 4, __?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "en": {
+      "question": "What number completes the sequence: 1, 1, 2, 2, 3, 3, 4, __?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 1, 1, 2, 2, 3, 3, 4, __?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  },
+  {
+    "id": "t07",
+    "category": "matrix",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Complete a sequência: 7, 14, 21, 28, __",
+      "options": [
+        "35",
+        "30",
+        "32",
+        "42"
+      ]
+    },
+    "en": {
+      "question": "Complete the sequence: 7, 14, 21, 28, __",
+      "options": [
+        "35",
+        "30",
+        "32",
+        "42"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 7, 14, 21, 28, __?",
+      "options": [
+        "35",
+        "30",
+        "32",
+        "42"
+      ]
+    }
+  },
+  {
+    "id": "t08",
+    "category": "matrix",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual número completa a sequência: 2, 6, 18, 54, __?",
+      "options": [
+        "108",
+        "144",
+        "150",
+        "162"
+      ]
+    },
+    "en": {
+      "question": "What number completes the sequence: 2, 6, 18, 54, __?",
+      "options": [
+        "108",
+        "144",
+        "150",
+        "162"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 2, 6, 18, 54, __?",
+      "options": [
+        "108",
+        "144",
+        "150",
+        "162"
+      ]
+    }
+  },
+  {
+    "id": "t09",
+    "category": "matrix",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Complete a sequência: 3, 5, 10, 12, 24, __",
+      "options": [
+        "26",
+        "28",
+        "36",
+        "48"
+      ]
+    },
+    "en": {
+      "question": "Complete the sequence: 3, 5, 10, 12, 24, __",
+      "options": [
+        "26",
+        "28",
+        "36",
+        "48"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 3, 5, 10, 12, 24, __?",
+      "options": [
+        "26",
+        "28",
+        "36",
+        "48"
+      ]
+    }
+  },
+  {
+    "id": "t10",
+    "category": "matrix",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual número completa a sequência: 2, 50, 4, 40, 6, 30, 8, __?",
+      "options": [
+        "10",
+        "20",
+        "25",
+        "28"
+      ]
+    },
+    "en": {
+      "question": "What number completes the sequence: 2, 50, 4, 40, 6, 30, 8, __?",
+      "options": [
+        "10",
+        "20",
+        "25",
+        "28"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 2, 50, 4, 40, 6, 30, 8, __?",
+      "options": [
+        "10",
+        "20",
+        "25",
+        "28"
+      ]
+    }
+  },
+  {
+    "id": "t11",
+    "category": "matrix",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Complete a sequência: 50, 49, 47, 44, 40, __",
+      "options": [
+        "30",
+        "34",
+        "35",
+        "36"
+      ]
+    },
+    "en": {
+      "question": "Complete the sequence: 50, 49, 47, 44, 40, __",
+      "options": [
+        "30",
+        "34",
+        "35",
+        "36"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 50, 49, 47, 44, 40, __?",
+      "options": [
+        "30",
+        "34",
+        "35",
+        "36"
+      ]
+    }
+  },
+  {
+    "id": "t12",
+    "category": "matrix",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual número completa a sequência: 1, 2, 6, 24, __?",
+      "options": [
+        "48",
+        "72",
+        "96",
+        "120"
+      ]
+    },
+    "en": {
+      "question": "What number completes the sequence: 1, 2, 6, 24, __?",
+      "options": [
+        "48",
+        "72",
+        "96",
+        "120"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 1, 2, 6, 24, __?",
+      "options": [
+        "48",
+        "72",
+        "96",
+        "120"
+      ]
+    }
+  },
+  {
+    "id": "t13",
+    "category": "matrix",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Complete a sequência: 2, 3, 5, 7, 11, 13, __",
+      "options": [
+        "14",
+        "15",
+        "16",
+        "17"
+      ]
+    },
+    "en": {
+      "question": "Complete the sequence: 2, 3, 5, 7, 11, 13, __",
+      "options": [
+        "14",
+        "15",
+        "16",
+        "17"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 2, 3, 5, 7, 11, 13, __?",
+      "options": [
+        "14",
+        "15",
+        "16",
+        "17"
+      ]
+    }
+  },
+  {
+    "id": "t14",
+    "category": "matrix",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual número completa a sequência: 1, 3, 7, 15, 31, __?",
+      "options": [
+        "63",
+        "62",
+        "64",
+        "47"
+      ]
+    },
+    "en": {
+      "question": "What number completes the sequence: 1, 3, 7, 15, 31, __?",
+      "options": [
+        "63",
+        "62",
+        "64",
+        "47"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 1, 3, 7, 15, 31, __?",
+      "options": [
+        "63",
+        "62",
+        "64",
+        "47"
+      ]
+    }
+  },
+  {
+    "id": "t15",
+    "category": "matrix",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Complete a sequência: 5, 9, 8, 12, 11, 15, __",
+      "options": [
+        "12",
+        "13",
+        "14",
+        "16"
+      ]
+    },
+    "en": {
+      "question": "Complete the sequence: 5, 9, 8, 12, 11, 15, __",
+      "options": [
+        "12",
+        "13",
+        "14",
+        "16"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 5, 9, 8, 12, 11, 15, __?",
+      "options": [
+        "12",
+        "13",
+        "14",
+        "16"
+      ]
+    }
+  },
+  {
+    "id": "t16",
+    "category": "matrix",
+    "difficulty": "hard",
+    "weight": 3,
+    "pt": {
+      "question": "Qual número completa a sequência: 4, 9, 25, 49, 121, __?",
+      "options": [
+        "144",
+        "169",
+        "196",
+        "225"
+      ]
+    },
+    "en": {
+      "question": "What number completes the sequence: 4, 9, 25, 49, 121, __?",
+      "options": [
+        "144",
+        "169",
+        "196",
+        "225"
+      ]
+    },
+    "es": {
+      "question": "¿Qué número completa la secuencia: 4, 9, 25, 49, 121, __?",
+      "options": [
+        "144",
+        "169",
+        "196",
+        "225"
+      ]
+    }
+  },
+  {
+    "id": "t17",
+    "category": "similarities",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "O que uma maçã e uma laranja têm em comum?",
+      "options": [
+        "Ambas têm a mesma cor",
+        "Ambas são frutas",
+        "Ambas crescem debaixo da terra",
+        "Ambas são doces"
+      ]
+    },
+    "en": {
+      "question": "What do an apple and an orange have in common?",
+      "options": [
+        "Both are the same color",
+        "Both are fruits",
+        "Both grow underground",
+        "Both are sweet"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común una manzana y una naranja?",
+      "options": [
+        "Ambas tienen el mismo color",
+        "Ambas son frutas",
+        "Ambas crecen bajo tierra",
+        "Ambas son dulces"
+      ]
+    }
+  },
+  {
+    "id": "t18",
+    "category": "similarities",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual a semelhança entre um martelo e um serrote?",
+      "options": [
+        "Ambos cortam madeira",
+        "Ambos têm um cabo para segurar",
+        "Ambos são ferramentas",
+        "Ambos são feitos de plástico"
+      ]
+    },
+    "en": {
+      "question": "What do a hammer and a saw have in common?",
+      "options": [
+        "Both cut wood",
+        "Both have a handle to hold",
+        "Both are tools",
+        "Both are made of plastic"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común un martillo y un serrucho?",
+      "options": [
+        "Ambos cortan madera",
+        "Ambos tienen un mango para sujetarlos",
+        "Ambos son herramientas",
+        "Ambos están hechos de plástico"
+      ]
+    }
+  },
+  {
+    "id": "t19",
+    "category": "similarities",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "O que uma camisa e uma calça têm em comum?",
+      "options": [
+        "Ambas são peças de roupa",
+        "Ambas têm bolsos",
+        "Ambas cobrem as pernas",
+        "Ambas são de couro"
+      ]
+    },
+    "en": {
+      "question": "What do a shirt and a pair of pants have in common?",
+      "options": [
+        "Both are items of clothing",
+        "Both have pockets",
+        "Both cover the legs",
+        "Both are made of leather"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común una camisa y un pantalón?",
+      "options": [
+        "Son prendas de vestir",
+        "Tienen bolsillos",
+        "Cubren las piernas",
+        "Son de cuero"
+      ]
+    }
+  },
+  {
+    "id": "t20",
+    "category": "similarities",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual a semelhança entre leite e suco?",
+      "options": [
+        "Ambos são vendidos em caixinha",
+        "Ambos vêm de frutas",
+        "Ambos são doces",
+        "Ambos são bebidas"
+      ]
+    },
+    "en": {
+      "question": "What do milk and juice have in common?",
+      "options": [
+        "Both are sold in cartons",
+        "Both come from fruit",
+        "Both are sweet",
+        "Both are drinks"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común la leche y el jugo?",
+      "options": [
+        "Ambos se venden en envases de cartón",
+        "Ambos vienen de frutas",
+        "Ambos son dulces",
+        "Ambos son bebidas"
+      ]
+    }
+  },
+  {
+    "id": "t21",
+    "category": "similarities",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "O que uma colher e um garfo têm em comum?",
+      "options": [
+        "Ambos servem para cortar",
+        "Ambos são talheres",
+        "Ambos são afiados",
+        "Ambos são de madeira"
+      ]
+    },
+    "en": {
+      "question": "What do a spoon and a fork have in common?",
+      "options": [
+        "Both are used for cutting",
+        "Both are eating utensils",
+        "Both are sharp",
+        "Both are made of wood"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común una cuchara y un tenedor?",
+      "options": [
+        "Ambos sirven para cortar",
+        "Ambos son cubiertos",
+        "Ambos son afilados",
+        "Ambos son de madera"
+      ]
+    }
+  },
+  {
+    "id": "t22",
+    "category": "similarities",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual a semelhança entre segunda-feira e sexta-feira?",
+      "options": [
+        "Ambas são dias de fim de semana",
+        "Ambas vêm logo depois do domingo",
+        "Ambas têm 24 horas",
+        "Ambas são dias úteis"
+      ]
+    },
+    "en": {
+      "question": "What do Monday and Friday have in common?",
+      "options": [
+        "Both are weekend days",
+        "Both come right after Sunday",
+        "Both have 24 hours",
+        "Both are weekdays"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común el lunes y el viernes?",
+      "options": [
+        "Ambos son días del fin de semana",
+        "Ambos vienen justo después del domingo",
+        "Ambos tienen 24 horas",
+        "Ambos son días hábiles"
+      ]
+    }
+  },
+  {
+    "id": "t23",
+    "category": "similarities",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "O que o olho e o ouvido têm em comum?",
+      "options": [
+        "Ambos ficam na cabeça, em pares",
+        "Ambos podem perder a função com a idade",
+        "Ambos são órgãos dos sentidos",
+        "Ambos produzem lágrimas"
+      ]
+    },
+    "en": {
+      "question": "What do an eye and an ear have in common?",
+      "options": [
+        "Both are on the head, in pairs",
+        "Both can weaken with age",
+        "Both are sense organs",
+        "Both produce tears"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común el ojo y el oído?",
+      "options": [
+        "Ambos están en la cabeza y vienen en pares",
+        "Ambos pueden debilitarse con la edad",
+        "Ambos son órganos de los sentidos",
+        "Ambos producen lágrimas"
+      ]
+    }
+  },
+  {
+    "id": "t24",
+    "category": "similarities",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual a semelhança entre um relógio e um calendário?",
+      "options": [
+        "Ambos têm números impressos ou exibidos",
+        "Ambos servem para marcar a passagem do tempo",
+        "Ambos podem ficar pendurados na parede da sala",
+        "Ambos mostram a temperatura do ambiente"
+      ]
+    },
+    "en": {
+      "question": "What do a clock and a calendar have in common?",
+      "options": [
+        "Both have numbers printed or displayed on them",
+        "Both are used to keep track of time",
+        "Both can hang on the wall of a living room",
+        "Both show the room temperature"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común un reloj y un calendario?",
+      "options": [
+        "Ambos tienen números impresos o en pantalla",
+        "Ambos sirven para medir el paso del tiempo",
+        "Ambos pueden colgarse en la pared de la sala",
+        "Ambos muestran la temperatura del ambiente"
+      ]
+    }
+  },
+  {
+    "id": "t25",
+    "category": "similarities",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "O que uma semente e um ovo têm em comum?",
+      "options": [
+        "Ambos são pequenos e cabem na mão",
+        "Ambos podem servir de alimento para as pessoas",
+        "Ambos vêm de plantas que dão flores",
+        "Ambos dão origem a um novo ser vivo"
+      ]
+    },
+    "en": {
+      "question": "What do a seed and an egg have in common?",
+      "options": [
+        "Both are small and fit in your hand",
+        "Both can serve as food for people to eat",
+        "Both come from flowering plants",
+        "Both give rise to a new living being"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común una semilla y un huevo?",
+      "options": [
+        "Ambos son pequeños y caben en la mano",
+        "Ambos pueden servir de alimento para las personas",
+        "Ambos vienen de plantas con flores",
+        "Ambos dan origen a un nuevo ser vivo"
+      ]
+    }
+  },
+  {
+    "id": "t26",
+    "category": "similarities",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual a semelhança entre um termômetro e uma régua?",
+      "options": [
+        "Ambos são instrumentos de medição",
+        "Ambos têm uma escala com números marcados",
+        "Ambos podem ser feitos de plástico ou vidro",
+        "Ambos medem a febre"
+      ]
+    },
+    "en": {
+      "question": "What do a thermometer and a ruler have in common?",
+      "options": [
+        "Both are measuring instruments",
+        "Both have a scale with numbers marked on it",
+        "Both can be made of plastic or glass",
+        "Both measure fever"
+      ]
+    },
+    "es": {
+      "question": "¿Qué tienen en común un termómetro y una regla?",
+      "options": [
+        "Ambos son instrumentos de medición",
+        "Ambos tienen una escala con números marcados",
+        "Ambos pueden ser de plástico o de vidrio",
+        "Ambos miden la fiebre"
+      ]
+    }
+  },
+  {
+    "id": "t27",
+    "category": "vocabulary",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "O que significa a palavra \"generoso\"?",
+      "options": [
+        "Que gasta sem pensar no amanhã",
+        "Que dá e ajuda de boa vontade",
+        "Que conversa e sorri com todo mundo",
+        "Que gosta de receber presentes"
+      ]
+    },
+    "en": {
+      "question": "What does \"generous\" mean?",
+      "options": [
+        "Spending without a thought for tomorrow",
+        "Giving and helping willingly",
+        "Chatting and smiling with everyone",
+        "Fond of receiving presents"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"generoso\"?",
+      "options": [
+        "Que gasta sin pensar en el mañana",
+        "Que da y ayuda de buena gana",
+        "Que conversa y sonríe con todo el mundo",
+        "A quien le gusta recibir regalos"
+      ]
+    }
+  },
+  {
+    "id": "t28",
+    "category": "vocabulary",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual o significado de \"veloz\"?",
+      "options": [
+        "Lento",
+        "Pesado",
+        "Rápido",
+        "Forte"
+      ]
+    },
+    "en": {
+      "question": "What does \"swift\" mean?",
+      "options": [
+        "Slow",
+        "Heavy",
+        "Fast",
+        "Strong"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"veloz\"?",
+      "options": [
+        "Lento",
+        "Pesado",
+        "Rápido",
+        "Fuerte"
+      ]
+    }
+  },
+  {
+    "id": "t29",
+    "category": "vocabulary",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "O que significa a palavra \"sincero\"?",
+      "options": [
+        "Que confia em todo mundo",
+        "Que é bem-educado",
+        "Que fala mais do que escuta",
+        "Que fala a verdade"
+      ]
+    },
+    "en": {
+      "question": "What does \"sincere\" mean?",
+      "options": [
+        "Trusting everyone",
+        "Being well-mannered",
+        "Talking more than listening",
+        "Telling the truth"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"sincero\"?",
+      "options": [
+        "Que confía en todo el mundo",
+        "Que es educado",
+        "Que habla más de lo que escucha",
+        "Que dice la verdad"
+      ]
+    }
+  },
+  {
+    "id": "t30",
+    "category": "vocabulary",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual o significado de \"enorme\"?",
+      "options": [
+        "Muito grande",
+        "Muito pequeno",
+        "Muito leve",
+        "Muito antigo"
+      ]
+    },
+    "en": {
+      "question": "What does \"enormous\" mean?",
+      "options": [
+        "Very large",
+        "Very small",
+        "Very light",
+        "Very old"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"enorme\"?",
+      "options": [
+        "Muy grande",
+        "Muy pequeño",
+        "Muy liviano",
+        "Muy viejo"
+      ]
+    }
+  },
+  {
+    "id": "t31",
+    "category": "vocabulary",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "O que significa a palavra \"corajoso\"?",
+      "options": [
+        "Que gosta de aventuras e viagens",
+        "Que enfrenta o perigo",
+        "Que fala alto demais",
+        "Que se atrapalha com facilidade"
+      ]
+    },
+    "en": {
+      "question": "What does \"brave\" mean?",
+      "options": [
+        "Fond of adventure and travel",
+        "Facing danger",
+        "Very loud",
+        "Getting flustered easily"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"valiente\"?",
+      "options": [
+        "Que le gustan las aventuras y los viajes",
+        "Que enfrenta el peligro",
+        "Que habla muy fuerte",
+        "Que se confunde con facilidad"
+      ]
+    }
+  },
+  {
+    "id": "t32",
+    "category": "vocabulary",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual o significado de \"frágil\"?",
+      "options": [
+        "Que é feito de vidro",
+        "Que pesa mais do que parece",
+        "Que se quebra facilmente",
+        "Que custa pouco dinheiro"
+      ]
+    },
+    "en": {
+      "question": "What does \"fragile\" mean?",
+      "options": [
+        "Made of glass",
+        "Weighing more than it looks",
+        "Easily broken",
+        "Very cheap"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"frágil\"?",
+      "options": [
+        "Que está hecho de vidrio",
+        "Que pesa más de lo que parece",
+        "Que se rompe fácilmente",
+        "Que cuesta poco dinero"
+      ]
+    }
+  },
+  {
+    "id": "t33",
+    "category": "vocabulary",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "O que significa a palavra \"raro\"?",
+      "options": [
+        "Famoso",
+        "Valioso",
+        "Antigo",
+        "Incomum"
+      ]
+    },
+    "en": {
+      "question": "What does \"rare\" mean?",
+      "options": [
+        "Famous",
+        "Valuable",
+        "Old",
+        "Uncommon"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"raro\"?",
+      "options": [
+        "Muy conocido",
+        "De gran valor",
+        "De otra época",
+        "Poco común"
+      ]
+    }
+  },
+  {
+    "id": "t34",
+    "category": "vocabulary",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Qual o significado de \"humilde\"?",
+      "options": [
+        "Que obedece sem questionar nada",
+        "Que não se acha superior aos outros",
+        "Que tem vergonha de falar em público",
+        "Que evita qualquer tipo de esforço"
+      ]
+    },
+    "en": {
+      "question": "What does \"humble\" mean?",
+      "options": [
+        "Obeying without ever questioning",
+        "Not seeing oneself as superior to others",
+        "Too embarrassed to speak in front of other people",
+        "Avoiding any kind of effort"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"humilde\"?",
+      "options": [
+        "Que obedece sin cuestionar nada",
+        "Que no se cree superior a los demás",
+        "Que tiene vergüenza de hablar en público",
+        "Que evita cualquier tipo de esfuerzo"
+      ]
+    }
+  },
+  {
+    "id": "t35",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "O que significa a palavra \"cauteloso\"?",
+      "options": [
+        "Que tem medo de quase tudo",
+        "Que planeja cada detalhe com antecedência",
+        "Que age com cuidado e evita riscos",
+        "Que demora e adia tudo o que pode"
+      ]
+    },
+    "en": {
+      "question": "What does \"cautious\" mean?",
+      "options": [
+        "Afraid of almost everything",
+        "Planning every detail in advance",
+        "Acting carefully to avoid risks",
+        "Delaying and putting off whatever possible"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"cauteloso\"?",
+      "options": [
+        "Que le teme a casi todo",
+        "Que planea cada detalle con anticipación",
+        "Que actúa con cuidado y evita riesgos",
+        "Que tarda y aplaza todo lo que puede"
+      ]
+    }
+  },
+  {
+    "id": "t36",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual o significado de \"ingênuo\"?",
+      "options": [
+        "Que é bondoso com todo mundo",
+        "Que acredita em tudo com facilidade",
+        "Que resolve qualquer problema com esperteza",
+        "Que trata os outros com grosseria"
+      ]
+    },
+    "en": {
+      "question": "What does \"naive\" mean?",
+      "options": [
+        "Kind to everyone",
+        "Believing things too easily",
+        "Solving any problem cleverly",
+        "Treating others rudely"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"ingenuo\"?",
+      "options": [
+        "Que es bondadoso con todo el mundo",
+        "Que cree todo con facilidad",
+        "Que resuelve cualquier problema con astucia",
+        "Que trata mal a los demás"
+      ]
+    }
+  },
+  {
+    "id": "t37",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "O que significa a palavra \"cético\"?",
+      "options": [
+        "Que duvida e exige provas",
+        "Que critica tudo o que vê pela frente",
+        "Que espera o melhor e confia no futuro",
+        "Que nunca muda de ideia"
+      ]
+    },
+    "en": {
+      "question": "What does \"skeptical\" mean?",
+      "options": [
+        "Doubting and demanding evidence",
+        "Criticizing everything in sight",
+        "Expecting the best and trusting the future",
+        "Never changing one's mind"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"escéptico\"?",
+      "options": [
+        "Que duda y exige pruebas",
+        "Que critica todo lo que ve",
+        "Que espera lo mejor y confía en el futuro",
+        "Que nunca cambia de idea"
+      ]
+    }
+  },
+  {
+    "id": "t38",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual o significado de \"ambíguo\"?",
+      "options": [
+        "Que usa palavras difíceis de entender",
+        "Que afirma algo que não é verdade",
+        "Que se estende mais do que o necessário",
+        "Que pode ter mais de um sentido"
+      ]
+    },
+    "en": {
+      "question": "What does \"ambiguous\" mean?",
+      "options": [
+        "Using words that are hard to understand",
+        "Stating something that is not true",
+        "Going on too long",
+        "Open to more than one meaning"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"ambiguo\"?",
+      "options": [
+        "Que usa palabras difíciles de entender",
+        "Que afirma algo que no es verdad",
+        "Que se extiende más de lo necesario",
+        "Que puede tener más de un sentido"
+      ]
+    }
+  },
+  {
+    "id": "t39",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "O que significa a palavra \"obsoleto\"?",
+      "options": [
+        "Moderno",
+        "Quebrado",
+        "Ultrapassado",
+        "Caríssimo"
+      ]
+    },
+    "en": {
+      "question": "What does \"obsolete\" mean?",
+      "options": [
+        "Modern",
+        "Broken",
+        "Outdated",
+        "Costly"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"obsoleto\"?",
+      "options": [
+        "Moderno",
+        "Roto",
+        "Anticuado",
+        "Carísimo"
+      ]
+    }
+  },
+  {
+    "id": "t40",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual o significado de \"conciso\"?",
+      "options": [
+        "Simples e fácil de ler",
+        "Confuso e difícil de acompanhar",
+        "Formal e cheio de cerimônia",
+        "Breve e direto ao ponto"
+      ]
+    },
+    "en": {
+      "question": "What does \"concise\" mean?",
+      "options": [
+        "Easy to read",
+        "Confusing and hard to follow",
+        "Formal and full of ceremony",
+        "Brief and to the point"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"conciso\"?",
+      "options": [
+        "Simple y fácil de leer",
+        "Confuso y difícil de seguir",
+        "Formal y lleno de ceremonia",
+        "Breve y directo al punto"
+      ]
+    }
+  },
+  {
+    "id": "t41",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "O que significa a palavra \"hostil\"?",
+      "options": [
+        "Amigável",
+        "Agressivo",
+        "Indiferente",
+        "Tímido"
+      ]
+    },
+    "en": {
+      "question": "What does \"hostile\" mean?",
+      "options": [
+        "Friendly",
+        "Aggressive",
+        "Indifferent",
+        "Shy"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"hostil\"?",
+      "options": [
+        "Amigable",
+        "Agresivo",
+        "Indiferente",
+        "Tímido"
+      ]
+    }
+  },
+  {
+    "id": "t42",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "Qual o significado de \"árduo\"?",
+      "options": [
+        "Fácil",
+        "Demorado",
+        "Difícil",
+        "Perigoso"
+      ]
+    },
+    "en": {
+      "question": "What does \"arduous\" mean?",
+      "options": [
+        "Easy",
+        "Time-consuming",
+        "Difficult",
+        "Dangerous"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"arduo\"?",
+      "options": [
+        "Fácil",
+        "Demorado",
+        "Difícil",
+        "Peligroso"
+      ]
+    }
+  },
+  {
+    "id": "t43",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "O que significa a palavra \"sereno\"?",
+      "options": [
+        "Tranquilo",
+        "Agitado",
+        "Triste",
+        "Barulhento"
+      ]
+    },
+    "en": {
+      "question": "What does \"serene\" mean?",
+      "options": [
+        "Peaceful",
+        "Restless",
+        "Sorrowful",
+        "Noisy"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"sereno\"?",
+      "options": [
+        "Tranquilo",
+        "Agitado",
+        "Triste",
+        "Bullicioso"
+      ]
+    }
+  },
+  {
+    "id": "t44",
+    "category": "vocabulary",
+    "difficulty": "medium",
+    "weight": 2,
+    "pt": {
+      "question": "O que significa a palavra \"nocivo\"?",
+      "options": [
+        "Prejudicial",
+        "Barulhento",
+        "Amargo",
+        "Inútil"
+      ]
+    },
+    "en": {
+      "question": "What does \"noxious\" mean?",
+      "options": [
+        "Harmful",
+        "Noisy",
+        "Bitter",
+        "Useless"
+      ]
+    },
+    "es": {
+      "question": "¿Qué significa \"nocivo\"?",
+      "options": [
+        "Perjudicial",
+        "Ruidoso",
+        "Amargo",
+        "Inútil"
+      ]
+    }
+  },
+  {
+    "id": "t45",
+    "category": "comprehension",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Por que devemos olhar para os dois lados antes de atravessar a rua?",
+      "options": [
+        "Porque é uma regra",
+        "Para ver se vem algum veículo",
+        "Para dar o exemplo a quem está por perto",
+        "Para escolher o melhor ponto para atravessar"
+      ]
+    },
+    "en": {
+      "question": "Why should we look both ways before crossing the street?",
+      "options": [
+        "Because it is a rule",
+        "To check whether a vehicle is coming",
+        "To set an example for people nearby",
+        "To choose the best spot to cross the street"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué debemos mirar a ambos lados antes de cruzar la calle?",
+      "options": [
+        "Porque es una regla",
+        "Para ver si viene algún vehículo",
+        "Para dar el ejemplo a quienes están cerca",
+        "Para elegir el mejor punto para cruzar"
+      ]
+    }
+  },
+  {
+    "id": "t46",
+    "category": "comprehension",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Por que guardamos alimentos perecíveis na geladeira?",
+      "options": [
+        "Para ficarem com mais sabor",
+        "Para ocuparem menos espaço na cozinha",
+        "Para demorarem mais a estragar",
+        "Porque é o costume na maioria das casas"
+      ]
+    },
+    "en": {
+      "question": "Why do we keep perishable food in the refrigerator?",
+      "options": [
+        "To make it taste better",
+        "So it takes up less space in the kitchen",
+        "To keep it from spoiling quickly",
+        "Because it is the custom in most homes"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué guardamos los alimentos perecederos en el refrigerador?",
+      "options": [
+        "Para que tengan más sabor",
+        "Para que ocupen menos espacio en la cocina",
+        "Para que tarden más en echarse a perder",
+        "Porque es la costumbre en la mayoría de las casas"
+      ]
+    }
+  },
+  {
+    "id": "t47",
+    "category": "comprehension",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Por que é útil fazer uma lista antes de ir ao mercado?",
+      "options": [
+        "Para não esquecer o que precisa comprar",
+        "Para terminar as compras mais depressa",
+        "Para ter uma ideia de quanto vai gastar no total",
+        "Para comparar os preços entre as lojas"
+      ]
+    },
+    "en": {
+      "question": "Why is it useful to make a list before going grocery shopping?",
+      "options": [
+        "So as not to forget what you need to buy",
+        "To finish the shopping more quickly",
+        "To get an idea of how much you will spend in total",
+        "To compare prices between stores"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué es útil hacer una lista antes de ir al supermercado?",
+      "options": [
+        "Para no olvidar lo que hay que comprar",
+        "Para terminar las compras más rápido",
+        "Para tener una idea de cuánto se gastará en total",
+        "Para comparar precios entre tiendas"
+      ]
+    }
+  },
+  {
+    "id": "t48",
+    "category": "comprehension",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Por que usamos cinto de segurança no carro?",
+      "options": [
+        "Para poder dirigir com mais velocidade",
+        "Para não receber multa numa fiscalização de trânsito",
+        "Porque o banco fica mais confortável",
+        "Para reduzir ferimentos em caso de acidente"
+      ]
+    },
+    "en": {
+      "question": "Why do we wear a seat belt in the car?",
+      "options": [
+        "To be able to drive at higher speeds",
+        "To avoid being fined at a traffic checkpoint",
+        "Because the seat feels more comfortable",
+        "To reduce injuries in case of an accident"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué usamos cinturón de seguridad en el auto?",
+      "options": [
+        "Para poder manejar a mayor velocidad",
+        "Para que no nos multen en un control de tránsito",
+        "Porque el asiento resulta más cómodo",
+        "Para reducir lesiones en caso de accidente"
+      ]
+    }
+  },
+  {
+    "id": "t49",
+    "category": "comprehension",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Por que é importante chegar no horário a um compromisso?",
+      "options": [
+        "Para parecer uma pessoa importante",
+        "Para respeitar o tempo das outras pessoas",
+        "Para poder ir embora mais cedo do compromisso",
+        "Porque o relógio determina o que fazemos"
+      ]
+    },
+    "en": {
+      "question": "Why is it important to arrive on time for an appointment?",
+      "options": [
+        "To look important",
+        "To respect other people's time",
+        "To be able to leave the appointment earlier",
+        "Because the clock dictates what we do"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué es importante llegar a tiempo a un compromiso?",
+      "options": [
+        "Para parecer una persona importante",
+        "Para respetar el tiempo de los demás",
+        "Para poder irse más temprano del compromiso",
+        "Porque el reloj determina lo que hacemos"
+      ]
+    }
+  },
+  {
+    "id": "t50",
+    "category": "comprehension",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Por que vale a pena guardar o comprovante de uma compra?",
+      "options": [
+        "Para guardar como lembrança da compra",
+        "Porque a loja exige que todo cliente guarde o papel",
+        "Para poder trocar o produto se houver problema",
+        "Para mostrar aos amigos o que comprou"
+      ]
+    },
+    "en": {
+      "question": "Why should we keep the receipt after buying something?",
+      "options": [
+        "To keep it as a souvenir of the purchase",
+        "Because the store requires every customer to keep it",
+        "To be able to exchange the product if it is faulty",
+        "To show friends what we bought"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué conviene guardar el recibo después de una compra?",
+      "options": [
+        "Para guardarlo como recuerdo de la compra",
+        "Porque la tienda exige que todo cliente lo guarde",
+        "Para poder cambiar el producto si hay un problema",
+        "Para mostrarles a los amigos lo que compramos"
+      ]
+    }
+  },
+  {
+    "id": "t51",
+    "category": "comprehension",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Por que devemos ler as instruções antes de montar um móvel?",
+      "options": [
+        "Para montar corretamente e evitar erros",
+        "Para saber quanto tempo a montagem vai levar",
+        "Porque o manual vem junto na caixa do produto",
+        "Para usar todas as peças da caixa"
+      ]
+    },
+    "en": {
+      "question": "Why should we read the instructions before assembling a piece of furniture?",
+      "options": [
+        "To assemble it correctly and avoid mistakes",
+        "To know how long the assembly will take",
+        "Because the manual comes inside the product box",
+        "To use all the parts that come in the box"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué debemos leer las instrucciones antes de armar un mueble?",
+      "options": [
+        "Para armarlo correctamente y evitar errores",
+        "Para saber cuánto tiempo tomará el armado",
+        "Porque el manual viene dentro de la caja del producto",
+        "Para usar todas las piezas que vienen en la caja"
+      ]
+    }
+  },
+  {
+    "id": "t52",
+    "category": "comprehension",
+    "difficulty": "easy",
+    "weight": 1,
+    "pt": {
+      "question": "Por que devemos pedir desculpas quando erramos?",
+      "options": [
+        "Para encerrar logo uma conversa desagradável",
+        "Para evitar que a outra pessoa fique brava conosco",
+        "Para parecer bem-educado e ser elogiado",
+        "Para assumir o que fizemos e preservar a relação"
+      ]
+    },
+    "en": {
+      "question": "Why should we apologize when we make a mistake?",
+      "options": [
+        "To end an unpleasant conversation quickly",
+        "To keep the other person from getting angry with us",
+        "To look well-mannered and be praised",
+        "To take responsibility and preserve the relationship"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué debemos pedir disculpas cuando nos equivocamos?",
+      "options": [
+        "Para terminar pronto una conversación incómoda",
+        "Para evitar que la otra persona se enoje con nosotros",
+        "Para parecer bien educado y recibir elogios",
+        "Para asumir lo que hicimos y cuidar la relación"
+      ]
+    }
+  },
+  {
+    "id": "t53",
+    "category": "comprehension",
+    "difficulty": "hard",
+    "weight": 3,
+    "pt": {
+      "question": "Por que as promessas devem ser cumpridas?",
+      "options": [
+        "Porque quem não cumpre perde o respeito dos outros",
+        "Porque a confiança entre as pessoas depende disso",
+        "Porque é o que os pais ensinam desde cedo",
+        "Porque assim evitamos discussões com quem contava conosco"
+      ]
+    },
+    "en": {
+      "question": "Why should promises be kept?",
+      "options": [
+        "Because people who break them lose the respect of others",
+        "Because trust between people depends on it",
+        "Because it is what parents teach from an early age",
+        "Because it avoids arguments with the person who was counting on us"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué deben cumplirse las promesas?",
+      "options": [
+        "Porque quien no cumple pierde el respeto de los demás",
+        "Porque la confianza entre las personas depende de ello",
+        "Porque es lo que los padres enseñan desde pequeños",
+        "Porque así evitamos discusiones con quien contaba con nosotros"
+      ]
+    }
+  },
+  {
+    "id": "t54",
+    "category": "comprehension",
+    "difficulty": "hard",
+    "weight": 3,
+    "pt": {
+      "question": "Por que o trabalho em equipe costuma render mais do que o trabalho isolado?",
+      "options": [
+        "Porque combina habilidades diferentes e divide o esforço",
+        "Porque as pessoas se sentem mais motivadas quando estão em grupo",
+        "Porque os erros de um podem ser corrigidos pelos outros",
+        "Porque cada um aprende com os outros e ganha experiência"
+      ]
+    },
+    "en": {
+      "question": "Why does working as a team often achieve more than working alone?",
+      "options": [
+        "Because it combines different skills and shares the effort",
+        "Because people feel more motivated when they are in a group",
+        "Because one person's mistakes can be corrected by the others",
+        "Because each person learns from the others and gains experience"
+      ]
+    },
+    "es": {
+      "question": "¿Por qué el trabajo en equipo suele lograr más que el trabajo individual?",
+      "options": [
+        "Porque combina habilidades distintas y reparte el esfuerzo",
+        "Porque las personas se sienten más motivadas cuando están en grupo",
+        "Porque los errores de uno pueden ser corregidos por los otros",
+        "Porque cada uno aprende de los demás y gana experiencia"
+      ]
+    }
+  }
+]
