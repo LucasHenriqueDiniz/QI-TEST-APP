@@ -11,7 +11,7 @@ IQ Test - Logic & Pattern Quiz
 ## Descrição curta (máx. 80)
 
 ```
-Free IQ test: 30 questions on logic, patterns and reasoning. No sign-up needed.
+IQ test: 30 questions on logic and patterns. Full result, no sign-up needed.
 ```
 
 ## Descrição completa (máx. 4000)

@@ -11,7 +11,7 @@ Teste de QI - Quiz de Lógica
 ## Descrição curta (máx. 80)
 
 ```
-Teste de QI grátis: 30 questões de lógica, padrões e raciocínio. Sem cadastro.
+Teste de QI: 30 questões de lógica e padrões. Resultado completo, sem cadastro.
 ```
 
 ## Descrição completa (máx. 4000)

@@ -11,7 +11,7 @@ Test de CI - Quiz de Lógica
 ## Descrição curta (máx. 80)
 
 ```
-Test de CI gratis: 30 preguntas de lógica, patrones y razonamiento. Sin registro
+Test de CI: 30 preguntas de lógica y patrones. Resultado completo, sin registro.
 ```
 
 ## Descrição completa (máx. 4000)
