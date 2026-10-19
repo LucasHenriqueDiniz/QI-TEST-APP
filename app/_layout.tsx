@@ -2,6 +2,7 @@ import "@/config/i18n";
 
 import { Inter_400Regular } from "@expo-google-fonts/inter";
 import { Manrope_600SemiBold, Manrope_700Bold, useFonts } from "@expo-google-fonts/manrope";
+import { NavigationBar } from "expo-navigation-bar";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
@@ -21,6 +22,9 @@ function RootNavigator() {
   return (
     <>
       <StatusBar style={mode === "dark" ? "light" : "dark"} />
+      {/* Com o véu de contraste desligado (plugin no app.json), a cor dos
+          botões do Android é nossa: segue o tema do app, não o do sistema. */}
+      <NavigationBar style={mode === "dark" ? "light" : "dark"} />
       <Stack
         screenOptions={{
           headerStyle: { backgroundColor: colors.background },
