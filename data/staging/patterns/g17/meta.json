@@ -27,7 +27,7 @@
     }
   ],
   "constants": {
-    "shape": "arrow",
+    "shape": "pointer",
     "count": 1,
     "pos": 0,
     "frame": "none",
@@ -37,7 +37,7 @@
     {
       "breaks": [],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "striped",
         "rot": 315,
@@ -51,7 +51,7 @@
         "fill"
       ],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
         "rot": 315,
@@ -65,10 +65,10 @@
         "rot"
       ],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "striped",
-        "rot": 45,
+        "rot": 225,
         "pos": 0,
         "frame": "none",
         "parts": []
@@ -80,10 +80,10 @@
         "rot"
       ],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
-        "rot": 45,
+        "rot": 225,
         "pos": 0,
         "frame": "none",
         "parts": []

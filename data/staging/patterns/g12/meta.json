@@ -3,10 +3,10 @@
   "difficulty": "medium",
   "weight": 2,
   "correctAnswer": 2,
-  "seed": 3183,
+  "seed": 3295,
   "kind": "shapes",
   "rules": [
-    "count: progression +1 down each column (row 3: 3, 3, 3)",
+    "count: progression +1 down each column (row 3: 4, 4, 3)",
     "fill: each of {empty, dotted, solid} once per row and once per column (row 3 needs dotted)"
   ],
   "ruleSpec": [
@@ -36,12 +36,13 @@
   "options": [
     {
       "breaks": [
+        "count",
         "fill"
       ],
       "cell": {
         "shape": "triangle",
-        "count": 3,
-        "fill": "solid",
+        "count": 1,
+        "fill": "empty",
         "rot": 0,
         "pos": 0,
         "frame": "none",
@@ -50,13 +51,12 @@
     },
     {
       "breaks": [
-        "count",
         "fill"
       ],
       "cell": {
         "shape": "triangle",
-        "count": 2,
-        "fill": "solid",
+        "count": 3,
+        "fill": "empty",
         "rot": 0,
         "pos": 0,
         "frame": "none",
@@ -81,7 +81,7 @@
       ],
       "cell": {
         "shape": "triangle",
-        "count": 2,
+        "count": 1,
         "fill": "dotted",
         "rot": 0,
         "pos": 0,

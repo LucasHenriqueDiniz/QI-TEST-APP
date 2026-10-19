@@ -3,11 +3,11 @@
   "difficulty": "medium",
   "weight": 2,
   "correctAnswer": 3,
-  "seed": 3185,
+  "seed": 3192,
   "kind": "shapes",
   "rules": [
-    "count: progression +1 across each row (row 3: 1, 2, 3)",
-    "fill: each of {empty, dotted, solid} once per row and once per column (row 3 needs empty)"
+    "count: progression +1 across each row (row 3: 2, 3, 4)",
+    "fill: each of {solid, empty, dotted} once per row and once per column (row 3 needs empty)"
   ],
   "ruleSpec": [
     {
@@ -42,7 +42,7 @@
       "cell": {
         "shape": "circle",
         "count": 2,
-        "fill": "dotted",
+        "fill": "solid",
         "rot": 0,
         "pos": 0,
         "frame": "none",
@@ -55,8 +55,8 @@
       ],
       "cell": {
         "shape": "circle",
-        "count": 3,
-        "fill": "dotted",
+        "count": 4,
+        "fill": "solid",
         "rot": 0,
         "pos": 0,
         "frame": "none",
@@ -81,7 +81,7 @@
       "breaks": [],
       "cell": {
         "shape": "circle",
-        "count": 3,
+        "count": 4,
         "fill": "empty",
         "rot": 0,
         "pos": 0,

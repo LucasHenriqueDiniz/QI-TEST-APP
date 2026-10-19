@@ -3,11 +3,11 @@
   "difficulty": "medium",
   "weight": 2,
   "correctAnswer": 0,
-  "seed": 3191,
+  "seed": 3240,
   "kind": "shapes",
   "rules": [
     "count: progression +1 across each row (row 3: 1, 2, 3)",
-    "rot: progression 90 deg down each column, constant within a row (row 3: 135, 135, 135)"
+    "rot: progression 90 deg down each column, constant within a row (row 3: 315, 315, 315)"
   ],
   "ruleSpec": [
     {
@@ -38,7 +38,7 @@
         "shape": "pointer",
         "count": 3,
         "fill": "solid",
-        "rot": 135,
+        "rot": 315,
         "pos": 0,
         "frame": "none",
         "parts": []
@@ -46,14 +46,13 @@
     },
     {
       "breaks": [
-        "count",
-        "rot"
+        "count"
       ],
       "cell": {
         "shape": "pointer",
-        "count": 2,
+        "count": 4,
         "fill": "solid",
-        "rot": 45,
+        "rot": 315,
         "pos": 0,
         "frame": "none",
         "parts": []
@@ -67,7 +66,7 @@
         "shape": "pointer",
         "count": 3,
         "fill": "solid",
-        "rot": 45,
+        "rot": 135,
         "pos": 0,
         "frame": "none",
         "parts": []
@@ -75,11 +74,12 @@
     },
     {
       "breaks": [
-        "count"
+        "count",
+        "rot"
       ],
       "cell": {
         "shape": "pointer",
-        "count": 2,
+        "count": 4,
         "fill": "solid",
         "rot": 135,
         "pos": 0,

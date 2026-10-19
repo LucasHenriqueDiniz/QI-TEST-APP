@@ -6,7 +6,7 @@
   "seed": 4164,
   "kind": "shapes",
   "rules": [
-    "shape: each of {arrow, pacman, tee} once per row and once per column (row 3 needs arrow)",
+    "shape: each of {pointer, pacman, tee} once per row and once per column (row 3 needs pointer)",
     "fill: each of {striped, solid, empty} once per row and once per column (row 3 needs solid)",
     "rot: progression 90 deg across each row (row 3: 225, 315, 45)"
   ],
@@ -56,7 +56,7 @@
     {
       "breaks": [],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
         "rot": 45,
@@ -86,7 +86,7 @@
         "rot"
       ],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
         "rot": 135,

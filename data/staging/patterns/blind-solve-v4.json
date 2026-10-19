@@ -1,0 +1,242 @@
+[
+  {
+    "id": "g01",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Single arrow rotates 90° clockwise per step along each row (row 3: down, left, up); columns rotate 90° counter-clockwise; main diagonal is all 'up'.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g02",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "T rotates 45° clockwise per step along rows (stem E→SE→S; SE→S→SW; NE→E→SE); columns go +45 then -90, same result: stem pointing SE.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g03",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Count is a distribution of three {1,2,3} per row/column (row 3: 3,2,1); direction rotates 90° clockwise per step along rows (row 3: NE, SE, SW). Answer: 1 arrow pointing SW.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g04",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Dot sits on an 8-spot ring (corners + edge midpoints) and moves 90° clockwise per step along rows (BR→BL→TL; L→T→R; R→B→L). Columns (+135°, then +180°) agree.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "Corner and edge-midpoint dot positions sit on the same small ring (e.g. BR in cell 1 vs R in cell 7). At ~38 dp per square that is only a few dp of difference, so they can be confused at a glance."
+  },
+  {
+    "id": "g05",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Dot in circle moves 90° counter-clockwise across the 4 diagonal spots per step along rows (row 3: BL, BR, TR); columns (ccw, then 180°) agree.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g06",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Distribution of three for both attributes: outer frame {square, hexagon, circle} and inner symbol {triangle, cross, star}. Row 3 lacks hexagon + triangle.",
+    "defensible_alternatives": "",
+    "shortcut": "only novel option: options 1 (=cell 2), 2 (=cell 7) and 4 (=cell 5) copy matrix cells, so the answer is the only combination not already shown",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g07",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Line segments (4 square edges + 2 diagonals): cell3 = cell1 XOR cell2 along rows. Rows 1 and 2 rule out union. Row 3: {\\,/,B} XOR {L,B,/} = {L,\\}.",
+    "defensible_alternatives": "",
+    "shortcut": "none (every option has 2 segments; each segment appears in exactly 2 options)",
+    "difficulty_feel": "hard",
+    "legibility": "Thin strokes (~2 dp at phone size); edges and diagonals overlap at the corners. Still readable."
+  },
+  {
+    "id": "g08",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Line segments: cell3 = cell1 UNION cell2 along rows (shared segments are kept, which rules out XOR). Row 3: {T,L,/} ∪ {T,L,B} = {T,L,B,/}.",
+    "defensible_alternatives": "",
+    "shortcut": "none (all options have 4 segments; the features are spread symmetrically)",
+    "difficulty_feel": "medium",
+    "legibility": "Thin strokes, but OK."
+  },
+  {
+    "id": "g09",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Dots on 5 spots (4 corners + centre): cell3 = cell1 XOR cell2 along rows (row 1 rules out union). Row 3: {TL,C,BL,BR} XOR {TR,BL,BR} = {TL,TR,C}.",
+    "defensible_alternatives": "",
+    "shortcut": "none (all options have 3 dots; spot features are spread cyclically)",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g10",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Dots in circle: cell3 = cell1 UNION cell2 along rows (row 1 keeps the shared TR, which rules out XOR). Row 3: {C,BL} ∪ {TR,C} = {BL,C,TR}.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g11",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Count +1 per step along rows (row 3: 2,3,4); shape is a distribution of three {circle, square, diamond} in each row/column. Answer: 4 circles.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g12",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Fill is a distribution of three {outline, dotted, solid}. Count: in each row the first two cells are equal and the third is one fewer (4,4,3); columns also go +1 per row (1,2,3 in col 3). Answer: 3 dotted triangles.",
+    "defensible_alternatives": "",
+    "shortcut": "none (the answer is identical to cell 4, so an 'avoid copies' heuristic would actually mislead)",
+    "difficulty_feel": "medium",
+    "legibility": "Dotted triangles are small: ~19 dp triangle with a ~5 dp dot, 4 per cell. Readable but tight."
+  },
+  {
+    "id": "g13",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Distribution of three for shape {hexagon, square, diamond} and fill {hatched, outline, solid}. Row 3 lacks a hatched square.",
+    "defensible_alternatives": "",
+    "shortcut": "only novel option: options 1 (=cell 4), 2 (=cell 1) and 4 (=cell 8) copy matrix cells",
+    "difficulty_feel": "easy",
+    "legibility": "Hatch has rendering artifacts: thick black wedges where hatch lines meet the outline at corners (cells 1 and 5). Hatch spacing is ~3 dp on a phone and reads as grey; still distinct from solid and outline."
+  },
+  {
+    "id": "g14",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Direction is constant within each row (SE / SW / NW); count +1 per step along rows (row 3: 1,2,3). Columns repeat the 1,2,1 / 2,3,2 / 3,4,3 pattern. Answer: 3 arrows pointing NW.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g15",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Fill is a distribution of three {solid, outline, dotted}; count +1 per step along rows (row 3: 2,3,4). Answer: 4 outline circles.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g16",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Distribution of three for shape {diamond, square, triangle} and fill {dotted, outline, solid}; count fixed at 2. Row 3 lacks outline diamonds.",
+    "defensible_alternatives": "",
+    "shortcut": "only novel option: options 1 (=cell 5), 3 (=cell 3) and 4 (=cell 4) copy matrix cells",
+    "difficulty_feel": "easy",
+    "legibility": "ok (dotted diamonds are small but readable)"
+  },
+  {
+    "id": "g17",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Fill is a distribution of three {hatched, solid, outline}; arrow rotates 90° clockwise per step along rows (row 3: SE, SW, NW). Answer: hatched arrow pointing NW.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "Hatch is drawn at one fixed 45° angle, so on NE/SW arrows it runs parallel to the shaft and looks like 1–2 inner stripes (cell 5, option 3), while on N/S/NW arrows it crosses the shaft (cell 1, option 1). 'Hatched' therefore looks different by orientation. Lines are ~1 dp in the matrix, which risks confusion with outline."
+  },
+  {
+    "id": "g18",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Frame is a distribution of three {circle, hexagon, square}; arrow rotates 90° clockwise per step along rows (row 3: E, S, W). Answer: circle with a left arrow.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g19",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Frame is a distribution of three {hexagon, square, circle}; dots: cell3 = cell1 XOR cell2 along rows (row 2 rules out simple subtraction). Row 3: {C,BL} XOR {TR,C,BL,BR} = {TR,BR} in a square.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g20",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Frame is a distribution of three {circle, square, diamond}; dot moves 90° clockwise around the 4 edge spots per step along rows (B→L→T; T→R→B; L→T→R). Answer: circle with the dot on the right.",
+    "defensible_alternatives": "",
+    "shortcut": "none (the answer is identical to cell 5, so an 'avoid copies' heuristic would mislead)",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g21",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Count +1 per step along rows (row 3: 1,2,3); direction rotates 90° counter-clockwise per step along rows (NE→NW→SW; W→S→E; E→N→W). Answer: 3 arrows pointing W.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g22",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Shape {arrow, pie, T} and fill {hatched, solid, outline} are each a distribution of three, so the answer is a solid arrow (options 2/4). Orientation: every shape rotates 90° clockwise per step along rows when read from its natural upright (arrow up, pie notch up, letter T upright; equivalently T read by its crossbar side). Row 1: W, N, E; row 2: NE, SE, SW; row 3: SW, NW, NE. Solving for unknown per-shape offsets with a constant row step forces this uniquely.",
+    "defensible_alternatives": "",
+    "shortcut": "none (options 1/3 are hatched T's, ruled out by shape and fill; the choice between NE and SE needs the rotation rule; option 4 is cell 5's arrow with its fill swapped)",
+    "difficulty_feel": "hard",
+    "legibility": "Three different shapes at ~29 dp. The orientation cue of the pie (a 90° notch) and of the T (crossbar side vs stem) is small. The hatch angle is fixed, so stripes run along the T crossbar but across the stem (cell 8, options 1/3). If a solver reads T by its stem, rows look inconsistent: the crux is non-obvious, not ambiguous."
+  },
+  {
+    "id": "g23",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Frame is a distribution of three {hexagon, circle, square}; dots: cell3 = cell1 UNION cell2 along rows (the shared dot is kept, which rules out XOR). Row 3: {TR,BL} ∪ {C,BL} = {TR,C,BL} in a circle.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g24",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Fill is a distribution of three {solid, outline, hatched}; T rotates 45° clockwise per step along rows (stem W→NW→N; SE→S→SW; E→SE→S). Answer: outline upright T (stem down).",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  }
+]

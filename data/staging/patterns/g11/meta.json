@@ -3,11 +3,11 @@
   "difficulty": "medium",
   "weight": 2,
   "correctAnswer": 0,
-  "seed": 3146,
+  "seed": 3181,
   "kind": "shapes",
   "rules": [
-    "shape: each of {diamond, triangle, square} once per row and once per column (row 3 needs diamond)",
-    "count: progression +1 across each row (row 3: 1, 2, 3)"
+    "shape: each of {circle, square, diamond} once per row and once per column (row 3 needs circle)",
+    "count: progression +1 across each row (row 3: 2, 3, 4)"
   ],
   "ruleSpec": [
     {
@@ -32,22 +32,8 @@
     {
       "breaks": [],
       "cell": {
-        "shape": "diamond",
-        "count": 3,
-        "fill": "solid",
-        "rot": 0,
-        "pos": 0,
-        "frame": "none",
-        "parts": []
-      }
-    },
-    {
-      "breaks": [
-        "shape"
-      ],
-      "cell": {
-        "shape": "square",
-        "count": 3,
+        "shape": "circle",
+        "count": 4,
         "fill": "solid",
         "rot": 0,
         "pos": 0,
@@ -61,8 +47,22 @@
         "count"
       ],
       "cell": {
-        "shape": "square",
+        "shape": "diamond",
         "count": 2,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "shape"
+      ],
+      "cell": {
+        "shape": "diamond",
+        "count": 4,
         "fill": "solid",
         "rot": 0,
         "pos": 0,
@@ -75,7 +75,7 @@
         "count"
       ],
       "cell": {
-        "shape": "diamond",
+        "shape": "circle",
         "count": 2,
         "fill": "solid",
         "rot": 0,

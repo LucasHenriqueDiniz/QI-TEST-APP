@@ -22,6 +22,8 @@
 // so the answer's value of every varying attribute appears in at most two
 // options, every value an option shows already appears in the matrix, and on
 // part sets a distractor always swaps one part for another (no superset cue).
+// Wrong values are chosen so that distractors copy as few matrix cells as
+// possible; items where the answer is the only novel option stay rare.
 // Exactly one option satisfies every rule by construction; the test checks
 // it on the rule model.
 
@@ -76,8 +78,8 @@ export const SHAPES = ["circle", "square", "triangle", "diamond", "pentagon", "h
 export const BULKY_SHAPES = ["circle", "square", "triangle", "diamond", "pentagon", "hexagon"];
 // shapes that stay distinct at 32 px (19 dp on the phone) when drawn 1-4 times per cell
 export const SMALL_SHAPES = ["circle", "square", "triangle", "diamond"];
-// shapes whose orientation is unambiguous at 45 degree steps
-export const ORIENTED_SHAPES = ["arrow", "tee", "pacman"];
+// shapes whose orientation is unambiguous at 45 degree steps (pointer = arrowhead + shaft)
+export const ORIENTED_SHAPES = ["pointer", "tee", "pacman"];
 // striped only on big shapes (>= 24 dp); dotted (outline + centre dot) on small ones
 export const FILLS = ["empty", "striped", "solid", "dotted"];
 export const COUNTS = [1, 2, 3, 4];
@@ -142,15 +144,22 @@ const RULES = {
   // along `axis` ("col": left to right in every row; "row": top to bottom in
   // every column) the index in the ordered domain advances by `step`.
   // Cyclic domains (rot, pos) wrap and get a different base per line;
-  // non-cyclic ones (count) always run through the first three values.
+  // non-cyclic ones (count) start at 1 or 2 per line.
   prog: {
     generate(rng, domain, p) {
       const n = domain.length;
       const cyclic = !!p.cyclic;
       const step = p.step;
       let bases;
-      if (!cyclic) bases = [0, 0, 0].map(() => (step > 0 ? 0 : 2));
-      else if (p.sameBase) bases = Array(3).fill(rng.int(n)); // e.g. one orientation per row, turning row by row
+      if (!cyclic) {
+        // count: each line runs 1-2-3 or 2-3-4, not all alike, so a wrong step is a value the matrix shows
+        const span = 2 * Math.abs(step);
+        const room = n - 1 - span;
+        let offsets;
+        do offsets = [0, 1, 2].map(() => rng.int(room + 1));
+        while (room > 0 && offsets.every((o) => o === offsets[0]));
+        bases = offsets.map((o) => (step > 0 ? 0 : span) + o);
+      } else if (p.sameBase) bases = Array(3).fill(rng.int(n)); // e.g. one orientation per row, turning row by row
       else bases = rng.sample(domain.map((_, i) => i), 3);
       const grid = [[], [], []];
       for (let r = 0; r < 3; r++) {
@@ -414,31 +423,59 @@ function buildDistractors(rng, spec, rules, grids, cells, ruleAttrs) {
     return values.slice(0, 3).map((v) => make({ [A]: v }));
   }
 
-  // one wrong value per rule attribute, then a balanced design over them
-  const wrong = {};
+  // a few candidate wrong values per rule attribute (best first) ...
+  const candidates = {};
   for (const attr of ruleAttrs) {
     if (attr === "parts") {
       const { removable, addable } = swapCandidates(rng, cells);
       if (removable.length === 0 || addable.length === 0) return null;
-      wrong.parts = swap(correct.parts, removable[0], addable[0]);
+      candidates.parts = [swap(correct.parts, removable[0], addable[0])];
     } else {
-      const values = wrongValues(rng, spec, rules, grids, attr);
+      const values = wrongValues(rng, spec, rules, grids, attr).slice(0, 3);
       if (values.length === 0) return null;
-      wrong[attr] = values[0];
+      candidates[attr] = values;
     }
   }
+  // ... a balanced design over them ...
+  let design;
   if (ruleAttrs.length === 2) {
     const [A, B] = ruleAttrs;
-    return [make({ [B]: wrong[B] }), make({ [A]: wrong[A] }), make({ [A]: wrong[A], [B]: wrong[B] })];
-  }
-  if (ruleAttrs.length === 3) {
+    design = (w) => [make({ [B]: w[B] }), make({ [A]: w[A] }), make({ [A]: w[A], [B]: w[B] })];
+  } else if (ruleAttrs.length === 3) {
     // the non-trivial attribute K (rotation/position/parts) is varied against the
     // other two together: (a*,b*,k') (a',b',k*) (a',b',k'), so K has to be solved
     const K = ruleAttrs.find((a) => a === "rot" || a === "pos" || a === "parts") ?? ruleAttrs[2];
     const [A, B] = ruleAttrs.filter((a) => a !== K);
-    return [make({ [K]: wrong[K] }), make({ [A]: wrong[A], [B]: wrong[B] }), make({ [A]: wrong[A], [B]: wrong[B], [K]: wrong[K] })];
+    design = (w) => [make({ [K]: w[K] }), make({ [A]: w[A], [B]: w[B] }), make({ [A]: w[A], [B]: w[B], [K]: w[K] })];
+  } else {
+    throw new Error(`${spec.id}: ${ruleAttrs.length} rule attributes, expected 1-3`);
   }
-  throw new Error(`${spec.id}: ${ruleAttrs.length} rule attributes, expected 1-3`);
+  // ... choosing the combination whose distractors copy the fewest cells of the matrix
+  // (otherwise "the only option not shown yet" would give the answer away)
+  const seen = new Set(cells.slice(0, 8).map(cellKey));
+  let best = null;
+  for (const wrong of combinations(candidates, ruleAttrs)) {
+    const d = design(wrong);
+    const novel = d.filter((o) => !seen.has(cellKey(o))).length;
+    if (!best || novel > best.novel) best = { d, novel };
+  }
+  return best.d;
+}
+
+function* combinations(candidates, attrs, prefix = {}) {
+  if (attrs.length === 0) {
+    yield prefix;
+    return;
+  }
+  const [a, ...rest] = attrs;
+  for (const v of candidates[a]) yield* combinations(candidates, rest, { ...prefix, [a]: v });
+}
+
+/** True when the answer is the only option that does not copy one of cells 1-8 (a cue the bank keeps rare). */
+export function noveltyCue(item) {
+  const seen = new Set(item.cells.slice(0, 8).map(cellKey));
+  const novel = item.options.map((o) => !seen.has(cellKey(o)));
+  return novel[item.correctIndex] && novel.filter(Boolean).length === 1;
 }
 
 /** True when `optionCell` placed in cell 9 satisfies every rule of the item. */
@@ -547,8 +584,6 @@ export function shapePath(shape, R) {
         [-a, -R], [a, -R], [a, -a], [R, -a], [R, a], [a, a], [a, R], [-a, R], [-a, a], [-R, a], [-R, -a], [-a, -a],
       ]);
     }
-    case "arrow":
-      return polygon([[0, -R * 1.05], [R * 0.8, R * 0.75], [0, R * 0.3], [-R * 0.8, R * 0.75]]);
     case "tee":
       return polygon([
         [-R, -R], [R, -R], [R, -R * 0.4], [R * 0.3, -R * 0.4], [R * 0.3, R], [-R * 0.3, R], [-R * 0.3, -R * 0.4], [-R, -R * 0.4],
@@ -775,9 +810,9 @@ const SMALL_FILLS = ["empty", "dotted", "solid"];
 
 export const ITEMS = [
   // ---- medium: one non-trivial rule (rotation, position, XOR/UNION) or two simple rules
-  { id: "g01", difficulty: "medium", seed: 3101, kind: "shapes", rules: [prog("rot", "col", 2)], const: { shape: "arrow", fill: "solid" } },
+  { id: "g01", difficulty: "medium", seed: 3101, kind: "shapes", rules: [prog("rot", "col", 2)], const: { shape: "pointer", fill: "solid" } },
   { id: "g02", difficulty: "medium", seed: 3102, kind: "shapes", rules: [prog("rot", "col", 1)], const: { shape: "tee", fill: "solid" } },
-  { id: "g03", difficulty: "medium", seed: 3145, kind: "shapes", rules: [dist("count", [1, 2, 3]), dist("fill", SMALL_FILLS)], domains: { shape: SMALL_SHAPES } },
+  { id: "g03", difficulty: "medium", seed: 3187, kind: "shapes", rules: [dist("count", [1, 2, 3]), prog("rot", "col", 2)], const: { shape: "pointer", fill: "solid" } },
   { id: "g04", difficulty: "medium", seed: 3104, kind: "orbit", rules: [prog("pos", "col", 2)], const: { frame: "square" } },
   { id: "g05", difficulty: "medium", seed: 3140, kind: "orbit", rules: [prog("pos", "col", -2)], const: { frame: "circle" } },
   { id: "g06", difficulty: "medium", seed: 3134, kind: "shapes", rules: [dist("frame", ["circle", "square", "hexagon"]), dist("shape", ["triangle", "star", "cross"])], const: { fill: "solid" } },
@@ -785,18 +820,18 @@ export const ITEMS = [
   { id: "g08", difficulty: "medium", seed: 3136, kind: "parts", partsStyle: "segments", rules: [setop("union", 4)] },
   { id: "g09", difficulty: "medium", seed: 3172, kind: "parts", partsStyle: "dots", rules: [setop("xor", 3)], const: { frame: "square" } },
   { id: "g10", difficulty: "medium", seed: 3117, kind: "parts", partsStyle: "dots", rules: [setop("union", 3)], const: { frame: "circle" } },
-  { id: "g11", difficulty: "medium", seed: 3146, kind: "shapes", rules: [prog("count", "col", 1), dist("shape")], const: { fill: "solid" }, domains: { shape: SMALL_SHAPES } },
-  { id: "g12", difficulty: "medium", seed: 3183, kind: "shapes", rules: [prog("count", "row", 1), dist("fill", SMALL_FILLS)], const: { shape: "triangle" } },
+  { id: "g11", difficulty: "medium", seed: 3181, kind: "shapes", rules: [prog("count", "col", 1), dist("shape")], const: { fill: "solid" }, domains: { shape: SMALL_SHAPES } },
+  { id: "g12", difficulty: "medium", seed: 3295, kind: "shapes", rules: [prog("count", "row", 1), dist("fill", SMALL_FILLS)], const: { shape: "triangle" } },
   { id: "g13", difficulty: "medium", seed: 3152, kind: "shapes", rules: [dist("shape"), dist("fill", BIG_FILLS)], domains: { shape: BULKY_SHAPES } },
-  { id: "g14", difficulty: "medium", seed: 3191, kind: "shapes", rules: [prog("count", "col", 1), { ...prog("rot", "row", 2), sameBase: true }], const: { shape: "pointer", fill: "solid" } },
-  { id: "g15", difficulty: "medium", seed: 3185, kind: "shapes", rules: [prog("count", "col", 1), dist("fill", SMALL_FILLS)], const: { shape: "circle" } },
+  { id: "g14", difficulty: "medium", seed: 3240, kind: "shapes", rules: [prog("count", "col", 1), { ...prog("rot", "row", 2), sameBase: true }], const: { shape: "pointer", fill: "solid" } },
+  { id: "g15", difficulty: "medium", seed: 3192, kind: "shapes", rules: [prog("count", "col", 1), dist("fill", SMALL_FILLS)], const: { shape: "circle" } },
   { id: "g16", difficulty: "medium", seed: 3214, kind: "shapes", rules: [dist("shape"), dist("fill", SMALL_FILLS)], const: { count: 2 }, domains: { shape: SMALL_SHAPES } },
   // ---- hard: two or three simultaneous rules, at least one rotation/position or XOR/UNION
-  { id: "g17", difficulty: "hard", seed: 4159, kind: "shapes", rules: [prog("rot", "col", 2), dist("fill", BIG_FILLS)], const: { shape: "arrow" } },
-  { id: "g18", difficulty: "hard", seed: 4195, kind: "shapes", rules: [{ ...prog("rot", "row", 2), sameBase: true }, dist("shape")], const: { fill: "solid" }, domains: { shape: ORIENTED_SHAPES } },
+  { id: "g17", difficulty: "hard", seed: 4159, kind: "shapes", rules: [prog("rot", "col", 2), dist("fill", BIG_FILLS)], const: { shape: "pointer" } },
+  { id: "g18", difficulty: "hard", seed: 4251, kind: "shapes", rules: [prog("rot", "col", 2), dist("frame", ["circle", "square", "hexagon"])], const: { shape: "pointer", fill: "solid" } },
   { id: "g19", difficulty: "hard", seed: 4133, kind: "parts", partsStyle: "dots", rules: [setop("xor", 3), dist("frame", ["circle", "square", "hexagon"])] },
   { id: "g20", difficulty: "hard", seed: 4120, kind: "orbit", rules: [prog("pos", "col", 2), dist("frame", ["square", "circle", "diamond"])] },
-  { id: "g21", difficulty: "hard", seed: 4135, kind: "shapes", rules: [prog("count", "col", 1), prog("rot", "col", -2)], const: { shape: "pointer", fill: "solid" } },
+  { id: "g21", difficulty: "hard", seed: 4149, kind: "shapes", rules: [prog("count", "col", 1), prog("rot", "col", -2)], const: { shape: "pointer", fill: "solid" } },
   { id: "g22", difficulty: "hard", seed: 4164, kind: "shapes", rules: [dist("shape"), dist("fill", BIG_FILLS), prog("rot", "col", 2)], domains: { shape: ORIENTED_SHAPES } },
   { id: "g23", difficulty: "hard", seed: 4228, kind: "parts", partsStyle: "dots", rules: [setop("union", 3), dist("frame", ["circle", "square", "hexagon"])] },
   { id: "g24", difficulty: "hard", seed: 4173, kind: "shapes", rules: [prog("rot", "col", 1), dist("fill", BIG_FILLS)], const: { shape: "tee" } },
@@ -821,9 +856,10 @@ function writeBank(outDir, only, render) {
       seed: spec.seed,
       kind: spec.kind,
       rules: item.described,
+      noveltyCue: noveltyCue(item),
       svgBytes: bytes,
     });
-    console.log(`${spec.id} ${spec.difficulty.padEnd(6)} answer=${item.correctIndex + 1} ${bytes}B  ${item.described.join(" | ")}`);
+    console.log(`${spec.id} ${spec.difficulty.padEnd(6)} answer=${item.correctIndex + 1} ${noveltyCue(item) ? "novelty-cue " : ""}${bytes}B  ${item.described.join(" | ")}`);
   }
   if (!only) writeFileSync(join(outDir, "index.json"), JSON.stringify(index, null, 2) + "\n");
   if (render) renderPngs(outDir, only ? [only] : ITEMS.map((s) => s.id));

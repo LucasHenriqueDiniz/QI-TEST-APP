@@ -44,7 +44,7 @@
         "fill": "solid",
         "rot": 0,
         "pos": 2,
-        "frame": "diamond",
+        "frame": "square",
         "parts": []
       }
     },
@@ -73,7 +73,7 @@
         "fill": "solid",
         "rot": 0,
         "pos": 0,
-        "frame": "diamond",
+        "frame": "square",
         "parts": []
       }
     },

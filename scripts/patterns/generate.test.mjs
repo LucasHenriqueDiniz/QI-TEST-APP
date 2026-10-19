@@ -156,6 +156,16 @@ test("index.json lists every item with its correct answer", () => {
   }
 });
 
+test("novelty cue: at most 4 items have the answer as the only option not copying a cell 1-8", () => {
+  const flagged = [];
+  for (const { item } of built.values()) {
+    const seen = new Set(item.cells.slice(0, 8).map(cellKey));
+    const novel = item.options.map((o) => !seen.has(cellKey(o)));
+    if (novel[item.correctIndex] && novel.filter(Boolean).length === 1) flagged.push(item.spec.id);
+  }
+  assert.ok(flagged.length <= 4, `${flagged.length} items where the answer is the only novel option: ${flagged.join(" ")}`);
+});
+
 test("the correct option is spread across positions 1-4", () => {
   const counts = [0, 0, 0, 0];
   for (const { item } of built.values()) counts[item.correctIndex]++;

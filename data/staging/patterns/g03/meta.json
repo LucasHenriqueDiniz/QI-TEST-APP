@@ -3,11 +3,11 @@
   "difficulty": "medium",
   "weight": 2,
   "correctAnswer": 2,
-  "seed": 3145,
+  "seed": 3187,
   "kind": "shapes",
   "rules": [
-    "count: each of {2, 3, 1} once per row and once per column (row 3 needs 2)",
-    "fill: each of {solid, dotted, empty} once per row and once per column (row 3 needs dotted)"
+    "count: each of {2, 1, 3} once per row and once per column (row 3 needs 1)",
+    "rot: progression 90 deg across each row (row 3: 45, 135, 225)"
   ],
   "ruleSpec": [
     {
@@ -20,18 +20,15 @@
       ]
     },
     {
-      "attr": "fill",
-      "kind": "dist",
-      "values": [
-        "empty",
-        "dotted",
-        "solid"
-      ]
+      "attr": "rot",
+      "kind": "prog",
+      "axis": "col",
+      "step": 2
     }
   ],
   "constants": {
-    "shape": "diamond",
-    "rot": 0,
+    "shape": "pointer",
+    "fill": "solid",
     "pos": 0,
     "frame": "none",
     "parts": []
@@ -42,10 +39,10 @@
         "count"
       ],
       "cell": {
-        "shape": "diamond",
-        "count": 3,
-        "fill": "dotted",
-        "rot": 0,
+        "shape": "pointer",
+        "count": 2,
+        "fill": "solid",
+        "rot": 225,
         "pos": 0,
         "frame": "none",
         "parts": []
@@ -54,13 +51,13 @@
     {
       "breaks": [
         "count",
-        "fill"
+        "rot"
       ],
       "cell": {
-        "shape": "diamond",
-        "count": 3,
+        "shape": "pointer",
+        "count": 2,
         "fill": "solid",
-        "rot": 0,
+        "rot": 45,
         "pos": 0,
         "frame": "none",
         "parts": []
@@ -69,10 +66,10 @@
     {
       "breaks": [],
       "cell": {
-        "shape": "diamond",
-        "count": 2,
-        "fill": "dotted",
-        "rot": 0,
+        "shape": "pointer",
+        "count": 1,
+        "fill": "solid",
+        "rot": 225,
         "pos": 0,
         "frame": "none",
         "parts": []
@@ -80,13 +77,13 @@
     },
     {
       "breaks": [
-        "fill"
+        "rot"
       ],
       "cell": {
-        "shape": "diamond",
-        "count": 2,
+        "shape": "pointer",
+        "count": 1,
         "fill": "solid",
-        "rot": 0,
+        "rot": 45,
         "pos": 0,
         "frame": "none",
         "parts": []

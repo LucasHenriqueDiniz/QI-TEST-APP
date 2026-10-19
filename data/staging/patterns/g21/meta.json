@@ -3,11 +3,11 @@
   "difficulty": "hard",
   "weight": 3,
   "correctAnswer": 3,
-  "seed": 4135,
+  "seed": 4149,
   "kind": "shapes",
   "rules": [
     "count: progression +1 across each row (row 3: 1, 2, 3)",
-    "rot: progression -90 deg across each row (row 3: 135, 45, 315)"
+    "rot: progression -90 deg across each row (row 3: 90, 0, 270)"
   ],
   "ruleSpec": [
     {
@@ -33,13 +33,27 @@
   "options": [
     {
       "breaks": [
+        "rot"
+      ],
+      "cell": {
+        "shape": "pointer",
+        "count": 3,
+        "fill": "solid",
+        "rot": 225,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
         "count"
       ],
       "cell": {
         "shape": "pointer",
         "count": 2,
         "fill": "solid",
-        "rot": 315,
+        "rot": 270,
         "pos": 0,
         "frame": "none",
         "parts": []
@@ -54,21 +68,7 @@
         "shape": "pointer",
         "count": 2,
         "fill": "solid",
-        "rot": 45,
-        "pos": 0,
-        "frame": "none",
-        "parts": []
-      }
-    },
-    {
-      "breaks": [
-        "rot"
-      ],
-      "cell": {
-        "shape": "pointer",
-        "count": 3,
-        "fill": "solid",
-        "rot": 45,
+        "rot": 225,
         "pos": 0,
         "frame": "none",
         "parts": []
@@ -80,7 +80,7 @@
         "shape": "pointer",
         "count": 3,
         "fill": "solid",
-        "rot": 315,
+        "rot": 270,
         "pos": 0,
         "frame": "none",
         "parts": []

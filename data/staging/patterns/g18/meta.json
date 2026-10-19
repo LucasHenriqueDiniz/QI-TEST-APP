@@ -3,85 +3,89 @@
   "difficulty": "hard",
   "weight": 3,
   "correctAnswer": 2,
-  "seed": 4195,
+  "seed": 4251,
   "kind": "shapes",
   "rules": [
-    "shape: each of {pacman, arrow, tee} once per row and once per column (row 3 needs arrow)",
-    "rot: progression 90 deg down each column, constant within a row (row 3: 135, 135, 135)"
+    "rot: progression 90 deg across each row (row 3: 90, 180, 270)",
+    "frame: each of {circle, hexagon, square} once per row and once per column (row 3 needs circle)"
   ],
   "ruleSpec": [
     {
       "attr": "rot",
       "kind": "prog",
-      "axis": "row",
-      "step": 2,
-      "sameBase": true
+      "axis": "col",
+      "step": 2
     },
     {
-      "attr": "shape",
-      "kind": "dist"
+      "attr": "frame",
+      "kind": "dist",
+      "values": [
+        "circle",
+        "square",
+        "hexagon"
+      ]
     }
   ],
   "constants": {
+    "shape": "pointer",
     "count": 1,
     "fill": "solid",
     "pos": 0,
-    "frame": "none",
     "parts": []
   },
   "options": [
     {
       "breaks": [
-        "shape",
         "rot"
       ],
       "cell": {
-        "shape": "pacman",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
-        "rot": 45,
+        "rot": 180,
         "pos": 0,
-        "frame": "none",
+        "frame": "circle",
         "parts": []
       }
     },
     {
       "breaks": [
-        "rot"
+        "frame"
       ],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
-        "rot": 45,
+        "rot": 270,
         "pos": 0,
-        "frame": "none",
+        "frame": "hexagon",
         "parts": []
       }
     },
     {
       "breaks": [],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
-        "rot": 135,
+        "rot": 270,
         "pos": 0,
-        "frame": "none",
+        "frame": "circle",
         "parts": []
       }
     },
     {
       "breaks": [
-        "shape"
+        "rot",
+        "frame"
       ],
       "cell": {
-        "shape": "pacman",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
-        "rot": 135,
+        "rot": 180,
         "pos": 0,
-        "frame": "none",
+        "frame": "hexagon",
         "parts": []
       }
     }

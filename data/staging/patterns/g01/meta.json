@@ -17,7 +17,7 @@
     }
   ],
   "constants": {
-    "shape": "arrow",
+    "shape": "pointer",
     "count": 1,
     "fill": "solid",
     "pos": 0,
@@ -28,7 +28,7 @@
     {
       "breaks": [],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
         "rot": 0,
@@ -42,7 +42,7 @@
         "rot"
       ],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
         "rot": 90,
@@ -56,7 +56,7 @@
         "rot"
       ],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
         "rot": 180,
@@ -70,7 +70,7 @@
         "rot"
       ],
       "cell": {
-        "shape": "arrow",
+        "shape": "pointer",
         "count": 1,
         "fill": "solid",
         "rot": 270,
