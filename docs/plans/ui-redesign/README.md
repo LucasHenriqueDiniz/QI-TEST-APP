@@ -17,6 +17,7 @@ slice and a decision disagree, the decision wins.
 | 03b | Results: band, Verbal/Raciocínio indices, speed (after 05b, 05c) | — |
 | 04 | share card image | `react-native-view-shot`, `expo-sharing` |
 | 05 | Test — pattern question without scroll | — |
+| 05.1 | options drawn at the matrix hole's scale (found by the pattern blind solve) | — |
 | 05b | modes 20/40/90 and the EAP scoring engine (D6, D8) | — |
 | 05c | optional 90 s speed task (D7) | — |
 | 05d | bank: +54 text items in pt/en/es, blind-solved (D8) | — |
