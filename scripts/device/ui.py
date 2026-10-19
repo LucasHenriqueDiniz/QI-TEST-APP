@@ -71,16 +71,24 @@ class Node:
         return f"<{self.cls.rsplit('.', 1)[-1]} {self.label[:40]!r} {self.box}>"
 
 
-def dump(retries=3):
-    """Current UI tree. Retries because uiautomator fails while the UI animates."""
+def dump(retries=6):
+    """Current UI tree. Retries because uiautomator fails while the UI animates.
+
+    A failed dump ("null root node", "could not get idle state") leaves the
+    previous /sdcard/ui.xml in place, so reading the file without checking the
+    command's output would return the tree of whatever was on screen before —
+    for the first ~2 s after a cold start, that is the previous screen.
+    """
     for attempt in range(retries):
-        adb("shell", "uiautomator", "dump", "/sdcard/ui.xml")
-        raw = adb("exec-out", "cat", "/sdcard/ui.xml")
-        try:
-            root = ET.fromstring(raw)
-            return [Node(el) for el in root.iter("node") if el.get("bounds")]
-        except ET.ParseError:
-            time.sleep(0.4 * (attempt + 1))
+        said = adb("shell", "uiautomator", "dump", "/sdcard/ui.xml")
+        if "dumped to" in said:
+            raw = adb("exec-out", "cat", "/sdcard/ui.xml")
+            try:
+                root = ET.fromstring(raw)
+                return [Node(el) for el in root.iter("node") if el.get("bounds")]
+            except ET.ParseError:
+                pass
+        time.sleep(0.4 * (attempt + 1))
     raise RuntimeError("uiautomator dump kept failing")
 
 

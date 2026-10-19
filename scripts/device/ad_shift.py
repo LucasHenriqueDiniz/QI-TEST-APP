@@ -57,12 +57,16 @@ def open_results():
     deadline = time.time() + 45
     while time.time() < deadline:
         nodes = ui.dump()
-        if ui.find(ui.ours(nodes), pattern=r"\b(Compartilhar|Share)"):
+        # The title, not the share button: on today's layout the button is
+        # below the fold, and a node off screen is not in the dump.
+        if ui.find(ui.ours(nodes), pattern=r"(?i)^(Seu resultado|Your result|Tu resultado)$"):
             return True
-        if not ui.ours(nodes):  # the interstitial owns the window
-            time.sleep(6)
-            width, _ = ui.screen_size()
-            ui.tap((width - 68, 150))  # its close button, top-right
+        # Not on Results yet: the interstitial is up. It runs in the app's own
+        # package (AdActivity), so it cannot be told apart by package; its
+        # close button appears top-right after a few seconds.
+        time.sleep(6)
+        width, _ = ui.screen_size()
+        ui.tap((width - 68, 150))
         time.sleep(1)
     return False
 

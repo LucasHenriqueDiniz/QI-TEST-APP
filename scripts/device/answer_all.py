@@ -26,6 +26,29 @@ def radios(nodes):
     return [n for n in ui.ours(nodes) if n.cls == RADIO]
 
 
+def reveal(option, nodes):
+    """Scrolls the option into view when the viewport clips it; returns the node to tap.
+
+    uiautomator reports only the visible part of a node, so an option below the
+    fold has a shorter (even negative) box than its siblings and a tap on its
+    centre lands on whatever covers it. A user would scroll; so does this.
+    check_fit.py is the check that fails when scrolling is needed, not this one.
+    """
+    tallest = max(n.height for n in radios(nodes))
+    if option.height >= 0.9 * tallest:
+        return option
+    _, screen_height = ui.screen_size()
+    scrolls = [n for n in ui.ours(nodes) if n.cls.endswith("ScrollView") and n.height < screen_height]
+    if not scrolls:
+        return option
+    x1, y1, x2, y2 = min(scrolls, key=lambda n: n.height).box
+    x = (x1 + x2) // 2
+    ui.adb("shell", "input", "swipe", str(x), str(y2 - 40), str(x), str(y1 + 40), "400")
+    time.sleep(0.8)
+    fresh = [n for n in radios(ui.dump()) if n.label == option.label]
+    return max(fresh, key=lambda n: n.height) if fresh else option
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=7)
@@ -42,7 +65,8 @@ def main():
         ui.tap(found)
         time.sleep(1.0)
         nodes = ui.dump()
-        resume = ui.find(nodes, pattern=r"\b(Continuar|Retomar|Continue|Resume)")
+        # Android renders Alert buttons in upper case ("CONTINUAR").
+        resume = ui.find(nodes, pattern=r"(?i)\b(Continuar|Retomar|Continue|Resume)")
         if resume:
             ui.tap(resume[0])
 
@@ -58,7 +82,7 @@ def main():
         if prog and total is None:
             total = prog[1]
         choice = rng.randrange(len(options))
-        ui.tap(options[choice])
+        ui.tap(reveal(options[choice], nodes))
         time.sleep(0.35)
         button = ui.primary_button(ui.dump())
         if button is None or not button.enabled:
