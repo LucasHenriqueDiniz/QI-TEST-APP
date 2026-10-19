@@ -64,11 +64,9 @@ def main():
             sys.exit("no start button on screen (expected Home)")
         ui.tap(found)
         time.sleep(1.0)
-        nodes = ui.dump()
-        # Android renders Alert buttons in upper case ("CONTINUAR").
-        resume = ui.find(nodes, pattern=r"(?i)\b(Continuar|Retomar|Continue|Resume)")
+        resume = ui.resume_button(ui.dump())
         if resume:
-            ui.tap(resume[0])
+            ui.tap(resume)
 
     total = None
     answered = 0

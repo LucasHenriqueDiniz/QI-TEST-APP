@@ -32,6 +32,10 @@ PAIRS = [
     (("outline", "border"), "background", GRAPHIC, "input/option boundary on the page"),
     (("accent",), "background", GRAPHIC, "curve marker, best-score ring"),
     (("accent",), "surface", GRAPHIC, "accent graphics on cards"),
+    (("onPaper",), "paper", TEXT, "letter badge on a figure tile"),
+    (("onPaper",), "paperSelected", TEXT, "letter badge on the selected figure tile"),
+    (("outline",), "paper", GRAPHIC, "unselected figure tile boundary"),
+    (("primary",), "paperSelected", GRAPHIC, "selection ring on a figure tile"),
 ]
 
 

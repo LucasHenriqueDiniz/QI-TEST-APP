@@ -45,6 +45,41 @@ def cold_start():
     adb("shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", DEV_CLIENT_URL, PACKAGE)
 
 
+# The round of all 30 pattern items, in order; the branch exists only in a dev
+# bundle (`__DEV__` in app/test.tsx) and saves nothing.
+DEV_ROUND_URL = "testeqi://test?only=patterns"
+
+
+def open_dev_round():
+    """Deep-links the pattern-only round. The app must already be running its JS
+    bundle (e.g. on Home after cold_start): on a cold process the dev client
+    shows its launcher instead of the route."""
+    adb("shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", DEV_ROUND_URL, PACKAGE)
+
+
+RESULTS_TITLE = r"(?i)^(Seu resultado|Your result|Tu resultado)$"
+
+
+def reach_results(timeout=45):
+    """Waits for Results after the last answer, closing the interstitial on the way.
+
+    Recognises Results by its title, not the share button, which can be below
+    the fold. The interstitial runs in the app's own package (AdActivity), so
+    it cannot be told apart by package; its close button appears top-right
+    after a few seconds, so that spot is tapped between polls.
+    """
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        nodes = dump()
+        if find(ours(nodes), pattern=RESULTS_TITLE):
+            return True
+        time.sleep(6)
+        width, _ = screen_size()
+        tap((width - 68, 150))
+        time.sleep(1)
+    return False
+
+
 class Node:
     def __init__(self, el):
         self.el = el
@@ -146,6 +181,20 @@ def start_button(nodes):
     """The button that starts or resumes a test on Home, by label in pt/en/es."""
     hits = [n for n in ours(nodes) if n.cls == "android.widget.Button" and re.search(START_LABELS, n.label)]
     return hits[0] if hits else None
+
+
+def resume_button(nodes):
+    """The "Continuar" button of Home's resume prompt, or None when the prompt is not up.
+
+    Only a Button whose whole text is the verb: the prompt's message ("Quer
+    continuar de onde parou?") and Home's own "Continuar teste" button, which
+    stays in the dump behind the Alert, also contain it. Android renders
+    Alert buttons in upper case ("CONTINUAR").
+    """
+    for n in ours(nodes):
+        if n.cls == "android.widget.Button" and re.fullmatch(r"(?i)(continuar|retomar|continue|resume)", n.text.strip()):
+            return n
+    return None
 
 
 def dismiss_logbox(nodes):

@@ -43,9 +43,9 @@ def open_test():
         return False
     ui.tap(ui.start_button(ui.dump()))
     time.sleep(1.0)
-    resume = ui.find(ui.dump(), pattern=r"(?i)\b(Continuar|Retomar|Continue|Resume)")
+    resume = ui.resume_button(ui.dump())
     if resume:
-        ui.tap(resume[0])
+        ui.tap(resume)
     found, _ = ui.wait_for(lambda ns: [n for n in ui.ours(ns) if n.cls == RADIO])
     return bool(found)
 
@@ -54,21 +54,7 @@ def open_results():
     if not open_home():
         return False
     subprocess.run([sys.executable, "-I", os.path.join(HERE, "answer_all.py"), "--start"], check=True)
-    deadline = time.time() + 45
-    while time.time() < deadline:
-        nodes = ui.dump()
-        # The title, not the share button: on today's layout the button is
-        # below the fold, and a node off screen is not in the dump.
-        if ui.find(ui.ours(nodes), pattern=r"(?i)^(Seu resultado|Your result|Tu resultado)$"):
-            return True
-        # Not on Results yet: the interstitial is up. It runs in the app's own
-        # package (AdActivity), so it cannot be told apart by package; its
-        # close button appears top-right after a few seconds.
-        time.sleep(6)
-        width, _ = ui.screen_size()
-        ui.tap((width - 68, 150))
-        time.sleep(1)
-    return False
+    return ui.reach_results()
 
 
 def layout(nodes):

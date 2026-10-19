@@ -13,7 +13,9 @@ shorter box than its siblings; options are compared to the tallest one. The
 `scrollable` flag is not used: React Native's ScrollView reports it even when
 its content fits.
 
-Fails with the offending nodes listed. Run it with the screen settled.
+Fails with the offending nodes listed. Run it with the screen settled. The
+rules live in `check()` so that check_fit_round.py applies the same ones to
+every question of a round.
 """
 import argparse
 import os
@@ -24,16 +26,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ui  # noqa: E402
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--require", action="append", default=[])
-    parser.add_argument("--options", type=int, default=4)
-    args = parser.parse_args()
-    ui.require_device()
-
-    nodes = ui.dump()
-    if ui.dismiss_logbox(nodes):
-        nodes = ui.dump()
+def check(nodes, require=(), options=4):
+    """Applies the rules to one UI dump; returns (problems, summary line)."""
     mine = ui.ours(nodes)
     width, height = ui.screen_size()
     dp = ui.density()
@@ -44,8 +38,8 @@ def main():
     problems = []
 
     radios = [n for n in mine if n.cls == "android.widget.RadioButton"]
-    if radios and len(radios) < args.options:
-        problems.append(f"only {len(radios)} of {args.options} options on screen")
+    if radios and len(radios) < options:
+        problems.append(f"only {len(radios)} of {options} options on screen")
     tallest = max((n.height for n in radios), default=0)
     for n in radios:
         if n.height < 0.9 * tallest:
@@ -55,7 +49,7 @@ def main():
     primary = ui.primary_button(nodes)
     if primary:
         targets.append(primary)
-    for label in args.require:
+    for label in require:
         hits = ui.find(mine, pattern=re.escape(label))
         if not hits:
             problems.append(f"required label not on screen: {label!r}")
@@ -70,7 +64,23 @@ def main():
         if n not in radios and n.height < round(24 * dp):
             problems.append(f"clipped (height {n.height}px): {n}")
 
-    print(f"checked {len(targets)} targets on {width}x{height}, banner {ad.box if ad else 'absent'}")
+    summary = f"checked {len(targets)} targets on {width}x{height}, banner {ad.box if ad else 'absent'}"
+    return problems, summary
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--require", action="append", default=[])
+    parser.add_argument("--options", type=int, default=4)
+    args = parser.parse_args()
+    ui.require_device()
+
+    nodes = ui.dump()
+    if ui.dismiss_logbox(nodes):
+        nodes = ui.dump()
+    problems, summary = check(nodes, args.require, args.options)
+
+    print(summary)
     for p in problems:
         print("FAIL", p)
     print("FIT" if not problems else f"NO FIT ({len(problems)} problems)")
