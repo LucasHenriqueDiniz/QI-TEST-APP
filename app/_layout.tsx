@@ -3,13 +3,16 @@ import "@/config/i18n";
 import { Inter_400Regular } from "@expo-google-fonts/inter";
 import { Manrope_600SemiBold, Manrope_700Bold, useFonts } from "@expo-google-fonts/manrope";
 import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AdsProvider } from "@/context/AdsContext";
 import { ThemeProvider, useAppTheme } from "@/context/ThemeContext";
+
+SplashScreen.preventAutoHideAsync();
 
 function RootNavigator() {
   const { t } = useTranslation();
@@ -58,10 +61,20 @@ function RootNavigator() {
 }
 
 export default function RootLayout() {
-  // Não bloqueamos a renderização esperando a fonte: a splash já cobre a
-  // abertura, e travar aqui atrasaria a primeira tela em rede ruim. Enquanto
-  // não carrega, o texto sai na fonte do sistema e troca sem piscar.
-  useFonts({ Manrope_700Bold, Manrope_600SemiBold, Inter_400Regular });
+  // A primeira tela só sai com as fontes registradas. No Android o texto é
+  // medido uma vez: medido na fonte do sistema e pintado em Manrope, que é mais
+  // larga, ele sai cortado ("Começar te…"). As fontes vêm do próprio APK, não
+  // da rede, então a espera é de milissegundos — e a splash cobre.
+  const [fontsLoaded, fontError] = useFonts({ Manrope_700Bold, Manrope_600SemiBold, Inter_400Regular });
+  const ready = fontsLoaded || fontError !== null;
+
+  useEffect(() => {
+    if (ready) SplashScreen.hideAsync();
+  }, [ready]);
+
+  // Se a fonte falhar, segue com a do sistema: texto medido e pintado na mesma
+  // fonte não corta.
+  if (!ready) return null;
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
