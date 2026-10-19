@@ -48,11 +48,13 @@ bug de versão. Já foi observada dos dois lados da migração:
 Detalhe completo em `ADMOB.md` e no cabeçalho de
 `plugins/withKotlinMetadataCheck.js`.
 
-> ⚠ **Pendência técnica real:** o único build nativo já feito neste projeto é um
-> APK de desenvolvimento gerado **ainda no SDK 52** (EAS `e32118c6`). Nenhum
-> build nativo foi rodado no SDK 57. `tsc` e `expo export` passam limpos com o
-> nativo quebrado — são cegos para essa classe de erro por construção. **Rode um
-> build EAS antes de confiar que está tudo certo.**
+> ✅ **Verificado em aparelho (19/10/2026):** build `development` do SDK 57
+> (EAS `42bef35c`, commit `b26e06f`) instalado num Galaxy A15 com Android 16 —
+> o mesmo aparelho que acusou o aviso. O aviso de 16 KB não apareceu, e as 46
+> `.so` de 64 bits do APK têm segmentos LOAD alinhados em 16 KB (conferido por
+> script; uma cópia adulterada para 4 KB foi reprovada, então o script pega o
+> problema). `tsc` e `expo export` continuam cegos para essa classe de erro —
+> a cada SDK novo, a prova é um build nativo, não eles.
 
 ## 1. Código — pronto
 
@@ -67,7 +69,11 @@ Detalhe completo em `ADMOB.md` e no cabeçalho de
 - [x] AdMob integrado com consentimento UMP (ver `ADMOB.md`)
 - [x] Trocar os IDs de teste do AdMob pelos reais — App ID no `app.json`, ad
       units no `.env.local`. Confirmado no bundle com `expo export --clear`
-- [ ] Publicar a mensagem de consentimento UMP no console do AdMob (`ADMOB.md` §5)
+- [x] Publicar a mensagem de consentimento UMP no console do AdMob (`ADMOB.md` §5)
+      — "Regulamentações europeias", en + es + pt-PT, botão "Não consentir"
+      ligado em todos os países. Sem ela o app logava "no form(s) configured"
+      a cada abertura; depois, 0 erros em 3 aberturas e o UMP grava
+      `IABTCF_gdprApplies=0` no Brasil
 - [ ] Vincular o app à ficha da Play Store depois de publicar — o status hoje é
       "Requer revisão", e a revisão só começa quando o app estiver vinculado
 
@@ -87,14 +93,19 @@ O violeta do arquivo gerado saiu em `#523CE6`; os derivados foram normalizados
 para o `#5B4FE9` da marca, senão o `icon.png` e o fundo do ícone adaptativo
 (definido no `app.json`) apareceriam em tons diferentes no mesmo aparelho.
 
-## 3. Política de privacidade — falta publicar
+## 3. Política de privacidade — no ar, falta colar no Play Console
 
 A página pronta (HTML autocontido, pt + en, tema claro/escuro) está em
 `store/privacy-page/index.html`.
 
-- [ ] Subir para `lucashdo.com/teste-de-qi/privacy`
-- [ ] Confirmar que abre numa janela anônima, sem login
-- [ ] Conferir que a URL bate com `PRIVACY_POLICY_URL` em `constants/app.ts`
+- [x] Subir para `lucashdo.com/teste-de-qi/privacy` — no repo `bento-portifolio`,
+      em `artifacts/portfolio/public/teste-de-qi/privacy.html` (`.html` para o
+      Pages servir a URL sem barra final, sem redirect). Mudou aqui? Copie lá.
+- [x] Confirmar que abre sem login — `curl` sem cookie: 200, 0 redirects. Antes
+      a mesma URL devolvia 200 com o shell do portfólio: status 200 não prova
+      que a política está no ar, o `<title>` prova
+- [x] Conferir que a URL bate com `PRIVACY_POLICY_URL` em `constants/app.ts`
+      (e é a mesma cadastrada na mensagem de consentimento do AdMob)
 - [ ] Colar a URL no Play Console (Política do app → Política de privacidade)
 
 O que o Google verifica: página pública, sem login, não editável por terceiros,
@@ -159,12 +170,12 @@ segredo só esconde o problema.
       com outra chave
 - [x] **Primeiro build nativo concluído** — EAS `e32118c6`, perfil
       `development`, APK gerado. Foi a primeira vez que o AdMob compilou.
-      ⚠ **Esse build é do SDK 52 e não vale mais como prova:** o projeto migrou
-      para o SDK 57 depois dele, e nada foi compilado nativamente desde então
-- [ ] **Rodar um build `development` no SDK 57** — é a única verificação que
-      enxerga quebra de codegen/Kotlin. Faça isto antes de qualquer outra coisa
-      da lista de build
-- [ ] Instalar o APK num aparelho e confirmar que o app abre e o banner carrega
+      Esse build é do SDK 52 e não vale mais como prova
+- [x] **Rodar um build `development` no SDK 57** — EAS `42bef35c`, commit
+      `b26e06f`, 19/10/2026
+- [x] Instalar o APK num aparelho e confirmar que o app abre e o banner carrega
+      — Galaxy A15, Android 16: teste completo de 30 questões, banner em todas
+      as telas, intersticial antes do resultado, histórico e tema claro
 - [ ] Gerar o AAB de produção e testá-lo em aparelho real antes de subir
 - [ ] Build `preview` e depois `production`
 - [ ] Testar o `.aab` num aparelho real antes de enviar
