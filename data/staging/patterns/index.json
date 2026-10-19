@@ -1,0 +1,307 @@
+[
+  {
+    "id": "g01",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 0,
+    "seed": 3101,
+    "kind": "shapes",
+    "rules": [
+      "rot: progression 90 deg across each row (row 3: 180, 270, 0)"
+    ],
+    "svgBytes": 3608
+  },
+  {
+    "id": "g02",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 1,
+    "seed": 3102,
+    "kind": "shapes",
+    "rules": [
+      "rot: progression 45 deg across each row (row 3: 225, 270, 315)"
+    ],
+    "svgBytes": 3946
+  },
+  {
+    "id": "g03",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 2,
+    "seed": 3145,
+    "kind": "shapes",
+    "rules": [
+      "count: each of {2, 3, 1} once per row and once per column (row 3 needs 2)",
+      "fill: each of {solid, dotted, empty} once per row and once per column (row 3 needs dotted)"
+    ],
+    "svgBytes": 5623
+  },
+  {
+    "id": "g04",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 3,
+    "seed": 3104,
+    "kind": "orbit",
+    "rules": [
+      "pos: progression 90 deg around the frame across each row (row 3: 2, 4, 6)"
+    ],
+    "svgBytes": 3467
+  },
+  {
+    "id": "g05",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 3,
+    "seed": 3140,
+    "kind": "orbit",
+    "rules": [
+      "pos: progression -90 deg around the frame across each row (row 3: 5, 3, 1)"
+    ],
+    "svgBytes": 3167
+  },
+  {
+    "id": "g06",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 2,
+    "seed": 3134,
+    "kind": "shapes",
+    "rules": [
+      "shape: each of {triangle, cross, star} once per row and once per column (row 3 needs triangle)",
+      "frame: each of {square, hexagon, circle} once per row and once per column (row 3 needs hexagon)"
+    ],
+    "svgBytes": 5243
+  },
+  {
+    "id": "g07",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 1,
+    "seed": 3114,
+    "kind": "parts",
+    "rules": [
+      "parts: row 3 = row 1 XOR row 2 (B+D1+D2 xor B+D2+L = D1+L)"
+    ],
+    "svgBytes": 2996
+  },
+  {
+    "id": "g08",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 0,
+    "seed": 3136,
+    "kind": "parts",
+    "rules": [
+      "parts: row 3 = row 1 UNION row 2 (D2+L+T union B+L+T = B+D2+L+T)"
+    ],
+    "svgBytes": 3053
+  },
+  {
+    "id": "g09",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 1,
+    "seed": 3172,
+    "kind": "parts",
+    "rules": [
+      "parts: row 3 = row 1 XOR row 2 (c+nw+se+sw xor ne+se+sw = c+ne+nw)"
+    ],
+    "svgBytes": 4363
+  },
+  {
+    "id": "g10",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 3,
+    "seed": 3117,
+    "kind": "parts",
+    "rules": [
+      "parts: row 3 = row 1 UNION row 2 (c+sw union c+ne = c+ne+sw)"
+    ],
+    "svgBytes": 3868
+  },
+  {
+    "id": "g11",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 0,
+    "seed": 3146,
+    "kind": "shapes",
+    "rules": [
+      "shape: each of {diamond, triangle, square} once per row and once per column (row 3 needs diamond)",
+      "count: progression +1 across each row (row 3: 1, 2, 3)"
+    ],
+    "svgBytes": 5362
+  },
+  {
+    "id": "g12",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 2,
+    "seed": 3183,
+    "kind": "shapes",
+    "rules": [
+      "count: progression +1 down each column (row 3: 3, 3, 3)",
+      "fill: each of {empty, dotted, solid} once per row and once per column (row 3 needs dotted)"
+    ],
+    "svgBytes": 5421
+  },
+  {
+    "id": "g13",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 2,
+    "seed": 3152,
+    "kind": "shapes",
+    "rules": [
+      "shape: each of {hexagon, square, diamond} once per row and once per column (row 3 needs square)",
+      "fill: each of {striped, empty, solid} once per row and once per column (row 3 needs striped)"
+    ],
+    "svgBytes": 5527
+  },
+  {
+    "id": "g14",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 0,
+    "seed": 3191,
+    "kind": "shapes",
+    "rules": [
+      "count: progression +1 across each row (row 3: 1, 2, 3)",
+      "rot: progression 90 deg down each column, constant within a row (row 3: 135, 135, 135)"
+    ],
+    "svgBytes": 6778
+  },
+  {
+    "id": "g15",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 3,
+    "seed": 3185,
+    "kind": "shapes",
+    "rules": [
+      "count: progression +1 across each row (row 3: 1, 2, 3)",
+      "fill: each of {empty, dotted, solid} once per row and once per column (row 3 needs empty)"
+    ],
+    "svgBytes": 5808
+  },
+  {
+    "id": "g16",
+    "difficulty": "medium",
+    "weight": 2,
+    "correctAnswer": 1,
+    "seed": 3214,
+    "kind": "shapes",
+    "rules": [
+      "shape: each of {diamond, square, triangle} once per row and once per column (row 3 needs diamond)",
+      "fill: each of {dotted, empty, solid} once per row and once per column (row 3 needs empty)"
+    ],
+    "svgBytes": 5311
+  },
+  {
+    "id": "g17",
+    "difficulty": "hard",
+    "weight": 3,
+    "correctAnswer": 0,
+    "seed": 4159,
+    "kind": "shapes",
+    "rules": [
+      "fill: each of {striped, solid, empty} once per row and once per column (row 3 needs striped)",
+      "rot: progression 90 deg across each row (row 3: 135, 225, 315)"
+    ],
+    "svgBytes": 5721
+  },
+  {
+    "id": "g18",
+    "difficulty": "hard",
+    "weight": 3,
+    "correctAnswer": 2,
+    "seed": 4195,
+    "kind": "shapes",
+    "rules": [
+      "shape: each of {pacman, arrow, tee} once per row and once per column (row 3 needs arrow)",
+      "rot: progression 90 deg down each column, constant within a row (row 3: 135, 135, 135)"
+    ],
+    "svgBytes": 3787
+  },
+  {
+    "id": "g19",
+    "difficulty": "hard",
+    "weight": 3,
+    "correctAnswer": 1,
+    "seed": 4133,
+    "kind": "parts",
+    "rules": [
+      "frame: each of {hexagon, square, circle} once per row and once per column (row 3 needs square)",
+      "parts: row 3 = row 1 XOR row 2 (c+sw xor c+ne+se+sw = ne+se)"
+    ],
+    "svgBytes": 4216
+  },
+  {
+    "id": "g20",
+    "difficulty": "hard",
+    "weight": 3,
+    "correctAnswer": 3,
+    "seed": 4120,
+    "kind": "orbit",
+    "rules": [
+      "pos: progression 90 deg around the frame across each row (row 3: 6, 0, 2)",
+      "frame: each of {circle, square, diamond} once per row and once per column (row 3 needs circle)"
+    ],
+    "svgBytes": 3263
+  },
+  {
+    "id": "g21",
+    "difficulty": "hard",
+    "weight": 3,
+    "correctAnswer": 3,
+    "seed": 4135,
+    "kind": "shapes",
+    "rules": [
+      "count: progression +1 across each row (row 3: 1, 2, 3)",
+      "rot: progression -90 deg across each row (row 3: 135, 45, 315)"
+    ],
+    "svgBytes": 6778
+  },
+  {
+    "id": "g22",
+    "difficulty": "hard",
+    "weight": 3,
+    "correctAnswer": 1,
+    "seed": 4164,
+    "kind": "shapes",
+    "rules": [
+      "shape: each of {arrow, pacman, tee} once per row and once per column (row 3 needs arrow)",
+      "fill: each of {striped, solid, empty} once per row and once per column (row 3 needs solid)",
+      "rot: progression 90 deg across each row (row 3: 225, 315, 45)"
+    ],
+    "svgBytes": 6118
+  },
+  {
+    "id": "g23",
+    "difficulty": "hard",
+    "weight": 3,
+    "correctAnswer": 2,
+    "seed": 4228,
+    "kind": "parts",
+    "rules": [
+      "frame: each of {hexagon, circle, square} once per row and once per column (row 3 needs circle)",
+      "parts: row 3 = row 1 UNION row 2 (ne+sw union c+sw = c+ne+sw)"
+    ],
+    "svgBytes": 4161
+  },
+  {
+    "id": "g24",
+    "difficulty": "hard",
+    "weight": 3,
+    "correctAnswer": 0,
+    "seed": 4173,
+    "kind": "shapes",
+    "rules": [
+      "fill: each of {solid, empty, striped} once per row and once per column (row 3 needs empty)",
+      "rot: progression 45 deg across each row (row 3: 270, 315, 0)"
+    ],
+    "svgBytes": 4947
+  }
+]

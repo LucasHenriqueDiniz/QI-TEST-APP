@@ -1,0 +1,95 @@
+{
+  "id": "g07",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 1,
+  "seed": 3114,
+  "kind": "parts",
+  "rules": [
+    "parts: row 3 = row 1 XOR row 2 (B+D1+D2 xor B+D2+L = D1+L)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "parts",
+      "kind": "setop",
+      "op": "xor",
+      "max": 4
+    }
+  ],
+  "constants": {
+    "shape": "hexagon",
+    "count": 1,
+    "fill": "solid",
+    "rot": 0,
+    "pos": 0,
+    "frame": "none"
+  },
+  "options": [
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "hexagon",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": [
+          "B",
+          "D2"
+        ]
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "hexagon",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": [
+          "D1",
+          "L"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "hexagon",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": [
+          "D1",
+          "D2"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "hexagon",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": [
+          "B",
+          "L"
+        ]
+      }
+    }
+  ]
+}

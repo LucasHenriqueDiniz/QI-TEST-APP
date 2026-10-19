@@ -1,0 +1,103 @@
+{
+  "id": "g08",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 0,
+  "seed": 3136,
+  "kind": "parts",
+  "rules": [
+    "parts: row 3 = row 1 UNION row 2 (D2+L+T union B+L+T = B+D2+L+T)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "parts",
+      "kind": "setop",
+      "op": "union",
+      "max": 4
+    }
+  ],
+  "constants": {
+    "shape": "cross",
+    "count": 1,
+    "fill": "solid",
+    "rot": 0,
+    "pos": 0,
+    "frame": "none"
+  },
+  "options": [
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": [
+          "B",
+          "D2",
+          "L",
+          "T"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": [
+          "B",
+          "L",
+          "R",
+          "T"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": [
+          "B",
+          "D1",
+          "L",
+          "R"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": [
+          "B",
+          "D1",
+          "D2",
+          "L"
+        ]
+      }
+    }
+  ]
+}

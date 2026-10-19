@@ -1,0 +1,93 @@
+{
+  "id": "g12",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 2,
+  "seed": 3183,
+  "kind": "shapes",
+  "rules": [
+    "count: progression +1 down each column (row 3: 3, 3, 3)",
+    "fill: each of {empty, dotted, solid} once per row and once per column (row 3 needs dotted)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "count",
+      "kind": "prog",
+      "axis": "row",
+      "step": 1
+    },
+    {
+      "attr": "fill",
+      "kind": "dist",
+      "values": [
+        "empty",
+        "dotted",
+        "solid"
+      ]
+    }
+  ],
+  "constants": {
+    "shape": "triangle",
+    "rot": 0,
+    "pos": 0,
+    "frame": "none",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [
+        "fill"
+      ],
+      "cell": {
+        "shape": "triangle",
+        "count": 3,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "count",
+        "fill"
+      ],
+      "cell": {
+        "shape": "triangle",
+        "count": 2,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "triangle",
+        "count": 3,
+        "fill": "dotted",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "count"
+      ],
+      "cell": {
+        "shape": "triangle",
+        "count": 2,
+        "fill": "dotted",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    }
+  ]
+}

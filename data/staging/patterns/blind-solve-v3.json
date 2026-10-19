@@ -1,0 +1,242 @@
+[
+  {
+    "id": "g01",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "The arrowhead turns 90° clockwise at each cell in reading order (up, right, down, left, …). Row 3 is down, left, so the missing cell is up. Columns agree: each turns 90° counter-clockwise per row.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g02",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "The T's stem turns 45° clockwise per column within each row: E,SE,S / SE,S,SW / NE,E,? gives SE. Columns also agree (+45° then -90°).",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g03",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Distribution of three for count (1/2/3) and for fill (black/dotted/white), across rows and columns. The missing cell is 2 dotted diamonds.",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the three distractors are exact copies of matrix cells (opt1=r1c2, opt2=r2c3, opt4=r1c1), so the answer is the only option not already shown.",
+    "difficulty_feel": "easy",
+    "legibility": "Dots inside the matrix diamonds are about 20 px, roughly 6 dp on the phone. Readable but small."
+  },
+  {
+    "id": "g04",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "The dot moves 90° clockwise around the square frame per column (8 positions, 2 steps each): BR,BL,TL / L,T,R / R,B,? gives L (middle of the left side). Columns are also consistent (+135° then +180°).",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g05",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "The dot moves 90° counter-clockwise per column among the 4 diagonal positions: SE,NE,NW / NE,NW,SW / SW,SE,? gives NE. Columns are also consistent (90° counter-clockwise, then 180°).",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g06",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Outer shape (square/hexagon/circle) and inner symbol (triangle/cross/star) each appear once per row and once per column. The missing cell is a hexagon with a triangle.",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the distractors are copies of matrix cells (opt1=r1c2, opt2=r3c1, opt4=r2c2), so the answer is the only option not already shown.",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g07",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Line segments: col3 = col1 XOR col2 (lines in both cancel out). Row 3: {both diagonals + bottom} XOR {left, bottom, / diagonal} = left + \\ diagonal.",
+    "defensible_alternatives": "",
+    "shortcut": "none (AND/intersection would give opt1, but AND fails rows 1 and 2)",
+    "difficulty_feel": "medium",
+    "legibility": "ok (strokes about 1.8 dp)"
+  },
+  {
+    "id": "g08",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "col3 = union (OR) of the segments in col1 and col2. Row 3: {top, left, /} ∪ {top, left, bottom} = top + left + bottom + / diagonal. XOR fails row 1.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g09",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Dot positions in the die: col3 = col1 XOR col2. Row 3: {TL,C,BL,BR} XOR {TR,BL,BR} = {TL,TR,C}. Union fails row 1.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g10",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "col3 = union of the dot positions in col1 and col2. Row 3: {C,BL} ∪ {C,TR} = {TR,C,BL}. XOR fails row 1.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g11",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Count follows the column (1,2,3). Shape (diamond/triangle/square) appears once per row and once per column. The missing cell is 3 diamonds.",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the distractors are copies of matrix cells (opt2=r1c3, opt3=r3c2, opt4=r2c2).",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g12",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Count follows the row (1,2,3). Fill (white/dotted/black) appears once per row and once per column. The missing cell is 3 dotted triangles.",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the distractors are copies of matrix cells (opt1=r3c1, opt2=r2c2, opt4=r2c1).",
+    "difficulty_feel": "easy",
+    "legibility": "Dot inside the matrix triangles is about 20 px (6 dp) in a triangle about 20 dp wide, with about 2 dp between dot and outline. Readable, but this is the finest detail in the set."
+  },
+  {
+    "id": "g13",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Shape (hexagon/square/diamond) and fill (hatched/white/black) each appear once per row and once per column. The missing cell is a hatched square.",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the distractors are copies of matrix cells (opt1=r2c1, opt2=r1c1, opt4=r3c2).",
+    "difficulty_feel": "easy",
+    "legibility": "Hatching is about 1.8 dp lines with about 2.6 dp gaps in matrix shapes about 25 dp wide. It reads as a grey texture but stays distinct from white and black. Minor hatch-clipping blobs thicken the outline at the hexagon corners (r1c1 and option 2) and at the diamond tip (r2c2)."
+  },
+  {
+    "id": "g14",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Direction is constant within each row (NW, NE, SE). Count follows the column (1,2,3). The missing cell is 3 SE arrows.",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the distractors are copies of matrix cells (opt2=r2c2, opt3=r2c3, opt4=r3c2).",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g15",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Count follows the column (1,2,3). Fill (white/dotted/black) appears once per row and once per column. The missing cell is 3 white circles.",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the distractors are copies of matrix cells (opt1=r1c2, opt2=r2c3, opt3=r2c2).",
+    "difficulty_feel": "easy",
+    "legibility": "ok (dots about 6 dp)"
+  },
+  {
+    "id": "g16",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Count is always 2. Shape (diamond/square/triangle) and fill (dotted/white/black) each appear once per row and once per column. The missing cell is 2 white diamonds.",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the distractors are copies of matrix cells (opt1=r2c2, opt3=r1c3, opt4=r2c1).",
+    "difficulty_feel": "easy",
+    "legibility": "ok (dots about 6 dp)"
+  },
+  {
+    "id": "g17",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "The arrowhead's tip (the vertex opposite the notch) turns 90° clockwise per column: S,W,N / NW,NE,SE / SE,SW,? gives NW. Columns are also consistent (+135° then +180°). Fill (hatched/black/white) appears once per row and column, so the answer is hatched.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "Rotated darts are perceptually ambiguous because the wing tips (about 34°) are sharper than the tip (about 48°). The black SE darts in r2c3 and r3c1 can read as 'pointing up'. The hatched dart in r1c1 is about 23 dp and shows only about 4 hatch strokes."
+  },
+  {
+    "id": "g18",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Shape (pacman/dart/T) appears once per row and column. All three shapes in a row share one orientation (pacman mouth, dart tip, T bar), which turns 90° clockwise per row: NW, NE, SE. The missing cell is a dart pointing SE.",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the distractors are copies of matrix cells (opt1=r2c3, opt2=r2c1, opt4=r3c2).",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g19",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Outer shape (hexagon/square/circle) appears once per row and column, so the missing one is a square. Dots: col3 = col1 XOR col2, so row 3 is {C,BL} XOR {TR,C,BL,BR} = {TR,BR}.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g20",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Outer shape (circle/square/diamond) appears once per row and column, so the missing one is a circle. The dot moves 90° clockwise per column (B,L,T / T,R,B / L,T,?), so it sits on the right. Columns are consistent (+180° then -90°).",
+    "defensible_alternatives": "",
+    "shortcut": "none (the answer is a copy of r2c2, so the novelty heuristic would mislead here)",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g21",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Count follows the column (1,2,3). Direction turns 90° counter-clockwise per column: NE,NW,SW / SW,SE,NE / SE,NE,? gives NW. Columns are consistent (+180° then -90°).",
+    "defensible_alternatives": "",
+    "shortcut": "Novelty: the distractors are copies of matrix cells (opt1=r1c2, opt2=r3c2, opt3=r2c3).",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g22",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Shape (dart/pacman/T) and fill (hatched/black/white) each appear once per row and column, so the answer is a black dart. Orientation (dart tip, pacman mouth, T bar side) turns 90° clockwise per column: W,N,E / NE,SE,SW / SW,NW,? gives NE. Columns are also consistent (+135° then +180°). Reading the T by its stem instead of its bar gives a different self-consistent pattern (c1=c3 in each row, r2=r3 in each column) that predicts SW, which no option offers, so the solver has to fall back to the bar reading.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "hard",
+    "legibility": "The hatched T in r3c2 has bars about 9 dp wide, where the 45° hatch looks like ladder rungs. The rotated darts are perceptually ambiguous (same issue as g17). Options 2 and 4 differ only in the dart's rotation."
+  },
+  {
+    "id": "g23",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Outer shape (hexagon/circle/square) appears once per row and column, so the missing one is a circle. Dots: col3 = col1 ∪ col2, so row 3 is {TR,BL} ∪ {C,BL} = {TR,C,BL}. XOR fails row 1.",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g24",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Fill (black/white/hatched) appears once per row and column, so the answer is white. The T's bar side turns 45° clockwise per column: E,SE,S / NW,N,NE / W,NW,? gives N (upright T). Columns are consistent (-135° then -45°).",
+    "defensible_alternatives": "",
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "Hatched T bars are about 9 dp wide with 1.8 dp hatch lines. Fine, though the diagonal Ts need careful bar-vs-stem parsing."
+  }
+]

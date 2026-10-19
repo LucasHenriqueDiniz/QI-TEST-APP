@@ -1,0 +1,105 @@
+{
+  "id": "g19",
+  "difficulty": "hard",
+  "weight": 3,
+  "correctAnswer": 1,
+  "seed": 4133,
+  "kind": "parts",
+  "rules": [
+    "frame: each of {hexagon, square, circle} once per row and once per column (row 3 needs square)",
+    "parts: row 3 = row 1 XOR row 2 (c+sw xor c+ne+se+sw = ne+se)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "parts",
+      "kind": "setop",
+      "op": "xor",
+      "max": 3
+    },
+    {
+      "attr": "frame",
+      "kind": "dist",
+      "values": [
+        "circle",
+        "square",
+        "hexagon"
+      ]
+    }
+  ],
+  "constants": {
+    "shape": "circle",
+    "count": 1,
+    "fill": "solid",
+    "rot": 0,
+    "pos": 0
+  },
+  "options": [
+    {
+      "breaks": [
+        "frame"
+      ],
+      "cell": {
+        "shape": "circle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "circle",
+        "parts": [
+          "ne",
+          "se"
+        ]
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "circle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "square",
+        "parts": [
+          "ne",
+          "se"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "frame",
+        "parts"
+      ],
+      "cell": {
+        "shape": "circle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "circle",
+        "parts": [
+          "se",
+          "sw"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "circle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "square",
+        "parts": [
+          "se",
+          "sw"
+        ]
+      }
+    }
+  ]
+}

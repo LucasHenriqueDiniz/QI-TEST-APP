@@ -1,0 +1,91 @@
+{
+  "id": "g13",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 2,
+  "seed": 3152,
+  "kind": "shapes",
+  "rules": [
+    "shape: each of {hexagon, square, diamond} once per row and once per column (row 3 needs square)",
+    "fill: each of {striped, empty, solid} once per row and once per column (row 3 needs striped)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "shape",
+      "kind": "dist"
+    },
+    {
+      "attr": "fill",
+      "kind": "dist",
+      "values": [
+        "empty",
+        "striped",
+        "solid"
+      ]
+    }
+  ],
+  "constants": {
+    "count": 1,
+    "rot": 0,
+    "pos": 0,
+    "frame": "none",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [
+        "fill"
+      ],
+      "cell": {
+        "shape": "square",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "shape"
+      ],
+      "cell": {
+        "shape": "hexagon",
+        "count": 1,
+        "fill": "striped",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "square",
+        "count": 1,
+        "fill": "striped",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "shape",
+        "fill"
+      ],
+      "cell": {
+        "shape": "hexagon",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    }
+  ]
+}

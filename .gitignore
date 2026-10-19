@@ -40,3 +40,7 @@ app-example
 # python
 __pycache__/
 *.pyc
+
+# review renders of staged pattern items (regenerate with scripts/patterns/generate.mjs --render)
+data/staging/patterns/**/*.png
+data/staging/patterns/*.png

@@ -1,0 +1,93 @@
+{
+  "id": "g15",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 3,
+  "seed": 3185,
+  "kind": "shapes",
+  "rules": [
+    "count: progression +1 across each row (row 3: 1, 2, 3)",
+    "fill: each of {empty, dotted, solid} once per row and once per column (row 3 needs empty)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "count",
+      "kind": "prog",
+      "axis": "col",
+      "step": 1
+    },
+    {
+      "attr": "fill",
+      "kind": "dist",
+      "values": [
+        "empty",
+        "dotted",
+        "solid"
+      ]
+    }
+  ],
+  "constants": {
+    "shape": "circle",
+    "rot": 0,
+    "pos": 0,
+    "frame": "none",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [
+        "count",
+        "fill"
+      ],
+      "cell": {
+        "shape": "circle",
+        "count": 2,
+        "fill": "dotted",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "fill"
+      ],
+      "cell": {
+        "shape": "circle",
+        "count": 3,
+        "fill": "dotted",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "count"
+      ],
+      "cell": {
+        "shape": "circle",
+        "count": 2,
+        "fill": "empty",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "circle",
+        "count": 3,
+        "fill": "empty",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    }
+  ]
+}

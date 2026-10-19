@@ -1,0 +1,99 @@
+{
+  "id": "g09",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 1,
+  "seed": 3172,
+  "kind": "parts",
+  "rules": [
+    "parts: row 3 = row 1 XOR row 2 (c+nw+se+sw xor ne+se+sw = c+ne+nw)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "parts",
+      "kind": "setop",
+      "op": "xor",
+      "max": 3
+    }
+  ],
+  "constants": {
+    "shape": "circle",
+    "count": 1,
+    "fill": "solid",
+    "rot": 0,
+    "pos": 0,
+    "frame": "square"
+  },
+  "options": [
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "circle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "square",
+        "parts": [
+          "ne",
+          "nw",
+          "sw"
+        ]
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "circle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "square",
+        "parts": [
+          "c",
+          "ne",
+          "nw"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "circle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "square",
+        "parts": [
+          "c",
+          "nw",
+          "se"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "circle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "square",
+        "parts": [
+          "nw",
+          "se",
+          "sw"
+        ]
+      }
+    }
+  ]
+}

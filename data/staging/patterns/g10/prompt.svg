@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 335">
+<rect x="0.5" y="0.5" width="499" height="334" fill="none" stroke="#000"/>
+<path d="M429.62,215c3.39,2.25 46.43,31.16 46.43,49s-43.04,46.75 -46.43,49H313V215Z" fill="none" stroke="#000"/>
+<g transform="translate(115 72)"><circle r="35" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round"/><circle cx="16" cy="-16" r="7" fill="#000"/><circle cx="-16" cy="-16" r="7" fill="#000"/></g>
+<g transform="translate(250 72)"><circle r="35" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round"/><circle cx="0" cy="0" r="7" fill="#000"/><circle cx="16" cy="-16" r="7" fill="#000"/></g>
+<g transform="translate(385 72)"><circle r="35" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round"/><circle cx="0" cy="0" r="7" fill="#000"/><circle cx="16" cy="-16" r="7" fill="#000"/><circle cx="-16" cy="-16" r="7" fill="#000"/></g>
+<g transform="translate(115 168)"><circle r="35" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round"/><circle cx="16" cy="-16" r="7" fill="#000"/><circle cx="16" cy="16" r="7" fill="#000"/></g>
+<g transform="translate(250 168)"><circle r="35" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round"/><circle cx="16" cy="16" r="7" fill="#000"/><circle cx="-16" cy="16" r="7" fill="#000"/></g>
+<g transform="translate(385 168)"><circle r="35" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round"/><circle cx="16" cy="-16" r="7" fill="#000"/><circle cx="16" cy="16" r="7" fill="#000"/><circle cx="-16" cy="16" r="7" fill="#000"/></g>
+<g transform="translate(115 264)"><circle r="35" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round"/><circle cx="0" cy="0" r="7" fill="#000"/><circle cx="-16" cy="16" r="7" fill="#000"/></g>
+<g transform="translate(250 264)"><circle r="35" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round"/><circle cx="0" cy="0" r="7" fill="#000"/><circle cx="16" cy="-16" r="7" fill="#000"/></g>
+</svg>

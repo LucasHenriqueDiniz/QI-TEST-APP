@@ -1,0 +1,109 @@
+{
+  "id": "g23",
+  "difficulty": "hard",
+  "weight": 3,
+  "correctAnswer": 2,
+  "seed": 4228,
+  "kind": "parts",
+  "rules": [
+    "frame: each of {hexagon, circle, square} once per row and once per column (row 3 needs circle)",
+    "parts: row 3 = row 1 UNION row 2 (ne+sw union c+sw = c+ne+sw)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "parts",
+      "kind": "setop",
+      "op": "union",
+      "max": 3
+    },
+    {
+      "attr": "frame",
+      "kind": "dist",
+      "values": [
+        "circle",
+        "square",
+        "hexagon"
+      ]
+    }
+  ],
+  "constants": {
+    "shape": "pentagon",
+    "count": 1,
+    "fill": "solid",
+    "rot": 0,
+    "pos": 0
+  },
+  "options": [
+    {
+      "breaks": [
+        "frame",
+        "parts"
+      ],
+      "cell": {
+        "shape": "pentagon",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "square",
+        "parts": [
+          "c",
+          "ne",
+          "se"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "parts"
+      ],
+      "cell": {
+        "shape": "pentagon",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "circle",
+        "parts": [
+          "c",
+          "ne",
+          "se"
+        ]
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "pentagon",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "circle",
+        "parts": [
+          "c",
+          "ne",
+          "sw"
+        ]
+      }
+    },
+    {
+      "breaks": [
+        "frame"
+      ],
+      "cell": {
+        "shape": "pentagon",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "square",
+        "parts": [
+          "c",
+          "ne",
+          "sw"
+        ]
+      }
+    }
+  ]
+}

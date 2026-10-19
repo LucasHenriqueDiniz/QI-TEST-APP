@@ -1,0 +1,244 @@
+[
+  {
+    "id": "g01",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Arrowhead rotates 90° clockwise per column (up→right→down, left→up→right, down→left→up); columns rotate 90° CCW per row, which agrees.",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g02",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "T stem rotates 45° clockwise per column (E→SE→S, SE→S→SW, NE→E→SE); columns also agree (+45° then -90°). Answer is the T with its stem pointing SE.",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g03",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Pac-man mouth rotates 90° CCW per column (E→N→W; SE→NE→NW; SW→SE→NE); columns agree. Answer is the circle missing its top-right quadrant.",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g04",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Dot moves 90° clockwise around the square per column (SE→SW→NW; W→N→E; E→S→W); columns agree (+135°, +180°).",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g05",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Dot moves 90° CCW between the circle's diagonal positions per column (SE→NE→NW; NE→NW→SW; SW→SE→NE). Reading it as 'each row/column uses distinct positions' also forces NE.",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g06",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Dot moves 45° clockwise around the square per column (N→NE→E; SE→S→SW; NW→N→NE); columns agree (+135°, +180°).",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g07",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Lines XOR along rows: col3 = col1 XOR col2, so shared segments cancel. Row 3: {top, right, '/'} XOR {top, left, right} = {left, '/'}. Union is ruled out because the shared lines in rows 1–2 disappear.",
+    "defensible_alternatives": [],
+    "shortcut": "none (the options {/}, {L,/}, {/,R}, {L,/,R} are symmetric in L and R, so a superset or majority guess doesn't land on the answer)",
+    "difficulty_feel": "medium",
+    "legibility": "strokes are about 1.8 dp in the matrix: thin but readable"
+  },
+  {
+    "id": "g08",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Lines UNION along rows: col3 = col1 ∪ col2. Row 3: {'\\', right, bottom} ∪ {top, right, '/'} = top, right, bottom and both diagonals. XOR is ruled out because the shared top line stays in row 1.",
+    "defensible_alternatives": [],
+    "shortcut": "superset: the answer contains every line of every other option, so 'pick the option with the most lines' works without the rule; option 3 is a copy of cell (3,2)",
+    "difficulty_feel": "medium",
+    "legibility": "strokes are about 1.8 dp in the matrix: thin but readable"
+  },
+  {
+    "id": "g09",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Dots XOR along rows: col3 = col1 XOR col2. Row 3: {TL, C} XOR {TR, C, BL} = {TL, TR, BL}. Union is ruled out by rows 1–2.",
+    "defensible_alternatives": [],
+    "shortcut": "superset: the answer {TL,TR,BL} contains all the other options ({TL}, {TL,BL}, {TL,TR}), so 'most dots' picks it even though the rule is XOR; option 3 is a copy of cell (2,3)",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g10",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Dots UNION along rows: col3 = col1 ∪ col2. Row 3: {TR, C} ∪ {TL, C} = {TL, TR, C}. XOR is ruled out by rows 1–2; option 3 is the XOR distractor.",
+    "defensible_alternatives": [],
+    "shortcut": "superset: the answer contains every other option ({TR,C}, {TR}, {TL,TR}), so 'most dots' works; option 1 is a copy of cell (3,1)",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g11",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Count goes 1, 2, 3 across the columns. Each row and column uses diamond, triangle and square once each, so the empty cell is 3 diamonds.",
+    "defensible_alternatives": [],
+    "shortcut": "none (count and shape split 2–2 across the options)",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g12",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Count goes 1, 2, 3 down the rows. Each row and column uses solid, outline and outline-with-dot once each, so the empty cell is 3 solid triangles.",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "the dot inside the outline triangles is about 5 dp in an 18 dp triangle: small but readable"
+  },
+  {
+    "id": "g13",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Two independent rules, each value once per row and column: shape (pentagon, square, circle) and fill (solid, hatched, outline). The empty cell is a hatched pentagon.",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "easy",
+    "legibility": "hatch lines are about 1 dp and may read as gray at phone size, but are still clearly different from solid and outline"
+  },
+  {
+    "id": "g14",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Two independent rules, each value once per row and column: shape (triangle, diamond, square) and count (1, 2, 3). The empty cell is 1 diamond.",
+    "defensible_alternatives": [],
+    "shortcut": "none (option 2 is a copy of cell (3,1))",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g15",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Count goes 1, 2, 3 across the columns. Each row and column uses outline, solid and dotted once each, so the empty cell is 3 outline triangles.",
+    "defensible_alternatives": [],
+    "shortcut": "none (options 1, 2 and 3 are copies of cells (2,2), (3,2) and (1,3))",
+    "difficulty_feel": "easy",
+    "legibility": "the dot inside the outline triangles is about 5 dp: small but readable"
+  },
+  {
+    "id": "g16",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Count goes 1, 2, 3 down the rows. Each row and column uses diamond, circle and square once each, so the empty cell is 3 outline diamonds.",
+    "defensible_alternatives": [],
+    "shortcut": "none (options 1 and 4 are copies of cells (2,3) and (3,1))",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g17",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "The dart turns 90° clockwise per column (S→W→N; NW→NE→SE; SE→SW→NW). Fill (hatched, solid, outline) appears once per row and column. The empty cell is a hatched dart pointing NW.",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "the hatched darts are about 26 dp with roughly 1 dp hatch lines, so hatched vs outline is subtle but readable"
+  },
+  {
+    "id": "g18",
+    "answer": 3,
+    "confidence": "medium",
+    "rule": "Shapes (pac-man, T, dart) appear once per row, with the pac-man on the main diagonal. Every one-step diagonal move rotates the shape 135° CCW: pac-man NE→W, T NW→S, dart S→NE. So the pac-man goes from W to SE: the circle missing its bottom-right quadrant. A linear model (90° clockwise per column plus a row offset) fits all 8 cells and gives the same answer.",
+    "defensible_alternatives": [
+      "option 4 (missing bottom-left quadrant): the T (NW→SE) and the dart (SW→NE) are each turned 180° from row 1 to row 3, so applying the same to the pac-man (NE→SW) gives option 4, though this ignores row 2. Copying the T's own step pattern (-135°, then -45°) onto the pac-man also gives option 4."
+    ],
+    "shortcut": "none (the shape rule leaves options 3 and 4; orientation splits 2–2)",
+    "difficulty_feel": "hard",
+    "legibility": "ok"
+  },
+  {
+    "id": "g19",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Frame (circle, square, hexagon) appears once per row and column. Dots XOR along rows: {TL,TR,BL,BR} XOR {TL,TR,C,BL} = {C, BR}. The empty cell is a circle with dots at the center and bottom-right.",
+    "defensible_alternatives": [],
+    "shortcut": "none (frame and dot set split 2–2)",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g20",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Frame (circle, square, diamond) appears once per row and column. The dot moves 90° clockwise per column (S→W→N; N→E→S; W→N→E), and columns agree. The empty cell is a circle with the dot at E.",
+    "defensible_alternatives": [],
+    "shortcut": "none (option 3 is a copy of cell (3,2))",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g21",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Count goes 1, 2, 3 across the columns. Dart direction rotates 90° CCW per column (NE→NW→SW; SW→SE→NE; SE→NE→NW), and columns agree. The empty cell is 3 darts pointing NW.",
+    "defensible_alternatives": [],
+    "shortcut": "none (option 2 is a copy of cell (3,2))",
+    "difficulty_feel": "medium",
+    "legibility": "the matrix darts are about 18 dp and their direction shows only through a notch of about 4 dp. In the 2- and 3-dart cells this is the weakest legibility in the set; I had to zoom to be sure"
+  },
+  {
+    "id": "g22",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Shape (dart, pac-man, T) and fill (hatched, solid, outline) each appear once per row and column, so the empty cell is a solid dart. Its NE orientation also fits a consistent rotation model (90° clockwise per column), but orientation isn't needed to decide.",
+    "defensible_alternatives": [],
+    "shortcut": "the rotation dimension isn't tested: shape and fill alone pick option 2, since it's the only solid dart. There's no majority-vote shortcut",
+    "difficulty_feel": "medium",
+    "legibility": "the hatched T and pac-man use about 1 dp hatch lines, and hatched vs outline is the key distinction here; readable but dense in the hatched T"
+  },
+  {
+    "id": "g23",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Frame (square, hexagon, circle) appears once per row and column. Dots UNION along rows: {C, BL} ∪ {BL, BR} = {C, BL, BR}. The empty cell is a square with those 3 dots.",
+    "defensible_alternatives": [],
+    "shortcut": "partial: 'most dots' (union superset) narrows the choice to options 1 and 3; the frame rule still has to decide",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g24",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "The T stem rotates 45° clockwise per column (W→NW→N; SE→S→SW; E→SE→S), and columns agree (-135°, then -45°). Fill (solid, outline, hatched) appears once per row and column. The empty cell is an outline upright T.",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "hatch lines are about 1 dp inside narrow T arms; readable"
+  }
+]

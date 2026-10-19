@@ -1,0 +1,96 @@
+{
+  "id": "g03",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 2,
+  "seed": 3145,
+  "kind": "shapes",
+  "rules": [
+    "count: each of {2, 3, 1} once per row and once per column (row 3 needs 2)",
+    "fill: each of {solid, dotted, empty} once per row and once per column (row 3 needs dotted)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "count",
+      "kind": "dist",
+      "values": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "attr": "fill",
+      "kind": "dist",
+      "values": [
+        "empty",
+        "dotted",
+        "solid"
+      ]
+    }
+  ],
+  "constants": {
+    "shape": "diamond",
+    "rot": 0,
+    "pos": 0,
+    "frame": "none",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [
+        "count"
+      ],
+      "cell": {
+        "shape": "diamond",
+        "count": 3,
+        "fill": "dotted",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "count",
+        "fill"
+      ],
+      "cell": {
+        "shape": "diamond",
+        "count": 3,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "diamond",
+        "count": 2,
+        "fill": "dotted",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "fill"
+      ],
+      "cell": {
+        "shape": "diamond",
+        "count": 2,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    }
+  ]
+}

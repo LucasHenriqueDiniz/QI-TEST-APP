@@ -1,0 +1,83 @@
+{
+  "id": "g05",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 3,
+  "seed": 3140,
+  "kind": "orbit",
+  "rules": [
+    "pos: progression -90 deg around the frame across each row (row 3: 5, 3, 1)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "pos",
+      "kind": "prog",
+      "axis": "col",
+      "step": -2
+    }
+  ],
+  "constants": {
+    "shape": "cross",
+    "count": 1,
+    "fill": "solid",
+    "rot": 0,
+    "frame": "circle",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [
+        "pos"
+      ],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 7,
+        "frame": "circle",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "pos"
+      ],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 5,
+        "frame": "circle",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "pos"
+      ],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 3,
+        "frame": "circle",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 1,
+        "frame": "circle",
+        "parts": []
+      }
+    }
+  ]
+}

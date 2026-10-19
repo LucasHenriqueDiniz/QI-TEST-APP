@@ -1,0 +1,93 @@
+{
+  "id": "g20",
+  "difficulty": "hard",
+  "weight": 3,
+  "correctAnswer": 3,
+  "seed": 4120,
+  "kind": "orbit",
+  "rules": [
+    "pos: progression 90 deg around the frame across each row (row 3: 6, 0, 2)",
+    "frame: each of {circle, square, diamond} once per row and once per column (row 3 needs circle)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "pos",
+      "kind": "prog",
+      "axis": "col",
+      "step": 2
+    },
+    {
+      "attr": "frame",
+      "kind": "dist",
+      "values": [
+        "square",
+        "circle",
+        "diamond"
+      ]
+    }
+  ],
+  "constants": {
+    "shape": "star",
+    "count": 1,
+    "fill": "solid",
+    "rot": 0,
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [
+        "frame"
+      ],
+      "cell": {
+        "shape": "star",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 2,
+        "frame": "diamond",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "pos"
+      ],
+      "cell": {
+        "shape": "star",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "circle",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "pos",
+        "frame"
+      ],
+      "cell": {
+        "shape": "star",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "diamond",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "star",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 2,
+        "frame": "circle",
+        "parts": []
+      }
+    }
+  ]
+}

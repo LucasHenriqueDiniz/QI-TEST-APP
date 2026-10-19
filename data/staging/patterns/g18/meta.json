@@ -1,0 +1,89 @@
+{
+  "id": "g18",
+  "difficulty": "hard",
+  "weight": 3,
+  "correctAnswer": 2,
+  "seed": 4195,
+  "kind": "shapes",
+  "rules": [
+    "shape: each of {pacman, arrow, tee} once per row and once per column (row 3 needs arrow)",
+    "rot: progression 90 deg down each column, constant within a row (row 3: 135, 135, 135)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "rot",
+      "kind": "prog",
+      "axis": "row",
+      "step": 2,
+      "sameBase": true
+    },
+    {
+      "attr": "shape",
+      "kind": "dist"
+    }
+  ],
+  "constants": {
+    "count": 1,
+    "fill": "solid",
+    "pos": 0,
+    "frame": "none",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [
+        "shape",
+        "rot"
+      ],
+      "cell": {
+        "shape": "pacman",
+        "count": 1,
+        "fill": "solid",
+        "rot": 45,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "rot"
+      ],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "solid",
+        "rot": 45,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "solid",
+        "rot": 135,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "shape"
+      ],
+      "cell": {
+        "shape": "pacman",
+        "count": 1,
+        "fill": "solid",
+        "rot": 135,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    }
+  ]
+}

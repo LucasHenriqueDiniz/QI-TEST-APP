@@ -1,0 +1,93 @@
+{
+  "id": "g17",
+  "difficulty": "hard",
+  "weight": 3,
+  "correctAnswer": 0,
+  "seed": 4159,
+  "kind": "shapes",
+  "rules": [
+    "fill: each of {striped, solid, empty} once per row and once per column (row 3 needs striped)",
+    "rot: progression 90 deg across each row (row 3: 135, 225, 315)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "rot",
+      "kind": "prog",
+      "axis": "col",
+      "step": 2
+    },
+    {
+      "attr": "fill",
+      "kind": "dist",
+      "values": [
+        "empty",
+        "striped",
+        "solid"
+      ]
+    }
+  ],
+  "constants": {
+    "shape": "arrow",
+    "count": 1,
+    "pos": 0,
+    "frame": "none",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "striped",
+        "rot": 315,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "fill"
+      ],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "solid",
+        "rot": 315,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "rot"
+      ],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "striped",
+        "rot": 45,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "fill",
+        "rot"
+      ],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "solid",
+        "rot": 45,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    }
+  ]
+}

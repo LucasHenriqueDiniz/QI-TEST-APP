@@ -1,0 +1,83 @@
+{
+  "id": "g01",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 0,
+  "seed": 3101,
+  "kind": "shapes",
+  "rules": [
+    "rot: progression 90 deg across each row (row 3: 180, 270, 0)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "rot",
+      "kind": "prog",
+      "axis": "col",
+      "step": 2
+    }
+  ],
+  "constants": {
+    "shape": "arrow",
+    "count": 1,
+    "fill": "solid",
+    "pos": 0,
+    "frame": "none",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "rot"
+      ],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "solid",
+        "rot": 90,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "rot"
+      ],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "solid",
+        "rot": 180,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "rot"
+      ],
+      "cell": {
+        "shape": "arrow",
+        "count": 1,
+        "fill": "solid",
+        "rot": 270,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    }
+  ]
+}

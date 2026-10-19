@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 335">
+<rect x="0.5" y="0.5" width="499" height="334" fill="none" stroke="#000"/>
+<path d="M429.62,215c3.39,2.25 46.43,31.16 46.43,49s-43.04,46.75 -46.43,49H313V215Z" fill="none" stroke="#000"/>
+<g transform="translate(115 72)"><g transform="translate(0 0)"><path d="M0,0L16.26,-16.26A23,23 0 1 1 -16.26,-16.26Z" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" transform="rotate(315)"/></g></g>
+<g transform="translate(250 72)"><g transform="translate(0 0)"><path d="M0,-24.15L18.4,17.25L0,6.9L-18.4,17.25Z" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" transform="rotate(315)"/></g></g>
+<g transform="translate(385 72)"><g transform="translate(0 0)"><path d="M-23,-23L23,-23L23,-9.2L6.9,-9.2L6.9,23L-6.9,23L-6.9,-9.2L-23,-9.2Z" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" transform="rotate(315)"/></g></g>
+<g transform="translate(115 168)"><g transform="translate(0 0)"><path d="M0,-24.15L18.4,17.25L0,6.9L-18.4,17.25Z" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" transform="rotate(45)"/></g></g>
+<g transform="translate(250 168)"><g transform="translate(0 0)"><path d="M-23,-23L23,-23L23,-9.2L6.9,-9.2L6.9,23L-6.9,23L-6.9,-9.2L-23,-9.2Z" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" transform="rotate(45)"/></g></g>
+<g transform="translate(385 168)"><g transform="translate(0 0)"><path d="M0,0L16.26,-16.26A23,23 0 1 1 -16.26,-16.26Z" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" transform="rotate(45)"/></g></g>
+<g transform="translate(115 264)"><g transform="translate(0 0)"><path d="M-23,-23L23,-23L23,-9.2L6.9,-9.2L6.9,23L-6.9,23L-6.9,-9.2L-23,-9.2Z" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" transform="rotate(135)"/></g></g>
+<g transform="translate(250 264)"><g transform="translate(0 0)"><path d="M0,0L16.26,-16.26A23,23 0 1 1 -16.26,-16.26Z" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" transform="rotate(135)"/></g></g>
+</svg>

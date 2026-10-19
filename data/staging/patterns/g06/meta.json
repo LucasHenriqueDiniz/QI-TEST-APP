@@ -1,0 +1,96 @@
+{
+  "id": "g06",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 2,
+  "seed": 3134,
+  "kind": "shapes",
+  "rules": [
+    "shape: each of {triangle, cross, star} once per row and once per column (row 3 needs triangle)",
+    "frame: each of {square, hexagon, circle} once per row and once per column (row 3 needs hexagon)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "frame",
+      "kind": "dist",
+      "values": [
+        "circle",
+        "square",
+        "hexagon"
+      ]
+    },
+    {
+      "attr": "shape",
+      "kind": "dist",
+      "values": [
+        "triangle",
+        "star",
+        "cross"
+      ]
+    }
+  ],
+  "constants": {
+    "count": 1,
+    "fill": "solid",
+    "rot": 0,
+    "pos": 0,
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [
+        "shape"
+      ],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "hexagon",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "shape",
+        "frame"
+      ],
+      "cell": {
+        "shape": "cross",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "circle",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "triangle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "hexagon",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "frame"
+      ],
+      "cell": {
+        "shape": "triangle",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "circle",
+        "parts": []
+      }
+    }
+  ]
+}

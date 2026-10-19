@@ -1,0 +1,93 @@
+{
+  "id": "g24",
+  "difficulty": "hard",
+  "weight": 3,
+  "correctAnswer": 0,
+  "seed": 4173,
+  "kind": "shapes",
+  "rules": [
+    "fill: each of {solid, empty, striped} once per row and once per column (row 3 needs empty)",
+    "rot: progression 45 deg across each row (row 3: 270, 315, 0)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "rot",
+      "kind": "prog",
+      "axis": "col",
+      "step": 1
+    },
+    {
+      "attr": "fill",
+      "kind": "dist",
+      "values": [
+        "empty",
+        "striped",
+        "solid"
+      ]
+    }
+  ],
+  "constants": {
+    "shape": "tee",
+    "count": 1,
+    "pos": 0,
+    "frame": "none",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "tee",
+        "count": 1,
+        "fill": "empty",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "rot"
+      ],
+      "cell": {
+        "shape": "tee",
+        "count": 1,
+        "fill": "empty",
+        "rot": 45,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "fill",
+        "rot"
+      ],
+      "cell": {
+        "shape": "tee",
+        "count": 1,
+        "fill": "solid",
+        "rot": 45,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "fill"
+      ],
+      "cell": {
+        "shape": "tee",
+        "count": 1,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    }
+  ]
+}

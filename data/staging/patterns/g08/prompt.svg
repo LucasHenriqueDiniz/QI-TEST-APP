@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 335">
+<rect x="0.5" y="0.5" width="499" height="334" fill="none" stroke="#000"/>
+<path d="M429.62,215c3.39,2.25 46.43,31.16 46.43,49s-43.04,46.75 -46.43,49H313V215Z" fill="none" stroke="#000"/>
+<g transform="translate(115 72)"><path d="M24,-24L-24,24M24,-24L24,24" fill="none" stroke="#000" stroke-width="4" stroke-linecap="square"/></g>
+<g transform="translate(250 72)"><path d="M-24,-24L24,24M24,-24L-24,24" fill="none" stroke="#000" stroke-width="4" stroke-linecap="square"/></g>
+<g transform="translate(385 72)"><path d="M-24,-24L24,24M24,-24L-24,24M24,-24L24,24" fill="none" stroke="#000" stroke-width="4" stroke-linecap="square"/></g>
+<g transform="translate(115 168)"><path d="M-24,-24L24,24M24,-24L24,24M-24,-24L24,-24" fill="none" stroke="#000" stroke-width="4" stroke-linecap="square"/></g>
+<g transform="translate(250 168)"><path d="M24,-24L-24,24M-24,-24L24,-24" fill="none" stroke="#000" stroke-width="4" stroke-linecap="square"/></g>
+<g transform="translate(385 168)"><path d="M-24,-24L24,24M24,-24L-24,24M24,-24L24,24M-24,-24L24,-24" fill="none" stroke="#000" stroke-width="4" stroke-linecap="square"/></g>
+<g transform="translate(115 264)"><path d="M24,-24L-24,24M-24,24L-24,-24M-24,-24L24,-24" fill="none" stroke="#000" stroke-width="4" stroke-linecap="square"/></g>
+<g transform="translate(250 264)"><path d="M24,24L-24,24M-24,24L-24,-24M-24,-24L24,-24" fill="none" stroke="#000" stroke-width="4" stroke-linecap="square"/></g>
+</svg>

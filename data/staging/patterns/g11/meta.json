@@ -1,0 +1,88 @@
+{
+  "id": "g11",
+  "difficulty": "medium",
+  "weight": 2,
+  "correctAnswer": 0,
+  "seed": 3146,
+  "kind": "shapes",
+  "rules": [
+    "shape: each of {diamond, triangle, square} once per row and once per column (row 3 needs diamond)",
+    "count: progression +1 across each row (row 3: 1, 2, 3)"
+  ],
+  "ruleSpec": [
+    {
+      "attr": "count",
+      "kind": "prog",
+      "axis": "col",
+      "step": 1
+    },
+    {
+      "attr": "shape",
+      "kind": "dist"
+    }
+  ],
+  "constants": {
+    "fill": "solid",
+    "rot": 0,
+    "pos": 0,
+    "frame": "none",
+    "parts": []
+  },
+  "options": [
+    {
+      "breaks": [],
+      "cell": {
+        "shape": "diamond",
+        "count": 3,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "shape"
+      ],
+      "cell": {
+        "shape": "square",
+        "count": 3,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "shape",
+        "count"
+      ],
+      "cell": {
+        "shape": "square",
+        "count": 2,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    },
+    {
+      "breaks": [
+        "count"
+      ],
+      "cell": {
+        "shape": "diamond",
+        "count": 2,
+        "fill": "solid",
+        "rot": 0,
+        "pos": 0,
+        "frame": "none",
+        "parts": []
+      }
+    }
+  ]
+}

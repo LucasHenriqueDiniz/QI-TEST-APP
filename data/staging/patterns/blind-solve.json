@@ -1,0 +1,242 @@
+[
+  {
+    "id": "g01",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Rows identical; count rises 1 -> 2 -> 3 triangles across columns, so the cell is 3 triangles (a copy of the cell above).",
+    "defensible_alternatives": [],
+    "shortcut": "weak: option 2 (4 triangles) is a count that never appears; options 1 and 4 copy cells already in row 3. The answer is just the cell directly above.",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g02",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Distribution of three: circle, square and hexagon appear once per row and column; row 3 is missing the circle.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: options 3 (triangle) and 4 (diamond) are shapes that never appear in the matrix, and option 1 (square) is already in row 3, so only option 2 is left.",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g03",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "The arrowhead turns 90 deg clockwise per column in every row (E->S->W, SE->SW->NW, W->N->E), so the cell points E; columns agree (+45 then +135).",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "minor: the diagonal arrowheads in row 2 have a shallow notch, so at about 27 dp you have to look twice to tell the tip from a wing."
+  },
+  {
+    "id": "g04",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Distribution of three fills (black, hatched, white) per row and column; row 3 is missing the hatched one.",
+    "defensible_alternatives": [],
+    "shortcut": "weak: option 4 (crosshatch) is a fill that never appears; options 1 and 2 copy fills already in row 3.",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g05",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "The dot moves 90 deg clockwise around the square's 8 positions per column (W->N->E, NE->SE->SW, N->E->S), so the dot is at S; columns agree (+135 then -45).",
+    "defensible_alternatives": [],
+    "shortcut": "none (the answer's position S never appears in the matrix, so a 'pick something already seen' heuristic would mislead; options 3 and 4 copy row-3 cells).",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g06",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Row-wise XOR of line segments: col3 keeps the segments that appear in exactly one of col1/col2. Row 3: {left, top} XOR {top, right, bottom} = left + right + bottom (U).",
+    "defensible_alternatives": [],
+    "shortcut": "yes: the answer is the per-segment majority of the options (left 4/4, right 3/4, bottom 3/4, top 1/4); options 3 and 4 are subsets of it and option 2 (UNION, which fails rows 1-2) is a superset.",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g07",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Row-wise UNION of line segments (XOR fails rows 1-2). Row 3: {top, bottom} UNION {top, left, both diagonals} = top + bottom + left + both diagonals.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: the answer contains every segment of every other option and is the per-segment majority (top, left and bottom each 3/4, both diagonals 4/4), so 'pick the option with the most lines' works. Option 3 is the XOR distractor.",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g08",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Rows identical; the cross grows small -> medium -> large across columns, so the cell is the large cross.",
+    "defensible_alternatives": [],
+    "shortcut": "weak: option 2 is a size larger than anything in the matrix; options 3 and 4 copy row-3 cells.",
+    "difficulty_feel": "easy",
+    "legibility": "RISK: options render about 1.22x the matrix scale (the hole is about 99 dp wide, the option card 122 dp). The matrix's large cross is about 26 dp, option 1 (the correct one) about 32 dp and option 4 (medium) about 23 dp, so by absolute on-screen size the wrong medium option is the closest match. Size is only right relative to the frame (0.26 of its width in both). This matters for a size-only item."
+  },
+  {
+    "id": "g09",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Columns identical; count rises 1 -> 2 -> 3 circles down the rows, so the cell is 3 circles.",
+    "defensible_alternatives": [],
+    "shortcut": "weak: option 1 (4 circles) is a count that never appears; options 2 and 3 copy cells already in the same column/row. The answer is the cell to its left.",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g10",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "The T's stem turns 45 deg clockwise per column in every row (SE->S->SW, NW->N->NE, S->SW->W), so the stem points W (bar on the right); columns agree (+180 then +225).",
+    "defensible_alternatives": [],
+    "shortcut": "none (the answer's orientation W never appears in the matrix; options 1 and 2 copy row-3 cells).",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g11",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Distribution of three shapes (diamond, triangle, square; always a hatched pair) per row and column; row 3 is missing the diamond.",
+    "defensible_alternatives": [],
+    "shortcut": "weak: option 3 (circles) is a shape that never appears; options 1 and 4 copy row-3 cells.",
+    "difficulty_feel": "easy",
+    "legibility": "the shapes are small (about 15 dp each, in pairs) and the dense hatching inside them is visual noise; the shapes can still be told apart, but the narrow hatched diamonds look busy."
+  },
+  {
+    "id": "g12",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Row-wise XOR of dot positions on a 9-slot layout (centre plus a ring of 8). Row 3: {N, NW, W, E} XOR {NW, E, SE, S} = {N, W, SE, S}. UNION fails rows 1-2.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: options 2 and 3 are the answer plus one dot and option 4 is the answer minus one, so the per-dot majority of the options (N 3/4; W, SE, S 4/4) gives the answer. Option 3 also has an NE dot, a position that never appears in the matrix.",
+    "difficulty_feel": "hard",
+    "legibility": "RISK: dots are about 7.6 dp with only about 1.5 dp between neighbours (e.g. the W/SW/S/SE arc in row 1 col 1). With no visible slot grid, telling centre from ring positions and matching dots across cells is hard at phone size. I solved it by measuring centroids, not by eye."
+  },
+  {
+    "id": "g13",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Distribution of three counts (1, 2, 3 crosses) per row and column; row 3 has 3 and 2, so the cell has 1.",
+    "defensible_alternatives": [],
+    "shortcut": "weak: option 4 (4 crosses) is a count that never appears; options 1 and 2 copy row-3 cells.",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g14",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "The dot moves 90 deg counter-clockwise around the circle per column (SE->NE->NW, SW->SE->NE, E->N->W), so the dot is at W; columns agree (+90 then -135).",
+    "defensible_alternatives": [],
+    "shortcut": "none",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g15",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "The missing quarter (the mouth) turns 90 deg counter-clockwise per column (W->S->E, NW->SW->SE, SW->SE->NE), so the upper-right quarter is missing; columns agree (+45 then -90).",
+    "defensible_alternatives": [],
+    "shortcut": "none (options 3 and 4 copy row-3 cells; options 1 and 2 are both orientations that never appear).",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  },
+  {
+    "id": "g16",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Row-wise UNION of dot positions on a 9-slot layout. Row 3: {W, E} UNION {N, C, E, S} = plus shape {N, W, C, E, S}. XOR fails rows 1-2.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: options 1 and 4 are the answer plus one dot (NW or NE) and option 2 is the answer minus N, so the per-dot majority of the options gives the answer.",
+    "difficulty_feel": "medium",
+    "legibility": "dense: dots are about 7.6 dp with about 1.5 dp gaps (e.g. row 1 col 3 has 5 dots inside a 44 dp circle). Dot positions are hard to compare by eye at phone size."
+  },
+  {
+    "id": "g17",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Count follows the column (1, 2, 3 across); shape is a distribution of three (circle, hexagon, diamond) per row and column, so the cell is 3 circles.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: circle is the majority shape among the options (3/4) and count 3 is shared with option 1; option 2 is the only option that matches the most common value of both attributes. Option 4 (4 circles) is a count that never appears.",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g18",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Fill is a distribution of three (hatched, black, white) per row and column, and the arrow turns 90 deg clockwise per column (N->E->S, W->N->E, NE->SE->SW), so the cell is a black arrow pointing SW.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: black is the majority fill among the options (3/4) and SW is shared with option 1; option 4 is the intersection of the two.",
+    "difficulty_feel": "medium",
+    "legibility": "the outlined arrowheads are about 26 dp; for the diagonal ones in row 3 (white NE, hatched SE) you have to search for the notch to find the tip, and the hatching adds noise."
+  },
+  {
+    "id": "g19",
+    "answer": 2,
+    "confidence": "high",
+    "rule": "Two independent distributions of three: shape (diamond, pentagon, hexagon) and fill (white, black, hatched); row 3 needs a pentagon and white.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: pentagon is the shape in 3/4 options and white is shared with option 4; option 2 is the intersection. Options 1, 3 and 4 are exact copies of matrix cells.",
+    "difficulty_feel": "easy",
+    "legibility": "ok"
+  },
+  {
+    "id": "g20",
+    "answer": 3,
+    "confidence": "high",
+    "rule": "Outer shape is a distribution of three (diamond, circle, square), so the cell is a circle; inner dots are a row-wise XOR on a 9-slot layout: {NW, NE} XOR {N, NW} = {N, NE}.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: dots {N, NE} appear in 3/4 options and the circle in 2/4; option 3 is the intersection. Solving only the outer shape already leaves options 3 and 4, which differ by one dot.",
+    "difficulty_feel": "hard",
+    "legibility": "RISK: tight dot clusters, e.g. row 2 col 3 has 4 dots (N, NE, C, E) almost touching (about 1.5 dp gaps) inside a 50 dp diamond, and the dots near the diamonds' corners crowd the outline. Exact positions are hard to read at phone size."
+  },
+  {
+    "id": "g21",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Size grows small -> medium -> large across columns, and the arrow turns 90 deg clockwise per column (E->S->W, W->N->E, SW->NW->NE), so the cell is a large arrow pointing NE.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: large is the majority size among the options (3/4) and NE is shared with option 3; option 4 is the intersection.",
+    "difficulty_feel": "medium",
+    "legibility": "RISK: (a) the column-1 arrows are about 11 dp, so the small diagonal arrow in row 3 col 1 (SW) is hard to read. (b) Options render about 1.22x the matrix scale. Option 3 (medium, NE) is about 21 dp and the matrix's large arrow about 23 dp, while option 4 (large, the correct one) is about 29 dp. Options 3 and 4 differ only in size, so absolute on-screen size points to the wrong one."
+  },
+  {
+    "id": "g22",
+    "answer": 4,
+    "confidence": "high",
+    "rule": "Count follows the row (1, 2, 3 down); fill is a distribution of three (hatched, white, black) per row and column, so the cell is 3 hatched triangles.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: count 3 is in 3/4 options and hatched is shared with option 2; option 4 is the intersection. Option 1 (crosshatch) is a fill and option 2 (4 triangles) a count that never appear.",
+    "difficulty_feel": "easy",
+    "legibility": "the hatched triangles in the matrix are about 17 dp with only 2-3 hatch lines; crosshatch (option 1) and plain hatch (option 4) can be told apart at about 21 dp, but they are close."
+  },
+  {
+    "id": "g23",
+    "answer": 3,
+    "confidence": "medium",
+    "rule": "Shapes are a distribution of three (chevron, T, arrowhead), so the cell is a chevron. Orientation: the only rule that fits all 8 cells is 'every cell turns 45 deg clockwise from its left neighbour', with each shape having its own base angle; that gives an upward (N) chevron. No column or per-shape progression fits. Caveat: the obvious surface pattern (in rows 1-2 the chevron and the T point the same way) predicts a SW chevron, which is not offered.",
+    "defensible_alternatives": [],
+    "shortcut": "weak: chevron is the shape in 3/4 options, which leaves options 1-3. Option 3 is also an exact copy of cell (1,1), while options 1 (W) and 2 (NW, drawn as an L/corner) are orientations never shown.",
+    "difficulty_feel": "hard",
+    "legibility": "the rendering itself is clear. Content issue: option 2 (a chevron turned 45 deg) looks like a different shape (a corner) next to the T bars, and the rotation rule can only be found by comparing angles across three different shapes, which most adults cannot do reliably. Worth reviewing whether the item is fair."
+  },
+  {
+    "id": "g24",
+    "answer": 1,
+    "confidence": "high",
+    "rule": "Outer shape is a distribution of three (square, circle, diamond), so the cell is a square; the dot moves 90 deg clockwise per column (W->N->E, S->W->N, NW->NE->SE), so the dot is at SE.",
+    "defensible_alternatives": [],
+    "shortcut": "yes: SE is the dot position in 3/4 options and square is shared with option 2; option 1 is the intersection.",
+    "difficulty_feel": "medium",
+    "legibility": "ok"
+  }
+]
