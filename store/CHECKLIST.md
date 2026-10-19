@@ -113,19 +113,34 @@ que cite o app pelo nome e descreva a coleta do AdMob. Link quebrado depois de
 publicado é violação de política — por isso o domínio próprio é preferível ao
 GitHub Pages, que muda de URL se você renomear o repositório.
 
-## 4. Play Console
+## 4. Play Console — tudo pronto menos as capturas e o AAB
 
-- [ ] Criar conta de desenvolvedor (US$ 25, pagamento único)
-- [ ] Verificação de identidade (pode levar alguns dias)
-- [ ] Criar o app, escolher **Grátis** (irreversível)
-- [ ] Preencher a ficha com `listing-pt-BR.md`
-- [ ] Adicionar as fichas es-419 e en-US
-- [ ] Formulário **Data safety**: marcar `Advertising ID` como coletado e
-      compartilhado com terceiros (o AdMob já está integrado)
-- [ ] Questionário de classificação indicativa → deve sair "Livre"
-- [ ] Público-alvo: 13+ (evita as exigências extras de apps infantis)
-- [ ] Declaração de anúncios: **"Contém anúncios" — SIM**. Declarar "não" com
-      AdMob integrado é causa comum de suspensão
+Conta **pessoal** "Amayacrab" (é o nome que aparece como desenvolvedor na
+loja). App criado em 19/10/2026 como "Teste de QI - Quiz de Lógica".
+
+- [x] Conta de desenvolvedor verificada
+- [x] Criar o app, **Grátis** (irreversível). Declarações aceitas: Políticas do
+      Programa, Termos da Assinatura de apps do Google Play (o Google guarda a
+      chave final; a keystore do EAS vira chave de upload) e leis de exportação
+- [x] Ficha pt-BR (padrão), es-419 e en-US: título, descrições, ícone e um
+      feature graphic por idioma, tudo de `store/`
+- [ ] **Capturas de tela nos 3 idiomas** — esperam o redesenho da UI
+      (`docs/pitches/ui-redesign.md`)
+- [x] Categoria Educação, contato `lucas.diniz.hdo@gmail.com`, site
+      `https://lucashdo.com` (o site da ficha é onde o AdMob procura o
+      `app-ads.txt`)
+- [x] Data safety, conforme a doc oficial do AdMob (versão de 16/10/2026):
+      local aproximado (IP), interações no app, diagnóstico e IDs do
+      dispositivo — coletados **e** compartilhados, obrigatórios, para
+      análise, publicidade e prevenção a fraude; criptografados em trânsito
+- [x] ID de publicidade: usa (a permissão `AD_ID` vem do play-services-ads)
+- [x] Classificação IARC: **Livre** no Brasil, ESRB E, PEGI 3, USK 0
+- [x] Público-alvo: **16–17 e 18+**, não 13+. Com 13–15 o Play avisa que, onde
+      menor de 16 conta como criança (UE), a Política para Famílias se aplica e
+      o anúncio para esses usuários vira não personalizado — paga menos.
+      16+ mantém o público jovem e o anúncio normal para todos
+- [x] Anúncios: **"Contém anúncios" — SIM**
+- [x] Acesso: nada restrito, sem login. Governo, finanças e saúde: não
 
 ## 5. Build
 
@@ -203,8 +218,12 @@ o EAS o ignoraria e ainda avisaria a cada build. Não recoloque.
 Contas pessoais criadas depois de novembro de 2023 precisam de **12 testadores
 rodando o app por 14 dias seguidos** antes de poder publicar em produção.
 
-- [ ] Criar faixa de teste fechado
-- [ ] Juntar 12 e-mails Google (amigos, família, grupos de dev)
+- [x] Faixa "Teste fechado - Alpha": Brasil, lista "Testadores Teste de QI",
+      feedback em `lucas.diniz.hdo@gmail.com`. Falta só criar a versão (AAB)
+      e enviar para revisão
+- [ ] Juntar 12 e-mails Google (amigos, família, grupos de dev) — hoje a
+      lista tem 1, o do dono. O painel do Play confirma a regra: 12 que
+      **aceitaram** participar, por 14 dias
 - [ ] Manter os 14 dias sem interrupção — se um testador sair, o contador
       pode voltar
 - [ ] Só então solicitar acesso à produção
