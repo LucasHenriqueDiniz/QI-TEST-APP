@@ -2,7 +2,6 @@ import { router } from "expo-router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedText } from "@/components/ThemedText";
 import { PatternQuestion } from "@/components/PatternQuestion";
 import { AdSlot } from "@/components/ui/AdSlot";
@@ -21,7 +20,6 @@ import { evaluateTest } from "@/utils/iqCalculator";
 export default function Test() {
   const { t } = useTranslation();
   const { colors, spacing, radius } = useAppTheme();
-  const insets = useSafeAreaInsets();
   const storage = useStorage();
   const { getQuestionData } = useQuestionData();
 
@@ -258,13 +256,11 @@ export default function Test() {
           styles.footer,
           {
             paddingHorizontal: spacing.xl,
-            paddingBottom: insets.bottom || spacing.md,
             borderTopColor: colors.border,
             backgroundColor: colors.background,
           },
         ]}
       >
-        <AdSlot placement="test-bottom" />
         <Button
           block
           size="large"
@@ -273,6 +269,11 @@ export default function Test() {
           disabled={selected === null}
         />
       </View>
+
+      {/* Abaixo do botão, nunca entre ele e as alternativas (decisão D2). Um
+          só por tela: não depende da questão, então não é recriado a cada
+          resposta. */}
+      <AdSlot placement="test-bottom" />
     </View>
   );
 }
@@ -329,6 +330,5 @@ const styles = StyleSheet.create({
   footer: {
     paddingTop: 12,
     borderTopWidth: StyleSheet.hairlineWidth,
-    gap: 10,
   },
 });

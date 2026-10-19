@@ -55,11 +55,9 @@ export function Screen({ children, scroll = false, glow = false, adPlacement, in
 
       {body}
 
-      {adPlacement && (
-        <View style={[styles.adBar, { paddingBottom: insets.bottom || spacing.sm, paddingHorizontal: spacing.xl }]}>
-          <AdSlot placement={adPlacement} />
-        </View>
-      )}
+      {/* Fora do corpo (que pode rolar), na borda inferior; o slot cuida do
+          inset do sistema e da faixa de 24 dp acima do banner. */}
+      {adPlacement && <AdSlot placement={adPlacement} />}
     </View>
   );
 }
@@ -80,8 +78,5 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 320,
-  },
-  adBar: {
-    paddingTop: 4,
   },
 });
