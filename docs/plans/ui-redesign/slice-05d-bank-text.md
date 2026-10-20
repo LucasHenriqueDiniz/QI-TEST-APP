@@ -28,8 +28,9 @@ editing the translation files, then merged in one change.
   per language when a word has no clean equivalent, keeping difficulty).
 - **Owner review.** A generated Markdown table of all 54 items in pt-BR goes to
   the owner before the merge.
-- After the merge: the bank counts per cell equal the research table, and
-  `tsc` passes.
+- After the merge: the bank counts per cell equal the research table, `tsc`
+  passes, and `npm test` is updated so `cellShortfalls` is empty for Rápido
+  and Normal and consecutive Normal rounds share 0 items on the real bank.
 
 **Done when.** A script (`scripts/bank/count.py`, written here) prints the
 per-category × difficulty counts and they match the research table for the

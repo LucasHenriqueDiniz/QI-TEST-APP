@@ -1,7 +1,7 @@
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ActivityIndicator, LayoutRectangle, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { ActivityIndicator, AppState, LayoutRectangle, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { PatternQuestion } from "@/components/PatternQuestion";
 import { AdSlot } from "@/components/ui/AdSlot";
@@ -11,25 +11,30 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { useAppTheme } from "@/context/ThemeContext";
 import { useGatedInterstitial } from "@/hooks/useGatedInterstitial";
 import { useQuestionData } from "@/hooks/useQuestionData";
-import { buildCategoryRound, buildTest, restoreTest } from "@/hooks/useQuestionSelection";
+import { buildCategoryRound, buildTest, isModeAvailable, markUsed, parseMode, restoreTest, RoundItem } from "@/hooks/useQuestionSelection";
 import { useStorage } from "@/hooks/useStorage";
-import { Answer, Question } from "@/types";
+import { Answer, TestMode } from "@/types";
 import { HistoryItem } from "@/types/storage";
+import { createActiveTimer } from "@/utils/activeTimer";
 import { evaluateTest } from "@/utils/iqCalculator";
+
+/** Modo quando a rota não pede nenhum (o seletor da Home é a fatia 08). */
+const DEFAULT_MODE: TestMode = "normal";
 
 export default function Test() {
   const { t } = useTranslation();
   const { colors, spacing, radius } = useAppTheme();
   const storage = useStorage();
   const { getQuestionData } = useQuestionData();
-  const params = useLocalSearchParams<{ only?: string }>();
+  const params = useLocalSearchParams<{ only?: string; mode?: string }>();
 
   // Rodada de conferência, só no bundle de desenvolvimento: `/test?only=patterns`
-  // abre os 30 itens visuais em ordem, sem ler nem gravar progresso. O
+  // abre os itens visuais em ordem, sem ler nem gravar progresso. O
   // `__DEV__` na frente deixa o minificador descartar o ramo na release.
   const devRound = __DEV__ && params.only === "patterns";
+  const requestedMode = parseMode(params.mode);
 
-  const [testQuestions, setTestQuestions] = useState<Question[]>([]);
+  const [items, setItems] = useState<RoundItem[]>([]);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [selected, setSelected] = useState<number | null>(null);
@@ -43,56 +48,87 @@ export default function Test() {
   const { run } = useGatedInterstitial({ completedTests });
 
   const scrollRef = useRef<ScrollView>(null);
-  const questionStartedAt = useRef(Date.now());
+  const modeRef = useRef<TestMode>(DEFAULT_MODE);
   const ageRef = useRef<string | undefined>(undefined);
+
+  // Tempo de cada resposta só conta com o app em primeiro plano: a duração
+  // gravada no histórico é tempo respondendo, não tempo com o app aberto.
+  const [timer] = useState(() => createActiveTimer());
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (state) => {
+      if (state === "active") timer.foreground();
+      else timer.background();
+    });
+    return () => subscription.remove();
+  }, [timer]);
 
   useEffect(() => {
     let active = true;
 
     const bootstrap = async () => {
-      const [progress, userData, history] = await Promise.all([
+      const [progress, userData, history, usage] = await Promise.all([
         storage.getItem("testProgress"),
         storage.getItem("userData"),
         storage.getItem("testHistory"),
+        storage.getItem("itemUsage"),
       ]);
       if (!active) return;
 
       setCompletedTests(history?.length ?? 0);
 
-      // Só retoma se conseguirmos reconstruir exatamente o mesmo teste;
-      // caso contrário as respostas salvas apontariam para outras questões.
-      const restored = progress?.questionIds ? restoreTest(progress.questionIds) : [];
-
       if (devRound) {
-        setTestQuestions(buildCategoryRound("patterns"));
-      } else if (progress && restored.length === progress.questionIds.length && restored.length > 0) {
-        setTestQuestions(restored);
-        setIndex(progress.currentIndex);
-        setAnswers(progress.savedAnswers);
+        setItems(buildCategoryRound("patterns"));
       } else {
-        setTestQuestions(buildTest());
+        // Retoma o teste salvo, a não ser que a rota peça explicitamente outro
+        // modo (o deep link de conferência). Só retoma se conseguirmos
+        // reconstruir exatamente o mesmo teste; caso contrário as respostas
+        // salvas apontariam para outras questões.
+        const resumable = progress && (requestedMode === null || progress.mode === requestedMode);
+        const restored = resumable ? restoreTest(progress) : null;
+
+        if (restored && progress) {
+          modeRef.current = restored.mode;
+          setItems(restored.items);
+          setIndex(Math.min(progress.currentIndex, restored.items.length - 1));
+          setAnswers(progress.savedAnswers);
+        } else {
+          const mode = requestedMode && isModeAvailable(requestedMode) ? requestedMode : DEFAULT_MODE;
+          if (__DEV__ && requestedMode && mode !== requestedMode) {
+            console.warn(`[test] mode "${requestedMode}" is not available on this bank; starting "${mode}"`);
+          }
+          const round = buildTest(mode, usage);
+          modeRef.current = round.mode;
+          setItems(round.items);
+          await storage.setItem("itemUsage", markUsed(usage, round));
+        }
       }
 
       ageRef.current = userData?.age;
       setLoading(false);
-      questionStartedAt.current = Date.now();
+      timer.reset();
     };
 
     bootstrap().catch((error) => {
       console.error("Error starting test:", error);
       if (active) {
-        setTestQuestions(buildTest());
+        const round = buildTest(DEFAULT_MODE, null);
+        modeRef.current = round.mode;
+        setItems(round.items);
         setLoading(false);
+        timer.reset();
       }
     });
 
     return () => {
       active = false;
     };
-  }, [storage, devRound]);
+  }, [storage, devRound, requestedMode, timer]);
 
-  const current = testQuestions[index];
-  const questionData = useMemo(() => (current ? getQuestionData(current.id) : null), [current, getQuestionData]);
+  const current = items[index];
+  const questionData = useMemo(
+    () => (current ? getQuestionData(current.question.id, current.optionOrder) : null),
+    [current, getQuestionData]
+  );
 
   const finish = async (finalAnswers: Answer[]) => {
     const outcome = evaluateTest(finalAnswers, Number(ageRef.current) || undefined);
@@ -105,6 +141,9 @@ export default function Test() {
       totalQuestions: outcome.total,
       categories: outcome.categories,
       durationSeconds: Math.round(finalAnswers.reduce((sum, answer) => sum + answer.timeSpent, 0)),
+      mode: modeRef.current,
+      band: outcome.band,
+      ...(outcome.indices && { indices: outcome.indices }),
     };
 
     // A rodada de conferência não entra no histórico nem mexe no progresso
@@ -122,12 +161,14 @@ export default function Test() {
   };
 
   const handleConfirm = async () => {
-    if (selected === null || !current) return;
+    if (selected === null || !current || !questionData) return;
 
+    // `questionData.correctAnswer` já está na ordem exibida, então a comparação
+    // é posição com posição.
     const answer: Answer = {
-      questionId: current.id,
-      isCorrect: selected === current.correctAnswer,
-      timeSpent: (Date.now() - questionStartedAt.current) / 1000,
+      questionId: current.question.id,
+      isCorrect: selected === questionData.correctAnswer,
+      timeSpent: timer.take(),
     };
 
     const nextAnswers = [...answers, answer];
@@ -136,13 +177,12 @@ export default function Test() {
     setAnswers(nextAnswers);
     setSelected(null);
 
-    if (nextIndex >= testQuestions.length) {
+    if (nextIndex >= items.length) {
       await finish(nextAnswers);
       return;
     }
 
     setIndex(nextIndex);
-    questionStartedAt.current = Date.now();
     scrollRef.current?.scrollTo({ y: 0, animated: false });
 
     if (devRound) return;
@@ -150,9 +190,11 @@ export default function Test() {
     // Grava os valores já calculados — ler do state aqui salvaria a questão
     // anterior, porque `setState` só reflete no próximo render.
     await storage.setItem("testProgress", {
+      mode: modeRef.current,
       currentIndex: nextIndex,
       savedAnswers: nextAnswers,
-      questionIds: testQuestions.map((q) => q.id),
+      questionIds: items.map((item) => item.question.id),
+      optionOrders: items.map((item) => item.optionOrder),
     });
   };
 
@@ -180,24 +222,24 @@ export default function Test() {
     );
   }
 
-  const isImage = current.type === "image";
+  const isImage = current.question.type === "image";
 
   return (
     <View style={[styles.flex, { backgroundColor: colors.background }]}>
       <View style={[styles.header, { paddingHorizontal: spacing.xl }]}>
         <View style={styles.headerRow}>
           <Chip
-            label={t(`categories.${current.category}`)}
+            label={t(`categories.${current.question.category}`)}
             tone="primary"
           />
           <ThemedText
             variant="captionStrong"
             tone="muted"
           >
-            {t("test.counter", { current: index + 1, total: testQuestions.length })}
+            {t("test.counter", { current: index + 1, total: items.length })}
           </ThemedText>
         </View>
-        <ProgressBar value={index / testQuestions.length} />
+        <ProgressBar value={index / items.length} />
       </View>
 
       {/* A questão visual se dimensiona pelo viewport medido aqui e dispensa a
@@ -211,7 +253,7 @@ export default function Test() {
       >
         {isImage ? (
           <PatternQuestion
-            questionKey={current.questionKey}
+            questionKey={current.question.questionKey}
             selected={selected}
             onSelect={setSelected}
             width={viewport ? viewport.width - spacing.xl * 2 : undefined}
@@ -286,7 +328,7 @@ export default function Test() {
         <Button
           block
           size="large"
-          title={index + 1 === testQuestions.length ? t("test.finish") : t("test.confirm")}
+          title={index + 1 === items.length ? t("test.finish") : t("test.confirm")}
           onPress={handleConfirm}
           disabled={selected === null}
         />

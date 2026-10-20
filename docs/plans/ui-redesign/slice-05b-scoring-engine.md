@@ -1,5 +1,5 @@
 ---
-status: todo
+status: done
 ---
 
 # Slice 05b — modes and scoring engine
@@ -39,7 +39,7 @@ band, selection, defects); decisions D6, D8.
 
 **Tests.**
 - Reference values from the research: all correct → 130 / 137 / 145 (Rápido /
-  Normal / Detalhado); all wrong → 65 / 58 / 51 → 55 after the floor. Each
+  Normal / Detalhado); all wrong → 65 / 58 / 51, the last raised to 55 by the floor. Each
   must fail if the estimator constants are changed (revert one and watch it
   go red).
 - Blueprint totals 20 / 40 / 90, and each cell ≤ the bank available for
@@ -59,3 +59,20 @@ band, selection, defects); decisions D6, D8.
 
 **If stuck.** If EAP over a θ grid is slow on the A15, precompute the grid
 once per round (41 points over [−4, 4] is enough for an integer IQ).
+
+**Result (2026-10-20).** Implemented by a Fable agent (cut once by the
+account's usage limit, resumed with its context); re-checked by the
+orchestrator. `npm test` (Node 24 `--test` with native type stripping, no
+Jest): 61/61. Red runs: slope 1.2 → 1.0 fails 13 (the golden values and the
+population SD); shuffle off puts the key on A in 59.9% of text items; LRU off
+fails the 4 recency tests. On the A15: `mode=rapido` 20/20 (orchestrator and
+agent), `mode=normal` 40/40, default start 40/40; Results shows the band.
+
+Corrections to the slice text, from the research itself: all-wrong is
+65 / 58 / 51 → 55 (only Detalhado hits the floor); EAP estimates of the old
+30-item form have SD 13.3, not 15 (shrinkage toward the prior, as the
+research's own simulation shows). Today's bank cannot fill the vocabulary
+cells (0 easy, 2 medium): Rápido is short 1 item and Normal 3, filled from the
+same category and logged in `__DEV__`; two consecutive Normal rounds share
+9/40 items until slice 05d lands (0/40 on a bank with 2× per cell, tested).
+The tests pin today's shortfalls and must change to none when 05d merges.

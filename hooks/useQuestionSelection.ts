@@ -1,73 +1,60 @@
 import { questions } from "@/data/questions";
-import { Difficulty, Question, QuestionCategory } from "@/types";
-
-/** Composição de um teste: quantas questões de cada categoria e dificuldade. */
-const BLUEPRINT: Record<QuestionCategory, Partial<Record<Difficulty, number>>> = {
-  patterns: { medium: 6, hard: 6 },
-  similarities: { easy: 1, medium: 2, hard: 2 },
-  matrix: { easy: 1, medium: 2, hard: 2 },
-  vocabulary: { easy: 1, medium: 1, hard: 2 },
-  comprehension: { easy: 1, medium: 2, hard: 1 },
-};
-
-export const TEST_LENGTH = Object.values(BLUEPRINT).reduce(
-  (total, levels) => total + Object.values(levels).reduce((sum, count) => sum + (count ?? 0), 0),
-  0
-);
-
-function shuffle<T>(items: T[]): T[] {
-  const copy = [...items];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
+import { ItemUsage, Question, QuestionCategory, TestMode } from "@/types";
+import { TestProgress } from "@/types/storage";
+import { isModeAvailable as bankHasMode, parseMode, roundLength } from "@/utils/scoring/blueprints";
+import { buildRound, identityOrder, markUsed, restoreRound, Round, RoundItem } from "@/utils/scoring/selection";
 
 /**
- * Sorteia um teste novo seguindo o BLUEPRINT.
- *
- * Se uma categoria não tiver questões suficientes na dificuldade pedida,
- * completa com as demais dificuldades daquela categoria em vez de devolver
- * um teste mais curto.
+ * Seleção de questões sobre o banco do app. A lógica (blueprints, LRU,
+ * embaralhamento das alternativas) é pura e fica em `utils/scoring/`; aqui
+ * ela só recebe o banco real e o `Math.random`.
  */
-export function buildTest(): Question[] {
-  const selected: Question[] = [];
+export { markUsed, parseMode, roundLength };
+export type { Round, RoundItem };
 
-  (Object.keys(BLUEPRINT) as QuestionCategory[]).forEach((category) => {
-    const pool = questions.filter((q) => q.category === category);
-    const taken = new Set<string>();
+/**
+ * Sorteia uma rodada nova do modo. `usage` é o registro de recência salvo
+ * (`itemUsage`); sem ele, o sorteio é aleatório dentro de cada célula.
+ *
+ * Uma célula com menos itens do que o blueprint pede é completada com outras
+ * dificuldades da mesma categoria — e isso aparece no log de desenvolvimento,
+ * para não passar despercebido.
+ */
+export function buildTest(mode: TestMode, usage: ItemUsage | null): Round {
+  const round = buildRound(questions, mode, usage, Math.random);
 
-    Object.entries(BLUEPRINT[category]).forEach(([difficulty, count]) => {
-      const matching = shuffle(pool.filter((q) => q.difficulty === difficulty && !taken.has(q.id))).slice(0, count ?? 0);
-      matching.forEach((q) => taken.add(q.id));
-      selected.push(...matching);
+  // `log`, não `warn`: um aviso viraria um toast do LogBox a cada rodada do
+  // build de desenvolvimento enquanto o banco não cresce (fatia 05d).
+  if (__DEV__ && round.shortfalls.length > 0) {
+    const cells = round.shortfalls.map((s) => `${s.category}.${s.difficulty} ${s.available}/${s.wanted}`).join(", ");
+    console.log(`[selection] ${mode}: bank short in ${cells}; filled from the same category`);
+  }
 
-      const missing = (count ?? 0) - matching.length;
-      if (missing > 0) {
-        const fallback = shuffle(pool.filter((q) => !taken.has(q.id))).slice(0, missing);
-        fallback.forEach((q) => taken.add(q.id));
-        selected.push(...fallback);
-      }
-    });
-  });
+  return round;
+}
 
-  return shuffle(selected);
+/** Reconstrói a rodada de um progresso salvo; `null` se não for possível retomar exatamente o mesmo teste. */
+export function restoreTest(progress: TestProgress): Round | null {
+  return restoreRound(questions, progress);
+}
+
+/** Se o banco comporta o modo (Detalhado só com duas formas completas por célula). */
+export function isModeAvailable(mode: TestMode): boolean {
+  return bankHasMode(mode, questions);
 }
 
 /**
- * Todas as questões de uma categoria, na ordem da `questionKey` (p1, p2, …).
+ * Todas as questões de uma categoria, na ordem da `questionKey` (p1, p2, …),
+ * com as alternativas na ordem original.
  *
  * Não é um teste: serve para conferir cada item de uma área na tela — a
  * rodada `__DEV__` do `/test?only=patterns`. Ordem fixa para que "7 de 30"
  * seja sempre o mesmo item.
  */
-export function buildCategoryRound(category: QuestionCategory): Question[] {
+export function buildCategoryRound(category: QuestionCategory): RoundItem[] {
   const number = (q: Question) => Number(q.questionKey.replace(/\D/g, "")) || 0;
-  return questions.filter((q) => q.category === category).sort((a, b) => number(a) - number(b));
-}
-
-/** Reconstrói um teste a partir dos ids salvos, preservando a ordem original. */
-export function restoreTest(questionIds: string[]): Question[] {
-  return questionIds.map((id) => questions.find((q) => q.id === id)).filter((q): q is Question => !!q);
+  return questions
+    .filter((q) => q.category === category)
+    .sort((a, b) => number(a) - number(b))
+    .map((question) => ({ question, optionOrder: identityOrder() }));
 }

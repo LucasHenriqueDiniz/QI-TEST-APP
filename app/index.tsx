@@ -10,7 +10,7 @@ import { Card } from "@/components/ui/Card";
 import { Screen } from "@/components/ui/Screen";
 import { CATEGORY_ICONS, CATEGORY_ORDER } from "@/constants/categories";
 import { useAppTheme } from "@/context/ThemeContext";
-import { TEST_LENGTH } from "@/hooks/useQuestionSelection";
+import { roundLength } from "@/hooks/useQuestionSelection";
 import { useStorage } from "@/hooks/useStorage";
 import { HistoryItem } from "@/types/storage";
 
@@ -45,14 +45,18 @@ export default function Home() {
   const latest = history[0];
   const best = history.reduce((max, item) => Math.max(max, item.iqScore), 0);
 
+  // Começa sempre no Normal até o seletor de modos da Home (fatia 08). A
+  // retomada não passa modo: o teste segue o que está salvo.
+  const startNormal = () => router.push({ pathname: "/test", params: { mode: "normal" } });
+
   const startFresh = async () => {
     await storage.removeItem("testProgress");
-    router.push("/test");
+    startNormal();
   };
 
   const handleStart = () => {
     if (!hasProgress) {
-      router.push("/test");
+      startNormal();
       return;
     }
 
@@ -100,7 +104,7 @@ export default function Home() {
           tone="muted"
           style={styles.subtitle}
         >
-          {t("home.subtitle", { count: TEST_LENGTH })}
+          {t("home.subtitle", { count: roundLength("normal") })}
         </ThemedText>
       </View>
 

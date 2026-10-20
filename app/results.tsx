@@ -16,6 +16,7 @@ import { STORE_URL } from "@/constants/app";
 import { CATEGORY_ICONS } from "@/constants/categories";
 import { useAppTheme } from "@/context/ThemeContext";
 import { useStorage } from "@/hooks/useStorage";
+import { ScoreBand } from "@/types";
 import { HistoryItem } from "@/types/storage";
 import * as haptics from "@/utils/haptics";
 import { getIQClassification } from "@/utils/iqCalculator";
@@ -183,6 +184,7 @@ export default function Results() {
 
       <ResultHero
         score={entry.iqScore}
+        band={entry.band ? bandHalfWidth(entry.iqScore, entry.band) : undefined}
         tierLabel={t(getIQClassification(entry.iqScore))}
         headline={headline}
         strip={strip}
@@ -243,7 +245,7 @@ export default function Results() {
             variant="outline"
             icon="refresh-outline"
             title={t("results.retake")}
-            onPress={() => router.replace("/test")}
+            onPress={() => router.replace({ pathname: "/test", params: { mode: entry.mode ?? "normal" } })}
           />
         </View>
 
@@ -272,6 +274,15 @@ export default function Results() {
       </View>
     </Screen>
   );
+}
+
+/**
+ * Meia largura da faixa para o "± N" do herói. A faixa é simétrica em torno
+ * do QI antes do limite 55–145; depois dele um dos lados pode ficar mais
+ * curto, e o lado inteiro é o que ainda mede a incerteza.
+ */
+function bandHalfWidth(score: number, band: ScoreBand): number {
+  return Math.max(score - band.lower, band.upper - score);
 }
 
 /** "11 min" a partir de um minuto; abaixo disso, segundos. */
