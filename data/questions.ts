@@ -342,7 +342,7 @@ export const questions: Question[] = [
     category: "matrix",
     questionKey: "q3",
     difficulty: "medium",
-    correctAnswer: 2,
+    correctAnswer: 1,
     weight: 2,
   },
   {
@@ -358,7 +358,7 @@ export const questions: Question[] = [
     category: "matrix",
     questionKey: "q5",
     difficulty: "hard",
-    correctAnswer: 3,
+    correctAnswer: 2,
     weight: 3,
   },
   {
@@ -414,7 +414,7 @@ export const questions: Question[] = [
     category: "matrix",
     questionKey: "q12",
     difficulty: "hard",
-    correctAnswer: 3,
+    correctAnswer: 2,
     weight: 3,
   },
   {
@@ -446,7 +446,7 @@ export const questions: Question[] = [
     category: "matrix",
     questionKey: "q16",
     difficulty: "medium",
-    correctAnswer: 1,
+    correctAnswer: 0,
     weight: 2,
   },
   {

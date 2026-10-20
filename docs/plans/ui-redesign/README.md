@@ -22,6 +22,7 @@ slice and a decision disagree, the decision wins.
 | 05c | optional 90 s speed task (D7) | — |
 | 05d | bank: +54 text items in pt/en/es, blind-solved (D8) | — |
 | 05e | bank: +24 pattern items from a generator (D8) | — |
+| 05f | live bank audit: wrong keys, language parity, test-wise cues in the 80 text items | — |
 | 06 | Test — text question, segmented progress, pause sheet | — |
 | 07 | finish moment `/finishing` + interstitial | — |
 | 08 | Home, three variants | — |

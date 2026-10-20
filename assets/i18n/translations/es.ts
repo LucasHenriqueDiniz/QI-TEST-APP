@@ -156,16 +156,16 @@ export const es = {
       items: {
         similarities: {
           q1: {
-            question: "¿Cómo son un perro y un león iguales?",
+            question: "¿En qué se parecen un perro y un león?",
             options: ["Ambos son animales", "Ambos son grandes", "Ambos son domésticos", "Ambos son peligrosos"],
           },
           q2: {
             question: "¿Qué tienen en común el agua y el hielo?",
-            options: ["Son del mismo compuesto", "Ambos son fríos", "Ambos son líquidos", "Ambos son transparentes"],
+            options: ["Son del mismo compuesto", "Son fríos", "Son líquidos", "Son gaseosos"],
           },
           q3: {
             question: "¿Qué tienen en común un libro y un periódico?",
-            options: ["Ambos contienen información", "Ambos son de papel", "Ambos tienen cubiertas", "Ambos son coloridos"],
+            options: ["Ambos contienen información", "Ambos salen todos los días", "Ambos se escriben a mano", "Ambos son coloridos"],
           },
           q4: {
             question: "¿Qué tienen en común una bicicleta y un coche?",
@@ -173,31 +173,31 @@ export const es = {
           },
           q5: {
             question: "¿Qué tienen en común el sol y una lámpara?",
-            options: ["Ambos emiten luz", "Ambos son redondos", "Ambos son calientes", "Ambos son amarillos"],
+            options: ["Ambos emiten luz", "Ambos son redondos", "Ambos funcionan con electricidad", "Ambos son amarillos"],
           },
           q6: {
-            question: "¿Qué tienen en común la memoria y un ordenador?",
-            options: ["Ambos almacenan información", "Ambos usan electricidad", "Ambos son máquinas", "Ambos necesitan energía"],
+            question: "¿Qué tienen en común la memoria humana y un ordenador?",
+            options: ["Ambos almacenan información", "Ambos están hechos de silicio", "Ambos son máquinas", "Ambos fueron inventados por el ser humano"],
           },
           q7: {
             question: "¿Qué tienen en común la ansiedad y el miedo?",
             options: ["Ambos son emociones", "Ambos son malos", "Ambos son dañinos", "Ambos son enfermedades"],
           },
           q8: {
-            question: "¿Qué tienen en común la música y el arte?",
-            options: ["Son formas de expresión artística", "Usan instrumentos", "Son ruidosos", "Son coloridos"],
+            question: "¿Qué tienen en común la música y la pintura?",
+            options: ["Son formas de expresión artística", "Usan pintura", "Son ruidosas", "Son coloridas"],
           },
           q9: {
             question: "¿Qué tienen en común la sabiduría y la experiencia?",
-            options: ["Ambos vienen con el tiempo y el aprendizaje", "Ambos son innatos", "Ambos son teóricos", "Ambos son permanentes"],
+            options: ["Ambas vienen con el tiempo y el aprendizaje", "Ambas son innatas", "Ambas son teóricas", "Ambas son permanentes"],
           },
           q10: {
             question: "¿Qué tienen en común la libertad y la responsabilidad?",
-            options: ["Son interdependientes", "Son opuestos", "Son abstractos", "Son simples"],
+            options: ["Son interdependientes", "Son opuestas", "Son sinónimas", "Son simples"],
           },
           q11: {
             question: "¿Qué tienen en común la democracia y la justicia?",
-            options: ["Ambos buscan el bien común", "Ambos son sistemas", "Ambos son antiguos", "Ambos son complejos"],
+            options: ["Ambas buscan el bien común", "Ambas son objetos físicos", "Ambas son inventos recientes", "Ambas son leyes escritas"],
           },
           q12: {
             question: "¿Qué tienen en común la intuición y el razonamiento?",
@@ -224,16 +224,16 @@ export const es = {
             options: ["Ambos emiten luz", "Ambos están en el cielo", "Ambos son naturales", "Ambos son fríos"],
           },
           q18: {
-            question: "¿Qué tienen en común un árbol y una planta?",
-            options: ["Ambos son plantas", "Ambos crecen flores", "Ambos son verdes", "Ambos producen frutos"],
+            question: "¿Qué tienen en común la luna y el sol?",
+            options: ["Ambos son cuerpos celestes", "Ambos son planetas", "Ambos emiten luz propia", "Ambos aparecen solo de día"],
           },
           q19: {
-            question: "¿Qué tienen en común una silla y un sofá?",
-            options: ["Ambos son muebles", "Ambos son suaves", "Ambos se usan para sentarse", "Ambos se usan para dormir"],
+            question: "¿Qué tienen en común una guitarra y un piano?",
+            options: ["Ambos son instrumentos musicales", "Ambos son de viento", "Ambos tienen teclas", "Ambos se tocan con arco"],
           },
           q20: {
-            question: "¿Qué tienen en común un portátil y un teléfono móvil?",
-            options: ["Ambos son dispositivos electrónicos", "Ambos se usan para jugar", "Ambos tienen pantallas", "Ambos tienen teclados"],
+            question: "¿Qué tienen en común una escuela y una biblioteca?",
+            options: ["Ambas son lugares de aprendizaje", "Ambas venden libros", "Ambas tienen aulas", "Ambas cobran entrada"],
           },
         },
         vocabulary: {
@@ -246,16 +246,16 @@ export const es = {
             options: ["Actúa sin pensar", "Es teórico", "Es práctico y objetivo", "Es soñador"],
           },
           q3: {
-            question: '¿Qué significa "empatía"?',
+            question: '¿Qué significa "empático"?',
             options: ["Ser egoísta", "No cuidar de los demás", "Entender las emociones de los demás", "Ser desagradable"],
           },
           q4: {
-            question: '¿Qué significa "perceptivo"?',
-            options: ["Ser lento", "Ser distraído", "Ser distraído", "Notar cosas rápidamente"],
+            question: '¿Qué significa "perspicaz"?',
+            options: ["Ser lento", "Ser distraído", "Ser desatento", "Notar cosas rápidamente"],
           },
           q5: {
             question: '¿Qué significa "altruista"?',
-            options: ["Ser egoísta", "Ser orgulloso", "Ser preocupado por el bienestar de los demás", "Ser individualista"],
+            options: ["Ser egoísta", "Ser orgulloso", "Ser alguien que se preocupa por los demás", "Ser individualista"],
           },
           q6: {
             question: '¿Qué significa "paradojal"?',
@@ -266,11 +266,11 @@ export const es = {
             options: ["Que es eterno", "Que es temporal", "Que es importante", "Que es valioso"],
           },
           q8: {
-            question: '¿Qué significa "dilema"?',
+            question: '¿Qué significa "dicotomía"?',
             options: ["Unión de ideas", "División en dos partes", "Mezcla de conceptos", "Repetición de palabras"],
           },
           q9: {
-            question: '¿Qué significa "ubícuo"?',
+            question: '¿Qué significa "ubicuo"?',
             options: ["Que es raro", "Que es único", "Que está presente en todas partes", "Que es escaso"],
           },
           q10: {
@@ -291,7 +291,7 @@ export const es = {
           },
           q14: {
             question: "¿Qué significa 'meticuloso'?",
-            options: ["Cuidado", "Atento a los detalles", "Rápido", "Desorganizado"],
+            options: ["Descuidado", "Atento a los detalles", "Rápido", "Sin planificación"],
           },
           q15: {
             question: "¿Qué significa 'efímero'?",
@@ -299,23 +299,23 @@ export const es = {
           },
           q16: {
             question: "¿Qué significa 'prolífico'?",
-            options: ["Produce mucho", "Lento", "Productivo", "Raro"],
+            options: ["Produce mucho", "Lento", "Improductivo", "Raro"],
           },
           q17: {
             question: "¿Qué significa 'antagonista'?",
             options: ["Opuesto", "Igual", "Amigable", "Neutral"],
           },
           q18: {
-            question: '¿Qué significa "cogente"?',
-            options: ["Débil", "Convencional", "Inseguro", "Falso"],
+            question: '¿Qué significa "resignado"?',
+            options: ["Aceptar sin luchar", "Tener energía", "Ser arrogante", "Ser innovador"],
           },
           q19: {
-            question: '¿Qué significa "claro"?',
-            options: ["Claro", "Oscuro", "Complicado", "Incomprensible"],
+            question: '¿Qué significa "indócil"?',
+            options: ["Difícil de domesticar", "Fácil de entrenar", "De comportamiento amistoso", "Rápido para aprender"],
           },
           q20: {
-            question: '¿Qué significa "nefario"?',
-            options: ["Malo", "Bueno", "Noble", "Valiente"],
+            question: '¿Qué significa "esotérico"?',
+            options: ["Comprendido por pocos", "De fácil comprensión", "Común para todos", "De gran importancia"],
           },
         },
         matrix: {
@@ -348,11 +348,11 @@ export const es = {
             options: ["45", "50", "55", "60"],
           },
           q8: {
-            question: "¿Qué número completa la secuencia: A = 1, B = 3, C = 6, entonces D = __?",
+            question: "Si el 1.º término es 1, el 2.º es 3 y el 3.º es 6, ¿cuál es el 4.º?",
             options: ["8", "9", "10", "12"],
           },
           q9: {
-            question: "¿Qué número completa la secuencia: 3² = 9, 4² = 16, entonces 5² = __?",
+            question: "Si 3² = 9 y 4² = 16, ¿cuánto es 5²?",
             options: ["20", "21", "23", "25"],
           },
           q10: {
@@ -360,7 +360,7 @@ export const es = {
             options: ["76", "84", "89", "91"],
           },
           q11: {
-            question: "¿Qué número completa la secuencia: 2³ = 8, 3³ = 27, entonces 4³ = __?",
+            question: "Si 2³ = 8 y 3³ = 27, ¿cuánto es 4³?",
             options: ["54", "64", "72", "81"],
           },
           q12: {
@@ -373,113 +373,113 @@ export const es = {
           },
           q14: {
             question: "¿Qué número completa el patrón: 2, 3, 5, 8, __?",
-            options: ["10", "12", "13", "15"],
+            options: ["10", "11", "13", "15"],
           },
           q15: {
-            question: "¿Qué número completa el patrón: 1, 2, 4, 8, __?",
-            options: ["12", "14", "16", "18"],
+            question: "Completa la secuencia: 3, 6, 9, 12, __",
+            options: ["15", "18", "21", "24"],
           },
           q16: {
-            question: "¿Qué número completa el patrón: 1, 3, 6, 10, __?",
-            options: ["13", "15", "16", "18"],
+            question: "¿Qué número completa el patrón: 1, 1, 2, 3, 5, __?",
+            options: ["8", "7", "9", "6"],
           },
           q17: {
-            question: "¿Qué número completa el patrón: 1, 4, 9, 16, __?",
-            options: ["20", "23", "25", "21"],
+            question: "Completa la secuencia: 2, 4, 8, 16, __",
+            options: ["32", "20", "24", "40"],
           },
           q18: {
-            question: "¿Qué número completa la secuencia: 1, 5, 9, 13, __?",
-            options: ["17", "18", "19", "21"],
+            question: "Completa la secuencia: 1, 2, 3, 4, __",
+            options: ["5", "6", "7", "8"],
           },
           q19: {
-            question: "¿Qué número completa la secuencia: 6, 12, 18, 24, __?",
-            options: ["30", "32", "36", "40"],
+            question: "Completa la secuencia: 9, 12, 15, 18, __",
+            options: ["21", "20", "19", "22"],
           },
           q20: {
-            question: "¿Qué número completa el patrón: 2, 5, 10, 17, __?",
-            options: ["26", "28", "30", "35"],
+            question: "¿Qué número completa la secuencia: 2, 5, 8, 11, __?",
+            options: ["14", "12", "13", "15"],
           },
         },
         comprehension: {
           q1: {
             question: "¿Por qué es importante lavarse las manos antes de comer?",
-            options: ["Para prevenir enfermedades", "Para mantener las manos limpias", "Porque es una regla", "Para no ensuciar la comida"],
+            options: ["Para no pasar gérmenes de las manos a la boca", "Para mostrar respeto a quien preparó la comida", "Para quitar el olor a condimento de las manos", "Para mantener la piel de las manos suave y bonita"],
           },
           q2: {
             question: "¿Por qué debemos ahorrar agua?",
-            options: ["Para pagar menos", "Para preservar un recurso esencial", "Porque todos lo hacen", "Para agradar a otros"],
+            options: ["Porque el agua estancada en las tuberías se echa a perder", "Porque el agua apta para el consumo es limitada", "Para que el agua salga del grifo con más presión", "Porque el agua que usamos nunca vuelve a la naturaleza"],
           },
           q3: {
             question: "¿Por qué es importante estudiar?",
-            options: ["Para adquirir conocimientos y desarrollarse", "Para agradar a los padres", "Para pasar el tiempo", "Porque es obligatorio"],
+            options: ["Para aprender y ampliar nuestras capacidades", "Para que las escuelas no se queden sin alumnos", "Para mantener la mente ocupada y lejos de problemas", "Para demostrar a los demás que somos capaces"],
           },
           q4: {
             question: "¿Por qué debemos respetar las leyes?",
-            options: ["Para mantener el orden y la seguridad en la sociedad", "Para evitar la sanción", "Porque todos lo hacen", "Para agradar a las autoridades"],
+            options: ["Para que haya orden y seguridad en la vida en sociedad", "Porque las leyes siempre reflejan lo que es justo", "Porque quienes escribieron las leyes saben más que nosotros", "Para preservar la tradición jurídica de nuestro país"],
           },
           q5: {
             question: "¿Por qué es importante hacer ejercicio?",
-            options: ["Para mantener la salud física y mental", "Para lucir bien", "Porque el doctor lo dice", "Solo para perder peso"],
+            options: ["Para mantener el cuerpo y la mente sanos", "Para poder comer de todo sin engordar", "Para cansar el cuerpo y dormir más temprano", "Para tener la apariencia que la moda valora"],
           },
           q6: {
             question: "¿Por qué debemos preservar el medio ambiente?",
-            options: ["Porque es la ley", "Para asegurar la supervivencia de las futuras generaciones", "Para ahorrar dinero", "Porque todos lo hacen"],
+            options: ["Para que las ciudades dejen de crecer y extenderse", "Porque dependemos de él para vivir, hoy y en el futuro", "Para que el país tenga buena imagen en el exterior", "Para que el clima del planeta vuelva a ser como era antes"],
           },
           q7: {
             question: "¿Por qué es importante dormir bien?",
-            options: ["Para restaurar el cuerpo y la mente", "Para no sentir sueño durante el día", "Porque es costumbre", "Para no despertar tarde"],
+            options: ["Para que el cuerpo y la mente se recuperen del cansancio", "Para gastar menos electricidad durante la noche", "Para soñar y entender lo que el inconsciente quiere decir", "Para no molestar a quienes viven con nosotros"],
           },
           q8: {
             question: "¿Por qué debemos respetar las diferencias entre las personas?",
-            options: ["Para promover una sociedad más justa y armoniosa", "Para evitar conflictos", "Porque es la ley", "Para ser bien visto"],
+            options: ["Porque nadie vale menos por ser distinto a nosotros", "Porque quien es distinto a nosotros suele tener razón", "Porque las diferencias desaparecen cuando se respetan", "Para que no nos acusen de tener prejuicios"],
           },
           q9: {
             question: "¿Por qué es importante desarrollar el pensamiento crítico?",
-            options: ["Para analizar información y tomar decisiones informadas", "Para criticar a los demás", "Para parecer inteligente", "Para ganar argumentos"],
+            options: ["Para evaluar una información antes de aceptarla", "Para tener siempre una opinión distinta a la mayoría", "Para memorizar más contenido en menos tiempo", "Para defender nuestras opiniones sin tener que cambiarlas"],
           },
           q10: {
             question: "¿Por qué es importante la diversidad cultural?",
-            options: ["Solo para el turismo", "Para enriquecer la experiencia humana y promover la innovación", "Para tener diferentes comidas", "Para aprender idiomas"],
+            options: ["Porque garantiza que las tradiciones nunca cambien", "Porque culturas distintas dan ideas y soluciones nuevas", "Porque facilita la venta de productos en otros países", "Porque pueblos de distintas culturas nunca chocan entre sí"],
           },
           q11: {
             question: "¿Por qué es importante desarrollar la empatía?",
-            options: ["Para comprender y conectarse mejor con los demás", "Para obtener lo que queremos", "Para parecer una buena persona", "Para evitar problemas"],
+            options: ["Para entender lo que siente el otro y tratarlo mejor", "Para convencer a la gente con más facilidad", "Para cargar con los problemas ajenos como si fueran nuestros", "Para que nos recuerden como alguien amable y agradable"],
           },
           q12: {
             question: "¿Por qué es fundamental la educación para la sociedad?",
-            options: ["Solo para conseguir un trabajo", "Para el desarrollo humano y social", "Para ganar dinero", "Para ganar estatus"],
+            options: ["Porque ocupa a los niños mientras los padres trabajan", "Porque forma personas que piensan y mejoran la sociedad", "Porque sin títulos las empresas no sabrían a quién contratar", "Porque así el país sube en los rankings internacionales"],
           },
           q13: {
             question: "¿Por qué debemos reciclar residuos?",
-            options: ["Para reducir la contaminación", "Para ahorrar dinero", "Porque es fácil", "Para evitar multas"],
+            options: ["Para que menos basura acabe en vertederos y ríos", "Para que la basura de la casa deje de oler mal", "Para que el municipio cobre una tasa de basura menor", "Para dar ejemplo de conciencia ambiental a los vecinos"],
           },
           q14: {
-            question: "¿Por qué es importante dormir bien?",
-            options: ["Para restaurar la energía y la salud", "Para evitar el aburrimiento", "Porque es costumbre", "Para pasar el tiempo"],
+            question: "¿Por qué es importante el sueño?",
+            options: ["Porque el cuerpo se repara y la memoria se fija al dormir", "Porque la noche es muy oscura para hacer cualquier cosa", "Para que los días no se nos hagan tan largos", "Porque pasamos cerca de un tercio de nuestra vida durmiendo"],
           },
           q15: {
             question: "¿Por qué es importante ahorrar agua?",
-            options: ["Para preservar los recursos naturales", "Porque es caro", "Para evitar multas", "Porque es difícil de obtener"],
+            options: ["Para que no falte agua en las épocas de sequía", "Porque el agua del grifo cuesta más cada año", "Para que el nivel del mar no siga subiendo", "Para que las lluvias vuelvan a caer con regularidad"],
           },
           q16: {
-            question: "¿Por qué es importante hacer ejercicio?",
-            options: ["Para mantener la salud", "Para competir", "Para parecer más alto", "Porque es obligatorio"],
+            question: "¿Por qué debemos hacer ejercicio físico?",
+            options: ["Para fortalecer el corazón, los músculos y los huesos", "Para tener un motivo para salir de casa el fin de semana", "Para que el médico no nos regañe en la consulta", "Para ganar medallas y trofeos en competencias"],
           },
           q17: {
             question: "¿Por qué son importantes los insectos para el medio ambiente?",
-            options: ["Porque polinizan las plantas", "Porque controlan el clima", "Porque son inofensivos", "Porque son coloridos"],
+            options: ["Porque polinizan y son alimento de muchos animales", "Porque regulan la temperatura y el régimen de lluvias", "Porque alejan a los animales grandes de los cultivos", "Porque sirven de modelo para la ingeniería y la robótica"],
           },
           q18: {
             question: "¿Por qué necesitan las plantas la luz solar?",
-            options: ["Para la fotosíntesis", "Para crecer", "Para la reproducción", "Para la absorción de agua"],
+            options: ["Porque usan la luz para fabricar su propio alimento", "Para calentarse y no congelarse en las noches frías", "Para absorber por las hojas el agua que necesitan", "Para que las flores tengan colores más vivos"],
           },
           q19: {
-            question: "¿Por qué es importante hacer ejercicio?",
-            options: ["Para mantener la salud", "Para perder tiempo", "Para evitar trabajar", "Para socializar"],
+            question: "¿Por qué debemos separar la basura reciclable?",
+            options: ["Para que esos materiales puedan reaprovecharse", "Para que el camión de la basura pase con menos frecuencia", "Para que las bolsas de basura pesen menos", "Para que el municipio sepa cuánto consume cada casa"],
           },
           q20: {
-            question: "¿Por qué es importante leer libros?",
-            options: ["Para adquirir conocimientos", "Para escapar de la realidad", "Para pasar el tiempo", "Para evitar el aburrimiento"],
+            question: "¿Por qué es importante respetar las diferencias entre las personas?",
+            options: ["Para que personas distintas puedan convivir en paz", "Para que todos terminen pensando de la misma forma", "Para parecer una persona moderna y bien informada", "Porque discrepar de alguien es siempre de mala educación"],
           },
         },
       },

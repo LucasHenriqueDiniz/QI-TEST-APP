@@ -161,11 +161,11 @@ export const pt = {
           },
           q2: {
             question: "O que têm em comum água e gelo?",
-            options: ["São feitos da mesma substância", "São frios", "São líquidos", "São transparentes"],
+            options: ["São feitos da mesma substância", "São frios", "São líquidos", "São gasosos"],
           },
           q3: {
             question: "Qual a semelhança entre um livro e um jornal?",
-            options: ["Ambos contêm informações", "Ambos são feitos de papel", "Ambos têm capa", "Ambos são coloridos"],
+            options: ["Ambos contêm informações", "Ambos saem todos os dias", "Ambos são escritos à mão", "Ambos são coloridos"],
           },
           q4: {
             question: "O que têm em comum uma bicicleta e um carro?",
@@ -173,11 +173,11 @@ export const pt = {
           },
           q5: {
             question: "Qual a semelhança entre o sol e uma lâmpada?",
-            options: ["Ambos emitem luz", "Ambos são redondos", "Ambos são quentes", "Ambos são amarelos"],
+            options: ["Ambos emitem luz", "Ambos são redondos", "Ambos funcionam com eletricidade", "Ambos são amarelos"],
           },
           q6: {
-            question: "O que têm em comum a memória e um computador?",
-            options: ["Ambos armazenam informações", "Ambos usam eletricidade", "Ambos são máquinas", "Ambos precisam de energia"],
+            question: "O que têm em comum a memória humana e um computador?",
+            options: ["Ambos armazenam informações", "Ambos são feitos de silício", "Ambos são máquinas", "Ambos foram inventados pelo homem"],
           },
           q7: {
             question: "Qual a semelhança entre ansiedade e medo?",
@@ -185,7 +185,7 @@ export const pt = {
           },
           q8: {
             question: "O que têm em comum música e pintura?",
-            options: ["São formas de expressão artística", "Usam instrumentos", "São barulhentas", "São coloridas"],
+            options: ["São formas de expressão artística", "Usam tinta", "São barulhentas", "São coloridas"],
           },
           q9: {
             question: "Qual a semelhança entre sabedoria e experiência?",
@@ -193,11 +193,11 @@ export const pt = {
           },
           q10: {
             question: "O que têm em comum liberdade e responsabilidade?",
-            options: ["São interdependentes", "São opostas", "São abstratas", "São simples"],
+            options: ["São interdependentes", "São opostas", "São sinônimas", "São simples"],
           },
           q11: {
             question: "Qual a semelhança entre democracia e justiça?",
-            options: ["Ambas visam o bem comum", "Ambas são sistemas", "Ambas são antigas", "Ambas são complexas"],
+            options: ["Ambas visam ao bem comum", "Ambas são objetos físicos", "Ambas são invenções recentes", "Ambas são leis escritas"],
           },
           q12: {
             question: "O que têm em comum intuição e razão?",
@@ -225,15 +225,15 @@ export const pt = {
           },
           q18: {
             question: "O que a lua e o sol têm em comum?",
-            options: ["Ambos são fontes de luz", "Ambos são planetas", "Ambos são quentes", "Ambos são visíveis de noite"],
+            options: ["Ambos são corpos celestes", "Ambos são planetas", "Ambos emitem luz própria", "Ambos aparecem só de dia"],
           },
           q19: {
             question: "O que uma guitarra e um piano têm em comum?",
-            options: ["Ambos são instrumentos musicais", "Ambos são de cordas", "Ambos são eletrônicos", "Ambos são de madeira"],
+            options: ["Ambos são instrumentos musicais", "Ambos são de sopro", "Ambos têm teclas", "Ambos são tocados com arco"],
           },
           q20: {
             question: "O que uma escola e uma biblioteca têm em comum?",
-            options: ["Ambos são lugares de aprendizado", "Ambos têm computadores", "Ambos têm salas de aula", "Ambos são públicos"],
+            options: ["Ambas são lugares de aprendizado", "Ambas vendem livros", "Ambas têm salas de aula", "Ambas cobram ingresso"],
           },
         },
         vocabulary: {
@@ -348,7 +348,7 @@ export const pt = {
             options: ["45", "50", "55", "60"],
           },
           q8: {
-            question: "Se A = 1, B = 3, C = 6, então D = __?",
+            question: "Se o 1º termo é 1, o 2º é 3 e o 3º é 6, qual é o 4º?",
             options: ["8", "9", "10", "12"],
           },
           q9: {
@@ -373,10 +373,10 @@ export const pt = {
           },
           q14: {
             question: "Qual número completa o padrão: 2, 3, 5, 8, __?",
-            options: ["10", "12", "13", "15"],
+            options: ["10", "11", "13", "15"],
           },
           q15: {
-            question: "Complete a sequência: 3, 6, 9, 12, __?",
+            question: "Complete a sequência: 3, 6, 9, 12, __",
             options: ["15", "18", "21", "24"],
           },
           q16: {
@@ -384,7 +384,7 @@ export const pt = {
             options: ["8", "7", "9", "6"],
           },
           q17: {
-            question: "Complete a sequência: 2, 4, 8, 16, __?",
+            question: "Complete a sequência: 2, 4, 8, 16, __",
             options: ["32", "20", "24", "40"],
           },
           q18: {
@@ -403,83 +403,83 @@ export const pt = {
         comprehension: {
           q1: {
             question: "Por que é importante lavar as mãos antes de comer?",
-            options: ["Para evitar doenças", "Para deixar as mãos limpas", "Porque é uma regra", "Para não sujar a comida"],
+            options: ["Para não levar à boca os germes das mãos", "Para demonstrar respeito por quem preparou a comida", "Para tirar das mãos o cheiro de tempero", "Para manter a pele das mãos macia e bonita"],
           },
           q2: {
             question: "Por que devemos economizar água?",
-            options: ["Para pagar menos", "Para preservar um recurso essencial", "Porque todos fazem isso", "Para agradar os outros"],
+            options: ["Porque a água parada nos canos se estraga", "Porque a água própria para consumo é limitada", "Para que a água das torneiras saia com mais pressão", "Porque a água que usamos nunca mais volta à natureza"],
           },
           q3: {
             question: "Por que é importante estudar?",
-            options: ["Para adquirir conhecimento e se desenvolver", "Para agradar os pais", "Para passar o tempo", "Porque é obrigatório"],
+            options: ["Para aprender e ampliar nossas capacidades", "Para que as escolas não fiquem sem alunos", "Para manter a mente ocupada e longe de problemas", "Para provar aos outros que somos capazes"],
           },
           q4: {
             question: "Por que devemos respeitar as leis?",
-            options: ["Para manter a ordem e segurança na sociedade", "Para não ser punido", "Porque todo mundo respeita", "Para agradar as autoridades"],
+            options: ["Para haver ordem e segurança na vida em sociedade", "Porque as leis sempre refletem o que é justo", "Porque quem escreveu as leis sabe mais do que nós", "Para preservar a tradição jurídica do nosso país"],
           },
           q5: {
             question: "Por que é importante fazer exercícios físicos?",
-            options: ["Para manter a saúde física e mental", "Para ficar bonito", "Porque o médico manda", "Para emagrecer apenas"],
+            options: ["Para manter o corpo e a mente saudáveis", "Para poder comer de tudo sem engordar", "Para cansar o corpo e dormir mais cedo à noite", "Para ficar com a aparência que a moda valoriza"],
           },
           q6: {
             question: "Por que devemos preservar o meio ambiente?",
-            options: ["Porque é lei", "Para garantir a sobrevivência das futuras gerações", "Para economizar dinheiro", "Porque todo mundo faz"],
+            options: ["Para que as cidades parem de crescer e de se espalhar", "Porque dependemos dele para viver, hoje e no futuro", "Para que o país tenha uma boa imagem no exterior", "Para que o clima do planeta volte a ser como era antes"],
           },
           q7: {
             question: "Por que é importante dormir bem?",
-            options: ["Para restaurar o corpo e a mente", "Para não ter sono durante o dia", "Porque é costume", "Para não acordar tarde"],
+            options: ["Para o corpo e a mente se recuperarem do cansaço", "Para gastar menos energia elétrica durante a noite", "Para sonhar e entender o que o inconsciente quer dizer", "Para não incomodar quem divide a casa conosco"],
           },
           q8: {
             question: "Por que devemos respeitar as diferenças entre as pessoas?",
-            options: ["Para promover uma sociedade mais justa e harmoniosa", "Para evitar conflitos", "Porque é lei", "Para ser bem visto"],
+            options: ["Porque ninguém vale menos por ser diferente de nós", "Porque quem é diferente de nós costuma ter razão", "Porque as diferenças desaparecem quando são respeitadas", "Para não sermos acusados de preconceito"],
           },
           q9: {
             question: "Por que é importante desenvolver pensamento crítico?",
-            options: ["Para analisar informações e tomar decisões fundamentadas", "Para criticar os outros", "Para parecer inteligente", "Para ganhar discussões"],
+            options: ["Para avaliar uma informação antes de aceitá-la", "Para ter sempre uma opinião diferente da maioria", "Para memorizar mais conteúdo em menos tempo", "Para defender nossas opiniões sem precisar mudá-las"],
           },
           q10: {
             question: "Por que a diversidade cultural é importante?",
-            options: ["Apenas para turismo", "Para enriquecer a experiência humana e promover inovação", "Para ter diferentes comidas", "Para aprender línguas"],
+            options: ["Porque garante que as tradições nunca mudem com o tempo", "Porque culturas diferentes geram ideias e soluções novas", "Porque facilita a venda de produtos em outros países", "Porque povos de culturas diferentes nunca entram em conflito"],
           },
           q11: {
             question: "Por que é importante desenvolver empatia?",
-            options: ["Para compreender e se conectar melhor com os outros", "Para conseguir o que queremos", "Para parecer uma boa pessoa", "Para evitar problemas"],
+            options: ["Para entender o que o outro sente e tratá-lo melhor", "Para convencer as pessoas com mais facilidade", "Para carregar os problemas dos outros como se fossem nossos", "Para ser lembrado como alguém gentil e agradável"],
           },
           q12: {
             question: "Por que a educação é fundamental para a sociedade?",
-            options: ["Apenas para conseguir emprego", "Para o desenvolvimento humano e social", "Para ganhar dinheiro", "Para ter status"],
+            options: ["Porque ocupa as crianças enquanto os pais trabalham", "Porque forma pessoas que pensam e melhoram a sociedade", "Porque sem diplomas as empresas não saberiam quem contratar", "Porque assim o país sobe nos rankings internacionais"],
           },
           q13: {
             question: "Por que devemos reciclar o lixo?",
-            options: ["Para reduzir a poluição", "Para economizar dinheiro", "Porque é fácil", "Para evitar multas"],
+            options: ["Para que menos lixo vá parar nos aterros e nos rios", "Para que o lixo da casa pare de cheirar mal", "Para que a prefeitura cobre uma taxa de lixo menor", "Para dar o exemplo de consciência ambiental aos vizinhos"],
           },
           q14: {
             question: "Por que o sono é importante?",
-            options: ["Para recuperar energia e saúde", "Para evitar o tédio", "Porque é um hábito", "Para passar o tempo"],
+            options: ["Porque o corpo se repara e a memória se fixa no sono", "Porque a noite é escura demais para fazer qualquer coisa", "Para que os dias não pareçam tão longos", "Porque passamos cerca de um terço da vida dormindo"],
           },
           q15: {
             question: "Por que é importante economizar água?",
-            options: ["Para preservar recursos naturais", "Porque é caro", "Para evitar multas", "Porque é difícil obtê-la"],
+            options: ["Para que não falte água nos períodos de seca", "Porque a água da torneira custa mais a cada ano", "Para que o nível do mar não continue subindo", "Para que as chuvas voltem a cair com regularidade"],
           },
           q16: {
             question: "Por que devemos praticar exercícios físicos?",
-            options: ["Para manter a saúde", "Para competir", "Para parecer mais alto", "Porque é obrigatório"],
+            options: ["Para fortalecer o coração, os músculos e os ossos", "Para ter um motivo para sair de casa no fim de semana", "Para que o médico não nos chame a atenção na consulta", "Para ganhar medalhas e troféus em competições"],
           },
           q17: {
             question: "Por que os insetos são importantes para o meio ambiente?",
-            options: ["Porque polinizam plantas", "Porque controlam o clima", "Porque são inofensivos", "Porque são coloridos"],
+            options: ["Porque polinizam plantas e são comida de muitos animais", "Porque regulam a temperatura e o regime de chuvas", "Porque afastam animais maiores das plantações", "Porque servem de modelo para a engenharia e para a robótica"],
           },
           q18: {
             question: "Por que as plantas precisam de luz solar?",
-            options: ["Para produzir alimentos", "Para crescer", "Porque é uma regra", "Para ser bonitas"],
+            options: ["Porque usam a luz para fabricar o próprio alimento", "Para se aquecerem e não congelarem nas noites frias", "Para absorverem pelas folhas a água de que precisam", "Para que as flores ganhem cores mais vivas"],
           },
           q19: {
             question: "Por que devemos separar o lixo reciclável?",
-            options: ["Para preservar o meio ambiente", "Para facilitar o transporte", "Porque é obrigatório", "Para evitar problemas com a cidade"],
+            options: ["Para que esses materiais possam ser reaproveitados", "Para que o caminhão de lixo passe com menos frequência", "Para que as sacolas de lixo fiquem mais leves", "Para que a prefeitura saiba quanto cada casa consome"],
           },
           q20: {
             question: "Por que é importante respeitar as diferenças entre as pessoas?",
-            options: ["Para promover a convivência pacífica", "Para agradar a todos", "Porque é uma regra", "Para evitar discussões"],
+            options: ["Para que pessoas diferentes consigam conviver em paz", "Para que todos acabem pensando da mesma forma", "Para parecer uma pessoa moderna e bem informada", "Porque discordar de alguém é sempre falta de educação"],
           },
         },
       },

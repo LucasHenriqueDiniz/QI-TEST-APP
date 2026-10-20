@@ -161,11 +161,11 @@ export const en = {
           },
           q2: {
             question: "What do water and ice have in common?",
-            options: ["Made of the same substance", "Both are cold", "Both are liquid", "Both are transparent"],
+            options: ["Made of the same substance", "They are cold", "They are liquid", "They are gases"],
           },
           q3: {
             question: "What do a book and a newspaper have in common?",
-            options: ["Both contain information", "Both are made of paper", "Both have covers", "Both are colorful"],
+            options: ["Both contain information", "Both come out every day", "Both are handwritten", "Both are colorful"],
           },
           q4: {
             question: "What do a bicycle and a car have in common?",
@@ -173,11 +173,11 @@ export const en = {
           },
           q5: {
             question: "What do the sun and a lamp have in common?",
-            options: ["Both emit light", "Both are round", "Both are hot", "Both are yellow"],
+            options: ["Both emit light", "Both are round", "Both run on electricity", "Both are yellow"],
           },
           q6: {
-            question: "What do memory and a computer have in common?",
-            options: ["Both store information", "Both use electricity", "Both are machines", "Both need energy"],
+            question: "What do human memory and a computer have in common?",
+            options: ["Both store information", "Both are made of silicon", "Both are machines", "Both were invented by people"],
           },
           q7: {
             question: "What do anxiety and fear have in common?",
@@ -185,7 +185,7 @@ export const en = {
           },
           q8: {
             question: "What do music and painting have in common?",
-            options: ["They are forms of artistic expression", "They use instruments", "They are noisy", "They are colorful"],
+            options: ["They are forms of artistic expression", "They use paint", "They are noisy", "They are colorful"],
           },
           q9: {
             question: "What do wisdom and experience have in common?",
@@ -193,11 +193,11 @@ export const en = {
           },
           q10: {
             question: "What do freedom and responsibility have in common?",
-            options: ["They are interdependent", "They are opposites", "They are abstract", "They are simple"],
+            options: ["They are interdependent", "They are opposites", "They are synonyms", "They are simple"],
           },
           q11: {
             question: "What do democracy and justice have in common?",
-            options: ["Both aim for common good", "Both are systems", "Both are ancient", "Both are complex"],
+            options: ["Both aim for the common good", "Both are physical objects", "Both are recent inventions", "Both are written laws"],
           },
           q12: {
             question: "What do intuition and reason have in common?",
@@ -224,16 +224,16 @@ export const en = {
             options: ["Both emit light", "Both are in the sky", "Both are natural", "Both are cold"],
           },
           q18: {
-            question: "What do a tree and a bush have in common?",
-            options: ["Both are plants", "Both grow flowers", "Both are green", "Both have fruits"],
+            question: "What do the moon and the sun have in common?",
+            options: ["Both are celestial bodies", "Both are planets", "Both give off their own light", "Both appear only by day"],
           },
           q19: {
-            question: "What do a chair and a sofa have in common?",
-            options: ["Both are furniture", "Both are soft", "Both are used for sitting", "Both are used for sleeping"],
+            question: "What do a guitar and a piano have in common?",
+            options: ["Both are musical instruments", "Both are wind instruments", "Both have keys", "Both are played with a bow"],
           },
           q20: {
-            question: "What do a laptop and a smartphone have in common?",
-            options: ["Both are electronic devices", "Both are used for gaming", "Both have screens", "Both have keyboards"],
+            question: "What do a school and a library have in common?",
+            options: ["Both are places of learning", "Both sell books", "Both have classrooms", "Both charge admission"],
           },
         },
         vocabulary: {
@@ -306,16 +306,16 @@ export const en = {
             options: ["Opposite", "Equal", "Friendly", "Neutral"],
           },
           q18: {
-            question: 'What does "cogent" mean?',
-            options: ["Weak", "Convincing", "Uncertain", "False"],
+            question: 'What does "resigned" mean?',
+            options: ["Accepting without a fight", "Having energy", "Being arrogant", "Being innovative"],
           },
           q19: {
-            question: 'What does "lucid" mean?',
-            options: ["Clear", "Obscure", "Complicated", "Unclear"],
+            question: 'What does "indocile" mean?',
+            options: ["Hard to tame", "Easily trained", "Friendly in behavior", "Quick to learn"],
           },
           q20: {
-            question: 'What does "nefarious" mean?',
-            options: ["Evil", "Good", "Noble", "Brave"],
+            question: 'What does "esoteric" mean?',
+            options: ["Understood by few", "Easy to understand", "Common to everyone", "Of great importance"],
           },
         },
         matrix: {
@@ -348,7 +348,7 @@ export const en = {
             options: ["45", "50", "55", "60"],
           },
           q8: {
-            question: "If A = 1, B = 3, C = 6, then D = __?",
+            question: "If the 1st term is 1, the 2nd is 3 and the 3rd is 6, what is the 4th?",
             options: ["8", "9", "10", "12"],
           },
           q9: {
@@ -373,113 +373,113 @@ export const en = {
           },
           q14: {
             question: "What number completes the pattern: 2, 3, 5, 8, __?",
-            options: ["10", "12", "13", "15"],
+            options: ["10", "11", "13", "15"],
           },
           q15: {
-            question: "What number completes the pattern: 1, 2, 4, 8, __?",
-            options: ["12", "14", "16", "18"],
+            question: "Complete the sequence: 3, 6, 9, 12, __",
+            options: ["15", "18", "21", "24"],
           },
           q16: {
-            question: "What number completes the pattern: 1, 3, 6, 10, __?",
-            options: ["13", "15", "16", "18"],
+            question: "What number completes the pattern: 1, 1, 2, 3, 5, __?",
+            options: ["8", "7", "9", "6"],
           },
           q17: {
-            question: "What number completes the pattern: 1, 4, 9, 16, __?",
-            options: ["20", "23", "25", "21"],
+            question: "Complete the sequence: 2, 4, 8, 16, __",
+            options: ["32", "20", "24", "40"],
           },
           q18: {
-            question: "What number completes the sequence: 1, 5, 9, 13, __?",
-            options: ["17", "18", "19", "21"],
+            question: "Complete the sequence: 1, 2, 3, 4, __",
+            options: ["5", "6", "7", "8"],
           },
           q19: {
-            question: "Complete the sequence: 6, 12, 18, 24, __",
-            options: ["30", "32", "36", "40"],
+            question: "Complete the sequence: 9, 12, 15, 18, __",
+            options: ["21", "20", "19", "22"],
           },
           q20: {
-            question: "What number completes the pattern: 2, 5, 10, 17, __?",
-            options: ["26", "28", "30", "35"],
+            question: "What number completes the sequence: 2, 5, 8, 11, __?",
+            options: ["14", "12", "13", "15"],
           },
         },
         comprehension: {
           q1: {
             question: "Why is it important to wash hands before eating?",
-            options: ["To prevent diseases", "To keep hands clean", "Because it is a rule", "To not dirty the food"],
+            options: ["So germs on the hands don't reach the mouth", "To show respect for whoever prepared the meal", "To get the smell of spices off the hands", "To keep the skin of the hands soft and nice"],
           },
           q2: {
             question: "Why should we save water?",
-            options: ["To pay less", "To preserve an essential resource", "Because everyone does it", "To please others"],
+            options: ["Because water sitting in the pipes goes bad", "Because water fit for drinking is a limited resource", "So that water comes out of the tap with more pressure", "Because the water we use never returns to nature"],
           },
           q3: {
             question: "Why is it important to study?",
-            options: ["To gain knowledge and develop", "To please parents", "To pass time", "Because it's mandatory"],
+            options: ["To learn and expand what we are able to do", "So that schools don't run out of students", "To keep the mind busy and away from trouble", "To prove to others that we are capable"],
           },
           q4: {
             question: "Why should we respect laws?",
-            options: ["To maintain order and safety in society", "To avoid punishment", "Because everyone does", "To please authorities"],
+            options: ["So that life in society has order and safety", "Because laws always reflect what is fair", "Because those who wrote the laws know more than we do", "To preserve our country's legal tradition"],
           },
           q5: {
             question: "Why is it important to exercise?",
-            options: ["To maintain physical and mental health", "To look good", "Because the doctor says so", "Just to lose weight"],
+            options: ["To keep both the body and the mind healthy", "To be able to eat anything without gaining weight", "To tire the body out and fall asleep earlier", "To get the look that is in fashion"],
           },
           q6: {
             question: "Why should we preserve the environment?",
-            options: ["Because it's the law", "To ensure the survival of future generations", "To save money", "Because everyone does"],
+            options: ["So that cities stop growing and spreading out", "Because our lives, now and in the future, depend on it", "So that the country has a good image abroad", "So that the planet's climate goes back to how it used to be"],
           },
           q7: {
             question: "Why is it important to sleep well?",
-            options: ["To restore body and mind", "To not feel sleepy during the day", "Because it's customary", "To not wake up late"],
+            options: ["So that body and mind recover from fatigue", "To use less electricity during the night", "To dream and understand what the unconscious means", "So as not to disturb the people we live with"],
           },
           q8: {
             question: "Why should we respect differences between people?",
-            options: ["To promote a more just and harmonious society", "To avoid conflicts", "Because it's the law", "To be well regarded"],
+            options: ["Because no one is worth less for being different", "Because people who differ from us are usually right", "Because differences disappear once they are respected", "So that we are not accused of prejudice"],
           },
           q9: {
             question: "Why is it important to develop critical thinking?",
-            options: ["To analyze information and make informed decisions", "To criticize others", "To appear intelligent", "To win arguments"],
+            options: ["To weigh information before accepting it", "To always hold an opinion different from the majority", "To memorize more content in less time", "To defend our opinions without having to change them"],
           },
           q10: {
             question: "Why is cultural diversity important?",
-            options: ["Just for tourism", "To enrich human experience and promote innovation", "To have different foods", "To learn languages"],
+            options: ["Because it guarantees that traditions never change over time", "Because different cultures yield new ideas and solutions", "Because it makes selling products abroad easier", "Because people from different cultures never clash"],
           },
           q11: {
             question: "Why is it important to develop empathy?",
-            options: ["To better understand and connect with others", "To get what we want", "To appear as a good person", "To avoid problems"],
+            options: ["To understand what others feel and treat them better", "To talk people into things more easily", "To carry other people's problems as if they were ours", "To be remembered as a kind and pleasant person"],
           },
           q12: {
             question: "Why is education fundamental to society?",
-            options: ["Just to get a job", "For human and social development", "To make money", "To gain status"],
+            options: ["Because it keeps children busy while their parents work", "Because it forms people who think and improve society", "Because without degrees firms wouldn't know whom to hire", "Because it moves the country up world rankings"],
           },
           q13: {
             question: "Why should we recycle waste?",
-            options: ["To reduce pollution", "To save money", "Because it is easy", "To avoid fines"],
+            options: ["So that less waste ends up in landfills and rivers", "So that the household trash stops smelling bad", "So that the city charges a lower waste collection fee", "To set an example of environmental awareness to neighbors"],
           },
           q14: {
             question: "Why is sleep important?",
-            options: ["To restore energy and health", "To avoid boredom", "Because it is a habit", "To pass time"],
+            options: ["Because in sleep the body repairs and memory settles", "Because the night is too dark to get anything done", "So that the days don't seem to drag on so long", "Because humans spend about a third of their lives asleep"],
           },
           q15: {
             question: "Why is it important to save water?",
-            options: ["To preserve natural resources", "Because it is expensive", "To avoid fines", "Because it is hard to obtain"],
+            options: ["So that water doesn't run out in dry periods", "Because the price of tap water goes up every year", "So that the sea level doesn't keep on rising", "So that the rains start falling regularly again"],
           },
           q16: {
             question: "Why should we exercise?",
-            options: ["To maintain health", "To compete", "To appear taller", "Because it is mandatory"],
+            options: ["To strengthen the heart, muscles and bones", "To have a reason to leave the house on weekends", "So the doctor doesn't scold us at the next check-up", "To win medals and trophies in competitions"],
           },
           q17: {
             question: "Why are insects important for the environment?",
-            options: ["Because they pollinate plants", "Because they control the weather", "Because they are harmless", "Because they are colorful"],
+            options: ["Because they pollinate plants and are food for many animals", "Because they regulate the temperature and the rainfall", "Because they keep larger animals away from crops", "Because engineers and roboticists use them as design models"],
           },
           q18: {
             question: "Why do plants need sunlight?",
-            options: ["For photosynthesis", "For growth", "For reproduction", "For water absorption"],
+            options: ["Because they use light to make their own food", "To warm up and not freeze on cold nights", "To absorb the water they need through the leaves", "So that the flowers get brighter colors"],
           },
           q19: {
-            question: "Why is exercise important?",
-            options: ["To stay healthy", "To waste time", "To avoid work", "To socialize"],
+            question: "Why should we separate recyclable waste?",
+            options: ["So that those materials can be reused", "So that the garbage truck comes by less often", "So that the trash bags are lighter", "So that the city knows how much each household consumes"],
           },
           q20: {
-            question: "Why is it important to read books?",
-            options: ["To gain knowledge", "To escape reality", "To pass time", "To avoid boredom"],
+            question: "Why is it important to respect differences between people?",
+            options: ["So that different people can live together in peace", "So that everyone ends up thinking the same way", "To seem like a modern, well-informed person", "Because disagreeing with someone is always bad manners"],
           },
         },
       },
