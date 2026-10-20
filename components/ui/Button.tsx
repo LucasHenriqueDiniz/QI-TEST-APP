@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { ActivityIndicator, Pressable, StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
@@ -10,6 +11,11 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 type Variant = "primary" | "secondary" | "outline" | "ghost";
 type Size = "medium" | "large";
+/** Qual vibração o toque dispara; `confirm` é para a ação que fecha uma resposta. */
+type Haptic = "press" | "confirm" | "none";
+
+/** Escala do botão pressionado. */
+const PRESSED_SCALE = 0.96;
 
 interface ButtonProps {
   title: string;
@@ -21,13 +27,33 @@ interface ButtonProps {
   loading?: boolean;
   /** Ocupa toda a largura disponível. */
   block?: boolean;
+  /** Vibração do toque. Uma por ação: quem já vibra por outro caminho passa `none`. */
+  haptic?: Haptic;
   style?: ViewStyle;
 }
 
-export function Button({ title, onPress, variant = "primary", size = "medium", icon, disabled, loading, block, style }: ButtonProps) {
+/**
+ * Botão do app. O primário é o gradiente da marca (DS-5); desabilitado vira
+ * `surfaceAlt` com rótulo `textMuted` em vez de meia opacidade, que no escuro
+ * deixava o violeta lavado sobre o fundo (`textFaint`, o que o DS-5 pedia, dá
+ * 4,31:1 sobre `surfaceAlt` no claro e não passa). Pressionar assenta de mola.
+ */
+export function Button({
+  title,
+  onPress,
+  variant = "primary",
+  size = "medium",
+  icon,
+  disabled,
+  loading,
+  block,
+  haptic = "press",
+  style,
+}: ButtonProps) {
   const { colors, radius, shadow, motion } = useAppTheme();
 
   const isDisabled = disabled || loading;
+  const gradient = variant === "primary" && !isDisabled;
 
   // Mola em vez de degrau: o botão assenta ao ser pressionado e volta com
   // inércia. `transform` estático dá um salto seco que lê como travamento.
@@ -35,6 +61,7 @@ export function Button({ title, onPress, variant = "primary", size = "medium", i
   const animatedStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
 
   const surfaces: Record<Variant, ViewStyle> = {
+    // A cor lisa fica por baixo do gradiente: é o que aparece se ele falhar.
     primary: { backgroundColor: colors.primary, ...shadow(2) },
     secondary: { backgroundColor: colors.surfaceAlt },
     outline: { backgroundColor: "transparent", borderWidth: 1.5, borderColor: colors.outline },
@@ -48,10 +75,14 @@ export function Button({ title, onPress, variant = "primary", size = "medium", i
     ghost: colors.primaryText,
   };
 
-  const contentColor = contentColors[variant];
+  // Preenchidos, desabilitados trocam de superfície; os sem fundo só apagam.
+  const filled = variant === "primary" || variant === "secondary";
+  const disabledSurface: ViewStyle = filled ? { backgroundColor: colors.surfaceAlt } : styles.faded;
+  const contentColor = isDisabled && filled ? colors.textMuted : contentColors[variant];
 
   const handlePress = () => {
-    haptics.press();
+    if (haptic === "press") haptics.press();
+    if (haptic === "confirm") haptics.confirm();
     onPress();
   };
 
@@ -61,7 +92,7 @@ export function Button({ title, onPress, variant = "primary", size = "medium", i
       accessibilityState={{ disabled: !!isDisabled, busy: !!loading }}
       onPress={handlePress}
       onPressIn={() => {
-        if (!isDisabled) scale.value = withSpring(0.97, motion.fastSpatial);
+        if (!isDisabled) scale.value = withSpring(PRESSED_SCALE, motion.fastSpatial);
       }}
       onPressOut={() => {
         scale.value = withSpring(1, motion.fastSpatial);
@@ -71,13 +102,21 @@ export function Button({ title, onPress, variant = "primary", size = "medium", i
         styles.base,
         size === "large" ? styles.large : styles.medium,
         { borderRadius: radius.lg },
-        surfaces[variant],
+        isDisabled ? [surfaces[variant], disabledSurface, styles.flat] : surfaces[variant],
         block && styles.block,
-        isDisabled && styles.disabled,
         animatedStyle,
         style,
       ]}
     >
+      {gradient && (
+        <LinearGradient
+          colors={colors.gradientBrand}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          pointerEvents="none"
+          style={[StyleSheet.absoluteFill, { borderRadius: radius.lg }]}
+        />
+      )}
       {loading ? (
         <ActivityIndicator color={contentColor} />
       ) : (
@@ -106,16 +145,17 @@ const styles = StyleSheet.create({
   base: {
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
   },
   medium: {
     paddingVertical: 12,
     paddingHorizontal: 20,
-    minHeight: 48,
+    minHeight: 56,
   },
   large: {
     paddingVertical: 16,
     paddingHorizontal: 24,
-    minHeight: 58,
+    minHeight: 60,
   },
   block: {
     alignSelf: "stretch",
@@ -125,7 +165,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
   },
-  disabled: {
+  faded: {
     opacity: 0.45,
+  },
+  // Desabilitado não flutua: sem sombra nem elevação.
+  flat: {
+    shadowOpacity: 0,
+    elevation: 0,
   },
 });

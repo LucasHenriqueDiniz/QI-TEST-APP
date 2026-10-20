@@ -1,4 +1,3 @@
-import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, useWindowDimensions, View } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -24,9 +23,6 @@ const OPTION_ASPECT = 173 / 105;
 const MATRIX_MIN_HEIGHT = 140;
 const MATRIX_MAX_HEIGHT = 220;
 
-/** Linha da instrução com o botão de ampliar, em dp. */
-const TOOLBAR_HEIGHT = 32;
-const TOOLBAR_GAP = 8;
 const CARD_BORDER = 1;
 const CARD_PAD = 8;
 const CARD_GRID_GAP = 12;
@@ -47,6 +43,12 @@ interface PatternQuestionProps {
    * `onLayout`). Sem ela a matriz usa o máximo que a largura permite.
    */
   availableHeight?: number;
+  /**
+   * Modal de ampliação controlado de fora (o botão fica na linha da categoria,
+   * na tela do teste). Sem estes dois, o componente cuida do próprio estado.
+   */
+  zoomed?: boolean;
+  onZoomChange?: (zoomed: boolean) => void;
 }
 
 type PatternKey = keyof typeof patternImages;
@@ -60,15 +62,29 @@ function clamp(value: number, min: number, max: number): number {
  *
  * A grade de alternativas tem altura fixa pela largura; a matriz recebe o que
  * sobra do viewport, entre 140 e 220 dp, para a tela inteira caber sem rolar.
- * A instrução e o botão de ampliar ficam numa linha própria acima do cartão,
- * e não sobre ele: as matrizes desenham até a borda do viewBox, e um botão
- * sobreposto esconderia um canto do estímulo.
+ * A instrução e o botão de ampliar não ficam aqui: as matrizes desenham até a
+ * borda do viewBox, e um botão sobreposto esconderia um canto do estímulo —
+ * a tela os põe na linha da categoria, acima deste componente. Tocar o
+ * cartão também amplia.
  */
-export function PatternQuestion({ questionKey, selected, onSelect, width, availableHeight }: PatternQuestionProps) {
+export function PatternQuestion({
+  questionKey,
+  selected,
+  onSelect,
+  width,
+  availableHeight,
+  zoomed: zoomedProp,
+  onZoomChange,
+}: PatternQuestionProps) {
   const { t } = useTranslation();
   const { colors, radius, spacing } = useAppTheme();
   const { width: windowWidth } = useWindowDimensions();
-  const [zoomed, setZoomed] = useState(false);
+  const [zoomedState, setZoomedState] = useState(false);
+  const zoomed = zoomedProp ?? zoomedState;
+  const setZoomed = (next: boolean) => {
+    setZoomedState(next);
+    onZoomChange?.(next);
+  };
 
   const slot = questionKey.replace(/^p/, "").padStart(2, "0");
   const Prompt = patternImages[`${slot}_q_01` as PatternKey];
@@ -97,7 +113,7 @@ export function PatternQuestion({ questionKey, selected, onSelect, width, availa
   const matrixByHeight =
     availableHeight === undefined
       ? MATRIX_MAX_HEIGHT
-      : availableHeight - TOOLBAR_HEIGHT - TOOLBAR_GAP - 2 * (CARD_PAD + CARD_BORDER) - CARD_GRID_GAP - gridHeight - BOTTOM_GAP;
+      : availableHeight - 2 * (CARD_PAD + CARD_BORDER) - CARD_GRID_GAP - gridHeight - BOTTOM_GAP;
   const matrixHeight = Math.floor(Math.min(matrixByWidth, clamp(matrixByHeight, MATRIX_MIN_HEIGHT, MATRIX_MAX_HEIGHT)));
   const matrixWidth = Math.floor(matrixHeight * MATRIX_ASPECT);
 
@@ -105,34 +121,6 @@ export function PatternQuestion({ questionKey, selected, onSelect, width, availa
 
   return (
     <View>
-      <View style={styles.toolbar}>
-        <ThemedText
-          variant="caption"
-          tone="muted"
-          numberOfLines={2}
-          style={styles.instruction}
-        >
-          {t("questions.patterns.prompt")}
-        </ThemedText>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t("questions.patterns.zoom")}
-          hitSlop={8}
-          onPress={() => setZoomed(true)}
-          style={({ pressed }) => [
-            styles.zoomButton,
-            { backgroundColor: colors.surfaceAlt, borderRadius: radius.pill },
-            pressed && { opacity: 0.6 },
-          ]}
-        >
-          <Ionicons
-            name="expand-outline"
-            size={18}
-            color={colors.text}
-          />
-        </Pressable>
-      </View>
-
       <Pressable
         accessibilityRole="imagebutton"
         accessibilityLabel={t("questions.patterns.zoom")}
@@ -196,23 +184,7 @@ export function PatternQuestion({ questionKey, selected, onSelect, width, availa
 }
 
 const styles = StyleSheet.create({
-  toolbar: {
-    height: TOOLBAR_HEIGHT,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-  },
-  instruction: {
-    flex: 1,
-  },
-  zoomButton: {
-    width: TOOLBAR_HEIGHT,
-    height: TOOLBAR_HEIGHT,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   card: {
-    marginTop: TOOLBAR_GAP,
     alignItems: "center",
     padding: CARD_PAD,
     borderWidth: CARD_BORDER,

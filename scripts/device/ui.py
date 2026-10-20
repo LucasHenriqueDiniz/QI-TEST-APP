@@ -13,6 +13,9 @@ PACKAGE = "com.lhdiniz.testeqi"
 DEV_CLIENT_URL = "exp+teste-de-qi://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
 BOUNDS = re.compile(r"\[(-?\d+),(-?\d+)\]\[(-?\d+),(-?\d+)\]")
 PROGRESS = re.compile(r"(\d+)\s*(?:de|/|of)\s*(\d+)")
+# The counter's accessibility label ("Questão 37 de 40"): the visible text
+# counts down ("faltam 3") on the last five questions since slice 06.
+PROGRESS_DESC = re.compile(r"^\D*(\d+)\s*(?:de|/|of)\s*(\d+)\D*$")
 
 
 def adb(*args, check=False):
@@ -50,11 +53,28 @@ def cold_start():
 DEV_ROUND_URL = "testeqi://test?only=patterns"
 
 
+def open_route(url):
+    """Deep-links a route of the running app. The app must already be running
+    its JS bundle (e.g. on Home after cold_start): on a cold process the dev
+    client shows its launcher instead of the route."""
+    adb("shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", url, PACKAGE)
+
+
 def open_dev_round():
-    """Deep-links the pattern-only round. The app must already be running its JS
-    bundle (e.g. on Home after cold_start): on a cold process the dev client
-    shows its launcher instead of the route."""
-    adb("shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", DEV_ROUND_URL, PACKAGE)
+    """Deep-links the pattern-only round (see DEV_ROUND_URL)."""
+    open_route(DEV_ROUND_URL)
+
+
+def open_single_question(question_id, lang=None):
+    """Deep-links one question by its bank id (`/test?q=<id>`, dev bundle only;
+    nothing is saved). `lang` switches the app to that language while the
+    question is open; the previous language comes back when it is left."""
+    url = f"testeqi://test?q={question_id}" + (f"&lang={lang}" if lang else "")
+    open_route(url)
+
+
+def back():
+    adb("shell", "input", "keyevent", "KEYCODE_BACK")
 
 
 # Results has no stack header since slice 03; the hero's overline is the
@@ -185,6 +205,17 @@ def start_button(nodes):
     return hits[0] if hits else None
 
 
+RESTART_LABELS = r"(?i)^(começar de novo|comecar de novo|start over|empezar de nuevo)$"
+
+
+def restart_button(nodes):
+    """The "Começar de novo" button of Home's resume prompt, or None."""
+    for n in ours(nodes):
+        if n.cls == "android.widget.Button" and re.fullmatch(RESTART_LABELS, n.text.strip()):
+            return n
+    return None
+
+
 def resume_button(nodes):
     """The "Continuar" button of Home's resume prompt, or None when the prompt is not up.
 
@@ -210,11 +241,44 @@ def dismiss_logbox(nodes):
 
 
 def progress(nodes):
+    """(current, total) from the test's counter: its text ("7/40", "7 de 40"),
+    or its accessibility label when the text is counting down."""
     for n in nodes:
         match = PROGRESS.fullmatch((n.text or "").strip())
         if match:
             return int(match[1]), int(match[2])
+    for n in ours(nodes):
+        match = PROGRESS_DESC.match((n.desc or "").strip())
+        if match:
+            return int(match[1]), int(match[2])
     return None
+
+
+def read_storage(key):
+    """The app's AsyncStorage value for `key`, parsed from JSON, or None.
+
+    AsyncStorage 2.x on Android is the SQLite file `databases/RKStorage`. The
+    dev build is debuggable, so `run-as` can copy it out; the WAL comes along
+    because a write the app just made may live only there.
+    """
+    import json
+    import sqlite3
+    import tempfile
+
+    folder = tempfile.mkdtemp(prefix="rkstorage-")
+    for suffix in ("", "-wal", "-shm"):
+        raw = subprocess.run(
+            ["adb", "exec-out", "run-as", PACKAGE, "cat", f"databases/RKStorage{suffix}"], capture_output=True
+        ).stdout
+        if raw and not raw.startswith(b"cat:") and not raw.startswith(b"run-as:"):
+            with open(os.path.join(folder, f"RKStorage{suffix}"), "wb") as handle:
+                handle.write(raw)
+    path = os.path.join(folder, "RKStorage")
+    if not os.path.exists(path):
+        raise RuntimeError("could not copy RKStorage out of the app (is the dev build installed?)")
+    with sqlite3.connect(path) as db:
+        row = db.execute("SELECT value FROM catalystLocalStorage WHERE key = ?", (key,)).fetchone()
+    return json.loads(row[0]) if row else None
 
 
 def _inside(inner, outer):

@@ -41,7 +41,9 @@ function RootNavigator() {
         />
         <Stack.Screen
           name="test"
-          options={{ title: t("test.title") }}
+          // A tela traz a própria barra (X, progresso em blocos, contador); o
+          // cabeçalho da pilha só repetiria o nome do app em cima dela.
+          options={{ headerShown: false, gestureEnabled: false }}
         />
         <Stack.Screen
           name="results"

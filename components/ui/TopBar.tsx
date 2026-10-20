@@ -20,6 +20,12 @@ export interface TopBarAction {
 interface TopBarProps {
   leading?: TopBarAction;
   trailing?: TopBarAction;
+  /**
+   * Conteúdo no canto direito no lugar do botão (o contador do teste). Sem o
+   * espaçador de 48 dp, então o centro deixa de ficar centralizado — serve a
+   * uma barra cujo centro é uma barra de progresso, não um título.
+   */
+  accessory?: React.ReactNode;
   /** Título centralizado; omitido quando a tela tem um herói com o próprio título. */
   title?: string;
   /** Qualquer coisa no lugar do título (a barra de progresso do teste). */
@@ -35,7 +41,7 @@ interface TopBarProps {
  * Barra superior das telas sem cabeçalho de pilha: 56 dp, transparente, botões
  * de ícone de 48 dp nas pontas e um espaço central opcional.
  */
-export function TopBar({ leading, trailing, title, children, color }: TopBarProps) {
+export function TopBar({ leading, trailing, accessory, title, children, color }: TopBarProps) {
   const { colors } = useAppTheme();
   const tint = color ?? colors.text;
 
@@ -58,10 +64,12 @@ export function TopBar({ leading, trailing, title, children, color }: TopBarProp
             </ThemedText>
           ) : null)}
       </View>
-      <Slot
-        action={trailing}
-        tint={tint}
-      />
+      {accessory ?? (
+        <Slot
+          action={trailing}
+          tint={tint}
+        />
+      )}
     </View>
   );
 }

@@ -38,6 +38,20 @@ PAIRS = [
     (("onPaper",), "paperSelected", TEXT, "letter badge on the selected figure tile"),
     (("outline",), "paper", GRAPHIC, "unselected figure tile boundary"),
     (("primary",), "paperSelected", GRAPHIC, "selection ring on a figure tile"),
+    (("textMuted",), "surfaceAlt", TEXT, "label on a disabled filled button"),
+    (("primaryText",), "primarySoft", TEXT, "milestone chip, selected option text"),
+    # `category.*` is nested in the palette; the parser flattens it, so the
+    # area names are tokens. The category line draws them as text on the page.
+    (("patterns",), "background", TEXT, "category line: Raciocínio visual"),
+    (("matrix",), "background", TEXT, "category line: Lógica numérica"),
+    (("similarities",), "background", TEXT, "category line: Semelhanças"),
+    (("vocabulary",), "background", TEXT, "category line: Vocabulário"),
+    (("comprehension",), "background", TEXT, "category line: Compreensão"),
+    (("patterns",), "surface", GRAPHIC, "category icon/bar on cards"),
+    (("matrix",), "surface", GRAPHIC, "category icon/bar on cards"),
+    (("similarities",), "surface", GRAPHIC, "category icon/bar on cards"),
+    (("vocabulary",), "surface", GRAPHIC, "category icon/bar on cards"),
+    (("comprehension",), "surface", GRAPHIC, "category icon/bar on cards"),
 ]
 
 

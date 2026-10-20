@@ -40,8 +40,12 @@ library. Exit 0 means pass.
 |---|---|---|
 | `check_contrast.py` | WCAG pairs of the colour tokens in `constants/theme.ts`; no device | 13 failing pairs → exit 1 |
 | `answer_all.py [--start] [--seed N]` | answers the test on screen to the end; `N/N` | `30/30` → exit 0 |
-| `check_fit.py [--require LABEL] [--options N]` | options, primary button and labels fully visible, none clipped, none under the banner | pattern question: options 3–4 clipped to 35 px → exit 1; short text question → exit 0 |
+| `check_fit.py [--require LABEL] [--options N]` | options, primary button and labels fully visible, none clipped by their scroll viewport, none under the banner | q=69 alone: `FIT`; prompt margin pushed to 700 dp: `only 0 of 4 options on screen` → exit 1; to 250 dp: C and D clipped → exit 1 (2026-10-20) |
 | `check_fit_round.py [--only patterns] [--seed N]` | opens a round (the 30 pattern items in order with `--only patterns`), runs `check_fit`'s rules on every question after the layout settles, answers it; `N/N fit` | pattern round: `30/30 fit` in light and dark → exit 0 |
+| `check_fit_round.py --longest-text` | the longest text question of pt, en and es (characters of question + options, read from the translation files), each opened alone with `/test?q=<id>&lang=<code>`; `3/3 fit` | `3/3 fit` → exit 0 (2026-10-20) |
+| `check_pause.py [--answers N]` | answers N (5), system back → pause sheet, "Continuar o teste" keeps the question, back again → "Sair e continuar depois" → Home "Continuar teste" → resume prompt → counter N+1/total | `PASS` (8 steps) → exit 0 (2026-10-20) |
+| `check_double_finish.py [--mode rapido] [--gap 0.08]` | two taps on the last question's "Ver meu resultado", `--gap` s apart; reads `testHistory` from the app's AsyncStorage: grew by 1 and that entry has as many answers as the round | `PASS`, history +1 with 20 answers → exit 0; without the guard: +2 (20 and 21 answers) (2026-10-20) |
+| `check_relink.py [--answers 5]` | a Normal round answered 5 times, then a link to `/test?mode=rapido` onto the open screen: the counter reads 1/20 | `PASS` (6/40 → 1/20) → exit 0; without the reset: 11/40 → 11/20 (2026-10-20) |
 | `ad_shift.py --screen home\|test\|results` | the screen frame (primary button, scroll viewport) is identical offline (no banner) and online (banner loaded) | test screen: viewport bottom 1978 → 1809 px when the banner loads → exit 1 |
 | `check_16k.py <apk> [abis]` | 16 KB ELF and zip alignment of 64-bit native libs | 46/46 ok → exit 0 |
 | `cold.sh` | force-stop + open on Metro | — |
@@ -49,22 +53,30 @@ library. Exit 0 means pass.
 
 `ui.py` holds the shared adb/uiautomator helpers.
 
-## The pattern-only round (dev build only)
+## Dev-only routes
 
-`app/test.tsx` builds a round of the 30 pattern items, in order (p1…p30), when
-opened as `/test?only=patterns`; the branch sits behind `__DEV__`, so a release
-bundle has no such route parameter. The round reads and writes nothing: a
-normal test left halfway stays resumable, and the dev round does not enter the
-history. To open it, the app must already be running its JS bundle (the dev
-client shows its launcher otherwise):
+`app/test.tsx` has two routes behind `__DEV__`, so a release bundle has no
+such parameters. Neither reads or writes progress, usage or history: a normal
+test left halfway stays resumable, and nothing enters the history.
+
+- `/test?only=patterns`: the 30 pattern items in order (p1…p30).
+- `/test?q=<id>`: one question by its id in `data/questions.ts`, to measure
+  whether it fits. Add `&lang=pt|en|es` to see it in another language; the
+  previous language comes back when the screen is left. The X leaves at once
+  (no pause sheet: there is nothing to save); "Confirmar" leaves too.
+
+To open either, the app must already be running its JS bundle (the dev client
+shows its launcher otherwise):
 
 ```bash
 sh scripts/device/cold.sh          # wait for Home
 adb shell am start -a android.intent.action.VIEW -d "testeqi://test?only=patterns" com.lhdiniz.testeqi
+adb shell am start -a android.intent.action.VIEW -d "testeqi://test?q=69&lang=es" com.lhdiniz.testeqi
 ```
 
-`check_fit_round.py --only patterns` does exactly this and then checks and
-answers every item.
+`check_fit_round.py --only patterns` does the first and then checks and
+answers every item; `check_fit_round.py --longest-text` does the second for
+the longest text question of each language (`ui.open_single_question`).
 
 ## Things that bite
 
@@ -82,12 +94,20 @@ answers every item.
   (history, theme, language).
 - **The dev build shows LogBox toasts** ("Ad failed…" offline); `ui.dismiss_logbox`
   closes them, and they never exist in a release build.
-- **`check_fit.py` judges clipping by comparing each option to the tallest
-  one**, which is right for the pattern grid (equal cells) but fails a text
-  question whose options wrap to different line counts even with all four on
-  screen (measured: 177 px vs 246 px, both inside the viewport). Run it on a
-  question with single-line options, or extend the rule before trusting it on
-  mixed ones.
+- **`check_fit.py` judges clipping against the option's scroll viewport**:
+  uiautomator reports the visible part of a node, so a clipped option's box
+  is cut exactly at the viewport's top or bottom edge (a hidden one has no
+  height). Until slice 06 it compared each option to the tallest sibling,
+  which flagged text questions whose options wrap to different line counts
+  even with all four on screen (177 px vs 246 px, both inside the viewport).
+  The new rule relies on the content keeping a margin above and below the
+  options (the question text above, 32 dp of padding below); an option that
+  legitimately touches the edge would be reported as clipped.
+- **The test counter counts down on the last five questions** ("faltam 3",
+  "última"): `ui.progress` falls back to the counter's accessibility label
+  ("Questão 38 de 40") when the visible text has no `N/total`.
+- **Alert buttons are upper-case** ("CONTINUAR", "COMEÇAR DE NOVO");
+  `ui.resume_button` and `ui.restart_button` match case-insensitively.
 - **Home's resume prompt contains the verb three times** (the message, the
   "CONTINUAR" button and Home's own "Continuar teste" behind the Alert):
   `ui.resume_button` matches only a Button whose whole text is the verb.
@@ -95,3 +115,15 @@ answers every item.
   phone the dev build is reclaimed by `lmkd` seconds after going to the
   background. `check_fit_round.py` then stops with `round interrupted after N
   questions` instead of a verdict; leave the phone alone while it runs.
+- **Wireless debugging works, except for `ad_shift.py`.** When the USB cable
+  drops, `adb mdns services` lists the phone's `_adb-tls-connect` address if
+  Wireless debugging is on and this Mac was paired once; `adb connect
+  IP:PORT` then needs no code, and `adb reverse tcp:8081` (in `cold.sh`)
+  works over it. Set `ANDROID_SERIAL=IP:PORT` so a returning cable does not
+  make adb ambiguous. Airplane mode turns Wi-Fi off, so `ad_shift.py` over
+  Wi-Fi would cut its own connection and leave the phone offline: run it on
+  the cable only.
+- **The dev client's floating tools button sits on the top-right corner**,
+  over Home's "Ajustes" and the test counter. A tap there opens the Expo
+  menu; open Settings with `testeqi://settings` instead. Release builds do
+  not have it.

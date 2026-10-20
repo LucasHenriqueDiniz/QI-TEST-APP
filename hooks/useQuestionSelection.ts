@@ -58,3 +58,13 @@ export function buildCategoryRound(category: QuestionCategory): RoundItem[] {
     .sort((a, b) => number(a) - number(b))
     .map((question) => ({ question, optionOrder: identityOrder() }));
 }
+
+/**
+ * Uma única questão, pelo `id` do banco, com as alternativas na ordem
+ * original — a rodada `__DEV__` do `/test?q=<id>`, para conferir se um item
+ * cabe na tela. `null` se o id não existir.
+ */
+export function buildSingleItem(id: string): RoundItem | null {
+  const question = questions.find((q) => q.id === id);
+  return question ? { question, optionOrder: identityOrder() } : null;
+}
