@@ -15,11 +15,11 @@ import type { Question, QuestionCategory } from "../types/index.ts";
 const MAX_LONGEST_SHARE = 0.35;
 
 /**
- * Categories already rewritten to stay under the limit. Similarities and
- * vocabulary are above it today (pt 11/20 and 16/20, 2026-10-20) and join
- * this list when their options are rewritten.
+ * Every text category. Before the rewrite of 2026-10-20 the key was the
+ * longest option in pt 10/20 similarities, 16/20 vocabulary and 15/20
+ * comprehension items.
  */
-const GUARDED: QuestionCategory[] = ["matrix", "comprehension"];
+const GUARDED: QuestionCategory[] = ["similarities", "vocabulary", "matrix", "comprehension"];
 
 const LANGUAGES = { pt, en, es };
 

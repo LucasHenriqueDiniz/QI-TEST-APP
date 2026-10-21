@@ -157,165 +157,165 @@ export const es = {
         similarities: {
           q1: {
             question: "¿En qué se parecen un perro y un león?",
-            options: ["Ambos son animales", "Ambos son grandes", "Ambos son domésticos", "Ambos son peligrosos"],
+            options: ["Ambos son animales", "Ambos rugen", "Ambos son domésticos", "Ambos viven en la sabana"],
           },
           q2: {
             question: "¿Qué tienen en común el agua y el hielo?",
-            options: ["Son del mismo compuesto", "Son fríos", "Son líquidos", "Son gaseosos"],
+            options: ["Son de la misma sustancia", "Mantienen una forma propia y fija", "Fluyen cuando se derraman", "Son compuestos de carbono"],
           },
           q3: {
             question: "¿Qué tienen en común un libro y un periódico?",
-            options: ["Ambos contienen información", "Ambos salen todos los días", "Ambos se escriben a mano", "Ambos son coloridos"],
+            options: ["Ambos contienen información", "Ambos salen todos los días", "Ambos tienen tapa dura", "Ambos se escriben a mano"],
           },
           q4: {
             question: "¿Qué tienen en común una bicicleta y un coche?",
-            options: ["Son medios de transporte", "Tienen motores", "Son del mismo color", "Son del mismo tamaño"],
+            options: ["Son medios de transporte", "Necesitan combustible", "Tienen cuatro ruedas", "Se impulsan con pedales"],
           },
           q5: {
             question: "¿Qué tienen en común el sol y una lámpara?",
-            options: ["Ambos emiten luz", "Ambos son redondos", "Ambos funcionan con electricidad", "Ambos son amarillos"],
+            options: ["Ambos son fuentes de luz", "Ambos son estrellas del cielo", "Ambos se pueden apagar", "Ambos usan electricidad"],
           },
           q6: {
             question: "¿Qué tienen en común la memoria humana y un ordenador?",
-            options: ["Ambos almacenan información", "Ambos están hechos de silicio", "Ambos son máquinas", "Ambos fueron inventados por el ser humano"],
+            options: ["Ambos almacenan información", "Ambos están hechos de silicio", "Ambos se cansan tras mucho uso", "Ambos se venden en tiendas"],
           },
           q7: {
             question: "¿Qué tienen en común la ansiedad y el miedo?",
-            options: ["Ambos son emociones", "Ambos son malos", "Ambos son dañinos", "Ambos son enfermedades"],
+            options: ["Ambos son estados emocionales", "Ambos son enfermedades", "Ambos son elecciones conscientes", "Ambos son exclusivos de los humanos"],
           },
           q8: {
             question: "¿Qué tienen en común la música y la pintura?",
-            options: ["Son formas de expresión artística", "Usan pintura", "Son ruidosas", "Son coloridas"],
+            options: ["Son formas de expresión artística", "Necesitan lienzo y pincel para existir", "Se perciben por los oídos", "Dependen de instrumentos de viento"],
           },
           q9: {
             question: "¿Qué tienen en común la sabiduría y la experiencia?",
-            options: ["Ambas vienen con el tiempo y el aprendizaje", "Ambas son innatas", "Ambas son teóricas", "Ambas son permanentes"],
+            options: ["Ambas se adquieren con el tiempo", "Ambas vienen desde el nacimiento", "Ambas se aprenden solo en los libros", "Ambas se agotan al usarse"],
           },
           q10: {
             question: "¿Qué tienen en común la libertad y la responsabilidad?",
-            options: ["Son interdependientes", "Son opuestas", "Son sinónimas", "Son simples"],
+            options: ["Son interdependientes", "Una excluye a la otra", "Significan exactamente lo mismo", "Solo se aplican a adultos"],
           },
           q11: {
             question: "¿Qué tienen en común la democracia y la justicia?",
-            options: ["Ambas buscan el bien común", "Ambas son objetos físicos", "Ambas son inventos recientes", "Ambas son leyes escritas"],
+            options: ["Ambas buscan el bien común", "Ambas tienen dueño", "Ambas surgieron en el siglo XX", "Ambas dependen de un solo gobernante"],
           },
           q12: {
             question: "¿Qué tienen en común la intuición y el razonamiento?",
-            options: ["Son formas de conocimiento", "Son emociones", "Son comportamientos", "Son habilidades físicas"],
+            options: ["Son formas de conocimiento", "Son órganos del cuerpo humano", "Siguen pasos lógicos explícitos", "Solo funcionan al dormir"],
           },
           q13: {
             question: "¿Qué tienen en común un árbol y una flor?",
-            options: ["Ambos son plantas", "Ambos son grandes", "Ambos producen frutos", "Ambos son coloridos"],
+            options: ["Ambos pertenecen al reino vegetal", "Ambos tienen tronco de madera", "Ambos se marchitan en pocos días", "Ambos crecen sin luz del sol"],
           },
           q14: {
             question: "¿Qué tienen en común un avión y un pájaro?",
-            options: ["Ambos pueden volar", "Ambos son seres vivos", "Ambos tienen plumas", "Ambos son rápidos"],
+            options: ["Ambos pueden volar", "Ambos tienen motor", "Ambos tienen plumas", "Ambos son seres vivos"],
           },
           q15: {
             question: "¿Qué tienen en común un coche y una motocicleta?",
-            options: ["Ambos tienen ruedas", "Ambos pueden volar", "Ambos tienen alas", "Ambos son acuáticos"],
+            options: ["Ambos tienen ruedas", "Ambos tienen manillar", "Ambos tienen techo", "Ambos van sobre rieles"],
           },
           q16: {
             question: "¿Qué tienen en común un pez y un tiburón?",
-            options: ["Ambos viven en el agua", "Ambos tienen patas", "Ambos pueden volar", "Ambos tienen pelaje"],
+            options: ["Ambos viven en el agua", "Ambos tienen pulmones", "Ambos viven solo en ríos", "Ambos son mamíferos"],
           },
           q17: {
             question: "¿Qué tienen en común una lámpara y el sol?",
-            options: ["Ambos emiten luz", "Ambos están en el cielo", "Ambos son naturales", "Ambos son fríos"],
+            options: ["Ambos producen luz", "Ambos están en el cielo", "Ambos tienen cable", "Ambos son de vidrio"],
           },
           q18: {
             question: "¿Qué tienen en común la luna y el sol?",
-            options: ["Ambos son cuerpos celestes", "Ambos son planetas", "Ambos emiten luz propia", "Ambos aparecen solo de día"],
+            options: ["Ambos son cuerpos celestes", "Ambos son planetas", "Ambos emiten luz propia", "Ambos giran alrededor de la Tierra"],
           },
           q19: {
             question: "¿Qué tienen en común una guitarra y un piano?",
-            options: ["Ambos son instrumentos musicales", "Ambos son de viento", "Ambos tienen teclas", "Ambos se tocan con arco"],
+            options: ["Ambos son instrumentos musicales", "Ambos se tocan soplando", "Ambos tienen teclas blancas y negras", "Ambos se tocan con arco"],
           },
           q20: {
             question: "¿Qué tienen en común una escuela y una biblioteca?",
-            options: ["Ambas son lugares de aprendizaje", "Ambas venden libros", "Ambas tienen aulas", "Ambas cobran entrada"],
+            options: ["Ambas son lugares de aprendizaje", "Ambas venden libros al público", "Ambas tienen profesores dando clase", "Ambas cobran entrada para ingresar"],
           },
         },
         vocabulary: {
           q1: {
             question: '¿Qué significa "resiliente"?',
-            options: ["Se rinde fácilmente", "Se adapta y supera la adversidad", "Es frágil", "Es impaciente"],
+            options: ["Que se resiste a cualquier cambio", "Que se recupera de la adversidad", "Que habla poco y observa mucho", "Que evita el conflicto a toda costa"],
           },
           q2: {
             question: '¿Qué significa "pragmático"?',
-            options: ["Actúa sin pensar", "Es teórico", "Es práctico y objetivo", "Es soñador"],
+            options: ["Que sigue las reglas al pie de la letra", "Que piensa mucho antes de actuar", "Que actúa de modo práctico y objetivo", "Que cambia de humor con facilidad"],
           },
           q3: {
             question: '¿Qué significa "empático"?',
-            options: ["Ser egoísta", "No cuidar de los demás", "Entender las emociones de los demás", "Ser desagradable"],
+            options: ["Que está de acuerdo con todo lo que oye", "Que organiza bien su propio tiempo", "Que entiende lo que sienten los demás", "Que conversa con cualquiera con facilidad"],
           },
           q4: {
             question: '¿Qué significa "perspicaz"?',
-            options: ["Ser lento", "Ser distraído", "Ser desatento", "Notar cosas rápidamente"],
+            options: ["Que habla de forma clara y directa", "Que memoriza todo con facilidad", "Que se preocupa demasiado por el futuro", "Que nota las cosas rápidamente"],
           },
           q5: {
             question: '¿Qué significa "altruista"?',
-            options: ["Ser egoísta", "Ser orgulloso", "Ser alguien que se preocupa por los demás", "Ser individualista"],
+            options: ["Que solo piensa en su propio interés", "Que le gusta estar siempre acompañado", "Que se preocupa por el bien de los demás", "Que planea todo con anticipación"],
           },
           q6: {
-            question: '¿Qué significa "paradojal"?',
-            options: ["Ser simple", "Parecer contradictorio", "Ser obvio", "Ser común"],
+            question: '¿Qué significa "paradójico"?',
+            options: ["Que sirve de ejemplo a seguir", "Que parece contradecirse a sí mismo", "Que ocurre de manera repentina", "Que fue copiado de otra obra"],
           },
           q7: {
             question: '¿Qué significa "efímero"?',
-            options: ["Que es eterno", "Que es temporal", "Que es importante", "Que es valioso"],
+            options: ["Que nunca llega a su fin", "Que dura poco tiempo", "Que vuelve de vez en cuando", "Que cuesta mucho dinero"],
           },
           q8: {
             question: '¿Qué significa "dicotomía"?',
-            options: ["Unión de ideas", "División en dos partes", "Mezcla de conceptos", "Repetición de palabras"],
+            options: ["Conversación entre dos personas", "División en dos partes", "Repetición de palabras", "Mezcla de conceptos"],
           },
           q9: {
             question: '¿Qué significa "ubicuo"?',
-            options: ["Que es raro", "Que es único", "Que está presente en todas partes", "Que es escaso"],
+            options: ["Que cambia de lugar con frecuencia", "Que no tiene forma definida", "Que está presente en todas partes", "Que existe desde hace mucho tiempo"],
           },
           q10: {
             question: '¿Qué significa "paradigma"?',
-            options: ["Contradicción", "Modelo o patrón", "Problema", "Solución"],
+            options: ["Afirmación contradictoria", "Modelo que se debe seguir", "Discurso de apertura", "Enfermedad contagiosa"],
           },
           q11: {
             question: '¿Qué significa "axioma"?',
-            options: ["Teoría compleja", "Verdad evidente", "Problema difícil", "Concepto abstracto"],
+            options: ["Afirmación que aún necesita prueba", "Verdad evidente por sí misma", "Punto más alto de una montaña", "Figura retórica exagerada"],
           },
           q12: {
             question: '¿Qué significa "idiosincrasia"?',
-            options: ["Enfermedad rara", "Pensamiento común", "Característica peculiar de un individuo", "Comportamiento normal"],
+            options: ["Palabra que solo existe en un idioma", "Conjunto de reglas de un juego", "Rasgo peculiar de un individuo", "Creencia compartida por un pueblo"],
           },
           q13: {
             question: "¿Qué significa 'tenaz'?",
-            options: ["Se rinde fácilmente", "Fuerte y persistente", "Indiferente", "Reacio"],
+            options: ["Que se irrita con facilidad", "Que insiste hasta conseguirlo", "Que hace amigos con facilidad", "Que cambia de opinión a cada rato"],
           },
           q14: {
             question: "¿Qué significa 'meticuloso'?",
-            options: ["Descuidado", "Atento a los detalles", "Rápido", "Sin planificación"],
+            options: ["Que hace todo de cualquier manera", "Que cuida hasta el último detalle", "Que termina todo con rapidez", "Que le gusta dar órdenes"],
           },
           q15: {
             question: "¿Qué significa 'efímero'?",
-            options: ["Duradero", "Temporal", "Invariable", "Importante"],
+            options: ["Que ocurre solo una vez", "Que pronto deja de existir", "Que pesa menos de lo que parece", "Que pertenece al pasado"],
           },
           q16: {
             question: "¿Qué significa 'prolífico'?",
-            options: ["Produce mucho", "Lento", "Improductivo", "Raro"],
+            options: ["Que produce en gran cantidad", "Que habla durante mucho tiempo", "Que vive lejos de la ciudad", "Que gana dinero con facilidad"],
           },
           q17: {
-            question: "¿Qué significa 'antagonista'?",
-            options: ["Opuesto", "Igual", "Amigable", "Neutral"],
+            question: "¿Qué significa 'antagónico'?",
+            options: ["Que está en oposición a algo", "Que es el personaje principal", "Que viene de tiempos antiguos", "Que fue hecho a mano"],
           },
           q18: {
             question: '¿Qué significa "resignado"?',
-            options: ["Aceptar sin luchar", "Tener energía", "Ser arrogante", "Ser innovador"],
+            options: ["Que acepta la situación sin luchar", "Que se mantiene calmado ante todo", "Que fue nombrado para un cargo", "Que escribe con la mano izquierda"],
           },
           q19: {
             question: '¿Qué significa "indócil"?',
-            options: ["Difícil de domesticar", "Fácil de entrenar", "De comportamiento amistoso", "Rápido para aprender"],
+            options: ["Que no se deja domar ni controlar", "Que nació y creció en otro país", "Que se enferma con frecuencia", "Que no soporta quedarse solo en casa"],
           },
           q20: {
             question: '¿Qué significa "esotérico"?',
-            options: ["Comprendido por pocos", "De fácil comprensión", "Común para todos", "De gran importancia"],
+            options: ["Que solo unos pocos comprenden", "Que viene de un país extranjero", "Que provoca miedo en la gente", "Que fue escrito hace muchos siglos"],
           },
         },
         matrix: {

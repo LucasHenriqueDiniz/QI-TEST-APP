@@ -22,12 +22,16 @@ never been solved blind, and some keys were wrong.
 - Comprehension options rewritten (a Fable agent, then blind solves): the key
   is plain and concrete, distractors are plausible false reasons, lengths sit
   in the middle of each set.
+- Similarities and vocabulary options rewritten the same way (owner approved,
+  2026-10-20): similarities distractors are specific properties false for at
+  least one of the pair; vocabulary distractors are same-shape definitions
+  mixing a near-miss, an unrelated sense and at most one antonym (3/20).
 - es translation fixes (empatía → empático, dilema → dicotomía, duplicated and
   inverted options, gender agreement, ubicuo, calques), and distractors that
   were literally true replaced in similarities q2, q3, q5, q6, q8, q10, q11,
   q18, q19, q20.
 - Two guards in `npm test`: `tests/bankCues.test.ts` (key longest in at most
-  35% of items per category and language, on the categories already clean)
+  35% of items per category and language, all four text categories)
   and `tests/bankParity.test.ts` (four options per item and language; numeric
   items carry the same numbers and options in pt, en and es).
 
@@ -41,7 +45,11 @@ never been solved blind, and some keys were wrong.
 | comprehension: key guessed from the options alone (no question) | 20/20 in each | 20/20 in each |
 | `tests/bankCues.test.ts` (comprehension) | red: 15/20, 14/20, 16/20 | green |
 | `tests/bankParity.test.ts` (numeric) | red: q15–q20 | green |
-| `npm test` | 71 | 79 pass |
+| similarities / vocabulary: key strictly longest (pt) | 10/20, 16/20 | 1/20, 2/20 (en 2, 1; es 3, 3) |
+| similarities + vocabulary rewrite, blind solve with the question | — | 40/40 in pt, en and es |
+| vocabulary: key guessed from the options alone (no word) | 20/20, confidence 0.82–0.93, cue "odd one out / only positive / longest" | 17/20, confidence 0.53, by reconstructing the word from the near-miss distractors (16/20 words named exactly), keys kept out of the solver's folder |
+| `tests/bankCues.test.ts` (all four categories) | red on the old texts: similarities and vocabulary fail in all 6 category × language combinations | green |
+| `npm test` | 71 | 85 pass |
 
 The options-only guess stays at 20/20 because a "why" item's options reveal
 its topic and only one of them is the sound reason; the solver reported that
@@ -49,9 +57,13 @@ length and "wise" wording no longer helped. Getting that to chance would need
 distractors that are also good reasons, which is two right answers.
 
 **Not done here.**
-- Similarities (pt 10/20) and vocabulary (pt 16/20) still have the key as the
-  longest option, and vocabulary q4, q5, q9 group three distractors on the
-  side opposite the key. Owner's call; the cue test lists them as unguarded.
+- The vocabulary options-only guess stays high because the near-miss
+  distractors ("resistente" for resiliente, "prolixo" for prolífico) let a
+  solver name the word and then use what it means — vocabulary knowledge, not
+  the old cue, which needed none. A person who does not know the word has no
+  such route; we did not measure people.
+- Duplicates kept: similarities q5/q17 (sun and lamp), vocabulary q7/q15
+  (efêmero).
 - Numeric q9 and q11 state the operation (5², 4³) and are tagged hard.
 - Results already in a user's history were scored with the old keys; they
   are not recomputed (history keeps no per-answer record).

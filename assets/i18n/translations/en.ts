@@ -157,165 +157,165 @@ export const en = {
         similarities: {
           q1: {
             question: "How are a dog and a lion alike?",
-            options: ["Both are animals", "Both are large", "Both are domestic", "Both are dangerous"],
+            options: ["Both are animals", "Both roar", "Both are domestic", "Both live in the savanna"],
           },
           q2: {
             question: "What do water and ice have in common?",
-            options: ["Made of the same substance", "They are cold", "They are liquid", "They are gases"],
+            options: ["They are made of the same substance", "They keep a fixed shape of their own", "They flow when they are poured", "They are compounds of carbon"],
           },
           q3: {
             question: "What do a book and a newspaper have in common?",
-            options: ["Both contain information", "Both come out every day", "Both are handwritten", "Both are colorful"],
+            options: ["Both contain information", "Both come out every day", "Both have a hard cover", "Both are written by hand"],
           },
           q4: {
             question: "What do a bicycle and a car have in common?",
-            options: ["They are means of transportation", "They have engines", "They are the same color", "They are the same size"],
+            options: ["They are means of transport", "They need fuel to run", "They have four wheels", "They are powered by pedals"],
           },
           q5: {
             question: "What do the sun and a lamp have in common?",
-            options: ["Both emit light", "Both are round", "Both run on electricity", "Both are yellow"],
+            options: ["Both are sources of light", "Both are stars in the sky", "Both can be switched off", "Both run on electricity"],
           },
           q6: {
             question: "What do human memory and a computer have in common?",
-            options: ["Both store information", "Both are made of silicon", "Both are machines", "Both were invented by people"],
+            options: ["Both store information", "Both are made of silicon", "Both get tired after heavy use", "Both are sold in stores"],
           },
           q7: {
             question: "What do anxiety and fear have in common?",
-            options: ["Both are emotions", "Both are bad", "Both are harmful", "Both are diseases"],
+            options: ["Both are emotional states", "Both are diseases", "Both are conscious choices", "Both are exclusive to humans"],
           },
           q8: {
             question: "What do music and painting have in common?",
-            options: ["They are forms of artistic expression", "They use paint", "They are noisy", "They are colorful"],
+            options: ["Both are forms of artistic expression", "Both need a canvas and brushes to exist", "Both are perceived through the ears", "Both rely on wind instruments"],
           },
           q9: {
             question: "What do wisdom and experience have in common?",
-            options: ["Both come with time and learning", "Both are innate", "Both are theoretical", "Both are permanent"],
+            options: ["Both are acquired over time", "Both are present from birth", "Both are learned only from books", "Both are used up when applied"],
           },
           q10: {
             question: "What do freedom and responsibility have in common?",
-            options: ["They are interdependent", "They are opposites", "They are synonyms", "They are simple"],
+            options: ["They are interdependent", "One rules out the other", "They mean exactly the same thing", "They apply only to adults"],
           },
           q11: {
             question: "What do democracy and justice have in common?",
-            options: ["Both aim for the common good", "Both are physical objects", "Both are recent inventions", "Both are written laws"],
+            options: ["Both aim for the common good", "Both have an owner", "Both arose in the twentieth century", "Both depend on a single ruler"],
           },
           q12: {
             question: "What do intuition and reason have in common?",
-            options: ["They are forms of knowledge", "They are feelings", "They are behaviors", "They are physical abilities"],
+            options: ["They are forms of knowledge", "They are organs of the human body", "They follow explicit logical steps", "They work only during sleep"],
           },
           q13: {
             question: "What do a tree and a flower have in common?",
-            options: ["Both are plants", "Both are large", "Both bear fruit", "Both are colorful"],
+            options: ["Both belong to the plant kingdom", "Both have a thick woody trunk", "Both wilt within a few days", "Both grow without sunlight"],
           },
           q14: {
             question: "What do a plane and a bird have in common?",
-            options: ["Both can fly", "Both are living beings", "Both have feathers", "Both are fast"],
+            options: ["Both are able to fly", "Both have an engine", "Both have feathers", "Both are living beings"],
           },
           q15: {
             question: "What do a car and a motorcycle have in common?",
-            options: ["Both have wheels", "Both fly", "Both have wings", "Both are aquatic"],
+            options: ["Both have wheels", "Both have handlebars", "Both have a roof", "Both run on rails"],
           },
           q16: {
             question: "What do a fish and a shark have in common?",
-            options: ["Both live in water", "Both have legs", "Both fly", "Both have fur"],
+            options: ["Both live in water", "Both have lungs", "Both live only in rivers", "Both are mammals"],
           },
           q17: {
             question: "What do a lamp and the sun have in common?",
-            options: ["Both emit light", "Both are in the sky", "Both are natural", "Both are cold"],
+            options: ["Both give off light", "Both are in the sky", "Both have a power cord", "Both are made of glass"],
           },
           q18: {
             question: "What do the moon and the sun have in common?",
-            options: ["Both are celestial bodies", "Both are planets", "Both give off their own light", "Both appear only by day"],
+            options: ["Both are celestial bodies", "Both are planets", "Both give off their own light", "Both orbit the Earth"],
           },
           q19: {
             question: "What do a guitar and a piano have in common?",
-            options: ["Both are musical instruments", "Both are wind instruments", "Both have keys", "Both are played with a bow"],
+            options: ["Both are musical instruments", "Both are played by blowing", "Both have black and white keys", "Both are played with a bow"],
           },
           q20: {
             question: "What do a school and a library have in common?",
-            options: ["Both are places of learning", "Both sell books", "Both have classrooms", "Both charge admission"],
+            options: ["Both are places of learning", "Both sell books to the public", "Both have teachers giving lessons", "Both charge an admission fee"],
           },
         },
         vocabulary: {
           q1: {
             question: 'What does "resilient" mean?',
-            options: ["Gives up easily", "Adapts and overcomes adversity", "Is fragile", "Is impatient"],
+            options: ["Resists any kind of change", "Bounces back from adversity", "Says little and watches a lot", "Avoids conflict at all costs"],
           },
           q2: {
             question: 'What does "pragmatic" mean?',
-            options: ["Acts without thinking", "Is theoretical", "Is practical and objective", "Is dreamy"],
+            options: ["Follows the rules to the letter", "Thinks long and hard before acting", "Acts in a practical, objective way", "Changes mood very easily"],
           },
           q3: {
             question: 'What does "empathetic" mean?',
-            options: ["Being selfish", "Not caring about others", "Understanding others' feelings", "Being unfriendly"],
+            options: ["Agrees with everything they hear", "Manages their own time very well", "Understands what others are feeling", "Strikes up a chat with anyone easily"],
           },
           q4: {
             question: 'What does "perceptive" mean?',
-            options: ["Being slow", "Being distracted", "Being inattentive", "Quickly noticing things"],
+            options: ["Speaks in a clear, direct way", "Memorizes anything with ease", "Worries too much about the future", "Notices things very quickly"],
           },
           q5: {
             question: 'What does "altruistic" mean?',
-            options: ["Being selfish", "Being proud", "Being concerned with others' welfare", "Being individualistic"],
+            options: ["Thinks only of their own interest", "Likes to always have company", "Concerned with the good of others", "Plans everything in advance"],
           },
           q6: {
             question: 'What does "paradoxical" mean?',
-            options: ["Being simple", "Seeming contradictory", "Being obvious", "Being common"],
+            options: ["Serves as a model to follow", "Seems to contradict itself", "Happens all of a sudden", "Was copied from another work"],
           },
           q7: {
             question: 'What does "ephemeral" mean?',
-            options: ["That is eternal", "That is temporary", "That is important", "That is valuable"],
+            options: ["Never comes to an end", "Lasts only a short time", "Comes back from time to time", "Costs a great deal of money"],
           },
           q8: {
             question: 'What does "dichotomy" mean?',
-            options: ["Union of ideas", "Division into two parts", "Mixture of concepts", "Repetition of words"],
+            options: ["Conversation between two people", "Division into two parts", "Repetition of words", "Mixture of concepts"],
           },
           q9: {
             question: 'What does "ubiquitous" mean?',
-            options: ["That is rare", "That is unique", "That is present everywhere", "That is scarce"],
+            options: ["Changes location frequently", "Has no definite shape", "Present everywhere at once", "Has existed for a very long time"],
           },
           q10: {
             question: 'What does "paradigm" mean?',
-            options: ["Contradiction", "Model or pattern", "Problem", "Solution"],
+            options: ["Contradictory statement", "Model to be followed", "Opening speech", "Contagious disease"],
           },
           q11: {
             question: 'What does "axiom" mean?',
-            options: ["Complex theory", "Self-evident truth", "Difficult problem", "Abstract concept"],
+            options: ["Statement that still needs proof", "Truth that is evident by itself", "Highest point of a mountain", "Exaggerated figure of speech"],
           },
           q12: {
             question: 'What does "idiosyncrasy" mean?',
-            options: ["Rare disease", "Common thought", "Peculiar characteristic of an individual", "Normal behavior"],
+            options: ["Word that exists in only one language", "Set of rules for a game", "Peculiar trait of an individual", "Belief shared by a whole people"],
           },
           q13: {
             question: "What does 'tenacious' mean?",
-            options: ["Easily gives up", "Strongly persistent", "Indifferent", "Reluctant"],
+            options: ["Gets irritated easily", "Persists until they succeed", "Makes friends easily", "Changes their mind all the time"],
           },
           q14: {
             question: "What does 'meticulous' mean?",
-            options: ["Careless", "Attentive to details", "Quick", "Unplanned"],
+            options: ["Does everything any old way", "Takes care over every detail", "Finishes everything quickly", "Likes giving orders"],
           },
           q15: {
             question: "What does 'ephemeral' mean?",
-            options: ["Durable", "Temporary", "Unchanging", "Important"],
+            options: ["Happens only once", "Soon ceases to exist", "Weighs less than it looks", "Belongs to the past"],
           },
           q16: {
             question: "What does 'prolific' mean?",
-            options: ["Produces a lot", "Slow", "Unproductive", "Rare"],
+            options: ["Produces a great deal", "Talks for a long time", "Lives far from the city", "Makes money easily"],
           },
           q17: {
             question: "What does 'antagonistic' mean?",
-            options: ["Opposite", "Equal", "Friendly", "Neutral"],
+            options: ["Opposed to something else", "Is the main character", "Comes from ancient times", "Was made entirely by hand"],
           },
           q18: {
             question: 'What does "resigned" mean?',
-            options: ["Accepting without a fight", "Having energy", "Being arrogant", "Being innovative"],
+            options: ["Accepts things without a fight", "Stays calm no matter what happens", "Was appointed to a position", "Writes with the left hand"],
           },
           q19: {
             question: 'What does "indocile" mean?',
-            options: ["Hard to tame", "Easily trained", "Friendly in behavior", "Quick to learn"],
+            options: ["Cannot be tamed or controlled", "Was born and raised in another country", "Falls ill very frequently", "Cannot stand to be left alone at home"],
           },
           q20: {
             question: 'What does "esoteric" mean?',
-            options: ["Understood by few", "Easy to understand", "Common to everyone", "Of great importance"],
+            options: ["Understood by only a few", "Comes from a foreign country", "Frightens people", "Was written many centuries ago"],
           },
         },
         matrix: {
