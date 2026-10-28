@@ -28,16 +28,16 @@ A alternativa correta está em **negrito**. As versões em inglês e espanhol es
 
 | id | dif. | pergunta | A | B | C | D |
 |---|---|---|---|---|---|---|
-| t17 | fácil | O que uma maçã e uma laranja têm em comum? | Ambas têm a mesma cor | **Ambas são frutas** | Ambas crescem debaixo da terra | Ambas são doces |
-| t18 | fácil | Qual a semelhança entre um martelo e um serrote? | Ambos cortam madeira | Ambos têm um cabo para segurar | **Ambos são ferramentas** | Ambos são feitos de plástico |
+| t17 | fácil | O que uma maçã e uma laranja têm em comum? | Ambas têm a mesma cor | **Ambas são frutas** | Ambas crescem debaixo da terra | Ambas são amargas |
+| t18 | fácil | Qual a semelhança entre um martelo e um serrote? | Ambos cortam madeira | Ambos têm uma lâmina | **Ambos são ferramentas** | Ambos são feitos de plástico |
 | t19 | fácil | O que uma camisa e uma calça têm em comum? | **Ambas são peças de roupa** | Ambas têm bolsos | Ambas cobrem as pernas | Ambas são de couro |
-| t20 | fácil | Qual a semelhança entre leite e suco? | Ambos são vendidos em caixinha | Ambos vêm de frutas | Ambos são doces | **Ambos são bebidas** |
+| t20 | fácil | Qual a semelhança entre leite e suco? | Ambos contêm cafeína | Ambos vêm de frutas | Ambos são doces | **Ambos são bebidas** |
 | t21 | fácil | O que uma colher e um garfo têm em comum? | Ambos servem para cortar | **Ambos são talheres** | Ambos são afiados | Ambos são de madeira |
-| t22 | fácil | Qual a semelhança entre segunda-feira e sexta-feira? | Ambas são dias de fim de semana | Ambas vêm logo depois do domingo | Ambas têm 24 horas | **Ambas são dias úteis** |
-| t23 | média | O que o olho e o ouvido têm em comum? | Ambos ficam na cabeça, em pares | Ambos podem perder a função com a idade | **Ambos são órgãos dos sentidos** | Ambos produzem lágrimas |
-| t24 | média | Qual a semelhança entre um relógio e um calendário? | Ambos têm números impressos ou exibidos | **Ambos servem para marcar a passagem do tempo** | Ambos podem ficar pendurados na parede da sala | Ambos mostram a temperatura do ambiente |
-| t25 | média | O que uma semente e um ovo têm em comum? | Ambos são pequenos e cabem na mão | Ambos podem servir de alimento para as pessoas | Ambos vêm de plantas que dão flores | **Ambos dão origem a um novo ser vivo** |
-| t26 | média | Qual a semelhança entre um termômetro e uma régua? | **Ambos são instrumentos de medição** | Ambos têm uma escala com números marcados | Ambos podem ser feitos de plástico ou vidro | Ambos medem a febre |
+| t22 | fácil | Qual a semelhança entre segunda-feira e sexta-feira? | Ambas são dias de fim de semana | Ambas vêm logo depois do domingo | Ambas são feriados | **Ambas são dias úteis** |
+| t23 | média | O que o olho e o ouvido têm em comum? | Ambos captam os sons do ambiente | Ambos são ossos do crânio | **Ambos são órgãos dos sentidos** | Ambos produzem lágrimas |
+| t24 | média | Qual a semelhança entre um relógio e um calendário? | Ambos mostram os doze meses do ano | **Ambos servem para marcar a passagem do tempo** | Ambos têm ponteiros que giram em volta do mostrador | Ambos mostram a temperatura do ambiente |
+| t25 | média | O que uma semente e um ovo têm em comum? | Ambos têm gema e clara por dentro | Ambos precisam ser enterrados na terra para brotar | Ambos vêm de plantas que dão flores | **Ambos dão origem a um novo ser vivo** |
+| t26 | média | Qual a semelhança entre um termômetro e uma régua? | **Ambos são instrumentos de medição** | Ambos servem para traçar linhas retas | Ambos medem o peso de um objeto | Ambos medem a febre |
 
 ## Vocabulário
 
@@ -68,11 +68,11 @@ A alternativa correta está em **negrito**. As versões em inglês e espanhol es
 |---|---|---|---|---|---|---|
 | t45 | fácil | Por que devemos olhar para os dois lados antes de atravessar a rua? | Porque é uma regra | **Para ver se vem algum veículo** | Para dar o exemplo a quem está por perto | Para escolher o melhor ponto para atravessar |
 | t46 | fácil | Por que guardamos alimentos perecíveis na geladeira? | Para ficarem com mais sabor | Para ocuparem menos espaço na cozinha | **Para demorarem mais a estragar** | Porque é o costume na maioria das casas |
-| t47 | fácil | Por que é útil fazer uma lista antes de ir ao mercado? | **Para não esquecer o que precisa comprar** | Para terminar as compras mais depressa | Para ter uma ideia de quanto vai gastar no total | Para comparar os preços entre as lojas |
-| t48 | fácil | Por que usamos cinto de segurança no carro? | Para poder dirigir com mais velocidade | Para não receber multa numa fiscalização de trânsito | Porque o banco fica mais confortável | **Para reduzir ferimentos em caso de acidente** |
+| t47 | fácil | Por que é útil fazer uma lista antes de ir ao mercado? | **Para não esquecer o que precisa comprar** | Para ganhar desconto no caixa por levar a lista | Para o mercado repor os produtos que estão faltando | Para que o mercado entregue a compra em casa |
+| t48 | fácil | Por que usamos cinto de segurança no carro? | Para poder dirigir com mais velocidade | Porque o carro não liga sem o cinto afivelado | Porque o banco fica mais confortável | **Para reduzir ferimentos em caso de acidente** |
 | t49 | fácil | Por que é importante chegar no horário a um compromisso? | Para parecer uma pessoa importante | **Para respeitar o tempo das outras pessoas** | Para poder ir embora mais cedo do compromisso | Porque o relógio determina o que fazemos |
 | t50 | fácil | Por que vale a pena guardar o comprovante de uma compra? | Para guardar como lembrança da compra | Porque a loja exige que todo cliente guarde o papel | **Para poder trocar o produto se houver problema** | Para mostrar aos amigos o que comprou |
-| t51 | fácil | Por que devemos ler as instruções antes de montar um móvel? | **Para montar corretamente e evitar erros** | Para saber quanto tempo a montagem vai levar | Porque o manual vem junto na caixa do produto | Para usar todas as peças da caixa |
-| t52 | fácil | Por que devemos pedir desculpas quando erramos? | Para encerrar logo uma conversa desagradável | Para evitar que a outra pessoa fique brava conosco | Para parecer bem-educado e ser elogiado | **Para assumir o que fizemos e preservar a relação** |
-| t53 | difícil | Por que as promessas devem ser cumpridas? | Porque quem não cumpre perde o respeito dos outros | **Porque a confiança entre as pessoas depende disso** | Porque é o que os pais ensinam desde cedo | Porque assim evitamos discussões com quem contava conosco |
-| t54 | difícil | Por que o trabalho em equipe costuma render mais do que o trabalho isolado? | **Porque combina habilidades diferentes e divide o esforço** | Porque as pessoas se sentem mais motivadas quando estão em grupo | Porque os erros de um podem ser corrigidos pelos outros | Porque cada um aprende com os outros e ganha experiência |
+| t51 | fácil | Por que devemos ler as instruções antes de montar um móvel? | **Para montar corretamente e evitar erros** | Para descobrir de que madeira o móvel é feito | Porque o manual vem junto na caixa do produto | Para descobrir quanto o móvel custou na loja |
+| t52 | fácil | Por que devemos pedir desculpas quando erramos? | Para encerrar logo uma conversa desagradável | Para transferir a culpa do erro para a outra pessoa | Para parecer bem-educado e ser elogiado | **Para assumir o que fizemos e preservar a relação** |
+| t53 | difícil | Por que as promessas devem ser cumpridas? | Porque cumprir promessas deixa as pessoas mais inteligentes | **Porque a confiança entre as pessoas depende disso** | Porque é o que os pais ensinam desde cedo | Porque quem não cumpre o que prometeu acaba indo preso |
+| t54 | difícil | Por que o trabalho em equipe costuma render mais do que o trabalho isolado? | **Porque combina habilidades diferentes e divide o esforço** | Porque em grupo ninguém precisa se esforçar de verdade | Porque em grupo todos pensam exatamente da mesma forma | Porque em grupo cada um faz só a parte de que gosta |

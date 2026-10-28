@@ -589,7 +589,7 @@
         "Ambas têm a mesma cor",
         "Ambas são frutas",
         "Ambas crescem debaixo da terra",
-        "Ambas são doces"
+        "Ambas são amargas"
       ]
     },
     "en": {
@@ -598,7 +598,7 @@
         "Both are the same color",
         "Both are fruits",
         "Both grow underground",
-        "Both are sweet"
+        "Both are bitter"
       ]
     },
     "es": {
@@ -607,7 +607,7 @@
         "Ambas tienen el mismo color",
         "Ambas son frutas",
         "Ambas crecen bajo tierra",
-        "Ambas son dulces"
+        "Ambas son amargas"
       ]
     }
   },
@@ -623,7 +623,7 @@
       "question": "Qual a semelhança entre um martelo e um serrote?",
       "options": [
         "Ambos cortam madeira",
-        "Ambos têm um cabo para segurar",
+        "Ambos têm uma lâmina",
         "Ambos são ferramentas",
         "Ambos são feitos de plástico"
       ]
@@ -632,7 +632,7 @@
       "question": "What do a hammer and a saw have in common?",
       "options": [
         "Both cut wood",
-        "Both have a handle to hold",
+        "Both have a blade",
         "Both are tools",
         "Both are made of plastic"
       ]
@@ -641,7 +641,7 @@
       "question": "¿Qué tienen en común un martillo y un serrucho?",
       "options": [
         "Ambos cortan madera",
-        "Ambos tienen un mango para sujetarlos",
+        "Ambos tienen una hoja de corte",
         "Ambos son herramientas",
         "Ambos están hechos de plástico"
       ]
@@ -694,7 +694,7 @@
     "pt": {
       "question": "Qual a semelhança entre leite e suco?",
       "options": [
-        "Ambos são vendidos em caixinha",
+        "Ambos contêm cafeína",
         "Ambos vêm de frutas",
         "Ambos são doces",
         "Ambos são bebidas"
@@ -703,7 +703,7 @@
     "en": {
       "question": "What do milk and juice have in common?",
       "options": [
-        "Both are sold in cartons",
+        "Both contain caffeine",
         "Both come from fruit",
         "Both are sweet",
         "Both are drinks"
@@ -712,7 +712,7 @@
     "es": {
       "question": "¿Qué tienen en común la leche y el jugo?",
       "options": [
-        "Ambos se venden en envases de cartón",
+        "Ambos contienen cafeína",
         "Ambos vienen de frutas",
         "Ambos son dulces",
         "Ambos son bebidas"
@@ -768,7 +768,7 @@
       "options": [
         "Ambas são dias de fim de semana",
         "Ambas vêm logo depois do domingo",
-        "Ambas têm 24 horas",
+        "Ambas são feriados",
         "Ambas são dias úteis"
       ]
     },
@@ -777,7 +777,7 @@
       "options": [
         "Both are weekend days",
         "Both come right after Sunday",
-        "Both have 24 hours",
+        "Both are holidays",
         "Both are weekdays"
       ]
     },
@@ -786,7 +786,7 @@
       "options": [
         "Ambos son días del fin de semana",
         "Ambos vienen justo después del domingo",
-        "Ambos tienen 24 horas",
+        "Ambos son feriados",
         "Ambos son días hábiles"
       ]
     }
@@ -802,8 +802,8 @@
     "pt": {
       "question": "O que o olho e o ouvido têm em comum?",
       "options": [
-        "Ambos ficam na cabeça, em pares",
-        "Ambos podem perder a função com a idade",
+        "Ambos captam os sons do ambiente",
+        "Ambos são ossos do crânio",
         "Ambos são órgãos dos sentidos",
         "Ambos produzem lágrimas"
       ]
@@ -811,8 +811,8 @@
     "en": {
       "question": "What do an eye and an ear have in common?",
       "options": [
-        "Both are on the head, in pairs",
-        "Both can weaken with age",
+        "Both pick up sounds around us",
+        "Both are bones of the skull",
         "Both are sense organs",
         "Both produce tears"
       ]
@@ -820,8 +820,8 @@
     "es": {
       "question": "¿Qué tienen en común el ojo y el oído?",
       "options": [
-        "Ambos están en la cabeza y vienen en pares",
-        "Ambos pueden debilitarse con la edad",
+        "Ambos captan los sonidos del entorno",
+        "Ambos son huesos del cráneo",
         "Ambos son órganos de los sentidos",
         "Ambos producen lágrimas"
       ]
@@ -838,27 +838,27 @@
     "pt": {
       "question": "Qual a semelhança entre um relógio e um calendário?",
       "options": [
-        "Ambos têm números impressos ou exibidos",
+        "Ambos mostram os doze meses do ano",
         "Ambos servem para marcar a passagem do tempo",
-        "Ambos podem ficar pendurados na parede da sala",
+        "Ambos têm ponteiros que giram em volta do mostrador",
         "Ambos mostram a temperatura do ambiente"
       ]
     },
     "en": {
       "question": "What do a clock and a calendar have in common?",
       "options": [
-        "Both have numbers printed or displayed on them",
+        "Both show the twelve months of the year",
         "Both are used to keep track of time",
-        "Both can hang on the wall of a living room",
+        "Both have hands that turn around a dial",
         "Both show the room temperature"
       ]
     },
     "es": {
       "question": "¿Qué tienen en común un reloj y un calendario?",
       "options": [
-        "Ambos tienen números impresos o en pantalla",
+        "Ambos muestran los doce meses del año",
         "Ambos sirven para medir el paso del tiempo",
-        "Ambos pueden colgarse en la pared de la sala",
+        "Ambos tienen manecillas que giran sobre la esfera",
         "Ambos muestran la temperatura del ambiente"
       ]
     }
@@ -874,8 +874,8 @@
     "pt": {
       "question": "O que uma semente e um ovo têm em comum?",
       "options": [
-        "Ambos são pequenos e cabem na mão",
-        "Ambos podem servir de alimento para as pessoas",
+        "Ambos têm gema e clara por dentro",
+        "Ambos precisam ser enterrados na terra para brotar",
         "Ambos vêm de plantas que dão flores",
         "Ambos dão origem a um novo ser vivo"
       ]
@@ -883,8 +883,8 @@
     "en": {
       "question": "What do a seed and an egg have in common?",
       "options": [
-        "Both are small and fit in your hand",
-        "Both can serve as food for people to eat",
+        "Both have a yolk and a white inside",
+        "Both need to be buried in soil to sprout",
         "Both come from flowering plants",
         "Both give rise to a new living being"
       ]
@@ -892,8 +892,8 @@
     "es": {
       "question": "¿Qué tienen en común una semilla y un huevo?",
       "options": [
-        "Ambos son pequeños y caben en la mano",
-        "Ambos pueden servir de alimento para las personas",
+        "Ambos tienen yema y clara por dentro",
+        "Ambos necesitan enterrarse en la tierra para brotar",
         "Ambos vienen de plantas con flores",
         "Ambos dan origen a un nuevo ser vivo"
       ]
@@ -911,8 +911,8 @@
       "question": "Qual a semelhança entre um termômetro e uma régua?",
       "options": [
         "Ambos são instrumentos de medição",
-        "Ambos têm uma escala com números marcados",
-        "Ambos podem ser feitos de plástico ou vidro",
+        "Ambos servem para traçar linhas retas",
+        "Ambos medem o peso de um objeto",
         "Ambos medem a febre"
       ]
     },
@@ -920,8 +920,8 @@
       "question": "What do a thermometer and a ruler have in common?",
       "options": [
         "Both are measuring instruments",
-        "Both have a scale with numbers marked on it",
-        "Both can be made of plastic or glass",
+        "Both are used to draw straight lines",
+        "Both measure the weight of an object",
         "Both measure fever"
       ]
     },
@@ -929,8 +929,8 @@
       "question": "¿Qué tienen en común un termómetro y una regla?",
       "options": [
         "Ambos son instrumentos de medición",
-        "Ambos tienen una escala con números marcados",
-        "Ambos pueden ser de plástico o de vidrio",
+        "Ambos sirven para trazar líneas rectas",
+        "Ambos miden el peso de un objeto",
         "Ambos miden la fiebre"
       ]
     }
@@ -1667,27 +1667,27 @@
       "question": "Por que é útil fazer uma lista antes de ir ao mercado?",
       "options": [
         "Para não esquecer o que precisa comprar",
-        "Para terminar as compras mais depressa",
-        "Para ter uma ideia de quanto vai gastar no total",
-        "Para comparar os preços entre as lojas"
+        "Para ganhar desconto no caixa por levar a lista",
+        "Para o mercado repor os produtos que estão faltando",
+        "Para que o mercado entregue a compra em casa"
       ]
     },
     "en": {
       "question": "Why is it useful to make a list before going grocery shopping?",
       "options": [
         "So as not to forget what you need to buy",
-        "To finish the shopping more quickly",
-        "To get an idea of how much you will spend in total",
-        "To compare prices between stores"
+        "To get a discount at checkout for bringing a list",
+        "So that the store restocks the products that ran out",
+        "So that the store delivers the groceries home"
       ]
     },
     "es": {
       "question": "¿Por qué es útil hacer una lista antes de ir al supermercado?",
       "options": [
         "Para no olvidar lo que hay que comprar",
-        "Para terminar las compras más rápido",
-        "Para tener una idea de cuánto se gastará en total",
-        "Para comparar precios entre tiendas"
+        "Para recibir un descuento en caja por llevar la lista",
+        "Para que el supermercado reponga los productos que faltan",
+        "Para que el supermercado entregue la compra en casa"
       ]
     }
   },
@@ -1703,7 +1703,7 @@
       "question": "Por que usamos cinto de segurança no carro?",
       "options": [
         "Para poder dirigir com mais velocidade",
-        "Para não receber multa numa fiscalização de trânsito",
+        "Porque o carro não liga sem o cinto afivelado",
         "Porque o banco fica mais confortável",
         "Para reduzir ferimentos em caso de acidente"
       ]
@@ -1712,7 +1712,7 @@
       "question": "Why do we wear a seat belt in the car?",
       "options": [
         "To be able to drive at higher speeds",
-        "To avoid being fined at a traffic checkpoint",
+        "Because the car does not start if the belt is unfastened",
         "Because the seat feels more comfortable",
         "To reduce injuries in case of an accident"
       ]
@@ -1721,7 +1721,7 @@
       "question": "¿Por qué usamos cinturón de seguridad en el auto?",
       "options": [
         "Para poder manejar a mayor velocidad",
-        "Para que no nos multen en un control de tránsito",
+        "Porque el auto no arranca si el cinturón no está abrochado",
         "Porque el asiento resulta más cómodo",
         "Para reducir lesiones en caso de accidente"
       ]
@@ -1811,27 +1811,27 @@
       "question": "Por que devemos ler as instruções antes de montar um móvel?",
       "options": [
         "Para montar corretamente e evitar erros",
-        "Para saber quanto tempo a montagem vai levar",
+        "Para descobrir de que madeira o móvel é feito",
         "Porque o manual vem junto na caixa do produto",
-        "Para usar todas as peças da caixa"
+        "Para descobrir quanto o móvel custou na loja"
       ]
     },
     "en": {
       "question": "Why should we read the instructions before assembling a piece of furniture?",
       "options": [
         "To assemble it correctly and avoid mistakes",
-        "To know how long the assembly will take",
+        "To find out what wood the furniture is made of",
         "Because the manual comes inside the product box",
-        "To use all the parts that come in the box"
+        "To find out how much the furniture cost in the store"
       ]
     },
     "es": {
       "question": "¿Por qué debemos leer las instrucciones antes de armar un mueble?",
       "options": [
         "Para armarlo correctamente y evitar errores",
-        "Para saber cuánto tiempo tomará el armado",
+        "Para saber de qué madera está hecho el mueble",
         "Porque el manual viene dentro de la caja del producto",
-        "Para usar todas las piezas que vienen en la caja"
+        "Para saber cuánto costó el mueble en la tienda"
       ]
     }
   },
@@ -1847,7 +1847,7 @@
       "question": "Por que devemos pedir desculpas quando erramos?",
       "options": [
         "Para encerrar logo uma conversa desagradável",
-        "Para evitar que a outra pessoa fique brava conosco",
+        "Para transferir a culpa do erro para a outra pessoa",
         "Para parecer bem-educado e ser elogiado",
         "Para assumir o que fizemos e preservar a relação"
       ]
@@ -1856,7 +1856,7 @@
       "question": "Why should we apologize when we make a mistake?",
       "options": [
         "To end an unpleasant conversation quickly",
-        "To keep the other person from getting angry with us",
+        "To shift the blame for what happened onto the other person",
         "To look well-mannered and be praised",
         "To take responsibility and preserve the relationship"
       ]
@@ -1865,7 +1865,7 @@
       "question": "¿Por qué debemos pedir disculpas cuando nos equivocamos?",
       "options": [
         "Para terminar pronto una conversación incómoda",
-        "Para evitar que la otra persona se enoje con nosotros",
+        "Para pasarle la culpa del error a la otra persona",
         "Para parecer bien educado y recibir elogios",
         "Para asumir lo que hicimos y cuidar la relación"
       ]
@@ -1882,28 +1882,28 @@
     "pt": {
       "question": "Por que as promessas devem ser cumpridas?",
       "options": [
-        "Porque quem não cumpre perde o respeito dos outros",
+        "Porque cumprir promessas deixa as pessoas mais inteligentes",
         "Porque a confiança entre as pessoas depende disso",
         "Porque é o que os pais ensinam desde cedo",
-        "Porque assim evitamos discussões com quem contava conosco"
+        "Porque quem não cumpre o que prometeu acaba indo preso"
       ]
     },
     "en": {
       "question": "Why should promises be kept?",
       "options": [
-        "Because people who break them lose the respect of others",
+        "Because keeping promises makes people smarter",
         "Because trust between people depends on it",
         "Because it is what parents teach from an early age",
-        "Because it avoids arguments with the person who was counting on us"
+        "Because anyone who breaks a promise goes to jail"
       ]
     },
     "es": {
       "question": "¿Por qué deben cumplirse las promesas?",
       "options": [
-        "Porque quien no cumple pierde el respeto de los demás",
+        "Porque cumplir promesas vuelve más inteligente a la gente",
         "Porque la confianza entre las personas depende de ello",
         "Porque es lo que los padres enseñan desde pequeños",
-        "Porque así evitamos discusiones con quien contaba con nosotros"
+        "Porque quien no cumple lo prometido termina en la cárcel"
       ]
     }
   },
@@ -1919,27 +1919,27 @@
       "question": "Por que o trabalho em equipe costuma render mais do que o trabalho isolado?",
       "options": [
         "Porque combina habilidades diferentes e divide o esforço",
-        "Porque as pessoas se sentem mais motivadas quando estão em grupo",
-        "Porque os erros de um podem ser corrigidos pelos outros",
-        "Porque cada um aprende com os outros e ganha experiência"
+        "Porque em grupo ninguém precisa se esforçar de verdade",
+        "Porque em grupo todos pensam exatamente da mesma forma",
+        "Porque em grupo cada um faz só a parte de que gosta"
       ]
     },
     "en": {
       "question": "Why does working as a team often achieve more than working alone?",
       "options": [
         "Because it combines different skills and shares the effort",
-        "Because people feel more motivated when they are in a group",
-        "Because one person's mistakes can be corrected by the others",
-        "Because each person learns from the others and gains experience"
+        "Because in a group nobody really has to make an effort",
+        "Because in a group everyone thinks exactly the same way",
+        "Because in a group each person only does the part they like"
       ]
     },
     "es": {
       "question": "¿Por qué el trabajo en equipo suele lograr más que el trabajo individual?",
       "options": [
         "Porque combina habilidades distintas y reparte el esfuerzo",
-        "Porque las personas se sienten más motivadas cuando están en grupo",
-        "Porque los errores de uno pueden ser corregidos por los otros",
-        "Porque cada uno aprende de los demás y gana experiencia"
+        "Porque en grupo nadie tiene que esforzarse de verdad",
+        "Porque en grupo todos piensan exactamente de la misma manera",
+        "Porque en grupo cada uno hace solo la parte que le gusta"
       ]
     }
   }

@@ -38,3 +38,16 @@ text categories, and the blind-solve report says 54/54 in pt, en and es.
 
 **If stuck.** Vocabulary easy items are the hardest to keep easy in all three
 languages; prefer common words with one clear synonym over rare words.
+
+**Recheck (2026-10-28), after the live-bank audit (05f).** A stricter blind
+solver, keys kept outside its folder, agreed with all 54 keys in pt, en and
+es, but judged a distractor "also defensible" in 14 items: literally true of
+both things in 8 similarities items (hammer and saw "have a handle", Monday
+and Friday "have 24 hours") and a true secondary reason in 6 comprehension
+items ("to avoid a fine"). Those distractors were replaced with false ones;
+two rechecks gave 14/14 and then 3/3 in every language with no second
+defensible option. Options-only (no question): vocabulary 15/18, by naming
+the word from the near-miss distractors in 17 items; similarities 10/10,
+because the key is the abstract category — the same limits as the live bank.
+`scripts/bank/count.py`: STAGED CHECK OK; no duplicate of a live question,
+vocabulary word or number sequence. Owner review still pending.
