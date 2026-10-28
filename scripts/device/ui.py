@@ -48,8 +48,8 @@ def cold_start():
     adb("shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", DEV_CLIENT_URL, PACKAGE)
 
 
-# The round of all 30 pattern items, in order; the branch exists only in a dev
-# bundle (`__DEV__` in app/test.tsx) and saves nothing.
+# The round of every pattern item in the bank, in order; the branch exists only
+# in a dev bundle (`__DEV__` in app/test.tsx) and saves nothing.
 DEV_ROUND_URL = "testeqi://test?only=patterns"
 
 

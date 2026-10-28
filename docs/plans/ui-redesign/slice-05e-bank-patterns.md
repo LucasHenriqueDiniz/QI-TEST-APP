@@ -1,5 +1,5 @@
 ---
-status: todo
+status: done
 ---
 
 # Slice 05e — bank: 24 pattern items (120 SVGs) from a generator
@@ -40,5 +40,14 @@ rather than hand-editing SVGs; hand edits break reproducibility.
 (ids 165–188): `gNN/prompt.svg` and `option_k.svg` copied to
 `assets/questions/patterns/{30+NN}_q_01.svg` and `_a_0k.svg` and registered
 in `index.ts`. Patterns now 16 / 22 / 16 = 54. Generator tests 220/220.
-Still to run on the phone: `check_fit_round.py --only patterns` (54/54) and a
-Detalhado round.
+
+**Result on the A15 (2026-10-28, dev build on Metro, over Wi-Fi).**
+
+| check | result |
+|---|---|
+| `check_fit_round.py --only patterns` | `54/54 fit` (was 30/30) |
+| Detalhado round, `answer_all.py` from `testeqi://test?mode=detalhado` | `90/90`; history +1: mode `detalhado`, 90 questions, per category patterns 27, matrix 18, similarities 15, vocabulary 15, comprehension 15 (the blueprint), reasoning and verbal indices saved |
+| `check_fit_round.py --longest-text` | now comprehension q30 (pt 290, en 291, es 299 characters): `3/3 fit` |
+| p31, p42, p54 opened alone (`/test?q=165`, `176`, `188`) | prompt and four options drawn |
+
+The scripts' `--max` default was 80, below a Detalhado round; it is 100 now.

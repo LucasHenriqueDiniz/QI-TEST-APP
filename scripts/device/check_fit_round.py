@@ -2,7 +2,7 @@
 
 usage: check_fit_round.py [--only patterns | --longest-text] [--seed N] [--max N]
 
-  --only patterns   open the dev-only round of the 30 pattern items, in order
+  --only patterns   open the dev-only round of every pattern item, in order
                     (testeqi://test?only=patterns; the branch exists only in a
                     dev bundle and saves nothing). Without it a normal round
                     starts from Home, resuming a saved one when asked.
@@ -260,7 +260,7 @@ def main():
     parser.add_argument("--only", choices=["patterns"])
     parser.add_argument("--longest-text", action="store_true")
     parser.add_argument("--seed", type=int, default=7)
-    parser.add_argument("--max", type=int, default=80)
+    parser.add_argument("--max", type=int, default=100)
     args = parser.parse_args()
     ui.require_device()
 

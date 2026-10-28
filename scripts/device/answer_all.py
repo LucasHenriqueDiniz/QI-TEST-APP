@@ -53,7 +53,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--start", action="store_true")
-    parser.add_argument("--max", type=int, default=80)
+    parser.add_argument("--max", type=int, default=100)
     args = parser.parse_args()
     ui.require_device()
     rng = random.Random(args.seed)
