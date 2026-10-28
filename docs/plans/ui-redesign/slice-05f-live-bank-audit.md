@@ -50,6 +50,7 @@ never been solved blind, and some keys were wrong.
 | vocabulary: key guessed from the options alone (no word) | 20/20, confidence 0.82–0.93, cue "odd one out / only positive / longest" | 17/20, confidence 0.53, by reconstructing the word from the near-miss distractors (16/20 words named exactly), keys kept out of the solver's folder |
 | `tests/bankCues.test.ts` (all four categories) | red on the old texts: similarities and vocabulary fail in all 6 category × language combinations | green |
 | `npm test` | 71 | 85 pass |
+| longest text question on the A15 (`check_fit_round.py --longest-text`, 2026-10-28) | 177 characters, fit | pt q10 267, en q17 266, es q12 277: 3/3 fit |
 
 The options-only guess stays at 20/20 because a "why" item's options reveal
 its topic and only one of them is the sound reason; the solver reported that
@@ -67,6 +68,3 @@ distractors that are also good reasons, which is two right answers.
 - Numeric q9 and q11 state the operation (5², 4³) and are tagged hard.
 - Results already in a user's history were scored with the old keys; they
   are not recomputed (history keeps no per-answer record).
-- Device: the longest text question grew from 177 to 266–277 characters
-  (comprehension q12, q17); `check_fit_round.py --longest-text` has to pass
-  on the phone before release.
