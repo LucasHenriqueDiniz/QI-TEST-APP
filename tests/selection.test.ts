@@ -33,13 +33,15 @@ describe("round composition", () => {
     }
   });
 
-  test("short cells are reported exactly as the bank predicts, and filled from the same category", () => {
+  test("on the shipped bank no cell is short: vocabulary comes in the blueprint's own 2/3/2", () => {
     const round = buildRound(TODAY_BANK, "normal", null, mulberry32(2));
     assert.deepEqual(round.shortfalls, cellShortfalls(BLUEPRINTS.normal, TODAY_BANK));
+    assert.deepEqual(round.shortfalls, []);
     const vocabulary = round.items.filter((item) => item.question.category === "vocabulary");
     assert.equal(vocabulary.length, 7);
-    assert.equal(vocabulary.filter((item) => item.question.difficulty === "medium").length, 2, "both medium items are in");
-    assert.equal(vocabulary.filter((item) => item.question.difficulty === "hard").length, 5, "2 hard by blueprint + 3 filling the holes");
+    assert.equal(vocabulary.filter((item) => item.question.difficulty === "easy").length, 2);
+    assert.equal(vocabulary.filter((item) => item.question.difficulty === "medium").length, 3);
+    assert.equal(vocabulary.filter((item) => item.question.difficulty === "hard").length, 2);
   });
 
   test("on a bank with 2× per cell there are no shortfalls, even for detalhado", () => {
@@ -79,16 +81,14 @@ describe("least-recently-used selection", () => {
     assert.equal(overlap(first, third), 85);
   });
 
-  test("on today's bank two normal rounds share exactly the 9 items the short cells force (research: 22%)", async () => {
-    // patterns.medium 2·4−6 = 2, matrix.easy 2·2−3 = 1, similarities.easy 2, comprehension.easy 2,
-    // vocabulary.medium 2 (both items every time); the vocabulary holes are filled from 16 spare hard items.
+  test("on the shipped bank two normal rounds share 0 items (9 of 40 before the expansion)", async () => {
     const storage = new FakeStorage();
     const first = await drawRound(storage, TODAY_BANK, "normal", 31);
     const second = await drawRound(storage, TODAY_BANK, "normal", 32);
-    assert.equal(overlap(first, second), 9);
+    assert.equal(overlap(first, second), 0);
   });
 
-  test("on today's bank two rapido rounds share 0 items", async () => {
+  test("on the shipped bank two rapido rounds share 0 items", async () => {
     const storage = new FakeStorage();
     const first = await drawRound(storage, TODAY_BANK, "rapido", 41);
     const second = await drawRound(storage, TODAY_BANK, "rapido", 42);

@@ -40,48 +40,35 @@ describe("blueprints", () => {
   });
 });
 
-describe("fit against today's bank (110 items)", () => {
-  test("the bank is the one the research measured", () => {
-    assert.equal(TODAY_BANK.length, 110);
-    assert.equal(cellCount(TODAY_BANK, "vocabulary", "easy"), 0);
-    assert.equal(cellCount(TODAY_BANK, "vocabulary", "medium"), 2);
-    assert.equal(cellCount(TODAY_BANK, "patterns", "medium"), 6);
+describe("fit against the shipped bank (188 items)", () => {
+  test("the bank is the expanded one of the research table", () => {
+    assert.equal(TODAY_BANK.length, 188);
+    assert.equal(cellCount(TODAY_BANK, "vocabulary", "easy"), 8);
+    assert.equal(cellCount(TODAY_BANK, "vocabulary", "medium"), 12);
+    assert.equal(cellCount(TODAY_BANK, "patterns", "medium"), 22);
   });
 
-  test("rapido fits every cell except easy vocabulary (bank has none)", () => {
-    assert.deepEqual(cellShortfalls(BLUEPRINTS.rapido, TODAY_BANK), [{ category: "vocabulary", difficulty: "easy", wanted: 1, available: 0 }]);
-  });
-
-  test("normal fits every cell except easy (0 of 2) and medium (2 of 3) vocabulary", () => {
-    assert.deepEqual(cellShortfalls(BLUEPRINTS.normal, TODAY_BANK), [
-      { category: "vocabulary", difficulty: "easy", wanted: 2, available: 0 },
-      { category: "vocabulary", difficulty: "medium", wanted: 3, available: 2 },
-    ]);
-  });
-
-  test("detalhado is short in several cells today", () => {
-    const short = cellShortfalls(BLUEPRINTS.detalhado, TODAY_BANK);
-    assert.ok(short.length >= 5, `only ${short.length} short cells`);
-    assert.ok(short.some((s) => s.category === "patterns" && s.difficulty === "medium" && s.wanted === 11 && s.available === 6));
+  test("every mode fits every cell: no shortfalls", () => {
+    for (const mode of ["rapido", "normal", "detalhado"] as const) {
+      assert.deepEqual(cellShortfalls(BLUEPRINTS[mode], TODAY_BANK), [], mode);
+    }
   });
 });
 
 describe("mode availability", () => {
-  test("rapido and normal are available on today's bank", () => {
-    assert.equal(isModeAvailable("rapido", TODAY_BANK), true);
-    assert.equal(isModeAvailable("normal", TODAY_BANK), true);
-  });
-
-  test("detalhado is unavailable on today's bank", () => {
-    assert.equal(isModeAvailable("detalhado", TODAY_BANK), false);
+  test("all three modes are available on the shipped bank", () => {
+    for (const mode of ["rapido", "normal", "detalhado"] as const) {
+      assert.equal(isModeAvailable(mode, TODAY_BANK), true, mode);
+    }
   });
 
   test("detalhado becomes available once every cell holds 2× its blueprint count, not before", () => {
-    assert.equal(isModeAvailable("detalhado", bankWithForms("detalhado", 2)), true);
-    assert.equal(isModeAvailable("detalhado", bankWithForms("detalhado", 1.6)), false);
+    // Built from nothing, so the shipped bank (already at 2×) does not hide the threshold.
+    assert.equal(isModeAvailable("detalhado", bankWithForms("detalhado", 2, [])), true);
+    assert.equal(isModeAvailable("detalhado", bankWithForms("detalhado", 1.6, [])), false);
 
     // One cell one item short of 2× is enough to keep it off.
-    const bank = bankWithForms("detalhado", 2);
+    const bank = bankWithForms("detalhado", 2, []);
     const lastHardPattern = [...bank].reverse().find((q) => q.category === "patterns" && q.difficulty === "hard")!;
     assert.equal(isModeAvailable("detalhado", bank.filter((q) => q.id !== lastHardPattern.id)), false);
   });

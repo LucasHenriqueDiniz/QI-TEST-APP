@@ -235,6 +235,46 @@ export const es = {
             question: "¿Qué tienen en común una escuela y una biblioteca?",
             options: ["Ambas son lugares de aprendizaje", "Ambas venden libros al público", "Ambas tienen profesores dando clase", "Ambas cobran entrada para ingresar"],
           },
+          q21: {
+            question: "¿Qué tienen en común una manzana y una naranja?",
+            options: ["Ambas tienen el mismo color", "Ambas son frutas", "Ambas crecen bajo tierra", "Ambas son amargas"],
+          },
+          q22: {
+            question: "¿Qué tienen en común un martillo y un serrucho?",
+            options: ["Ambos cortan madera", "Ambos tienen una hoja de corte", "Ambos son herramientas", "Ambos están hechos de plástico"],
+          },
+          q23: {
+            question: "¿Qué tienen en común una camisa y un pantalón?",
+            options: ["Son prendas de vestir", "Tienen bolsillos", "Cubren las piernas", "Son de cuero"],
+          },
+          q24: {
+            question: "¿Qué tienen en común la leche y el jugo?",
+            options: ["Ambos contienen cafeína", "Ambos vienen de frutas", "Ambos son dulces", "Ambos son bebidas"],
+          },
+          q25: {
+            question: "¿Qué tienen en común una cuchara y un tenedor?",
+            options: ["Ambos sirven para cortar", "Ambos son cubiertos", "Ambos son afilados", "Ambos son de madera"],
+          },
+          q26: {
+            question: "¿Qué tienen en común el lunes y el viernes?",
+            options: ["Ambos son días del fin de semana", "Ambos vienen justo después del domingo", "Ambos son feriados", "Ambos son días hábiles"],
+          },
+          q27: {
+            question: "¿Qué tienen en común el ojo y el oído?",
+            options: ["Ambos captan los sonidos del entorno", "Ambos son huesos del cráneo", "Ambos son órganos de los sentidos", "Ambos producen lágrimas"],
+          },
+          q28: {
+            question: "¿Qué tienen en común un reloj y un calendario?",
+            options: ["Ambos muestran los doce meses del año", "Ambos sirven para medir el paso del tiempo", "Ambos tienen manecillas que giran sobre la esfera", "Ambos muestran la temperatura del ambiente"],
+          },
+          q29: {
+            question: "¿Qué tienen en común una semilla y un huevo?",
+            options: ["Ambos tienen yema y clara por dentro", "Ambos necesitan enterrarse en la tierra para brotar", "Ambos vienen de plantas con flores", "Ambos dan origen a un nuevo ser vivo"],
+          },
+          q30: {
+            question: "¿Qué tienen en común un termómetro y una regla?",
+            options: ["Ambos son instrumentos de medición", "Ambos sirven para trazar líneas rectas", "Ambos miden el peso de un objeto", "Ambos miden la fiebre"],
+          },
         },
         vocabulary: {
           q1: {
@@ -316,6 +356,78 @@ export const es = {
           q20: {
             question: '¿Qué significa "esotérico"?',
             options: ["Que solo unos pocos comprenden", "Que viene de un país extranjero", "Que provoca miedo en la gente", "Que fue escrito hace muchos siglos"],
+          },
+          q21: {
+            question: '¿Qué significa "generoso"?',
+            options: ["Que gasta sin pensar en el mañana", "Que da y ayuda de buena gana", "Que conversa y sonríe con todo el mundo", "A quien le gusta recibir regalos"],
+          },
+          q22: {
+            question: '¿Qué significa "veloz"?',
+            options: ["Lento", "Pesado", "Rápido", "Fuerte"],
+          },
+          q23: {
+            question: '¿Qué significa "sincero"?',
+            options: ["Que confía en todo el mundo", "Que es educado", "Que habla más de lo que escucha", "Que dice la verdad"],
+          },
+          q24: {
+            question: '¿Qué significa "enorme"?',
+            options: ["Muy grande", "Muy pequeño", "Muy liviano", "Muy viejo"],
+          },
+          q25: {
+            question: '¿Qué significa "valiente"?',
+            options: ["Que le gustan las aventuras y los viajes", "Que enfrenta el peligro", "Que habla muy fuerte", "Que se confunde con facilidad"],
+          },
+          q26: {
+            question: '¿Qué significa "frágil"?',
+            options: ["Que está hecho de vidrio", "Que pesa más de lo que parece", "Que se rompe fácilmente", "Que cuesta poco dinero"],
+          },
+          q27: {
+            question: '¿Qué significa "raro"?',
+            options: ["Muy conocido", "De gran valor", "De otra época", "Poco común"],
+          },
+          q28: {
+            question: '¿Qué significa "humilde"?',
+            options: ["Que obedece sin cuestionar nada", "Que no se cree superior a los demás", "Que tiene vergüenza de hablar en público", "Que evita cualquier tipo de esfuerzo"],
+          },
+          q29: {
+            question: '¿Qué significa "cauteloso"?',
+            options: ["Que le teme a casi todo", "Que planea cada detalle con anticipación", "Que actúa con cuidado y evita riesgos", "Que tarda y aplaza todo lo que puede"],
+          },
+          q30: {
+            question: '¿Qué significa "ingenuo"?',
+            options: ["Que es bondadoso con todo el mundo", "Que cree todo con facilidad", "Que resuelve cualquier problema con astucia", "Que trata mal a los demás"],
+          },
+          q31: {
+            question: '¿Qué significa "escéptico"?',
+            options: ["Que duda y exige pruebas", "Que critica todo lo que ve", "Que espera lo mejor y confía en el futuro", "Que nunca cambia de idea"],
+          },
+          q32: {
+            question: '¿Qué significa "ambiguo"?',
+            options: ["Que usa palabras difíciles de entender", "Que afirma algo que no es verdad", "Que se extiende más de lo necesario", "Que puede tener más de un sentido"],
+          },
+          q33: {
+            question: '¿Qué significa "obsoleto"?',
+            options: ["Moderno", "Roto", "Anticuado", "Carísimo"],
+          },
+          q34: {
+            question: '¿Qué significa "conciso"?',
+            options: ["Simple y fácil de leer", "Confuso y difícil de seguir", "Formal y lleno de ceremonia", "Breve y directo al punto"],
+          },
+          q35: {
+            question: '¿Qué significa "hostil"?',
+            options: ["Amigable", "Agresivo", "Indiferente", "Tímido"],
+          },
+          q36: {
+            question: '¿Qué significa "arduo"?',
+            options: ["Fácil", "Demorado", "Difícil", "Peligroso"],
+          },
+          q37: {
+            question: '¿Qué significa "sereno"?',
+            options: ["Tranquilo", "Agitado", "Triste", "Bullicioso"],
+          },
+          q38: {
+            question: '¿Qué significa "nocivo"?',
+            options: ["Perjudicial", "Ruidoso", "Amargo", "Inútil"],
           },
         },
         matrix: {
@@ -399,6 +511,70 @@ export const es = {
             question: "¿Qué número completa la secuencia: 2, 5, 8, 11, __?",
             options: ["14", "12", "13", "15"],
           },
+          q21: {
+            question: "¿Qué número completa la secuencia: 30, 25, 20, 15, __?",
+            options: ["5", "10", "12", "14"],
+          },
+          q22: {
+            question: "¿Qué número completa la secuencia: 80, 40, 20, 10, __?",
+            options: ["0", "2", "5", "8"],
+          },
+          q23: {
+            question: "¿Qué número completa la secuencia: 1, 10, 100, 1000, __?",
+            options: ["1900", "2000", "11000", "10000"],
+          },
+          q24: {
+            question: "¿Qué número completa la secuencia: 1, 3, 5, 7, 9, __?",
+            options: ["11", "10", "12", "13"],
+          },
+          q25: {
+            question: "¿Qué número completa la secuencia: 2, 7, 2, 7, 2, __?",
+            options: ["2", "5", "7", "9"],
+          },
+          q26: {
+            question: "¿Qué número completa la secuencia: 1, 1, 2, 2, 3, 3, 4, __?",
+            options: ["3", "4", "5", "6"],
+          },
+          q27: {
+            question: "¿Qué número completa la secuencia: 7, 14, 21, 28, __?",
+            options: ["35", "30", "32", "42"],
+          },
+          q28: {
+            question: "¿Qué número completa la secuencia: 2, 6, 18, 54, __?",
+            options: ["108", "144", "150", "162"],
+          },
+          q29: {
+            question: "¿Qué número completa la secuencia: 3, 5, 10, 12, 24, __?",
+            options: ["26", "28", "36", "48"],
+          },
+          q30: {
+            question: "¿Qué número completa la secuencia: 2, 50, 4, 40, 6, 30, 8, __?",
+            options: ["10", "20", "25", "28"],
+          },
+          q31: {
+            question: "¿Qué número completa la secuencia: 50, 49, 47, 44, 40, __?",
+            options: ["30", "34", "35", "36"],
+          },
+          q32: {
+            question: "¿Qué número completa la secuencia: 1, 2, 6, 24, __?",
+            options: ["48", "72", "96", "120"],
+          },
+          q33: {
+            question: "¿Qué número completa la secuencia: 2, 3, 5, 7, 11, 13, __?",
+            options: ["14", "15", "16", "17"],
+          },
+          q34: {
+            question: "¿Qué número completa la secuencia: 1, 3, 7, 15, 31, __?",
+            options: ["63", "62", "64", "47"],
+          },
+          q35: {
+            question: "¿Qué número completa la secuencia: 5, 9, 8, 12, 11, 15, __?",
+            options: ["12", "13", "14", "16"],
+          },
+          q36: {
+            question: "¿Qué número completa la secuencia: 4, 9, 25, 49, 121, __?",
+            options: ["144", "169", "196", "225"],
+          },
         },
         comprehension: {
           q1: {
@@ -480,6 +656,46 @@ export const es = {
           q20: {
             question: "¿Por qué es importante respetar las diferencias entre las personas?",
             options: ["Para que personas distintas puedan convivir en paz", "Para que todos terminen pensando de la misma forma", "Para parecer una persona moderna y bien informada", "Porque discrepar de alguien es siempre de mala educación"],
+          },
+          q21: {
+            question: "¿Por qué debemos mirar a ambos lados antes de cruzar la calle?",
+            options: ["Porque es una regla", "Para ver si viene algún vehículo", "Para dar el ejemplo a quienes están cerca", "Para elegir el mejor punto para cruzar"],
+          },
+          q22: {
+            question: "¿Por qué guardamos los alimentos perecederos en el refrigerador?",
+            options: ["Para que tengan más sabor", "Para que ocupen menos espacio en la cocina", "Para que tarden más en echarse a perder", "Porque es la costumbre en la mayoría de las casas"],
+          },
+          q23: {
+            question: "¿Por qué es útil hacer una lista antes de ir al supermercado?",
+            options: ["Para no olvidar lo que hay que comprar", "Para recibir un descuento en caja por llevar la lista", "Para que el supermercado reponga los productos que faltan", "Para que el supermercado entregue la compra en casa"],
+          },
+          q24: {
+            question: "¿Por qué usamos cinturón de seguridad en el auto?",
+            options: ["Para poder manejar a mayor velocidad", "Porque el auto no arranca si el cinturón no está abrochado", "Porque el asiento resulta más cómodo", "Para reducir lesiones en caso de accidente"],
+          },
+          q25: {
+            question: "¿Por qué es importante llegar a tiempo a un compromiso?",
+            options: ["Para parecer una persona importante", "Para respetar el tiempo de los demás", "Para poder irse más temprano del compromiso", "Porque el reloj determina lo que hacemos"],
+          },
+          q26: {
+            question: "¿Por qué conviene guardar el recibo después de una compra?",
+            options: ["Para guardarlo como recuerdo de la compra", "Porque la tienda exige que todo cliente lo guarde", "Para poder cambiar el producto si hay un problema", "Para mostrarles a los amigos lo que compramos"],
+          },
+          q27: {
+            question: "¿Por qué debemos leer las instrucciones antes de armar un mueble?",
+            options: ["Para armarlo correctamente y evitar errores", "Para saber de qué madera está hecho el mueble", "Porque el manual viene dentro de la caja del producto", "Para saber cuánto costó el mueble en la tienda"],
+          },
+          q28: {
+            question: "¿Por qué debemos pedir disculpas cuando nos equivocamos?",
+            options: ["Para terminar pronto una conversación incómoda", "Para pasarle la culpa del error a la otra persona", "Para parecer bien educado y recibir elogios", "Para asumir lo que hicimos y cuidar la relación"],
+          },
+          q29: {
+            question: "¿Por qué deben cumplirse las promesas?",
+            options: ["Porque cumplir promesas vuelve más inteligente a la gente", "Porque la confianza entre las personas depende de ello", "Porque es lo que los padres enseñan desde pequeños", "Porque quien no cumple lo prometido termina en la cárcel"],
+          },
+          q30: {
+            question: "¿Por qué el trabajo en equipo suele lograr más que el trabajo individual?",
+            options: ["Porque combina habilidades distintas y reparte el esfuerzo", "Porque en grupo nadie tiene que esforzarse de verdad", "Porque en grupo todos piensan exactamente de la misma manera", "Porque en grupo cada uno hace solo la parte que le gusta"],
           },
         },
       },

@@ -235,6 +235,46 @@ export const en = {
             question: "What do a school and a library have in common?",
             options: ["Both are places of learning", "Both sell books to the public", "Both have teachers giving lessons", "Both charge an admission fee"],
           },
+          q21: {
+            question: "What do an apple and an orange have in common?",
+            options: ["Both are the same color", "Both are fruits", "Both grow underground", "Both are bitter"],
+          },
+          q22: {
+            question: "What do a hammer and a saw have in common?",
+            options: ["Both cut wood", "Both have a blade", "Both are tools", "Both are made of plastic"],
+          },
+          q23: {
+            question: "What do a shirt and a pair of pants have in common?",
+            options: ["Both are items of clothing", "Both have pockets", "Both cover the legs", "Both are made of leather"],
+          },
+          q24: {
+            question: "What do milk and juice have in common?",
+            options: ["Both contain caffeine", "Both come from fruit", "Both are sweet", "Both are drinks"],
+          },
+          q25: {
+            question: "What do a spoon and a fork have in common?",
+            options: ["Both are used for cutting", "Both are eating utensils", "Both are sharp", "Both are made of wood"],
+          },
+          q26: {
+            question: "What do Monday and Friday have in common?",
+            options: ["Both are weekend days", "Both come right after Sunday", "Both are holidays", "Both are weekdays"],
+          },
+          q27: {
+            question: "What do an eye and an ear have in common?",
+            options: ["Both pick up sounds around us", "Both are bones of the skull", "Both are sense organs", "Both produce tears"],
+          },
+          q28: {
+            question: "What do a clock and a calendar have in common?",
+            options: ["Both show the twelve months of the year", "Both are used to keep track of time", "Both have hands that turn around a dial", "Both show the room temperature"],
+          },
+          q29: {
+            question: "What do a seed and an egg have in common?",
+            options: ["Both have a yolk and a white inside", "Both need to be buried in soil to sprout", "Both come from flowering plants", "Both give rise to a new living being"],
+          },
+          q30: {
+            question: "What do a thermometer and a ruler have in common?",
+            options: ["Both are measuring instruments", "Both are used to draw straight lines", "Both measure the weight of an object", "Both measure fever"],
+          },
         },
         vocabulary: {
           q1: {
@@ -316,6 +356,78 @@ export const en = {
           q20: {
             question: 'What does "esoteric" mean?',
             options: ["Understood by only a few", "Comes from a foreign country", "Frightens people", "Was written many centuries ago"],
+          },
+          q21: {
+            question: 'What does "generous" mean?',
+            options: ["Spending without a thought for tomorrow", "Giving and helping willingly", "Chatting and smiling with everyone", "Fond of receiving presents"],
+          },
+          q22: {
+            question: 'What does "swift" mean?',
+            options: ["Slow", "Heavy", "Fast", "Strong"],
+          },
+          q23: {
+            question: 'What does "sincere" mean?',
+            options: ["Trusting everyone", "Being well-mannered", "Talking more than listening", "Telling the truth"],
+          },
+          q24: {
+            question: 'What does "enormous" mean?',
+            options: ["Very large", "Very small", "Very light", "Very old"],
+          },
+          q25: {
+            question: 'What does "brave" mean?',
+            options: ["Fond of adventure and travel", "Facing danger", "Very loud", "Getting flustered easily"],
+          },
+          q26: {
+            question: 'What does "fragile" mean?',
+            options: ["Made of glass", "Weighing more than it looks", "Easily broken", "Very cheap"],
+          },
+          q27: {
+            question: 'What does "rare" mean?',
+            options: ["Famous", "Valuable", "Old", "Uncommon"],
+          },
+          q28: {
+            question: 'What does "humble" mean?',
+            options: ["Obeying without ever questioning", "Not seeing oneself as superior to others", "Too embarrassed to speak in front of other people", "Avoiding any kind of effort"],
+          },
+          q29: {
+            question: 'What does "cautious" mean?',
+            options: ["Afraid of almost everything", "Planning every detail in advance", "Acting carefully to avoid risks", "Delaying and putting off whatever possible"],
+          },
+          q30: {
+            question: 'What does "naive" mean?',
+            options: ["Kind to everyone", "Believing things too easily", "Solving any problem cleverly", "Treating others rudely"],
+          },
+          q31: {
+            question: 'What does "skeptical" mean?',
+            options: ["Doubting and demanding evidence", "Criticizing everything in sight", "Expecting the best and trusting the future", "Never changing one's mind"],
+          },
+          q32: {
+            question: 'What does "ambiguous" mean?',
+            options: ["Using words that are hard to understand", "Stating something that is not true", "Going on too long", "Open to more than one meaning"],
+          },
+          q33: {
+            question: 'What does "obsolete" mean?',
+            options: ["Modern", "Broken", "Outdated", "Costly"],
+          },
+          q34: {
+            question: 'What does "concise" mean?',
+            options: ["Easy to read", "Confusing and hard to follow", "Formal and full of ceremony", "Brief and to the point"],
+          },
+          q35: {
+            question: 'What does "hostile" mean?',
+            options: ["Friendly", "Aggressive", "Indifferent", "Shy"],
+          },
+          q36: {
+            question: 'What does "arduous" mean?',
+            options: ["Easy", "Time-consuming", "Difficult", "Dangerous"],
+          },
+          q37: {
+            question: 'What does "serene" mean?',
+            options: ["Peaceful", "Restless", "Sorrowful", "Noisy"],
+          },
+          q38: {
+            question: 'What does "noxious" mean?',
+            options: ["Harmful", "Noisy", "Bitter", "Useless"],
           },
         },
         matrix: {
@@ -399,6 +511,70 @@ export const en = {
             question: "What number completes the sequence: 2, 5, 8, 11, __?",
             options: ["14", "12", "13", "15"],
           },
+          q21: {
+            question: "Complete the sequence: 30, 25, 20, 15, __",
+            options: ["5", "10", "12", "14"],
+          },
+          q22: {
+            question: "What number completes the sequence: 80, 40, 20, 10, __?",
+            options: ["0", "2", "5", "8"],
+          },
+          q23: {
+            question: "Complete the sequence: 1, 10, 100, 1000, __",
+            options: ["1900", "2000", "11000", "10000"],
+          },
+          q24: {
+            question: "What number completes the sequence: 1, 3, 5, 7, 9, __?",
+            options: ["11", "10", "12", "13"],
+          },
+          q25: {
+            question: "Complete the sequence: 2, 7, 2, 7, 2, __",
+            options: ["2", "5", "7", "9"],
+          },
+          q26: {
+            question: "What number completes the sequence: 1, 1, 2, 2, 3, 3, 4, __?",
+            options: ["3", "4", "5", "6"],
+          },
+          q27: {
+            question: "Complete the sequence: 7, 14, 21, 28, __",
+            options: ["35", "30", "32", "42"],
+          },
+          q28: {
+            question: "What number completes the sequence: 2, 6, 18, 54, __?",
+            options: ["108", "144", "150", "162"],
+          },
+          q29: {
+            question: "Complete the sequence: 3, 5, 10, 12, 24, __",
+            options: ["26", "28", "36", "48"],
+          },
+          q30: {
+            question: "What number completes the sequence: 2, 50, 4, 40, 6, 30, 8, __?",
+            options: ["10", "20", "25", "28"],
+          },
+          q31: {
+            question: "Complete the sequence: 50, 49, 47, 44, 40, __",
+            options: ["30", "34", "35", "36"],
+          },
+          q32: {
+            question: "What number completes the sequence: 1, 2, 6, 24, __?",
+            options: ["48", "72", "96", "120"],
+          },
+          q33: {
+            question: "Complete the sequence: 2, 3, 5, 7, 11, 13, __",
+            options: ["14", "15", "16", "17"],
+          },
+          q34: {
+            question: "What number completes the sequence: 1, 3, 7, 15, 31, __?",
+            options: ["63", "62", "64", "47"],
+          },
+          q35: {
+            question: "Complete the sequence: 5, 9, 8, 12, 11, 15, __",
+            options: ["12", "13", "14", "16"],
+          },
+          q36: {
+            question: "What number completes the sequence: 4, 9, 25, 49, 121, __?",
+            options: ["144", "169", "196", "225"],
+          },
         },
         comprehension: {
           q1: {
@@ -480,6 +656,46 @@ export const en = {
           q20: {
             question: "Why is it important to respect differences between people?",
             options: ["So that different people can live together in peace", "So that everyone ends up thinking the same way", "To seem like a modern, well-informed person", "Because disagreeing with someone is always bad manners"],
+          },
+          q21: {
+            question: "Why should we look both ways before crossing the street?",
+            options: ["Because it is a rule", "To check whether a vehicle is coming", "To set an example for people nearby", "To choose the best spot to cross the street"],
+          },
+          q22: {
+            question: "Why do we keep perishable food in the refrigerator?",
+            options: ["To make it taste better", "So it takes up less space in the kitchen", "To keep it from spoiling quickly", "Because it is the custom in most homes"],
+          },
+          q23: {
+            question: "Why is it useful to make a list before going grocery shopping?",
+            options: ["So as not to forget what you need to buy", "To get a discount at checkout for bringing a list", "So that the store restocks the products that ran out", "So that the store delivers the groceries home"],
+          },
+          q24: {
+            question: "Why do we wear a seat belt in the car?",
+            options: ["To be able to drive at higher speeds", "Because the car does not start if the belt is unfastened", "Because the seat feels more comfortable", "To reduce injuries in case of an accident"],
+          },
+          q25: {
+            question: "Why is it important to arrive on time for an appointment?",
+            options: ["To look important", "To respect other people's time", "To be able to leave the appointment earlier", "Because the clock dictates what we do"],
+          },
+          q26: {
+            question: "Why should we keep the receipt after buying something?",
+            options: ["To keep it as a souvenir of the purchase", "Because the store requires every customer to keep it", "To be able to exchange the product if it is faulty", "To show friends what we bought"],
+          },
+          q27: {
+            question: "Why should we read the instructions before assembling a piece of furniture?",
+            options: ["To assemble it correctly and avoid mistakes", "To find out what wood the furniture is made of", "Because the manual comes inside the product box", "To find out how much the furniture cost in the store"],
+          },
+          q28: {
+            question: "Why should we apologize when we make a mistake?",
+            options: ["To end an unpleasant conversation quickly", "To shift the blame for what happened onto the other person", "To look well-mannered and be praised", "To take responsibility and preserve the relationship"],
+          },
+          q29: {
+            question: "Why should promises be kept?",
+            options: ["Because keeping promises makes people smarter", "Because trust between people depends on it", "Because it is what parents teach from an early age", "Because anyone who breaks a promise goes to jail"],
+          },
+          q30: {
+            question: "Why does working as a team often achieve more than working alone?",
+            options: ["Because it combines different skills and shares the effort", "Because in a group nobody really has to make an effort", "Because in a group everyone thinks exactly the same way", "Because in a group each person only does the part they like"],
           },
         },
       },

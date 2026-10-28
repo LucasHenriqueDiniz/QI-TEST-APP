@@ -3,16 +3,16 @@ import type { Difficulty, Question, QuestionCategory, TestMode } from "../types/
 import { BLUEPRINTS, CATEGORIES, DIFFICULTIES, cellCount, type Blueprint } from "../utils/scoring/blueprints.ts";
 import type { ScoredItem } from "../utils/scoring/score.ts";
 
-/** The bank as shipped today (110 items). */
+/** The bank as shipped (188 items since the expansion of slices 05d and 05e). */
 export const TODAY_BANK: readonly Question[] = questions;
 
-/** Today's bank plus fake items until every cell holds `factor` × the mode's blueprint. */
-export function bankWithForms(mode: TestMode, factor: number): Question[] {
-  const bank = [...questions];
+/** `base` (the shipped bank by default) plus fake items until every cell holds `factor` × the mode's blueprint. */
+export function bankWithForms(mode: TestMode, factor: number, base: readonly Question[] = questions): Question[] {
+  const bank = [...base];
   for (const category of CATEGORIES) {
     for (const difficulty of DIFFICULTIES) {
       const need = Math.ceil(factor * BLUEPRINTS[mode][category][difficulty]);
-      const have = cellCount(questions, category, difficulty);
+      const have = cellCount(base, category, difficulty);
       for (let i = have; i < need; i++) {
         bank.push({
           id: `fake-${category}-${difficulty}-${i}`,

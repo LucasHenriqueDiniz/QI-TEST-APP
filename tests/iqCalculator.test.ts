@@ -29,11 +29,11 @@ const mixOf = (mode: TestMode, seed = 1): Record<Difficulty, number> => {
 };
 
 describe("evaluateTest over the shipped bank", () => {
-  test("a normal round all correct: 138 (10/15/15 instead of 12/16/12 — three hard items fill the vocabulary holes)", () => {
-    assert.deepEqual(mixOf("normal"), { easy: 10, medium: 15, hard: 15 });
+  test("a normal round all correct: 137, on the blueprint's own 12/16/12 mix", () => {
+    assert.deepEqual(mixOf("normal"), { easy: 12, medium: 16, hard: 12 });
     const outcome = evaluateTest(answersFor("normal", true));
     const expected = scoreTest(roundOn("normal").map((item) => ({ category: item.question.category, difficulty: item.question.difficulty, correct: true })));
-    assert.equal(outcome.iq, 138);
+    assert.equal(outcome.iq, 137);
     assert.equal(outcome.iq, expected.iq);
     assert.deepEqual(outcome.band, expected.band);
     assert.equal(outcome.percentile, 99);
@@ -48,18 +48,18 @@ describe("evaluateTest over the shipped bank", () => {
     );
   });
 
-  test("a rapido round all wrong: 66 (one hard item in the easy-vocabulary slot), band from the same estimate", () => {
-    assert.deepEqual(mixOf("rapido"), { easy: 5, medium: 8, hard: 7 });
+  test("a rapido round all wrong: 65, on the blueprint's own 6/8/6 mix, band from the same estimate", () => {
+    assert.deepEqual(mixOf("rapido"), { easy: 6, medium: 8, hard: 6 });
     const outcome = evaluateTest(answersFor("rapido", false));
     const expected = scoreTest(roundOn("rapido").map((item) => ({ category: item.question.category, difficulty: item.question.difficulty, correct: false })));
-    assert.equal(outcome.iq, 66);
+    assert.equal(outcome.iq, 65);
     assert.equal(outcome.iq, expected.iq);
     assert.deepEqual(outcome.band, expected.band);
     assert.equal(outcome.correct, 0);
     assert.equal(outcome.classification, "classifications.veryLow");
   });
 
-  test("a detalhado round (90 real items, short cells filled) reports both indices with 45 items each", () => {
+  test("a detalhado round (90 real items, no short cell) reports both indices with 45 items each", () => {
     const outcome = evaluateTest(answersFor("detalhado", true));
     assert.equal(outcome.total, 90);
     assert.equal(outcome.indices?.verbal?.items, 45);

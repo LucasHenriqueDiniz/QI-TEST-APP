@@ -1,5 +1,5 @@
 ---
-status: todo
+status: done
 ---
 
 # Slice 05d — bank: 54 text items in three languages
@@ -51,3 +51,14 @@ the word from the near-miss distractors in 17 items; similarities 10/10,
 because the key is the abstract category — the same limits as the live bank.
 `scripts/bank/count.py`: STAGED CHECK OK; no duplicate of a live question,
 vocabulary word or number sequence. Owner review still pending.
+
+**Merged (2026-10-28), owner approved.** The 54 items are ids 111–164 in
+`data/questions.ts` (numeric q21–q36, similarities q21–q30, vocabulary
+q21–q38, comprehension q21–q30) with their texts in pt, en and es. The bank
+has 188 items and every category × difficulty cell equals the research table
+(52 / 74 / 62). On it, every mode fits with no shortfall and Detalhado is
+available; two consecutive Normal rounds share 0 items (9 before); all
+correct gives 130 / 137 / 145 and all wrong 65 / 58 / 55 (floor). The tests
+that pinned the old shortfalls were rewritten to these numbers and fail on
+the 110-item bank (7 failures). `npm test` 82/82. The staged text files were
+removed after the merge; the approved review table is in commit 830d101.

@@ -35,3 +35,10 @@ the dev pattern round for the device check.
 
 **If stuck.** If a rule family produces ambiguous distractors, drop that family
 rather than hand-editing SVGs; hand edits break reproducibility.
+
+**Merged (2026-10-28), owner approved.** The 24 generated items are p31–p54
+(ids 165–188): `gNN/prompt.svg` and `option_k.svg` copied to
+`assets/questions/patterns/{30+NN}_q_01.svg` and `_a_0k.svg` and registered
+in `index.ts`. Patterns now 16 / 22 / 16 = 54. Generator tests 220/220.
+Still to run on the phone: `check_fit_round.py --only patterns` (54/54) and a
+Detalhado round.

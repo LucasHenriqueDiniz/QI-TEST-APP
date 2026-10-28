@@ -235,6 +235,46 @@ export const pt = {
             question: "O que uma escola e uma biblioteca têm em comum?",
             options: ["Ambas são lugares de aprendizado", "Ambas vendem livros ao público", "Ambas têm professores dando aula", "Ambas cobram ingresso na entrada"],
           },
+          q21: {
+            question: "O que uma maçã e uma laranja têm em comum?",
+            options: ["Ambas têm a mesma cor", "Ambas são frutas", "Ambas crescem debaixo da terra", "Ambas são amargas"],
+          },
+          q22: {
+            question: "Qual a semelhança entre um martelo e um serrote?",
+            options: ["Ambos cortam madeira", "Ambos têm uma lâmina", "Ambos são ferramentas", "Ambos são feitos de plástico"],
+          },
+          q23: {
+            question: "O que uma camisa e uma calça têm em comum?",
+            options: ["Ambas são peças de roupa", "Ambas têm bolsos", "Ambas cobrem as pernas", "Ambas são de couro"],
+          },
+          q24: {
+            question: "Qual a semelhança entre leite e suco?",
+            options: ["Ambos contêm cafeína", "Ambos vêm de frutas", "Ambos são doces", "Ambos são bebidas"],
+          },
+          q25: {
+            question: "O que uma colher e um garfo têm em comum?",
+            options: ["Ambos servem para cortar", "Ambos são talheres", "Ambos são afiados", "Ambos são de madeira"],
+          },
+          q26: {
+            question: "Qual a semelhança entre segunda-feira e sexta-feira?",
+            options: ["Ambas são dias de fim de semana", "Ambas vêm logo depois do domingo", "Ambas são feriados", "Ambas são dias úteis"],
+          },
+          q27: {
+            question: "O que o olho e o ouvido têm em comum?",
+            options: ["Ambos captam os sons do ambiente", "Ambos são ossos do crânio", "Ambos são órgãos dos sentidos", "Ambos produzem lágrimas"],
+          },
+          q28: {
+            question: "Qual a semelhança entre um relógio e um calendário?",
+            options: ["Ambos mostram os doze meses do ano", "Ambos servem para marcar a passagem do tempo", "Ambos têm ponteiros que giram em volta do mostrador", "Ambos mostram a temperatura do ambiente"],
+          },
+          q29: {
+            question: "O que uma semente e um ovo têm em comum?",
+            options: ["Ambos têm gema e clara por dentro", "Ambos precisam ser enterrados na terra para brotar", "Ambos vêm de plantas que dão flores", "Ambos dão origem a um novo ser vivo"],
+          },
+          q30: {
+            question: "Qual a semelhança entre um termômetro e uma régua?",
+            options: ["Ambos são instrumentos de medição", "Ambos servem para traçar linhas retas", "Ambos medem o peso de um objeto", "Ambos medem a febre"],
+          },
         },
         vocabulary: {
           q1: {
@@ -316,6 +356,78 @@ export const pt = {
           q20: {
             question: 'O que significa "esotérico"?',
             options: ["Que só é compreendido por poucos", "Que vem de um país estrangeiro", "Que provoca medo nas pessoas", "Que foi escrito há muitos séculos"],
+          },
+          q21: {
+            question: 'O que significa a palavra "generoso"?',
+            options: ["Que gasta sem pensar no amanhã", "Que dá e ajuda de boa vontade", "Que conversa e sorri com todo mundo", "Que gosta de receber presentes"],
+          },
+          q22: {
+            question: 'Qual o significado de "veloz"?',
+            options: ["Lento", "Pesado", "Rápido", "Forte"],
+          },
+          q23: {
+            question: 'O que significa a palavra "sincero"?',
+            options: ["Que confia em todo mundo", "Que é bem-educado", "Que fala mais do que escuta", "Que fala a verdade"],
+          },
+          q24: {
+            question: 'Qual o significado de "enorme"?',
+            options: ["Muito grande", "Muito pequeno", "Muito leve", "Muito antigo"],
+          },
+          q25: {
+            question: 'O que significa a palavra "corajoso"?',
+            options: ["Que gosta de aventuras e viagens", "Que enfrenta o perigo", "Que fala alto demais", "Que se atrapalha com facilidade"],
+          },
+          q26: {
+            question: 'Qual o significado de "frágil"?',
+            options: ["Que é feito de vidro", "Que pesa mais do que parece", "Que se quebra facilmente", "Que custa pouco dinheiro"],
+          },
+          q27: {
+            question: 'O que significa a palavra "raro"?',
+            options: ["Famoso", "Valioso", "Antigo", "Incomum"],
+          },
+          q28: {
+            question: 'Qual o significado de "humilde"?',
+            options: ["Que obedece sem questionar nada", "Que não se acha superior aos outros", "Que tem vergonha de falar em público", "Que evita qualquer tipo de esforço"],
+          },
+          q29: {
+            question: 'O que significa a palavra "cauteloso"?',
+            options: ["Que tem medo de quase tudo", "Que planeja cada detalhe com antecedência", "Que age com cuidado e evita riscos", "Que demora e adia tudo o que pode"],
+          },
+          q30: {
+            question: 'Qual o significado de "ingênuo"?',
+            options: ["Que é bondoso com todo mundo", "Que acredita em tudo com facilidade", "Que resolve qualquer problema com esperteza", "Que trata os outros com grosseria"],
+          },
+          q31: {
+            question: 'O que significa a palavra "cético"?',
+            options: ["Que duvida e exige provas", "Que critica tudo o que vê pela frente", "Que espera o melhor e confia no futuro", "Que nunca muda de ideia"],
+          },
+          q32: {
+            question: 'Qual o significado de "ambíguo"?',
+            options: ["Que usa palavras difíceis de entender", "Que afirma algo que não é verdade", "Que se estende mais do que o necessário", "Que pode ter mais de um sentido"],
+          },
+          q33: {
+            question: 'O que significa a palavra "obsoleto"?',
+            options: ["Moderno", "Quebrado", "Ultrapassado", "Caríssimo"],
+          },
+          q34: {
+            question: 'Qual o significado de "conciso"?',
+            options: ["Simples e fácil de ler", "Confuso e difícil de acompanhar", "Formal e cheio de cerimônia", "Breve e direto ao ponto"],
+          },
+          q35: {
+            question: 'O que significa a palavra "hostil"?',
+            options: ["Amigável", "Agressivo", "Indiferente", "Tímido"],
+          },
+          q36: {
+            question: 'Qual o significado de "árduo"?',
+            options: ["Fácil", "Demorado", "Difícil", "Perigoso"],
+          },
+          q37: {
+            question: 'O que significa a palavra "sereno"?',
+            options: ["Tranquilo", "Agitado", "Triste", "Barulhento"],
+          },
+          q38: {
+            question: 'O que significa a palavra "nocivo"?',
+            options: ["Prejudicial", "Barulhento", "Amargo", "Inútil"],
           },
         },
         matrix: {
@@ -399,6 +511,70 @@ export const pt = {
             question: "Qual número completa a sequência: 2, 5, 8, 11, __?",
             options: ["14", "12", "13", "15"],
           },
+          q21: {
+            question: "Complete a sequência: 30, 25, 20, 15, __",
+            options: ["5", "10", "12", "14"],
+          },
+          q22: {
+            question: "Qual número completa a sequência: 80, 40, 20, 10, __?",
+            options: ["0", "2", "5", "8"],
+          },
+          q23: {
+            question: "Complete a sequência: 1, 10, 100, 1000, __",
+            options: ["1900", "2000", "11000", "10000"],
+          },
+          q24: {
+            question: "Qual número completa a sequência: 1, 3, 5, 7, 9, __?",
+            options: ["11", "10", "12", "13"],
+          },
+          q25: {
+            question: "Complete a sequência: 2, 7, 2, 7, 2, __",
+            options: ["2", "5", "7", "9"],
+          },
+          q26: {
+            question: "Qual número completa a sequência: 1, 1, 2, 2, 3, 3, 4, __?",
+            options: ["3", "4", "5", "6"],
+          },
+          q27: {
+            question: "Complete a sequência: 7, 14, 21, 28, __",
+            options: ["35", "30", "32", "42"],
+          },
+          q28: {
+            question: "Qual número completa a sequência: 2, 6, 18, 54, __?",
+            options: ["108", "144", "150", "162"],
+          },
+          q29: {
+            question: "Complete a sequência: 3, 5, 10, 12, 24, __",
+            options: ["26", "28", "36", "48"],
+          },
+          q30: {
+            question: "Qual número completa a sequência: 2, 50, 4, 40, 6, 30, 8, __?",
+            options: ["10", "20", "25", "28"],
+          },
+          q31: {
+            question: "Complete a sequência: 50, 49, 47, 44, 40, __",
+            options: ["30", "34", "35", "36"],
+          },
+          q32: {
+            question: "Qual número completa a sequência: 1, 2, 6, 24, __?",
+            options: ["48", "72", "96", "120"],
+          },
+          q33: {
+            question: "Complete a sequência: 2, 3, 5, 7, 11, 13, __",
+            options: ["14", "15", "16", "17"],
+          },
+          q34: {
+            question: "Qual número completa a sequência: 1, 3, 7, 15, 31, __?",
+            options: ["63", "62", "64", "47"],
+          },
+          q35: {
+            question: "Complete a sequência: 5, 9, 8, 12, 11, 15, __",
+            options: ["12", "13", "14", "16"],
+          },
+          q36: {
+            question: "Qual número completa a sequência: 4, 9, 25, 49, 121, __?",
+            options: ["144", "169", "196", "225"],
+          },
         },
         comprehension: {
           q1: {
@@ -480,6 +656,46 @@ export const pt = {
           q20: {
             question: "Por que é importante respeitar as diferenças entre as pessoas?",
             options: ["Para que pessoas diferentes consigam conviver em paz", "Para que todos acabem pensando da mesma forma", "Para parecer uma pessoa moderna e bem informada", "Porque discordar de alguém é sempre falta de educação"],
+          },
+          q21: {
+            question: "Por que devemos olhar para os dois lados antes de atravessar a rua?",
+            options: ["Porque é uma regra", "Para ver se vem algum veículo", "Para dar o exemplo a quem está por perto", "Para escolher o melhor ponto para atravessar"],
+          },
+          q22: {
+            question: "Por que guardamos alimentos perecíveis na geladeira?",
+            options: ["Para ficarem com mais sabor", "Para ocuparem menos espaço na cozinha", "Para demorarem mais a estragar", "Porque é o costume na maioria das casas"],
+          },
+          q23: {
+            question: "Por que é útil fazer uma lista antes de ir ao mercado?",
+            options: ["Para não esquecer o que precisa comprar", "Para ganhar desconto no caixa por levar a lista", "Para o mercado repor os produtos que estão faltando", "Para que o mercado entregue a compra em casa"],
+          },
+          q24: {
+            question: "Por que usamos cinto de segurança no carro?",
+            options: ["Para poder dirigir com mais velocidade", "Porque o carro não liga sem o cinto afivelado", "Porque o banco fica mais confortável", "Para reduzir ferimentos em caso de acidente"],
+          },
+          q25: {
+            question: "Por que é importante chegar no horário a um compromisso?",
+            options: ["Para parecer uma pessoa importante", "Para respeitar o tempo das outras pessoas", "Para poder ir embora mais cedo do compromisso", "Porque o relógio determina o que fazemos"],
+          },
+          q26: {
+            question: "Por que vale a pena guardar o comprovante de uma compra?",
+            options: ["Para guardar como lembrança da compra", "Porque a loja exige que todo cliente guarde o papel", "Para poder trocar o produto se houver problema", "Para mostrar aos amigos o que comprou"],
+          },
+          q27: {
+            question: "Por que devemos ler as instruções antes de montar um móvel?",
+            options: ["Para montar corretamente e evitar erros", "Para descobrir de que madeira o móvel é feito", "Porque o manual vem junto na caixa do produto", "Para descobrir quanto o móvel custou na loja"],
+          },
+          q28: {
+            question: "Por que devemos pedir desculpas quando erramos?",
+            options: ["Para encerrar logo uma conversa desagradável", "Para transferir a culpa do erro para a outra pessoa", "Para parecer bem-educado e ser elogiado", "Para assumir o que fizemos e preservar a relação"],
+          },
+          q29: {
+            question: "Por que as promessas devem ser cumpridas?",
+            options: ["Porque cumprir promessas deixa as pessoas mais inteligentes", "Porque a confiança entre as pessoas depende disso", "Porque é o que os pais ensinam desde cedo", "Porque quem não cumpre o que prometeu acaba indo preso"],
+          },
+          q30: {
+            question: "Por que o trabalho em equipe costuma render mais do que o trabalho isolado?",
+            options: ["Porque combina habilidades diferentes e divide o esforço", "Porque em grupo ninguém precisa se esforçar de verdade", "Porque em grupo todos pensam exatamente da mesma forma", "Porque em grupo cada um faz só a parte de que gosta"],
           },
         },
       },
