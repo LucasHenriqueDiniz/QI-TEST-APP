@@ -46,6 +46,11 @@ function RootNavigator() {
           options={{ headerShown: false, gestureEnabled: false }}
         />
         <Stack.Screen
+          name="speed"
+          // Tarefa com tempo: sem cabeçalho, e voltar equivale a pular.
+          options={{ headerShown: false, gestureEnabled: false, animation: "fade" }}
+        />
+        <Stack.Screen
           name="finishing"
           // Sem cabeçalho e sem voltar: o teste acabou e o resultado vem já.
           options={{ headerShown: false, gestureEnabled: false, animation: "fade" }}

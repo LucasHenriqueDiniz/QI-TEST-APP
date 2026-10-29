@@ -70,6 +70,28 @@ export const en = {
         blockLast: "{{done}} of {{total}} — almost there",
       },
     },
+    speed: {
+      overline: "Optional · 90 seconds",
+      offer: {
+        title: "Speed test",
+        body: "Tell, as fast as you can, whether the two rows of symbols are the same or different. It is scored separately and does not change your IQ.",
+        start: "Take the speed test",
+      },
+      ready: {
+        title: "Now for real",
+        body: "You have 90 seconds. Answer fast, but don't guess: each mistake takes away one correct answer.",
+        start: "Start",
+      },
+      skip: "Skip",
+      restarted: "The app left the screen during the countdown, so the block started over.",
+      practice: "Practice {{current}} of {{total}}",
+      timeLeft: "{{seconds}} s",
+      question: "Are the rows the same?",
+      same: "Same",
+      different: "Different",
+      right: "Right!",
+      wrong: "Not that one",
+    },
     finishing: {
       title: "Test complete!",
       adNotice: "A quick ad and then we'll show your result.",

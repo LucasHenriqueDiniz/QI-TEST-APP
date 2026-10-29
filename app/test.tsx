@@ -297,8 +297,9 @@ export default function Test() {
     // o usuário matar o app durante ele, nada se perde. (A vibração de
     // conclusão já sai do botão, `haptic="confirm"`.)
     if (__DEV__) console.log("[finish] last answer");
+    // Normal e Detalhado oferecem antes a tarefa de velocidade (opcional).
     router.replace({
-      pathname: "/finishing",
+      pathname: modeRef.current === "rapido" ? "/finishing" : "/speed",
       params: { entry: JSON.stringify(entry), completed: String(completedTests) },
     });
   };

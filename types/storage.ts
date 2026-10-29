@@ -30,6 +30,18 @@ export interface HistoryItem {
   band?: ScoreBand;
   /** Índices Verbal e Raciocínio; só gravados quando o domínio teve ≥ 30 itens. */
   indices?: Partial<Record<IndexDomain, IndexScore>>;
+  /** Tarefa de velocidade opcional (Normal e Detalhado); fora do QI. */
+  speed?: SpeedResult;
+}
+
+/** Bloco de 90 s de "Iguais ou diferentes?". */
+export interface SpeedResult {
+  correct: number;
+  wrong: number;
+  /** Acertos menos erros, nunca abaixo de zero. */
+  score: number;
+  /** Duração do bloco, em segundos. */
+  seconds: number;
 }
 
 export interface UserData {

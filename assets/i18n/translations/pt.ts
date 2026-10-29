@@ -70,6 +70,28 @@ export const pt = {
         blockLast: "{{done}} de {{total}} — falta pouco",
       },
     },
+    speed: {
+      overline: "Opcional · 90 segundos",
+      offer: {
+        title: "Teste de velocidade",
+        body: "Diga, o mais rápido que conseguir, se as duas sequências de símbolos são iguais ou diferentes. Conta à parte e não muda o seu QI.",
+        start: "Fazer o teste de velocidade",
+      },
+      ready: {
+        title: "Agora valendo",
+        body: "São 90 segundos. Responda rápido, mas sem chutar: cada erro desconta um acerto.",
+        start: "Começar",
+      },
+      skip: "Pular",
+      restarted: "O app saiu da tela durante a contagem, então o bloco recomeçou.",
+      practice: "Treino {{current}} de {{total}}",
+      timeLeft: "{{seconds}} s",
+      question: "As sequências são iguais?",
+      same: "Iguais",
+      different: "Diferentes",
+      right: "Isso!",
+      wrong: "Não era essa",
+    },
     finishing: {
       title: "Teste concluído!",
       adNotice: "Um anúncio rápido e já mostramos seu resultado.",

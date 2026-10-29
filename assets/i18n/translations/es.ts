@@ -70,6 +70,28 @@ export const es = {
         blockLast: "{{done}} de {{total}} — falta poco",
       },
     },
+    speed: {
+      overline: "Opcional · 90 segundos",
+      offer: {
+        title: "Test de velocidad",
+        body: "Indica, lo más rápido que puedas, si las dos secuencias de símbolos son iguales o diferentes. Cuenta aparte y no cambia tu CI.",
+        start: "Hacer el test de velocidad",
+      },
+      ready: {
+        title: "Ahora en serio",
+        body: "Son 90 segundos. Responde rápido, pero sin adivinar: cada error descuenta un acierto.",
+        start: "Empezar",
+      },
+      skip: "Omitir",
+      restarted: "La app salió de la pantalla durante la cuenta, así que el bloque empezó de nuevo.",
+      practice: "Práctica {{current}} de {{total}}",
+      timeLeft: "{{seconds}} s",
+      question: "¿Las secuencias son iguales?",
+      same: "Iguales",
+      different: "Diferentes",
+      right: "¡Bien!",
+      wrong: "No era esa",
+    },
     finishing: {
       title: "¡Test completado!",
       adNotice: "Un anuncio rápido y enseguida te mostramos tu resultado.",
