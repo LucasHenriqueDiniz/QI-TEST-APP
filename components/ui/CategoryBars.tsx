@@ -112,7 +112,6 @@ function BarRow({ row, strengthLabel, animate, delayMs }: BarRowProps) {
         <View style={styles.labelRow}>
           <ThemedText
             variant="captionStrong"
-            numberOfLines={1}
             style={styles.label}
           >
             {row.label}
@@ -160,13 +159,18 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 6,
   },
+  // O nome da área nunca é cortado: quando ele e o chip "Ponto forte" não
+  // cabem numa linha (pt e es a 384 dp: "Compreens…"), o chip e a contagem
+  // descem para a linha de baixo.
   labelRow: {
     flexDirection: "row",
+    flexWrap: "wrap",
     alignItems: "center",
-    gap: 8,
+    columnGap: 8,
+    rowGap: 4,
   },
   label: {
-    flexShrink: 1,
+    flexShrink: 0,
   },
   count: {
     marginLeft: "auto",
