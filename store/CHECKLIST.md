@@ -87,7 +87,7 @@ O ícone é a grade 3×3 com a célula faltando, do prompt principal de
 - [x] `splash-icon.png` coerente com o ícone
 - [x] Feature graphic 1024×500 — `feature-graphic-pt-BR.png`, `-es-419`, `-en-US`,
       mais `feature-graphic-base.png` sem texto, para outros idiomas
-- [x] 6 capturas por idioma, com legendas — `store/screenshots/{pt-BR,en-US,es-419}/`, 1080×1920 RGB, do build preview no A15 (como refazer: `scripts/store/README.md`)
+- [x] 6 capturas por idioma, com título, aparelho e selo — `store/screenshots/{pt-BR,en-US,es-419}/`, 1080×1920 RGB, do build preview no A15 (como refazer: `scripts/store/README.md`); os feature graphics `feature-graphic-<locale>.png` foram refeitos no mesmo estilo
 
 O violeta do arquivo gerado saiu em `#523CE6`; os derivados foram normalizados
 para o `#5B4FE9` da marca, senão o `icon.png` e o fundo do ícone adaptativo

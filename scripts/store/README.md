@@ -1,19 +1,26 @@
-# Store screenshots
+# Store images
 
-Six screenshots per language (pt-BR, en-US, es-419), 1080×1920, made from a
-preview (release) build on the Galaxy A15 so no dev-client button shows.
+Six screenshots per language (pt-BR, en-US, es-419), 1080×1920, and a
+1024×500 feature graphic per language, made from a preview (release) build
+on the Galaxy A15 so no dev-client button shows.
 
-| file | screen | pt-BR caption |
-|---|---|---|
-| `1-result` | Results revealing a Detalhado result | Seu QI estimado, com a faixa provável |
-| `2-pattern` | a pattern question | Matrizes, lógica e vocabulário |
-| `3-profile` | Results scrolled to the indices and areas | Veja seus pontos fortes |
-| `4-history` | History | Acompanhe sua evolução |
-| `5-home` | Home with the record and the mode chooser | Três modos: 20, 40 ou 90 questões |
-| `6-settings` | Settings | Tema escuro e três idiomas |
+Each screenshot is a headline with one word in the accent colour, a
+supporting line, the shot inside a tilted phone frame and a floating badge,
+on the brand gradient with the 3×3 motif (`marketing.py`, rendered in
+headless Chrome with the app's fonts).
 
-No price, ranking or duration words in the captions (decision D5; the old
-`ASO.md` plan said "Grátis" and "em 10 minutos").
+| file | screen | pt-BR headline | badge |
+|---|---|---|---|
+| `1-result` | Results revealing a Detalhado result | Descubra seu **QI** | 124 · Superior |
+| `2-pattern` | a pattern question | Desafie seu **raciocínio** | 5 áreas |
+| `3-profile` | Results scrolled to the indices and areas | Conheça seus **pontos fortes** | Raciocínio 127 |
+| `4-history` | History | Acompanhe sua **evolução** | Recorde 124 |
+| `5-home` | Home with the record and the mode chooser | **3 modos** de teste | 20 · 40 · 90 |
+| `6-settings` | Settings | Do seu **jeito** | Sem cadastro |
+
+No price, ranking or duration words (decision D5; Play's listing rules ban
+"free", "best", "#1" in images; the old `ASO.md` plan said "Grátis" and "em
+10 minutos").
 
 ## Steps
 
@@ -24,9 +31,9 @@ No price, ranking or duration words in the captions (decision D5; the old
    data stays).
 3. `python3 -I scripts/device/store_shots.py <raw>` (it sets `QI_RELEASE=1`):
    switches the language in Settings and saves the six raw shots per language.
-4. `python3 -I scripts/store/compose.py <raw> <out>`: caption on the brand
-   gradient, the app's area (no status bar, no banner) below it, RGB without
-   alpha.
+4. `python3 -I scripts/store/marketing.py <raw> <out>`: the 18 screenshots and
+   3 feature graphics, RGB without alpha; copy them into `store/screenshots/`
+   and `store/feature-graphic-<locale>.png`.
 5. `adb install -r <dev.apk>` and `python3 -I scripts/store/showcase.py restore
    <backup>`.
 

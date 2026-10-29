@@ -116,11 +116,11 @@ Ordem proposital: a captura 1 mostra a **recompensa**, não a tela inicial. O
 usuário decide instalar pelo que vai ganhar.
 
 > As capturas finais estão em `store/screenshots/` (2026-10-29), tiradas do
-> build preview no Galaxy A15 e legendadas por `scripts/store/compose.py`. A
+> build preview no Galaxy A15 e montadas por `scripts/store/marketing.py`. A
 > ordem e as legendas mudaram em relação ao roteiro acima: sem "Grátis" (a
 > Play pede nada de promoção na imagem, decisão D5), sem "em 10 minutos" (não
 > prometemos duração antes de medir) e sem "30 questões" (são três modos: 20,
-> 40 e 90). A tabela de legendas está em `scripts/store/README.md`.
+> 40 e 90). Títulos e selos de cada uma estão em `scripts/store/README.md`.
 
 ---
 
