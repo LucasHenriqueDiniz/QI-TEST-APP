@@ -27,7 +27,6 @@ export const es = {
       title: "Test de CI",
       subtitle: "{{count}} preguntas de lógica, patrones visuales y vocabulario.",
       start: "Empezar test",
-      measures: "Qué mide el test",
       resume: {
         title: "Test en curso",
         message: "Dejaste un test a medias. ¿Quieres continuar donde lo dejaste?",
@@ -203,11 +202,15 @@ export const es = {
         light: "Claro",
         dark: "Oscuro",
       },
+      haptics: {
+        label: "Vibración",
+        hint: "Un toque leve al elegir y confirmar respuestas.",
+      },
       rate: "Valorar en Play Store",
       privacyOptions: "Opciones de privacidad de anuncios",
       clear: {
         button: "Borrar historial",
-        title: "Borrar historial",
+        title: "¿Borrar el historial?",
         message: "Se eliminarán todos los resultados guardados. Esto no se puede deshacer.",
         confirm: "Borrar",
         done: "Historial borrado.",
@@ -226,6 +229,14 @@ export const es = {
       disclaimerFull: "Esta app no es un instrumento psicométrico validado y no sustituye una evaluación profesional. Para un informe real, consulta a un psicólogo.",
       disclaimerShort: "Solo entretenimiento — no es una evaluación psicológica.",
       privacy: "Política de privacidad",
+      measures: "Qué mide el test",
+      areas: {
+        patterns: "Encontrar la regla de una matriz de figuras.",
+        matrix: "Descubrir el siguiente número de una secuencia.",
+        similarities: "Decir qué tienen en común dos cosas.",
+        vocabulary: "Saber qué significa una palabra.",
+        comprehension: "Explicar por qué hacemos ciertas cosas.",
+      },
     },
     questions: {
       patterns: {

@@ -27,7 +27,6 @@ export const pt = {
       title: "Teste de QI",
       subtitle: "{{count}} questões de lógica, padrões visuais e vocabulário.",
       start: "Começar teste",
-      measures: "O que o teste mede",
       resume: {
         title: "Teste em andamento",
         message: "Você deixou um teste pela metade. Quer continuar de onde parou?",
@@ -203,11 +202,15 @@ export const pt = {
         light: "Claro",
         dark: "Escuro",
       },
+      haptics: {
+        label: "Vibração",
+        hint: "Um toque leve ao escolher e confirmar respostas.",
+      },
       rate: "Avaliar na Play Store",
       privacyOptions: "Opções de privacidade dos anúncios",
       clear: {
         button: "Apagar histórico",
-        title: "Apagar histórico",
+        title: "Apagar o histórico?",
         message: "Todos os resultados salvos serão removidos. Isso não pode ser desfeito.",
         confirm: "Apagar",
         done: "Histórico apagado.",
@@ -226,6 +229,14 @@ export const pt = {
       disclaimerFull: "Este app não é um instrumento psicométrico validado e não substitui uma avaliação profissional. Para um laudo real, procure um psicólogo.",
       disclaimerShort: "Apenas entretenimento — não é avaliação psicológica.",
       privacy: "Política de privacidade",
+      measures: "O que o teste mede",
+      areas: {
+        patterns: "Achar a regra de uma matriz de figuras.",
+        matrix: "Descobrir o próximo número de uma sequência.",
+        similarities: "Dizer o que duas coisas têm em comum.",
+        vocabulary: "Saber o que uma palavra quer dizer.",
+        comprehension: "Explicar por que fazemos certas coisas.",
+      },
     },
     questions: {
       patterns: {

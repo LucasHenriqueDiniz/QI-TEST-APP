@@ -6,6 +6,7 @@ export const STORAGE_KEYS = {
   userData: "userData",
   hapticsEnabled: "hapticsEnabled",
   itemUsage: "itemUsage",
+  reviewPromptedAt: "reviewPromptedAt",
 } as const;
 
 export type StorageKeys = keyof typeof STORAGE_KEYS;
@@ -76,4 +77,6 @@ export interface StorageData {
   hapticsEnabled: boolean;
   /** Recência de uso de cada questão, para a seleção evitar repetir itens entre rodadas. */
   itemUsage: ItemUsage;
+  /** Quando o app pediu avaliação pela última vez, em ms desde a época. */
+  reviewPromptedAt: number;
 }

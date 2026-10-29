@@ -27,7 +27,6 @@ export const en = {
       title: "IQ Test",
       subtitle: "{{count}} questions on logic, visual patterns and vocabulary.",
       start: "Start test",
-      measures: "What the test measures",
       resume: {
         title: "Test in progress",
         message: "You left a test halfway through. Want to pick up where you stopped?",
@@ -203,11 +202,15 @@ export const en = {
         light: "Light",
         dark: "Dark",
       },
+      haptics: {
+        label: "Vibration",
+        hint: "A light tap when you pick and confirm answers.",
+      },
       rate: "Rate on the Play Store",
       privacyOptions: "Ad privacy options",
       clear: {
         button: "Clear history",
-        title: "Clear history",
+        title: "Delete your history?",
         message: "All saved results will be removed. This cannot be undone.",
         confirm: "Clear",
         done: "History cleared.",
@@ -226,6 +229,14 @@ export const en = {
       disclaimerFull: "This app is not a validated psychometric instrument and does not replace a professional assessment. For a real evaluation, consult a psychologist.",
       disclaimerShort: "For entertainment only — not a psychological assessment.",
       privacy: "Privacy policy",
+      measures: "What the test measures",
+      areas: {
+        patterns: "Finding the rule of a matrix of figures.",
+        matrix: "Working out the next number in a sequence.",
+        similarities: "Saying what two things have in common.",
+        vocabulary: "Knowing what a word means.",
+        comprehension: "Explaining why we do certain things.",
+      },
     },
     questions: {
       patterns: {

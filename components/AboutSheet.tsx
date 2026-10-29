@@ -1,11 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Linking, Modal, Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { Linking, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedText } from "@/components/ThemedText";
+import { BottomSheet } from "@/components/ui/BottomSheet";
 import { Button } from "@/components/ui/Button";
 import { PRIVACY_POLICY_URL } from "@/constants/app";
+import { CATEGORY_ICONS, CATEGORY_ORDER } from "@/constants/categories";
 import { useAppTheme } from "@/context/ThemeContext";
 
 interface AboutSheetProps {
@@ -14,7 +15,8 @@ interface AboutSheetProps {
 }
 
 /**
- * Folha "Sobre o teste".
+ * Folha "Sobre o teste": o que o teste é, o que ele mede (as cinco áreas,
+ * cada uma com uma linha) e o que ele não é.
  *
  * O aviso de que isto não é uma avaliação psicológica é requisito de política
  * da Play Store para apps de QI — mantenha-o visível, não o esconda atrás de
@@ -23,109 +25,127 @@ interface AboutSheetProps {
 export function AboutSheet({ visible, onClose }: AboutSheetProps) {
   const { t } = useTranslation();
   const { colors, radius, spacing } = useAppTheme();
-  const insets = useSafeAreaInsets();
 
   const bullets = t("about.bullets", { returnObjects: true });
   const items = Array.isArray(bullets) ? (bullets as string[]) : [];
 
   return (
-    <Modal
+    <BottomSheet
       visible={visible}
-      transparent
-      animationType="slide"
-      onRequestClose={onClose}
+      onClose={onClose}
+      closeLabel={t("common.close")}
     >
-      <View style={styles.overlay}>
-        <View
-          style={[
-            styles.sheet,
-            {
-              backgroundColor: colors.background,
-              borderTopLeftRadius: radius.xl,
-              borderTopRightRadius: radius.xl,
-              paddingBottom: insets.bottom || spacing.lg,
-            },
-          ]}
+      <ScrollView
+        contentContainerStyle={[styles.body, { paddingHorizontal: spacing.xl, gap: spacing.md }]}
+        showsVerticalScrollIndicator={false}
+      >
+        <ThemedText
+          variant="heading"
+          accessibilityRole="header"
         >
-          <View style={[styles.grabber, { backgroundColor: colors.border }]} />
+          {t("about.title")}
+        </ThemedText>
+        <ThemedText tone="muted">{t("about.intro")}</ThemedText>
 
-          <ScrollView
-            contentContainerStyle={styles.body}
-            showsVerticalScrollIndicator={false}
-          >
-            <ThemedText variant="heading">{t("about.title")}</ThemedText>
-            <ThemedText
-              variant="body"
-              tone="muted"
+        <ThemedText
+          variant="overline"
+          tone="faint"
+          style={{ marginTop: spacing.sm }}
+        >
+          {t("about.measures").toUpperCase()}
+        </ThemedText>
+        <View style={{ gap: spacing.sm }}>
+          {CATEGORY_ORDER.map((category) => (
+            <View
+              key={category}
+              style={[styles.area, { gap: spacing.md }]}
             >
-              {t("about.intro")}
-            </ThemedText>
-
-            <View style={styles.bullets}>
-              {items.map((item) => (
-                <View
-                  key={item}
-                  style={styles.bulletRow}
+              <View style={[styles.areaIcon, { backgroundColor: colors.surfaceAlt, borderRadius: radius.md }]}>
+                <Ionicons
+                  name={CATEGORY_ICONS[category]}
+                  size={18}
+                  color={colors.category[category]}
+                />
+              </View>
+              <View style={styles.flex}>
+                <ThemedText variant="captionStrong">{t(`categories.${category}`)}</ThemedText>
+                <ThemedText
+                  variant="caption"
+                  tone="muted"
                 >
-                  <Ionicons
-                    name="ellipse"
-                    size={6}
-                    color={colors.primary}
-                    style={styles.dot}
-                  />
-                  <ThemedText
-                    variant="caption"
-                    tone="muted"
-                    style={styles.flex}
-                  >
-                    {item}
-                  </ThemedText>
-                </View>
-              ))}
+                  {t(`about.areas.${category}`)}
+                </ThemedText>
+              </View>
             </View>
+          ))}
+        </View>
 
-            <View style={[styles.notice, { backgroundColor: colors.accentSoft, borderRadius: radius.lg }]}>
-              <ThemedText
-                variant="captionStrong"
-                color={colors.onAccentSoft}
-              >
-                {t("about.disclaimerTitle")}
-              </ThemedText>
-              <ThemedText
-                variant="caption"
-                tone="muted"
-              >
-                {t("about.disclaimerFull")}
-              </ThemedText>
-            </View>
-
-            <Pressable
-              onPress={() => Linking.openURL(PRIVACY_POLICY_URL).catch(() => {})}
-              style={styles.link}
+        <View style={[styles.bullets, { marginTop: spacing.sm }]}>
+          {items.map((item) => (
+            <View
+              key={item}
+              style={styles.bulletRow}
             >
               <Ionicons
-                name="shield-checkmark-outline"
-                size={16}
-                color={colors.primaryText}
+                name="ellipse"
+                size={6}
+                color={colors.primary}
+                style={styles.dot}
               />
               <ThemedText
                 variant="caption"
-                tone="primary"
+                tone="muted"
+                style={styles.flex}
               >
-                {t("about.privacy")}
+                {item}
               </ThemedText>
-            </Pressable>
-          </ScrollView>
-
-          <Button
-            block
-            title={t("common.close")}
-            variant="secondary"
-            onPress={onClose}
-          />
+            </View>
+          ))}
         </View>
+
+        <View style={[styles.notice, { backgroundColor: colors.accentSoft, borderRadius: radius.lg }]}>
+          <ThemedText
+            variant="captionStrong"
+            color={colors.onAccentSoft}
+          >
+            {t("about.disclaimerTitle")}
+          </ThemedText>
+          <ThemedText
+            variant="caption"
+            tone="muted"
+          >
+            {t("about.disclaimerFull")}
+          </ThemedText>
+        </View>
+
+        <Pressable
+          accessibilityRole="link"
+          onPress={() => Linking.openURL(PRIVACY_POLICY_URL).catch(() => {})}
+          style={styles.link}
+        >
+          <Ionicons
+            name="shield-checkmark-outline"
+            size={16}
+            color={colors.primaryText}
+          />
+          <ThemedText
+            variant="caption"
+            tone="primary"
+          >
+            {t("about.privacy")}
+          </ThemedText>
+        </Pressable>
+      </ScrollView>
+
+      <View style={{ paddingHorizontal: spacing.xl, paddingTop: spacing.sm }}>
+        <Button
+          block
+          title={t("common.close")}
+          variant="secondary"
+          onPress={onClose}
+        />
       </View>
-    </Modal>
+    </BottomSheet>
   );
 }
 
@@ -133,26 +153,18 @@ const styles = StyleSheet.create({
   flex: {
     flex: 1,
   },
-  overlay: {
-    flex: 1,
-    justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,0.45)",
-  },
-  sheet: {
-    maxHeight: "85%",
-    paddingHorizontal: 24,
-    paddingTop: 10,
-  },
-  grabber: {
-    width: 40,
-    height: 4,
-    borderRadius: 2,
-    alignSelf: "center",
-  },
   body: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    gap: 14,
+    paddingBottom: 12,
+  },
+  area: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  areaIcon: {
+    width: 36,
+    height: 36,
+    alignItems: "center",
+    justifyContent: "center",
   },
   bullets: {
     gap: 10,
@@ -163,17 +175,16 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   dot: {
-    marginTop: 7,
+    marginTop: 8,
   },
   notice: {
-    gap: 6,
-    padding: 16,
+    padding: 14,
+    gap: 4,
   },
   link: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
     gap: 6,
-    paddingVertical: 8,
+    minHeight: 48,
   },
 });

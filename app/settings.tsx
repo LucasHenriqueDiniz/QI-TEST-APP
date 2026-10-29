@@ -2,16 +2,18 @@ import { Ionicons } from "@expo/vector-icons";
 import Constants from "expo-constants";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Linking, Pressable, StyleSheet, View } from "react-native";
+import { Linking, Pressable, StyleSheet, Switch, View } from "react-native";
 import { AboutSheet } from "@/components/AboutSheet";
 import { ThemedText } from "@/components/ThemedText";
 import { AgePicker } from "@/components/ui/AgePicker";
 import { Card } from "@/components/ui/Card";
+import { ConfirmSheet } from "@/components/ui/ConfirmSheet";
 import { Screen } from "@/components/ui/Screen";
 import { STORE_URL } from "@/constants/app";
 import { useAds } from "@/context/AdsContext";
 import { ThemePreference, useAppTheme } from "@/context/ThemeContext";
 import { useStorage } from "@/hooks/useStorage";
+import { isHapticsEnabled, setHapticsEnabled } from "@/utils/haptics";
 
 const LANGUAGES = [
   { code: "pt", label: "Português" },
@@ -28,6 +30,9 @@ export default function Settings() {
   const [age, setAge] = useState<string | undefined>(undefined);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [haptics, setHaptics] = useState(isHapticsEnabled);
+  const [confirmClear, setConfirmClear] = useState(false);
+  const [cleared, setCleared] = useState(false);
 
   useEffect(() => {
     storage
@@ -47,19 +52,16 @@ export default function Settings() {
     i18n.changeLanguage(code).catch((error) => console.error("Error changing language:", error));
   };
 
-  const confirmClear = () => {
-    Alert.alert(t("settings.clear.title"), t("settings.clear.message"), [
-      { text: t("common.cancel"), style: "cancel" },
-      {
-        text: t("settings.clear.confirm"),
-        style: "destructive",
-        onPress: async () => {
-          await storage.removeItem("testHistory");
-          await storage.removeItem("testProgress");
-          Alert.alert(t("settings.clear.done"));
-        },
-      },
-    ]);
+  const toggleHaptics = (next: boolean) => {
+    setHaptics(next);
+    setHapticsEnabled(next);
+  };
+
+  const clearHistory = async () => {
+    setConfirmClear(false);
+    await storage.removeItem("testHistory");
+    await storage.removeItem("testProgress");
+    setCleared(true);
   };
 
   const themeOptions: { value: ThemePreference; label: string; icon: keyof typeof Ionicons.glyphMap }[] = [
@@ -90,10 +92,39 @@ export default function Settings() {
         >
           {t("settings.age.hint")}
         </ThemedText>
+        <Card
+          variant="outlined"
+          padded={false}
+          style={styles.below}
+        >
+          <View style={styles.row}>
+            <Ionicons
+              name="phone-portrait-outline"
+              size={20}
+              color={colors.textMuted}
+            />
+            <View style={styles.flex}>
+              <ThemedText>{t("settings.haptics.label")}</ThemedText>
+              <ThemedText
+                variant="caption"
+                tone="faint"
+              >
+                {t("settings.haptics.hint")}
+              </ThemedText>
+            </View>
+            <Switch
+              accessibilityLabel={t("settings.haptics.label")}
+              value={haptics}
+              onValueChange={toggleHaptics}
+              trackColor={{ false: colors.surfaceAlt, true: colors.primary }}
+              thumbColor={colors.surface}
+            />
+          </View>
+        </Card>
       </Section>
 
       <Section title={t("settings.section.appearance")}>
-        <View style={styles.segmented}>
+        <View style={[styles.segmented, { backgroundColor: colors.surfaceAlt, borderRadius: radius.lg }]}>
           {themeOptions.map((option) => {
             const active = preference === option.value;
 
@@ -107,8 +138,7 @@ export default function Settings() {
                   styles.segment,
                   {
                     borderRadius: radius.md,
-                    backgroundColor: active ? colors.primarySoft : colors.surface,
-                    borderColor: active ? colors.primary : colors.outline,
+                    backgroundColor: active ? colors.surface : "transparent",
                   },
                 ]}
               >
@@ -192,9 +222,21 @@ export default function Settings() {
             label={t("settings.clear.button")}
             tone="danger"
             divided
-            onPress={confirmClear}
+            onPress={() => setConfirmClear(true)}
           />
         </Card>
+
+        {cleared && (
+          <ThemedText
+            variant="caption"
+            tone="muted"
+            center
+            accessibilityLiveRegion="polite"
+            style={styles.version}
+          >
+            {t("settings.clear.done")}
+          </ThemedText>
+        )}
 
         <ThemedText
           variant="caption"
@@ -216,6 +258,15 @@ export default function Settings() {
       <AboutSheet
         visible={aboutOpen}
         onClose={() => setAboutOpen(false)}
+      />
+      <ConfirmSheet
+        visible={confirmClear}
+        title={t("settings.clear.title")}
+        message={t("settings.clear.message")}
+        confirmLabel={t("settings.clear.confirm")}
+        cancelLabel={t("common.cancel")}
+        onConfirm={clearHistory}
+        onCancel={() => setConfirmClear(false)}
       />
     </Screen>
   );
@@ -342,16 +393,22 @@ const styles = StyleSheet.create({
     marginTop: 8,
     paddingHorizontal: 4,
   },
+  // Sistema · Claro · Escuro numa linha só, 48 dp, como o seletor de modo.
   segmented: {
     flexDirection: "row",
-    gap: 8,
+    padding: 4,
+    gap: 4,
   },
   segment: {
     flex: 1,
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     gap: 6,
-    paddingVertical: 14,
-    borderWidth: 1.5,
+    minHeight: 48,
+  },
+  below: {
+    marginTop: 12,
   },
   version: {
     marginTop: 16,

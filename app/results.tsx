@@ -22,6 +22,7 @@ import { useStorage } from "@/hooks/useStorage";
 import { IndexDomain } from "@/types";
 import { HistoryItem } from "@/types/storage";
 import * as haptics from "@/utils/haptics";
+import { maybeAskForReview } from "@/utils/reviewPrompt";
 import { getIQClassification } from "@/utils/iqCalculator";
 
 /**
@@ -40,6 +41,9 @@ const FIRST_SCORE_CELEBRATION = 110;
 
 /** Altura da curva, em dp. */
 const CURVE_HEIGHT = 128;
+
+/** O pedido de avaliação espera a revelação inteira (barras incluídas) assentar. */
+const REVIEW_AFTER_MS = BARS_AT_MS + 1500;
 
 /** Ordem dos índices no perfil do Detalhado. */
 const INDEX_ORDER: IndexDomain[] = ["reasoning", "verbal"];
@@ -111,6 +115,29 @@ export default function Results() {
       active = false;
     };
   }, [entry, revealing, storage]);
+
+  // Pedido de avaliação: depois de um resultado que empata ou bate o melhor
+  // anterior (com ao menos um teste antes), nunca vindo do histórico, no
+  // máximo a cada 30 dias (`maybeAskForReview`).
+  useEffect(() => {
+    if (!entry || historyMode) return;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let active = true;
+    storage
+      .getItem("testHistory")
+      .then((history) => {
+        if (!active) return;
+        const others = (history ?? []).filter((item) => item.date !== entry.date);
+        const previousBest = others.reduce((best, item) => Math.max(best, item.iqScore), 0);
+        if (others.length === 0 || entry.iqScore < previousBest) return;
+        timer = setTimeout(() => maybeAskForReview(storage), REVIEW_AFTER_MS);
+      })
+      .catch((error) => console.error("Error reading history for the review prompt:", error));
+    return () => {
+      active = false;
+      if (timer) clearTimeout(timer);
+    };
+  }, [entry, historyMode, storage]);
 
   // O confete entra junto com o chip; pular antes disso cancela a festa.
   useEffect(() => {
