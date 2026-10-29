@@ -54,3 +54,13 @@ owner's call.
 | prebuild: `enforceNavigationBarContrast=false` | in `expo config --type introspect` |
 | prebuild: `withKotlinMetadataCheck` | still in `app.json`; the EAS build of today compiled `react-native-google-mobile-ads`, which fails without it (the plugin's own note) |
 | WhatsApp self-chat, score readable at thumbnail size | owner's manual check, not done |
+
+**Follow-up (2026-10-29): the link travels with the image again.** The owner
+asked for it: expo-sharing was replaced by react-native-share 12.3.1 (a
+TurboModule with an Expo plugin), which puts the PNG in EXTRA_STREAM and the
+message with the store link in EXTRA_TEXT through its own FileProvider. The
+card's disclaimer is smaller (9 instead of 12, white at 85%, 5.57:1 on the
+gradient's dark end). On the A15 with dev build 1000c181,
+`check_share_image.py` now also requires the link in the Sharesheet:
+`1080x1920 266 KB OK`, "1 imagem" plus "Fiz 117 no teste de QI (faixa
+111–124)… https://play.google.com/store/apps/details?id=com.lhdiniz.testeqi".

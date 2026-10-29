@@ -6,9 +6,11 @@ Opens Results by link with a Detalhado entry (`mode=history`, nothing saved),
 taps "Compartilhar resultado", takes the PNG's path from the dev logcat line
 `[share] image <uri>`, copies it out with `run-as` and reads its size from the
 PNG header. Then looks at the Android Sharesheet: it must show an image
-preview, not "Compartilhando texto" (the text-only share). Prints
-`<w>x<h> <size> KB OK` when the image is 1080x1920 and under 500 KB and the
-Sharesheet carries it; exits 1 otherwise. Closes the Sharesheet with back.
+preview, not "Compartilhando texto" (the text-only share), and the message
+with the store link next to it (react-native-share sends EXTRA_TEXT with the
+image; expo-sharing sent the image alone). Prints `<w>x<h> <size> KB OK` when
+the image is 1080x1920 and under 500 KB and the Sharesheet carries it and the
+link; exits 1 otherwise. Closes the Sharesheet with back.
 """
 import json
 import os
@@ -27,6 +29,7 @@ SHARE = r"(?i)^(Compartilhar resultado|Share result|Compartir resultado)$"
 LOGGED = re.compile(r"\[share\] image (\S+)")
 SHEET_PACKAGES = {"android", "com.android.intentresolver", "com.samsung.android.intentresolver"}
 TEXT_ONLY = r"(?i)(Compartilhando texto|Sharing text|Compartiendo texto)"
+STORE_LINK = "play.google.com/store/apps/details?id=com.lhdiniz.testeqi"
 
 
 def image_path():
@@ -67,13 +70,15 @@ def main():
     sheet, nodes = ui.wait_for(lambda n: [x for x in n if x.el.get("package") in SHEET_PACKAGES], timeout=10)
     text_only = ui.find(nodes, pattern=TEXT_ONLY)
     preview = [x for x in nodes if x.el.get("package") in SHEET_PACKAGES and x.cls == "android.widget.ImageView" and x.height > 100]
+    link = any(STORE_LINK in x.label for x in nodes if x.el.get("package") in SHEET_PACKAGES)
     ui.back()
 
     kb = len(data) / 1024
-    ok = size == (1080, 1920) and kb < 500 and bool(sheet) and not text_only and bool(preview)
+    ok = size == (1080, 1920) and kb < 500 and bool(sheet) and not text_only and bool(preview) and link
     width, height = size or (0, 0)
     print(f"{width}x{height} {kb:.0f} KB {'OK' if ok else 'FAIL'}"
           f" (Sharesheet {'open' if sheet else 'missing'}, image preview {'shown' if preview else 'missing'}"
+          f", store link in the message {'yes' if link else 'no'}"
           f"{', text-only share' if text_only else ''}; {path})")
     sys.exit(0 if ok else 1)
 
