@@ -3,7 +3,7 @@ import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, AppState, BackHandler, LayoutRectangle, Pressable, ScrollView, StyleSheet, View } from "react-native";
-import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
+import Animated, { SlideInRight, SlideOutLeft } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedText } from "@/components/ThemedText";
 import { PatternQuestion } from "@/components/PatternQuestion";
@@ -15,6 +15,7 @@ import { OptionCard } from "@/components/ui/OptionCard";
 import { SegmentedProgress } from "@/components/ui/SegmentedProgress";
 import { TopBar } from "@/components/ui/TopBar";
 import { CATEGORY_ICONS } from "@/constants/categories";
+import { motion } from "@/constants/theme";
 import { useAppTheme } from "@/context/ThemeContext";
 import { useGatedInterstitial } from "@/hooks/useGatedInterstitial";
 import { useQuestionData } from "@/hooks/useQuestionData";
@@ -38,8 +39,19 @@ import { inCountdown, Milestone, milestoneAt, remainingAfter } from "@/utils/pro
 /** Modo quando a rota não pede nenhum (o seletor da Home é a fatia 08). */
 const DEFAULT_MODE: TestMode = "normal";
 
-/** Quanto a questão desliza ao sair (para a esquerda) e ao entrar (da direita), em dp. */
-const SLIDE = 24;
+/**
+ * Troca de questão: a atual sai deslizando para a esquerda enquanto a próxima
+ * entra da direita, cada uma no próprio container (chave por questão). A
+ * versão anterior animava um container só, em duas metades: a volta começava
+ * na thread de UI antes de o React trocar o conteúdo, e por alguns quadros a
+ * questão respondida reaparecia antes da próxima (pior nas visuais, que
+ * demoram mais a renderizar). Com "remover animações", a troca é seca.
+ */
+const QUESTION_ENTER = SlideInRight.springify()
+  .mass(motion.defaultSpatial.mass)
+  .stiffness(motion.defaultSpatial.stiffness)
+  .damping(motion.defaultSpatial.damping);
+const QUESTION_EXIT = SlideOutLeft.duration(motion.durations.exit * 1.5);
 
 const LETTERS = ["A", "B", "C", "D"];
 /** Lado do botão de ampliar da questão visual, em dp. */
@@ -55,7 +67,7 @@ type DevMode = "patterns" | "single" | null;
 
 export default function Test() {
   const { t, i18n } = useTranslation();
-  const { colors, spacing, radius, motion } = useAppTheme();
+  const { colors, spacing, radius } = useAppTheme();
   const insets = useSafeAreaInsets();
   const storage = useStorage();
   const { getQuestionData } = useQuestionData();
@@ -89,7 +101,6 @@ export default function Test() {
   // Aqui só carrega o anúncio; quem mostra é `/finishing`, ao fim do teste.
   useGatedInterstitial({ completedTests });
 
-  const scrollRef = useRef<ScrollView>(null);
   const modeRef = useRef<TestMode>(DEFAULT_MODE);
   const ageRef = useRef<string | undefined>(undefined);
   const pausedRef = useRef(false);
@@ -97,14 +108,6 @@ export default function Test() {
   // pelo `transitioning`, que só muda no render seguinte, e gravariam o
   // resultado duas vezes no histórico.
   const finishingRef = useRef(false);
-
-  // A questão atual sai para a esquerda apagando e a próxima entra da direita.
-  const slide = useSharedValue(0);
-  const fade = useSharedValue(1);
-  const slideStyle = useAnimatedStyle(() => ({
-    opacity: fade.value,
-    transform: [{ translateX: slide.value }],
-  }));
 
   // Tempo de cada resposta só conta com o app em primeiro plano e sem a folha
   // de pausa aberta: a duração gravada é tempo respondendo.
@@ -304,15 +307,11 @@ export default function Test() {
     });
   };
 
-  // Segunda metade da troca de questão, depois de a atual ter sumido: mostra
-  // a próxima entrando da direita e, se for um marco, o chip.
+  // Troca para a próxima questão; a chave nova faz a atual sair e a próxima
+  // entrar (QUESTION_EXIT / QUESTION_ENTER) e, se for um marco, mostra o chip.
   const advanceTo = (nextIndex: number) => {
     setIndex(nextIndex);
     setSelected(null);
-    setTransitioning(false);
-    scrollRef.current?.scrollTo({ y: 0, animated: false });
-    slide.value = withSpring(0, motion.defaultSpatial);
-    fade.value = withSpring(1, motion.fastEffects);
 
     const found = milestoneAt(nextIndex, total);
     if (found) setMilestone(describeMilestone(found));
@@ -341,13 +340,7 @@ export default function Test() {
       return;
     }
 
-    setTransitioning(true);
-    fade.value = withTiming(0, { duration: motion.durations.exit });
-    slide.value = withTiming(-SLIDE, { duration: motion.durations.exit }, () => {
-      // Já na UI: a próxima começa fora, à direita, antes de o React trocá-la.
-      slide.value = SLIDE;
-      runOnJS(advanceTo)(nextIndex);
-    });
+    advanceTo(nextIndex);
 
     if (devMode) return;
 
@@ -424,103 +417,109 @@ export default function Test() {
         />
       </TopBar>
 
-      <Animated.View style={[styles.flex, slideStyle]}>
-        {/* Linha da categoria: ícone e nome na cor da área; na questão visual
-            traz também a instrução e o botão de ampliar. O chip de marco
-            aparece por cima dela, sem mexer na altura. */}
-        <View style={[styles.categoryRow, { paddingHorizontal: spacing.xl }]}>
-          <Ionicons
-            name={CATEGORY_ICONS[category]}
-            size={16}
-            color={categoryColor}
-          />
-          <ThemedText
-            variant="captionStrong"
-            color={categoryColor}
-            numberOfLines={2}
-            style={styles.categoryText}
-          >
-            {t(`categories.${category}`)}
-            {isImage && (
-              <ThemedText
-                variant="caption"
-                tone="muted"
-              >
-                {` · ${t("questions.patterns.prompt")}`}
-              </ThemedText>
-            )}
-          </ThemedText>
-          {isImage && (
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={t("questions.patterns.zoom")}
-              hitSlop={8}
-              onPress={() => setZoomed(true)}
-              style={({ pressed }) => [
-                styles.zoomButton,
-                { backgroundColor: colors.surfaceAlt, borderRadius: radius.pill },
-                pressed && { opacity: 0.6 },
-              ]}
-            >
-              <Ionicons
-                name="expand-outline"
-                size={18}
-                color={colors.text}
-              />
-            </Pressable>
-          )}
-          {/* Cobre o ícone e o nome da área; na questão visual para antes do
-              botão de ampliar, que continua à vista e tocável. */}
-          <MilestoneChip
-            label={milestone}
-            onHidden={() => setMilestone(null)}
-            style={{ left: spacing.xl, right: spacing.xl + (isImage ? ZOOM_BUTTON + 8 : 0) }}
-          />
-        </View>
-
-        {/* A questão visual se dimensiona pelo viewport medido aqui e dispensa a
-            folga inferior: o que a separa do botão é o recuo do rodapé. */}
-        <ScrollView
-          ref={scrollRef}
+      <View style={[styles.flex, styles.stage]}>
+        <Animated.View
+          key={`${index}-${current.question.id}`}
+          entering={QUESTION_ENTER}
+          exiting={QUESTION_EXIT}
           style={styles.flex}
-          onLayout={(event) => setViewport(event.nativeEvent.layout)}
-          contentContainerStyle={{ paddingHorizontal: spacing.xl, paddingBottom: isImage ? 0 : spacing.xxl }}
-          showsVerticalScrollIndicator={false}
         >
-          {isImage ? (
-            <PatternQuestion
-              questionKey={current.question.questionKey}
-              selected={selected}
-              onSelect={setSelected}
-              width={viewport ? viewport.width - spacing.xl * 2 : undefined}
-              availableHeight={viewport?.height}
-              zoomed={zoomed}
-              onZoomChange={setZoomed}
+          {/* Linha da categoria: ícone e nome na cor da área; na questão visual
+              traz também a instrução e o botão de ampliar. O chip de marco
+              aparece por cima dela, sem mexer na altura. */}
+          <View style={[styles.categoryRow, { paddingHorizontal: spacing.xl }]}>
+            <Ionicons
+              name={CATEGORY_ICONS[category]}
+              size={16}
+              color={categoryColor}
             />
-          ) : (
-            <>
-              <ThemedText
-                variant="heading"
-                style={styles.prompt}
+            <ThemedText
+              variant="captionStrong"
+              color={categoryColor}
+              numberOfLines={2}
+              style={styles.categoryText}
+            >
+              {t(`categories.${category}`)}
+              {isImage && (
+                <ThemedText
+                  variant="caption"
+                  tone="muted"
+                >
+                  {` · ${t("questions.patterns.prompt")}`}
+                </ThemedText>
+              )}
+            </ThemedText>
+            {isImage && (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={t("questions.patterns.zoom")}
+                hitSlop={8}
+                onPress={() => setZoomed(true)}
+                style={({ pressed }) => [
+                  styles.zoomButton,
+                  { backgroundColor: colors.surfaceAlt, borderRadius: radius.pill },
+                  pressed && { opacity: 0.6 },
+                ]}
               >
-                {questionData.question}
-              </ThemedText>
+                <Ionicons
+                  name="expand-outline"
+                  size={18}
+                  color={colors.text}
+                />
+              </Pressable>
+            )}
+            {/* Cobre o ícone e o nome da área; na questão visual para antes do
+                botão de ampliar, que continua à vista e tocável. */}
+            <MilestoneChip
+              label={milestone}
+              onHidden={() => setMilestone(null)}
+              style={{ left: spacing.xl, right: spacing.xl + (isImage ? ZOOM_BUTTON + 8 : 0) }}
+            />
+          </View>
 
-              <View style={styles.options}>
-                {questionData.options.map((option, optionIndex) => (
-                  <OptionCard
-                    key={optionIndex}
-                    letter={LETTERS[optionIndex]}
-                    label={option}
-                    selected={selected === optionIndex}
-                    onPress={() => setSelected(optionIndex)}
-                  />
-                ))}
-              </View>
-            </>
-          )}
-        </ScrollView>
-      </Animated.View>
+          {/* A questão visual se dimensiona pelo viewport medido aqui e dispensa a
+              folga inferior: o que a separa do botão é o recuo do rodapé. */}
+          <ScrollView
+            style={styles.flex}
+            onLayout={(event) => setViewport(event.nativeEvent.layout)}
+            contentContainerStyle={{ paddingHorizontal: spacing.xl, paddingBottom: isImage ? 0 : spacing.xxl }}
+            showsVerticalScrollIndicator={false}
+          >
+            {isImage ? (
+              <PatternQuestion
+                questionKey={current.question.questionKey}
+                selected={selected}
+                onSelect={setSelected}
+                width={viewport ? viewport.width - spacing.xl * 2 : undefined}
+                availableHeight={viewport?.height}
+                zoomed={zoomed}
+                onZoomChange={setZoomed}
+              />
+            ) : (
+              <>
+                <ThemedText
+                  variant="heading"
+                  style={styles.prompt}
+                >
+                  {questionData.question}
+                </ThemedText>
+
+                <View style={styles.options}>
+                  {questionData.options.map((option, optionIndex) => (
+                    <OptionCard
+                      key={optionIndex}
+                      letter={LETTERS[optionIndex]}
+                      label={option}
+                      selected={selected === optionIndex}
+                      onPress={() => setSelected(optionIndex)}
+                    />
+                  ))}
+                </View>
+              </>
+            )}
+          </ScrollView>
+        </Animated.View>
+      </View>
 
       <View style={[styles.footer, { paddingHorizontal: spacing.xl }]}>
         <Button
@@ -553,6 +552,11 @@ export default function Test() {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+  },
+  // A questão que sai e a que entra deslizam dentro deste palco, sem passar
+  // por cima da barra do topo nem do rodapé.
+  stage: {
+    overflow: "hidden",
   },
   centered: {
     flex: 1,
