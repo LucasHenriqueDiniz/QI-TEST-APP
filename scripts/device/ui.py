@@ -3,10 +3,14 @@
 Every script in this folder drives the dev build on a phone connected over
 USB. Nothing here knows about a specific screen beyond the labels passed in.
 """
+import json
 import os
 import re
 import shlex
+import shutil
+import sqlite3
 import subprocess
+import tempfile
 import time
 import xml.etree.ElementTree as ET
 
@@ -262,6 +266,58 @@ def progress(nodes):
         if match:
             return int(match[1]), int(match[2])
     return None
+
+
+# --- writing the app's storage (the app stopped) -------------------------
+
+STORAGE_FILES = ("RKStorage", "RKStorage-wal", "RKStorage-shm")
+REMOTE_TMP = "/data/local/tmp/qi-rkstorage"
+
+
+def _run_as(*args):
+    return adb("shell", "run-as", PACKAGE, *args)
+
+
+def pull_storage(folder):
+    """Copies the app's AsyncStorage files (RKStorage and its -wal/-shm) into `folder`."""
+    for name in STORAGE_FILES:
+        raw = subprocess.run(["adb", "exec-out", "run-as", PACKAGE, "cat", f"databases/{name}"], capture_output=True).stdout
+        if raw and not raw.startswith((b"cat:", b"run-as:")):
+            with open(os.path.join(folder, name), "wb") as handle:
+                handle.write(raw)
+
+
+def push_storage(folder):
+    """Puts the files in `folder` back as the app's storage; a missing -wal/-shm is removed on the phone."""
+    for name in STORAGE_FILES:
+        local = os.path.join(folder, name)
+        if os.path.exists(local):
+            adb("push", local, f"{REMOTE_TMP}-{name}")
+            adb("shell", "chmod", "644", f"{REMOTE_TMP}-{name}")
+            _run_as("cp", f"{REMOTE_TMP}-{name}", f"databases/{name}")
+            adb("shell", "rm", "-f", f"{REMOTE_TMP}-{name}")
+        else:
+            _run_as("rm", "-f", f"databases/{name}")
+
+
+def write_storage(original, values, remove):
+    """A copy of `original` with `values` set (JSON) and `remove` deleted, folded into one file, on the phone."""
+    with tempfile.TemporaryDirectory() as folder:
+        for name in STORAGE_FILES:
+            if os.path.exists(os.path.join(original, name)):
+                shutil.copy(os.path.join(original, name), folder)
+        with sqlite3.connect(os.path.join(folder, "RKStorage")) as db:
+            for key in remove:
+                db.execute("DELETE FROM catalystLocalStorage WHERE key = ?", (key,))
+            for key, value in values.items():
+                db.execute("INSERT OR REPLACE INTO catalystLocalStorage (key, value) VALUES (?, ?)", (key, json.dumps(value)))
+            db.commit()
+            db.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+        for name in STORAGE_FILES[1:]:
+            path = os.path.join(folder, name)
+            if os.path.exists(path):
+                os.remove(path)
+        push_storage(folder)
 
 
 def read_storage(key):

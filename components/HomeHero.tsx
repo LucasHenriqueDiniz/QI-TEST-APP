@@ -43,12 +43,16 @@ interface HomeHeroProps {
  */
 export function HomeHero({ size }: HomeHeroProps) {
   const reducedMotion = useReducedMotion();
+  // Quadrado em dp inteiro e a grade montada dele: com 1/3 fracionado, a
+  // soma passava da largura e o terceiro quadrado de cada linha quebrava
+  // para a seguinte (visto a 96 dp, no histórico vazio).
   const gap = Math.round(size * 0.07);
-  const tile = (size - 2 * gap) / 3;
+  const tile = Math.floor((size - 2 * gap) / 3);
+  const side = 3 * tile + 2 * gap;
 
   return (
     <View
-      style={[styles.grid, { width: size, height: size, gap }]}
+      style={[styles.grid, { width: side, height: side, gap }]}
       accessibilityElementsHidden
       importantForAccessibility="no-hide-descendants"
     >

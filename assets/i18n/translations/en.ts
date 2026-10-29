@@ -172,14 +172,17 @@ export const en = {
     history: {
       title: "History",
       average: "Average",
-      best: "Best",
       count: "Tests",
       allTests: "All tests",
-      itemDetail: "{{correct}}/{{total}} correct · {{percentile}}th percentile",
+      itemDetail: "{{correct}}/{{total}} right · better than {{percentile}}%",
       empty: {
-        title: "Nothing here yet",
+        title: "No tests yet",
         message: "Take your first test to start tracking your progress.",
       },
+      mean: "average",
+      oneTest: "Take another test to see your progress.",
+      averageTime: "Average time",
+      rowA11y: "IQ {{score}}, {{date}}, {{detail}}",
     },
     settings: {
       title: "Settings",

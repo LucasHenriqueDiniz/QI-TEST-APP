@@ -172,14 +172,17 @@ export const pt = {
     history: {
       title: "Histórico",
       average: "Média",
-      best: "Melhor",
       count: "Testes",
       allTests: "Todos os testes",
-      itemDetail: "{{correct}}/{{total}} acertos · percentil {{percentile}}",
+      itemDetail: "{{correct}}/{{total}} acertos · melhor que {{percentile}}%",
       empty: {
-        title: "Nada por aqui ainda",
+        title: "Nenhum teste ainda",
         message: "Faça seu primeiro teste para começar a acompanhar sua evolução.",
       },
+      mean: "média",
+      oneTest: "Faça outro teste para ver sua evolução.",
+      averageTime: "Tempo médio",
+      rowA11y: "QI {{score}}, {{date}}, {{detail}}",
     },
     settings: {
       title: "Ajustes",

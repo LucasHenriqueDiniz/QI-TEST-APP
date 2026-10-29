@@ -18,11 +18,9 @@ back at the end, so nothing needs `pm clear`. Run it once at font scale 1.0
 and once at 1.3 (Settings → Display → Font size, set by hand) for the slice's
 6/6.
 """
-import json
 import os
 import re
 import shutil
-import sqlite3
 import subprocess
 import sys
 import tempfile
@@ -30,55 +28,6 @@ import tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import check_fit  # noqa: E402
 import ui  # noqa: E402
-
-FILES = ("RKStorage", "RKStorage-wal", "RKStorage-shm")
-REMOTE_TMP = "/data/local/tmp/qi-rkstorage"
-
-
-def run_as(*args):
-    return ui.adb("shell", "run-as", ui.PACKAGE, *args)
-
-
-def pull(folder):
-    for name in FILES:
-        raw = subprocess.run(["adb", "exec-out", "run-as", ui.PACKAGE, "cat", f"databases/{name}"], capture_output=True).stdout
-        if raw and not raw.startswith((b"cat:", b"run-as:")):
-            with open(os.path.join(folder, name), "wb") as handle:
-                handle.write(raw)
-
-
-def push(folder):
-    """Puts the files in `folder` back as the app's storage; a missing -wal/-shm is removed on the phone."""
-    for name in FILES:
-        local = os.path.join(folder, name)
-        if os.path.exists(local):
-            ui.adb("push", local, f"{REMOTE_TMP}-{name}")
-            ui.adb("shell", "chmod", "644", f"{REMOTE_TMP}-{name}")
-            run_as("cp", f"{REMOTE_TMP}-{name}", f"databases/{name}")
-            ui.adb("shell", "rm", "-f", f"{REMOTE_TMP}-{name}")
-        else:
-            run_as("rm", "-f", f"databases/{name}")
-
-
-def write_storage(original, values, remove):
-    """A copy of `original` with `values` set (JSON) and `remove` deleted, folded into one file, on the phone."""
-    with tempfile.TemporaryDirectory() as folder:
-        for name in FILES:
-            if os.path.exists(os.path.join(original, name)):
-                shutil.copy(os.path.join(original, name), folder)
-        with sqlite3.connect(os.path.join(folder, "RKStorage")) as db:
-            for key in remove:
-                db.execute("DELETE FROM catalystLocalStorage WHERE key = ?", (key,))
-            for key, value in values.items():
-                db.execute("INSERT OR REPLACE INTO catalystLocalStorage (key, value) VALUES (?, ?)", (key, json.dumps(value)))
-            db.commit()
-            db.execute("PRAGMA wal_checkpoint(TRUNCATE)")
-        for name in FILES[1:]:
-            path = os.path.join(folder, name)
-            if os.path.exists(path):
-                os.remove(path)
-        push(folder)
-
 
 def history():
     def entry(day, score):
@@ -110,14 +59,14 @@ def main():
     os.makedirs(shots, exist_ok=True)
     backup = tempfile.mkdtemp(prefix="rkstorage-backup-")
     ui.adb("shell", "am", "force-stop", ui.PACKAGE)
-    pull(backup)
+    ui.pull_storage(backup)
     if not os.path.exists(os.path.join(backup, "RKStorage")):
         sys.exit("could not copy the app's storage out (is the dev build installed?)")
     passed = 0
     try:
         for name, values, remove, label, extra in VARIANTS:
             ui.adb("shell", "am", "force-stop", ui.PACKAGE)
-            write_storage(backup, values, remove)
+            ui.write_storage(backup, values, remove)
             ui.cold_start()
             button, nodes = ui.wait_for(lambda n: [x for x in ui.ours(n) if re.search(label, x.label.split(", ")[-1])], timeout=45)
             if not button:
@@ -143,7 +92,7 @@ def main():
             print(f"{name}: {'PASS' if ok else 'FAIL'} ({button[0].label!r} at y {button[0].box[1]}–{button[0].box[3]}{'; ' + '; '.join(problems) if problems else ''})", flush=True)
     finally:
         ui.adb("shell", "am", "force-stop", ui.PACKAGE)
-        push(backup)
+        ui.push_storage(backup)
         shutil.rmtree(backup, ignore_errors=True)
     print(f"font scale {scale}: {passed}/{len(VARIANTS)}")
     sys.exit(0 if passed == len(VARIANTS) else 1)
