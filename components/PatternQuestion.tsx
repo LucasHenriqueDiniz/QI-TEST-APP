@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, useWindowDimensions, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { patternImages } from "@/assets/questions/patterns";
+import { holeScale } from "@/assets/questions/patterns/geometry";
 import { ThemedText } from "@/components/ThemedText";
 import { FigureOption, cellHeightFor, figureWidthFor } from "@/components/ui/FigureOption";
 import { useAppTheme } from "@/context/ThemeContext";
 
 /**
- * Proporção largura/altura dos SVGs. As 30 matrizes têm `viewBox="0 0 500 335"`
- * e as 120 alternativas `viewBox="0 0 173 105"` (conferido arquivo a arquivo em
- * 2026-10-19). Os arquivos não trazem width/height, então cada figura
+ * Proporção largura/altura dos SVGs. As 54 matrizes têm `viewBox="0 0 500 335"`
+ * e as 216 alternativas `viewBox="0 0 173 105"` (conferido arquivo a arquivo em
+ * 2026-10-19 e de novo com as 24 geradas). Os arquivos não trazem width/height, então cada figura
  * preenche a caixa que recebe mantendo a proporção — a caixa é que precisa
  * vir na proporção certa para não sobrar faixa vazia.
  */
@@ -104,9 +105,10 @@ export function PatternQuestion({
   const contentWidth = width ?? windowWidth - spacing.xl * 2;
 
   const cellWidth = Math.floor((contentWidth - GRID_GAP) / 2);
-  const optionWidth = figureWidthFor(cellWidth);
-  const optionHeight = Math.floor(optionWidth / OPTION_ASPECT);
-  const cellHeight = cellHeightFor(optionHeight);
+  // A célula tem o tamanho de sempre; a figura dentro dela é que segue a
+  // escala do buraco (abaixo), com a sobra virando margem.
+  const boxWidth = figureWidthFor(cellWidth);
+  const cellHeight = cellHeightFor(Math.floor(boxWidth / OPTION_ASPECT));
   const gridHeight = 2 * cellHeight + GRID_GAP;
 
   const matrixByWidth = (contentWidth - 2 * (CARD_PAD + CARD_BORDER)) / MATRIX_ASPECT;
@@ -114,8 +116,19 @@ export function PatternQuestion({
     availableHeight === undefined
       ? MATRIX_MAX_HEIGHT
       : availableHeight - 2 * (CARD_PAD + CARD_BORDER) - CARD_GRID_GAP - gridHeight - BOTTOM_GAP;
-  const matrixHeight = Math.floor(Math.min(matrixByWidth, clamp(matrixByHeight, MATRIX_MIN_HEIGHT, MATRIX_MAX_HEIGHT)));
+  const fittedHeight = Math.floor(Math.min(matrixByWidth, clamp(matrixByHeight, MATRIX_MIN_HEIGHT, MATRIX_MAX_HEIGHT)));
+
+  // Alternativa e buraco na mesma escala, para uma forma ter o mesmo tamanho
+  // nos dois lugares. Desenhada na largura da célula, a alternativa saía
+  // ~1,22× maior que o buraco em p25–p54 (e nos itens em que o tamanho é a
+  // regra, a opção do tamanho certo parecia a errada); em p1–p24 o buraco é
+  // que é maior que a célula, então ali a matriz encolhe até ele caber.
+  const scale = holeScale(questionKey);
+  const matrixHeight =
+    scale === undefined ? fittedHeight : Math.min(fittedHeight, Math.floor(boxWidth / scale / MATRIX_ASPECT));
   const matrixWidth = Math.floor(matrixHeight * MATRIX_ASPECT);
+  const optionWidth = scale === undefined ? boxWidth : Math.min(boxWidth, matrixWidth * scale);
+  const optionHeight = optionWidth / OPTION_ASPECT;
 
   const zoomWidth = windowWidth - spacing.md * 2;
 
