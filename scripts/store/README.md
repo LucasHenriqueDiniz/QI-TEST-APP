@@ -1,0 +1,34 @@
+# Store screenshots
+
+Six screenshots per language (pt-BR, en-US, es-419), 1080×1920, made from a
+preview (release) build on the Galaxy A15 so no dev-client button shows.
+
+| file | screen | pt-BR caption |
+|---|---|---|
+| `1-result` | Results revealing a Detalhado result | Seu QI estimado, com a faixa provável |
+| `2-pattern` | a pattern question | Matrizes, lógica e vocabulário |
+| `3-profile` | Results scrolled to the indices and areas | Veja seus pontos fortes |
+| `4-history` | History | Acompanhe sua evolução |
+| `5-home` | Home with the record and the mode chooser | Três modos: 20, 40 ou 90 questões |
+| `6-settings` | Settings | Tema escuro e três idiomas |
+
+No price, ranking or duration words in the captions (decision D5; the old
+`ASO.md` plan said "Grátis" and "em 10 minutos").
+
+## Steps
+
+1. Dev build installed: `python3 -I scripts/store/showcase.py write <backup>`
+   copies the owner's storage to `<backup>` and writes `showcase.json`'s
+   history (eight tests rising to a Detalhado 124).
+2. `adb install -r <preview.apk>` over it (same package and signing key, so the
+   data stays).
+3. `python3 -I scripts/device/store_shots.py <raw>` (it sets `QI_RELEASE=1`):
+   switches the language in Settings and saves the six raw shots per language.
+4. `python3 -I scripts/store/compose.py <raw> <out>`: caption on the brand
+   gradient, the app's area (no status bar, no banner) below it, RGB without
+   alpha.
+5. `adb install -r <dev.apk>` and `python3 -I scripts/store/showcase.py restore
+   <backup>`.
+
+`showcase.json` is sample data: a plausible run of results so the screens are
+not empty.

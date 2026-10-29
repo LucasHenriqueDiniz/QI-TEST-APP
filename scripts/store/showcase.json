@@ -1,0 +1,428 @@
+{
+ "testHistory": [
+  {
+   "date": "2026-10-29T19:30:00.000Z",
+   "iqScore": 124,
+   "percentile": 95,
+   "correctAnswers": 73,
+   "totalQuestions": 90,
+   "mode": "detalhado",
+   "durationSeconds": 2640,
+   "band": {
+    "lower": 118,
+    "upper": 130
+   },
+   "indices": {
+    "reasoning": {
+     "score": 127,
+     "band": {
+      "lower": 119,
+      "upper": 135
+     },
+     "items": 45
+    },
+    "verbal": {
+     "score": 119,
+     "band": {
+      "lower": 111,
+      "upper": 127
+     },
+     "items": 45
+    }
+   },
+   "speed": {
+    "correct": 52,
+    "wrong": 3,
+    "score": 49,
+    "seconds": 90
+   },
+   "categories": [
+    {
+     "category": "patterns",
+     "correct": 22,
+     "total": 27,
+     "weightEarned": 22,
+     "weightTotal": 27
+    },
+    {
+     "category": "matrix",
+     "correct": 15,
+     "total": 18,
+     "weightEarned": 15,
+     "weightTotal": 18
+    },
+    {
+     "category": "similarities",
+     "correct": 12,
+     "total": 15,
+     "weightEarned": 12,
+     "weightTotal": 15
+    },
+    {
+     "category": "vocabulary",
+     "correct": 11,
+     "total": 15,
+     "weightEarned": 11,
+     "weightTotal": 15
+    },
+    {
+     "category": "comprehension",
+     "correct": 13,
+     "total": 15,
+     "weightEarned": 13,
+     "weightTotal": 15
+    }
+   ]
+  },
+  {
+   "date": "2026-10-23T19:00:00.000Z",
+   "iqScore": 117,
+   "percentile": 87,
+   "correctAnswers": 33,
+   "totalQuestions": 40,
+   "mode": "normal",
+   "durationSeconds": 1500,
+   "band": {
+    "lower": 108,
+    "upper": 126
+   },
+   "categories": [
+    {
+     "category": "patterns",
+     "correct": 8,
+     "total": 12,
+     "weightEarned": 8,
+     "weightTotal": 12
+    },
+    {
+     "category": "matrix",
+     "correct": 5,
+     "total": 8,
+     "weightEarned": 5,
+     "weightTotal": 8
+    },
+    {
+     "category": "similarities",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    },
+    {
+     "category": "vocabulary",
+     "correct": 4,
+     "total": 6,
+     "weightEarned": 4,
+     "weightTotal": 6
+    },
+    {
+     "category": "comprehension",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    }
+   ]
+  },
+  {
+   "date": "2026-10-18T19:00:00.000Z",
+   "iqScore": 110,
+   "percentile": 75,
+   "correctAnswers": 28,
+   "totalQuestions": 40,
+   "mode": "normal",
+   "durationSeconds": 1500,
+   "band": {
+    "lower": 101,
+    "upper": 119
+   },
+   "categories": [
+    {
+     "category": "patterns",
+     "correct": 8,
+     "total": 12,
+     "weightEarned": 8,
+     "weightTotal": 12
+    },
+    {
+     "category": "matrix",
+     "correct": 5,
+     "total": 8,
+     "weightEarned": 5,
+     "weightTotal": 8
+    },
+    {
+     "category": "similarities",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    },
+    {
+     "category": "vocabulary",
+     "correct": 4,
+     "total": 6,
+     "weightEarned": 4,
+     "weightTotal": 6
+    },
+    {
+     "category": "comprehension",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    }
+   ]
+  },
+  {
+   "date": "2026-10-13T19:00:00.000Z",
+   "iqScore": 112,
+   "percentile": 79,
+   "correctAnswers": 29,
+   "totalQuestions": 40,
+   "mode": "normal",
+   "durationSeconds": 1200,
+   "band": {
+    "lower": 103,
+    "upper": 121
+   },
+   "categories": [
+    {
+     "category": "patterns",
+     "correct": 8,
+     "total": 12,
+     "weightEarned": 8,
+     "weightTotal": 12
+    },
+    {
+     "category": "matrix",
+     "correct": 5,
+     "total": 8,
+     "weightEarned": 5,
+     "weightTotal": 8
+    },
+    {
+     "category": "similarities",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    },
+    {
+     "category": "vocabulary",
+     "correct": 4,
+     "total": 6,
+     "weightEarned": 4,
+     "weightTotal": 6
+    },
+    {
+     "category": "comprehension",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    }
+   ]
+  },
+  {
+   "date": "2026-10-08T19:00:00.000Z",
+   "iqScore": 108,
+   "percentile": 70,
+   "correctAnswers": 27,
+   "totalQuestions": 40,
+   "mode": "normal",
+   "durationSeconds": 1380,
+   "band": {
+    "lower": 99,
+    "upper": 117
+   },
+   "categories": [
+    {
+     "category": "patterns",
+     "correct": 8,
+     "total": 12,
+     "weightEarned": 8,
+     "weightTotal": 12
+    },
+    {
+     "category": "matrix",
+     "correct": 5,
+     "total": 8,
+     "weightEarned": 5,
+     "weightTotal": 8
+    },
+    {
+     "category": "similarities",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    },
+    {
+     "category": "vocabulary",
+     "correct": 4,
+     "total": 6,
+     "weightEarned": 4,
+     "weightTotal": 6
+    },
+    {
+     "category": "comprehension",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    }
+   ]
+  },
+  {
+   "date": "2026-10-02T19:00:00.000Z",
+   "iqScore": 101,
+   "percentile": 53,
+   "correctAnswers": 22,
+   "totalQuestions": 40,
+   "mode": "normal",
+   "durationSeconds": 1380,
+   "band": {
+    "lower": 92,
+    "upper": 110
+   },
+   "categories": [
+    {
+     "category": "patterns",
+     "correct": 8,
+     "total": 12,
+     "weightEarned": 8,
+     "weightTotal": 12
+    },
+    {
+     "category": "matrix",
+     "correct": 5,
+     "total": 8,
+     "weightEarned": 5,
+     "weightTotal": 8
+    },
+    {
+     "category": "similarities",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    },
+    {
+     "category": "vocabulary",
+     "correct": 4,
+     "total": 6,
+     "weightEarned": 4,
+     "weightTotal": 6
+    },
+    {
+     "category": "comprehension",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    }
+   ]
+  },
+  {
+   "date": "2026-09-27T19:00:00.000Z",
+   "iqScore": 103,
+   "percentile": 58,
+   "correctAnswers": 23,
+   "totalQuestions": 40,
+   "mode": "normal",
+   "durationSeconds": 1500,
+   "band": {
+    "lower": 94,
+    "upper": 112
+   },
+   "categories": [
+    {
+     "category": "patterns",
+     "correct": 8,
+     "total": 12,
+     "weightEarned": 8,
+     "weightTotal": 12
+    },
+    {
+     "category": "matrix",
+     "correct": 5,
+     "total": 8,
+     "weightEarned": 5,
+     "weightTotal": 8
+    },
+    {
+     "category": "similarities",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    },
+    {
+     "category": "vocabulary",
+     "correct": 4,
+     "total": 6,
+     "weightEarned": 4,
+     "weightTotal": 6
+    },
+    {
+     "category": "comprehension",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    }
+   ]
+  },
+  {
+   "date": "2026-09-20T19:00:00.000Z",
+   "iqScore": 98,
+   "percentile": 47,
+   "correctAnswers": 20,
+   "totalQuestions": 40,
+   "mode": "normal",
+   "durationSeconds": 1200,
+   "band": {
+    "lower": 89,
+    "upper": 107
+   },
+   "categories": [
+    {
+     "category": "patterns",
+     "correct": 8,
+     "total": 12,
+     "weightEarned": 8,
+     "weightTotal": 12
+    },
+    {
+     "category": "matrix",
+     "correct": 5,
+     "total": 8,
+     "weightEarned": 5,
+     "weightTotal": 8
+    },
+    {
+     "category": "similarities",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    },
+    {
+     "category": "vocabulary",
+     "correct": 4,
+     "total": 6,
+     "weightEarned": 4,
+     "weightTotal": 6
+    },
+    {
+     "category": "comprehension",
+     "correct": 4,
+     "total": 7,
+     "weightEarned": 4,
+     "weightTotal": 7
+    }
+   ]
+  }
+ ]
+}

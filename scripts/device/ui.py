@@ -48,7 +48,12 @@ def density():
 
 
 def cold_start():
+    """Force-stops and opens the app: the dev client on Metro, or with
+    QI_RELEASE=1 a release/preview build, which has no dev launcher."""
     adb("shell", "am", "force-stop", PACKAGE)
+    if os.environ.get("QI_RELEASE") == "1":
+        adb("shell", "am", "start", "-n", f"{PACKAGE}/.MainActivity")
+        return
     adb("reverse", "tcp:8081", "tcp:8081")
     adb("shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", DEV_CLIENT_URL, PACKAGE)
 
