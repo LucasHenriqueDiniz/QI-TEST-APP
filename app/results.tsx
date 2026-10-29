@@ -2,8 +2,8 @@ import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import * as Sharing from "expo-sharing";
 import { LayoutRectangle, Share, StyleSheet, useWindowDimensions, View } from "react-native";
+import RNShare from "react-native-share";
 import { captureRef } from "react-native-view-shot";
 import { useReducedMotion } from "react-native-reanimated";
 import { ResultHero, HERO_OVERLAP, ResultHeroTimeline } from "@/components/ResultHero";
@@ -202,24 +202,28 @@ export default function Results() {
 
   const goHome = () => router.replace("/");
 
-  const shareText = () => {
-    // O link vai numa linha própria para os apps de mensagem gerarem a prévia
-    // da loja — quem recebe o desafio instala dali mesmo.
+  // O link vai numa linha própria para os apps de mensagem gerarem a prévia
+  // da loja — quem recebe o desafio instala dali mesmo.
+  const shareMessage = () => {
     const message = entry.band
       ? t("results.shareMessageBand", { score: entry.iqScore, percentile: entry.percentile, ...entry.band })
       : t("results.shareMessage", { score: entry.iqScore, percentile: entry.percentile });
-    Share.share({ message: `${message}\n${STORE_URL}` }).catch((error) => console.error("Error sharing:", error));
+    return `${message}\n${STORE_URL}`;
   };
 
-  // A imagem do cartão pela folha de compartilhamento do Android. O
-  // expo-sharing manda só o arquivo (EXTRA_STREAM), sem texto, então o link
-  // da loja vai escrito no próprio cartão; se a captura ou o compartilhamento
-  // de arquivo falhar, sai o texto com o link, como antes.
+  const shareText = () => {
+    Share.share({ message: shareMessage() }).catch((error) => console.error("Error sharing:", error));
+  };
+
+  // A imagem do cartão e a mensagem com o link da loja juntas, pela folha de
+  // compartilhamento do Android (react-native-share põe o arquivo em
+  // EXTRA_STREAM e o texto em EXTRA_TEXT; o expo-sharing só mandava o
+  // arquivo). Se a captura ou o compartilhamento falhar, sai só o texto.
   const handleShare = async () => {
     if (sharing) return;
     setSharing(true);
     try {
-      if (shareCard.current && (await Sharing.isAvailableAsync())) {
+      if (shareCard.current) {
         const uri = await captureRef(shareCard, {
           format: "png",
           width: SHARE_CARD_WIDTH * 3,
@@ -228,7 +232,13 @@ export default function Results() {
           fileName: "teste-de-qi",
         });
         if (__DEV__) console.log(`[share] image ${uri}`);
-        await Sharing.shareAsync(uri, { mimeType: "image/png", dialogTitle: t("results.share") });
+        await RNShare.open({
+          url: uri.startsWith("file://") ? uri : `file://${uri}`,
+          type: "image/png",
+          message: shareMessage(),
+          title: t("results.share"),
+          failOnCancel: false,
+        });
         return;
       }
     } catch (error) {

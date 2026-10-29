@@ -1469,25 +1469,6 @@
   dependencies:
     node-forge "^1.3.3"
 
-"@expo/config-plugins@^57.0.11", "@expo/config-plugins@~57.0.11":
-  version "57.0.11"
-  resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-57.0.11.tgz#8ede13d2b3bea6fa02873439fc0a350562b4ca3e"
-  integrity sha512-lnNF0cNXqLQPpQVeb/AAu7O0KhdwMFx99rJkO11mrd0IbQDhnOVObpgaR/Ja2D1jAOoKuqk55jwS4l+ZD1j7aw==
-  dependencies:
-    "@expo/config-types" "^57.0.2"
-    "@expo/json-file" "~11.0.1"
-    "@expo/plist" "^0.8.1"
-    "@expo/require-utils" "^57.0.6"
-    "@expo/sdk-runtime-versions" "^1.0.0"
-    chalk "^4.1.2"
-    debug "^4.3.5"
-    getenv "^2.0.0"
-    glob "^13.0.0"
-    semver "^7.5.4"
-    slugify "^1.6.6"
-    xcode "^4.0.0"
-    xml2js "0.6.0"
-
 "@expo/config-plugins@~57.0.10":
   version "57.0.10"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-57.0.10.tgz#a7ec0f6f3e1c75f7d48a22c1afded5adba7033cf"
@@ -1505,6 +1486,25 @@
     semver "^7.5.4"
     slugify "^1.6.6"
     xcode "^3.0.1"
+    xml2js "0.6.0"
+
+"@expo/config-plugins@~57.0.11":
+  version "57.0.11"
+  resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-57.0.11.tgz#8ede13d2b3bea6fa02873439fc0a350562b4ca3e"
+  integrity sha512-lnNF0cNXqLQPpQVeb/AAu7O0KhdwMFx99rJkO11mrd0IbQDhnOVObpgaR/Ja2D1jAOoKuqk55jwS4l+ZD1j7aw==
+  dependencies:
+    "@expo/config-types" "^57.0.2"
+    "@expo/json-file" "~11.0.1"
+    "@expo/plist" "^0.8.1"
+    "@expo/require-utils" "^57.0.6"
+    "@expo/sdk-runtime-versions" "^1.0.0"
+    chalk "^4.1.2"
+    debug "^4.3.5"
+    getenv "^2.0.0"
+    glob "^13.0.0"
+    semver "^7.5.4"
+    slugify "^1.6.6"
+    xcode "^4.0.0"
     xml2js "0.6.0"
 
 "@expo/config-types@^57.0.2":
@@ -3437,15 +3437,6 @@ expo-server@^57.0.3:
   resolved "https://registry.yarnpkg.com/expo-server/-/expo-server-57.0.3.tgz#02e038a85453f1f4eb00024256b4b3cab949cace"
   integrity sha512-aK+LdKzauHSGmsOStZtyxdzv0zWssCkxTw3m4QuOhfDSJsZaMRTd9O41d8ixU/QfELTbaJ0oRNcF7JFV/7O9YQ==
 
-expo-sharing@~57.0.24:
-  version "57.0.24"
-  resolved "https://registry.yarnpkg.com/expo-sharing/-/expo-sharing-57.0.24.tgz#8997868627fd3467e00f3486546c1edd6c60b9e2"
-  integrity sha512-q3+9V8Xa41S4KWe0bq2e2FuByeVBHu04G3lk5TqS030fWe3QdNHeSEbUn51RqxfcxMPa53NWVkVYP967xqtL3w==
-  dependencies:
-    "@expo/config-plugins" "^57.0.11"
-    "@expo/config-types" "^57.0.2"
-    "@expo/plist" "^0.8.1"
-
 expo-splash-screen@~57.0.10:
   version "57.0.10"
   resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-57.0.10.tgz#be812f710ad61949f16ac3bd293ec4f86bc282bb"
@@ -5044,6 +5035,11 @@ react-native-screens@~4.26.0:
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
+
+react-native-share@12.3.1:
+  version "12.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-12.3.1.tgz#beb36cf2d589335f93adc6f22bd34c8a950964b3"
+  integrity sha512-mRVRie0qKbtj+jWqJ2POPkeSd8SxnMp6aazFZVmq8ZbkUGtQLENR/L58ky8zH4VUEF/WYRmdBiBHWHVtzOewtQ==
 
 react-native-svg-transformer@1.5.3:
   version "1.5.3"

@@ -201,9 +201,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
   },
+  // Pequeno de propósito (pedido do dono): está lá, mas não disputa com o
+  // resultado. Branco a 85% ainda passa 4,5:1 no ponto escuro do gradiente.
   disclaimer: {
     fontFamily: fonts.body,
-    fontSize: 12,
-    lineHeight: 16,
+    fontSize: 9,
+    lineHeight: 12,
+    opacity: 0.85,
   },
 });
