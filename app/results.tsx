@@ -2,9 +2,12 @@ import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import * as Sharing from "expo-sharing";
 import { LayoutRectangle, Share, StyleSheet, useWindowDimensions, View } from "react-native";
+import { captureRef } from "react-native-view-shot";
 import { useReducedMotion } from "react-native-reanimated";
 import { ResultHero, HERO_OVERLAP, ResultHeroTimeline } from "@/components/ResultHero";
+import { SHARE_CARD_HEIGHT, SHARE_CARD_WIDTH, ShareCard } from "@/components/ShareCard";
 import { ThemedText } from "@/components/ThemedText";
 import { BellCurve } from "@/components/ui/BellCurve";
 import { Button } from "@/components/ui/Button";
@@ -70,6 +73,8 @@ export default function Results() {
   const [celebrate, setCelebrate] = useState(false);
   const [confettiDue, setConfettiDue] = useState(false);
   const [heroLayout, setHeroLayout] = useState<LayoutRectangle | null>(null);
+  const shareCard = useRef<View>(null);
+  const [sharing, setSharing] = useState(false);
 
   // Uma vibração marca o resultado revelado: no fim da contagem, ou na hora
   // quando não há contagem. Do histórico, nenhuma.
@@ -170,13 +175,41 @@ export default function Results() {
 
   const goHome = () => router.replace("/");
 
-  const handleShare = () => {
+  const shareText = () => {
     // O link vai numa linha própria para os apps de mensagem gerarem a prévia
     // da loja — quem recebe o desafio instala dali mesmo.
     const message = entry.band
       ? t("results.shareMessageBand", { score: entry.iqScore, percentile: entry.percentile, ...entry.band })
       : t("results.shareMessage", { score: entry.iqScore, percentile: entry.percentile });
     Share.share({ message: `${message}\n${STORE_URL}` }).catch((error) => console.error("Error sharing:", error));
+  };
+
+  // A imagem do cartão pela folha de compartilhamento do Android. O
+  // expo-sharing manda só o arquivo (EXTRA_STREAM), sem texto, então o link
+  // da loja vai escrito no próprio cartão; se a captura ou o compartilhamento
+  // de arquivo falhar, sai o texto com o link, como antes.
+  const handleShare = async () => {
+    if (sharing) return;
+    setSharing(true);
+    try {
+      if (shareCard.current && (await Sharing.isAvailableAsync())) {
+        const uri = await captureRef(shareCard, {
+          format: "png",
+          width: SHARE_CARD_WIDTH * 3,
+          height: SHARE_CARD_HEIGHT * 3,
+          result: "tmpfile",
+          fileName: "teste-de-qi",
+        });
+        if (__DEV__) console.log(`[share] image ${uri}`);
+        await Sharing.shareAsync(uri, { mimeType: "image/png", dialogTitle: t("results.share") });
+        return;
+      }
+    } catch (error) {
+      console.error("Error sharing the image:", error);
+    } finally {
+      setSharing(false);
+    }
+    shareText();
   };
 
   const gutter = spacing.xl;
@@ -190,6 +223,20 @@ export default function Results() {
     >
       {/* O herói é violeta nos dois temas; os ícones do sistema ficam claros. */}
       <StatusBar style="light" />
+
+      {/* Fora da tela: só existe para virar a imagem compartilhada. */}
+      <View
+        style={styles.offscreen}
+        pointerEvents="none"
+        accessibilityElementsHidden
+        importantForAccessibility="no-hide-descendants"
+      >
+        <ShareCard
+          ref={shareCard}
+          entry={entry}
+          strongestArea={strongest?.label}
+        />
+      </View>
 
       <ResultHero
         score={entry.iqScore}
@@ -248,6 +295,7 @@ export default function Results() {
             icon="share-social-outline"
             title={t("results.share")}
             onPress={handleShare}
+            loading={sharing}
           />
           <Button
             block
@@ -347,6 +395,11 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 0,
     paddingTop: 0,
+  },
+  offscreen: {
+    position: "absolute",
+    left: -10000,
+    top: 0,
   },
   centered: {
     justifyContent: "center",

@@ -1,5 +1,5 @@
 ---
-status: todo
+status: done
 ---
 
 # Slice 04 — share card
@@ -30,3 +30,27 @@ with `npx expo install`; a new EAS `development` build installed on the phone.
 
 **If stuck.** If `captureRef` returns a blank image, mount the card on screen
 behind the hero with `opacity: 0` instead of off-screen, and capture that.
+
+**Result (2026-10-29, A15, dev build 68b96b4a).**
+
+`components/ShareCard.tsx` sits off-screen on Results (left −10 000 dp; the
+capture works there, no need for the opacity-0 fallback) and is captured at
+1080×1920. The card: brand mark and "Teste de QI", "Meu QI estimado", the
+score at 140, the band, the tier chip, "Melhor que N%" (from 30% up, as in
+the hero), a white bell curve with the `#FFC857` marker, "Ponto forte",
+"Faça o seu grátis no Google Play" and the disclaimer.
+
+**Changed from the spec: no message with the image.** expo-sharing 57.0.24
+on Android puts only the file in the intent (`EXTRA_STREAM`,
+`SharingModule.kt` line 118), no `EXTRA_TEXT`, so the store link cannot
+travel with the image; the card names the store instead. If the capture or
+the file share fails, the old text share with the link runs. Sending both
+needs another native module (e.g. react-native-share) and a new build:
+owner's call.
+
+| check | result |
+|---|---|
+| `scripts/device/check_share_image.py` (new): tap share, the PNG from the dev `[share] image` logcat line, copied out with `run-as` | `1080x1920 275 KB OK`: Sharesheet open with an image preview, not "Compartilhando texto" |
+| prebuild: `enforceNavigationBarContrast=false` | in `expo config --type introspect` |
+| prebuild: `withKotlinMetadataCheck` | still in `app.json`; the EAS build of today compiled `react-native-google-mobile-ads`, which fails without it (the plugin's own note) |
+| WhatsApp self-chat, score readable at thumbnail size | owner's manual check, not done |

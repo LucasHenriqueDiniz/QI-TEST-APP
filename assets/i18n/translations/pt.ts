@@ -92,6 +92,12 @@ export const pt = {
       right: "Isso!",
       wrong: "Não era essa",
     },
+    share: {
+      overline: "Meu QI estimado",
+      betterThan: "Melhor que {{percentile}}% das pessoas",
+      strength: "Ponto forte: {{area}}",
+      cta: "Faça o seu grátis no Google Play",
+    },
     finishing: {
       title: "Teste concluído!",
       adNotice: "Um anúncio rápido e já mostramos seu resultado.",

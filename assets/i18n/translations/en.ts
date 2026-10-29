@@ -92,6 +92,12 @@ export const en = {
       right: "Right!",
       wrong: "Not that one",
     },
+    share: {
+      overline: "My estimated IQ",
+      betterThan: "Better than {{percentile}}% of people",
+      strength: "Strongest area: {{area}}",
+      cta: "Take yours free on Google Play",
+    },
     finishing: {
       title: "Test complete!",
       adNotice: "A quick ad and then we'll show your result.",

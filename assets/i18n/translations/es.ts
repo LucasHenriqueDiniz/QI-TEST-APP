@@ -92,6 +92,12 @@ export const es = {
       right: "¡Bien!",
       wrong: "No era esa",
     },
+    share: {
+      overline: "Mi CI estimado",
+      betterThan: "Mejor que el {{percentile}}% de las personas",
+      strength: "Punto fuerte: {{area}}",
+      cta: "Haz el tuyo gratis en Google Play",
+    },
     finishing: {
       title: "¡Test completado!",
       adNotice: "Un anuncio rápido y enseguida te mostramos tu resultado.",
