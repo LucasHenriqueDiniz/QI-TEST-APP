@@ -191,6 +191,7 @@ export default function Home() {
               <ThemedText
                 variant="bodyStrong"
                 style={styles.flex}
+                maxFontSizeMultiplier={1.3}
               >
                 {t("home.progress.label")}
               </ThemedText>
@@ -226,10 +227,13 @@ export default function Home() {
         )}
 
         <View style={styles.footerLine}>
+          {/* No rodapé fixo, como o seletor de modo: cresce só até 1,3×. A 2,0×
+              o aviso quebrava no meio da palavra ("entreten / imento"). */}
           <ThemedText
             variant="caption"
             tone="faint"
             style={styles.flex}
+            maxFontSizeMultiplier={1.3}
           >
             {t("about.disclaimerShort")}
           </ThemedText>
@@ -241,6 +245,7 @@ export default function Home() {
             <ThemedText
               variant="captionStrong"
               tone="primary"
+              maxFontSizeMultiplier={1.3}
             >
               {t("home.howItWorks")}
             </ThemedText>

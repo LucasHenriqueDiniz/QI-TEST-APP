@@ -59,8 +59,9 @@ so the button is on the first screen at any font scale.
 | check | result |
 |---|---|
 | `scripts/device/check_home_variants.py` (new; writes the storage for each variant and puts the owner's back, so no `pm clear`: 42 history entries before and after) at font scale 1.0 | `3/3` (first run also with the three promises fully above the footer) |
-| same at font scale 1.3 | **not run**: it needs the system font size changed by hand |
-| reduce motion → static hero | not run on the phone (a system setting); the code path is `useReducedMotion` |
+| same at font scale 2.0 (the owner set the system maximum, with "Remove animations" on) | before the fix the pinned footer took ~80% of the screen, the chooser read "Detalh…", "40 ques…" and the disclaimer broke mid-word; with the footer's text capped at 1.3×: returning and in progress PASS, first run FAIL only because its three promises need a scroll at 2.0× (button on screen in all three) |
+| same at font scale 1.3 | not run: the owner's phone was set to 2.0 |
+| reduce motion → static hero | with "Remove animations" on (animator scales 0): the 3×3 is drawn in place and Results opens with the final score, no count-up |
 | `check_pause.py` (updated: no resume prompt; a round in progress is discarded through "Recomeçar" + the sheet) | `PASS` |
 | "Recomeçar" → sheet → confirm | progress removed, Home back to "Fazer novo teste" |
 

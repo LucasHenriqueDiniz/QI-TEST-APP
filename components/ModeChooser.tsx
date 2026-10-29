@@ -14,6 +14,13 @@ interface ModeChooserProps {
 }
 
 /**
+ * Fica no rodapé fixo da Home: o texto cresce com a fonte do sistema só até
+ * 1,3×. A 2,0× o rodapé inteiro tomava ~80% da tela do A15 e cortava
+ * "Detalh…", "40 ques…".
+ */
+const FOOTER_TEXT_MAX = 1.3;
+
+/**
  * Rápido 20 · Normal 40 · Detalhado 90, como um controle segmentado, com uma
  * linha sobre o modo escolhido embaixo. Um modo que o banco não comporta
  * aparece desligado.
@@ -55,6 +62,7 @@ export function ModeChooser({ value, onChange }: ModeChooserProps) {
                 tone={selected ? "default" : "muted"}
                 center
                 numberOfLines={1}
+                maxFontSizeMultiplier={FOOTER_TEXT_MAX}
               >
                 {t(`home.modes.${mode}.label`)}
               </ThemedText>
@@ -63,6 +71,7 @@ export function ModeChooser({ value, onChange }: ModeChooserProps) {
                 tone={selected ? "primary" : "faint"}
                 center
                 numberOfLines={1}
+                maxFontSizeMultiplier={FOOTER_TEXT_MAX}
                 style={styles.count}
               >
                 {t("home.modes.count", { count: roundLength(mode) })}
@@ -75,6 +84,7 @@ export function ModeChooser({ value, onChange }: ModeChooserProps) {
         variant="caption"
         tone="muted"
         center
+        maxFontSizeMultiplier={FOOTER_TEXT_MAX}
       >
         {t(`home.modes.${value}.description`)}
       </ThemedText>

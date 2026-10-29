@@ -315,8 +315,16 @@ function Row({
           size={20}
           color={colors.textMuted}
         />
-        <ThemedText style={styles.flex}>{label}</ThemedText>
-        <ThemedText tone="muted">{value}</ThemedText>
+        {/* O rótulo nunca encolhe; o valor cede com "…". A 2,0× "Não
+            informada" espremia "Idade" até uma letra por linha. */}
+        <ThemedText style={styles.rowLabel}>{label}</ThemedText>
+        <ThemedText
+          tone="muted"
+          numberOfLines={1}
+          style={styles.rowValue}
+        >
+          {value}
+        </ThemedText>
         <Ionicons
           name="chevron-forward"
           size={18}
@@ -388,6 +396,13 @@ const styles = StyleSheet.create({
     gap: 12,
     paddingHorizontal: 16,
     paddingVertical: 15,
+  },
+  rowLabel: {
+    flexShrink: 0,
+  },
+  rowValue: {
+    flex: 1,
+    textAlign: "right",
   },
   hint: {
     marginTop: 8,

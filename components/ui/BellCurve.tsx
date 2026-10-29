@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, useWindowDimensions, View } from "react-native";
 import Animated, {
   Easing,
   cancelAnimation,
@@ -21,6 +21,8 @@ const TICKS = [70, 85, 100, 115, 130];
 
 /** Faixa acima da curva reservada ao balão "Você · N", em dp. */
 const BUBBLE_BAND = 34;
+/** Até onde o rótulo do balão acompanha a fonte do sistema. */
+const BUBBLE_TEXT_MAX = 1.3;
 /** Faixa abaixo da linha de base com os números, em dp. */
 const LABEL_BAND = 22;
 /** Diâmetro do ponto do marcador, em dp. */
@@ -120,8 +122,10 @@ export function BellCurve({ score, width, height = 140, label, animate, delayMs 
     transform: [{ translateY: (1 - landed.value) * -18 }],
   }));
 
-  // O balão é centralizado no marcador, mas não sai do gráfico nas pontas.
-  const bubbleHalf = 46;
+  // O balão é centralizado no marcador, mas não sai do gráfico nas pontas. A
+  // largura acompanha a fonte do sistema até o mesmo 1,3× do rótulo.
+  const { fontScale } = useWindowDimensions();
+  const bubbleHalf = Math.round(46 * Math.min(Math.max(fontScale, 1), BUBBLE_TEXT_MAX));
   const bubbleX = Math.min(Math.max(markerX, bubbleHalf), width - bubbleHalf);
 
   return (
@@ -220,10 +224,13 @@ export function BellCurve({ score, width, height = 140, label, animate, delayMs 
           ]}
         >
           <View style={[styles.bubble, { backgroundColor: colors.accent, borderRadius: radius.pill }]}>
+            {/* A bolha tem largura fixa sobre a curva: cresce só até 1,3×
+                (a 2,0× "Você · 117" virava "Você.."). */}
             <ThemedText
               variant="captionStrong"
               color={colors.onAccent}
               numberOfLines={1}
+              maxFontSizeMultiplier={BUBBLE_TEXT_MAX}
             >
               {label}
             </ThemedText>
