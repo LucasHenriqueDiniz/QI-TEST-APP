@@ -5,6 +5,7 @@ USB. Nothing here knows about a specific screen beyond the labels passed in.
 """
 import os
 import re
+import shlex
 import subprocess
 import time
 import xml.etree.ElementTree as ET
@@ -56,8 +57,12 @@ DEV_ROUND_URL = "testeqi://test?only=patterns"
 def open_route(url):
     """Deep-links a route of the running app. The app must already be running
     its JS bundle (e.g. on Home after cold_start): on a cold process the dev
-    client shows its launcher instead of the route."""
-    adb("shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", url, PACKAGE)
+    client shows its launcher instead of the route.
+
+    `adb shell` hands the command to the phone's shell, where an unquoted `&`
+    ends it: `/test?q=13&lang=en` arrived as `/test?q=13`, in pt. Quoted here.
+    """
+    adb("shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", shlex.quote(url), PACKAGE)
 
 
 def open_dev_round():

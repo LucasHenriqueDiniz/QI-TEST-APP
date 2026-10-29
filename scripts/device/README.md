@@ -42,7 +42,7 @@ library. Exit 0 means pass.
 | `answer_all.py [--start] [--seed N] [--max N]` | answers the test on screen to the end; `N/N` (stops after `--max`, 100, questions) | `30/30` → exit 0; Detalhado `90/90` (2026-10-28) |
 | `check_fit.py [--require LABEL] [--options N]` | options, primary button and labels fully visible, none clipped by their scroll viewport, none under the banner | q=69 alone: `FIT`; prompt margin pushed to 700 dp: `only 0 of 4 options on screen` → exit 1; to 250 dp: C and D clipped → exit 1 (2026-10-20) |
 | `check_fit_round.py [--only patterns] [--seed N]` | opens a round (every pattern item in order with `--only patterns`), runs `check_fit`'s rules on every question after the layout settles, answers it; `N/N fit` | pattern round: `30/30 fit` in light and dark; `54/54 fit` after the 05e merge (2026-10-28) → exit 0 |
-| `check_fit_round.py --longest-text` | the longest text question of pt, en and es (characters of question + options, read from the translation files), each opened alone with `/test?q=<id>&lang=<code>`; `3/3 fit` | `3/3 fit` → exit 0 (2026-10-20); comprehension q30, 290–299 characters: `3/3 fit` (2026-10-28) |
+| `check_fit_round.py --longest-text` | the longest text question of pt, en and es (characters of question + options, read from the translation files), each opened alone with `/test?q=<id>&lang=<code>`; `3/3 fit` | `3/3 fit` → exit 0, but en and es were shown in pt until the link was quoted (2026-10-29); now each language's question text must be on screen: comprehension q30, 290–299 characters, `3/3 fit`; unquoted link: `1/3` |
 | `check_pause.py [--answers N]` | answers N (5), system back → pause sheet, "Continuar o teste" keeps the question, back again → "Sair e continuar depois" → Home "Continuar teste" → resume prompt → counter N+1/total | `PASS` (8 steps) → exit 0 (2026-10-20) |
 | `check_double_finish.py [--mode rapido] [--gap 0.08]` | two taps on the last question's "Ver meu resultado", `--gap` s apart; reads `testHistory` from the app's AsyncStorage: grew by 1 and that entry has as many answers as the round | `PASS`, history +1 with 20 answers → exit 0; without the guard: +2 (20 and 21 answers) (2026-10-20) |
 | `check_relink.py [--answers 5]` | a Normal round answered 5 times, then a link to `/test?mode=rapido` onto the open screen: the counter reads 1/20 | `PASS` (6/40 → 1/20) → exit 0; without the reset: 11/40 → 11/20 (2026-10-20) |
@@ -123,6 +123,10 @@ the longest text question of each language (`ui.open_single_question`).
   make adb ambiguous. Airplane mode turns Wi-Fi off, so `ad_shift.py` over
   Wi-Fi would cut its own connection and leave the phone offline: run it on
   the cable only.
+- **`adb shell` runs the command in the phone's shell**, so an unquoted `&`
+  in a deep link ends it there: `testeqi://test?q=13&lang=en` arrived as
+  `?q=13` and showed pt. `ui.open_route` quotes the URL; quote it yourself in
+  a hand-typed `adb shell am start -d '…'`.
 - **A link sent right after a cold start is lost.** While the dev client is
   still loading the bundle, `testeqi://test?mode=detalhado` lands on Home and
   `answer_all.py` reports `0/0`. Wait for Home's start button

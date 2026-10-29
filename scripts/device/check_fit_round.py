@@ -136,7 +136,7 @@ def translated_items(path):
 
 
 def longest_text_questions():
-    """{lang: (id, 'category.key', characters)} for the longest text question of each language."""
+    """{lang: (id, 'category.key', characters, question)} for the longest text question of each language."""
     bank = text_bank(os.path.join(ROOT, "data", "questions.ts"))
     out = {}
     for lang in LANGUAGES:
@@ -145,7 +145,7 @@ def longest_text_questions():
         if not items:
             sys.exit(f"no translated text questions found for {lang}")
         category, key, question, options = max(items, key=lambda it: len(it[2]) + sum(len(o) for o in it[3]))
-        out[lang] = (bank[(category, key)], f"{category}.{key}", len(question) + sum(len(o) for o in options))
+        out[lang] = (bank[(category, key)], f"{category}.{key}", len(question) + sum(len(o) for o in options), question)
     return out
 
 
@@ -163,7 +163,7 @@ def close_question():
 
 def run_longest_text():
     targets = longest_text_questions()
-    for lang, (qid, name, chars) in targets.items():
+    for lang, (qid, name, chars, _) in targets.items():
         print(f"{lang}: longest text question is id {qid} ({name}, {chars} characters)")
 
     ui.cold_start()
@@ -172,7 +172,7 @@ def run_longest_text():
         sys.exit("Home did not appear after a cold start (is Metro running?)")
 
     results = []
-    for lang, (qid, name, _) in targets.items():
+    for lang, (qid, name, _, question) in targets.items():
         ui.open_single_question(qid, lang)
         options, nodes = ui.wait_for(radios, timeout=15)
         if ui.dismiss_logbox(nodes):
@@ -181,6 +181,8 @@ def run_longest_text():
             sys.exit(f"{lang}: question {qid} did not appear")
         nodes = settled()
         problems, summary = check_fit.check(nodes)
+        if not any(question in (n.label or "") for n in ui.ours(nodes)):
+            problems.append(f"the {lang} question text is not on screen (language not applied?)")
         label = f"{lang} q={qid} ({name})"
         results.append((label, problems))
         print(f"{label}: {'FIT' if not problems else 'NO FIT'}  ({summary})")
