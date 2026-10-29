@@ -47,7 +47,7 @@ in `index.ts`. Patterns now 16 / 22 / 16 = 54. Generator tests 220/220.
 |---|---|
 | `check_fit_round.py --only patterns` | `54/54 fit` (was 30/30) |
 | Detalhado round, `answer_all.py` from `testeqi://test?mode=detalhado` | `90/90`; history +1: mode `detalhado`, 90 questions, per category patterns 27, matrix 18, similarities 15, vocabulary 15, comprehension 15 (the blueprint), reasoning and verbal indices saved |
-| `check_fit_round.py --longest-text` | now comprehension q30 (pt 290, en 291, es 299 characters): `3/3 fit` |
+| `check_fit_round.py --longest-text` | now comprehension q30 (pt 290, en 291, es 299 characters): `3/3 fit`; en and es were shown in pt that day, re-run in the right language on 2026-10-29: `3/3 fit` (slice 05f follow-up) |
 | p31, p42, p54 opened alone (`/test?q=165`, `176`, `188`) | prompt and four options drawn |
 
 The scripts' `--max` default was 80, below a Detalhado round; it is 100 now.

@@ -204,24 +204,24 @@ export const pt = {
             options: ["São formas de conhecimento", "São órgãos do corpo humano", "Seguem passos lógicos explícitos", "Só funcionam ao dormir"],
           },
           q13: {
-            question: "O que uma árvore e uma flor têm em comum?",
-            options: ["Ambas pertencem ao reino vegetal", "Ambas têm tronco de madeira", "Ambas murcham em poucos dias", "Ambas crescem sem luz do sol"],
+            question: "O que elogio e castigo têm em comum?",
+            options: ["São formas de influenciar o comportamento", "Causam dor em quem os recebe", "Só podem ser dados por pais ou por professores", "Deixam a pessoa mais confiante"],
           },
           q14: {
-            question: "O que um avião e um pássaro têm em comum?",
-            options: ["Ambos podem voar", "Ambos têm motor", "Ambos têm penas", "Ambos são seres vivos"],
+            question: "Qual a semelhança entre um eco e um espelho?",
+            options: ["Ambos devolvem o que chega até eles", "Ambos são feitos de vidro polido", "Ambos só existem perto de montanhas", "Ambos produzem luz e som por conta própria"],
           },
           q15: {
-            question: "O que um carro e uma moto têm em comum?",
-            options: ["Ambos têm rodas", "Ambos têm guidão", "Ambos têm teto", "Ambos andam em trilhos"],
+            question: "O que um vírus e um boato têm em comum?",
+            options: ["Ambos podem passar de pessoa para pessoa", "Ambos podem ser vistos a olho nu por qualquer um", "Ambos são curados com antibióticos", "Ambos só circulam pela internet"],
           },
           q16: {
-            question: "O que um peixe e um tubarão têm em comum?",
-            options: ["Ambos vivem na água", "Ambos têm pulmões", "Ambos vivem só em rios", "Ambos são mamíferos"],
+            question: "Qual a semelhança entre uma ponte e um intérprete?",
+            options: ["Ambos ligam dois lados que estariam separados", "Ambos são construídos com concreto, ferro e aço", "Ambos falam mais de uma língua", "Ambos cobram pedágio de quem passa por eles"],
           },
           q17: {
-            question: "O que uma lâmpada e o sol têm em comum?",
-            options: ["Ambos emitem luz", "Ambos estão no céu", "Ambos têm fio elétrico", "Ambos são de vidro"],
+            question: "O que um mapa e uma bússola têm em comum?",
+            options: ["Ambos ajudam a encontrar o caminho", "Ambos mostram os nomes das ruas", "Ambos têm uma agulha que aponta o norte", "Ambos precisam de bateria para funcionar"],
           },
           q18: {
             question: "O que a lua e o sol têm em comum?",
@@ -334,8 +334,8 @@ export const pt = {
             options: ["Que faz tudo de qualquer jeito", "Que cuida de cada detalhe", "Que termina tudo com rapidez", "Que gosta de dar ordens"],
           },
           q15: {
-            question: "O que significa 'efêmero'?",
-            options: ["Que acontece só uma vez", "Que logo deixa de existir", "Que pesa menos do que parece", "Que pertence ao passado"],
+            question: "O que significa 'veemente'?",
+            options: ["Que se irrita por qualquer motivo", "Que se expressa com força e intensidade", "Que fala sempre de forma calma e pausada", "Que tem pressa em tudo o que faz"],
           },
           q16: {
             question: "O que significa 'prolífico'?",
@@ -432,8 +432,8 @@ export const pt = {
         },
         matrix: {
           q1: {
-            question: "Qual número completa a sequência: 2, 4, 8, 16, __?",
-            options: ["24", "32", "30", "28"],
+            question: "Qual número completa a sequência: 1, 3, 6, 11, 18, 29, __?",
+            options: ["40", "42", "39", "47"],
           },
           q2: {
             question: "Complete a sequência: 3, 6, 12, 24, __",
@@ -444,48 +444,48 @@ export const pt = {
             options: ["13", "15", "16", "18"],
           },
           q4: {
-            question: "Qual número completa o padrão: 7, 14, 28, 56, __?",
-            options: ["96", "102", "112", "98"],
+            question: "Qual número completa o padrão: 2, 6, 3, 9, 6, 18, __?",
+            options: ["12", "9", "15", "21"],
           },
           q5: {
             question: "Complete a sequência: 2, 6, 12, 20, __",
             options: ["26", "28", "30", "32"],
           },
           q6: {
-            question: "Qual número completa o padrão: 1, 4, 9, 16, __?",
-            options: ["20", "23", "25", "21"],
+            question: "Qual número completa o padrão: 1, 4, 13, 40, __?",
+            options: ["80", "120", "121", "160"],
           },
           q7: {
             question: "Complete a sequência: 5, 10, 20, 35, __",
             options: ["45", "50", "55", "60"],
           },
           q8: {
-            question: "Se o 1º termo é 1, o 2º é 3 e o 3º é 6, qual é o 4º?",
-            options: ["8", "9", "10", "12"],
+            question: "Complete a sequência: 1, 1, 2, 4, 7, 13, __",
+            options: ["20", "22", "24", "26"],
           },
           q9: {
-            question: "Se 3² = 9, 4² = 16, então 5² = __?",
-            options: ["20", "21", "23", "25"],
+            question: "Complete a sequência: 1, 8, 27, 64, __",
+            options: ["96", "100", "128", "125"],
           },
           q10: {
             question: "Complete: 13, 21, 34, 55, __",
             options: ["76", "84", "89", "91"],
           },
           q11: {
-            question: "Se 2³ = 8, 3³ = 27, então 4³ = __?",
-            options: ["54", "64", "72", "81"],
+            question: "Qual número completa a sequência: 3, 4, 8, 17, 33, __?",
+            options: ["49", "58", "66", "54"],
           },
           q12: {
             question: "Complete a sequência: 8, 11, 15, 20, 26, __",
             options: ["31", "32", "33", "35"],
           },
           q13: {
-            question: "Complete a sequência: 10, 15, 21, 28, __?",
-            options: ["36", "40", "45", "33"],
+            question: "Complete a sequência: 1, 4, 16, 64, __",
+            options: ["256", "128", "192", "320"],
           },
           q14: {
-            question: "Qual número completa o padrão: 2, 3, 5, 8, __?",
-            options: ["10", "11", "13", "15"],
+            question: "Qual número completa o padrão: 2, 5, 10, 17, 26, __?",
+            options: ["35", "36", "37", "39"],
           },
           q15: {
             question: "Complete a sequência: 3, 6, 9, 12, __",
@@ -504,8 +504,8 @@ export const pt = {
             options: ["5", "6", "7", "8"],
           },
           q19: {
-            question: "Complete a sequência: 9, 12, 15, 18, __",
-            options: ["21", "20", "19", "22"],
+            question: "Complete a sequência: 4, 8, 12, 16, __",
+            options: ["20", "24", "18", "32"],
           },
           q20: {
             question: "Qual número completa a sequência: 2, 5, 8, 11, __?",

@@ -204,24 +204,24 @@ export const en = {
             options: ["They are forms of knowledge", "They are organs of the human body", "They follow explicit logical steps", "They work only during sleep"],
           },
           q13: {
-            question: "What do a tree and a flower have in common?",
-            options: ["Both belong to the plant kingdom", "Both have a thick woody trunk", "Both wilt within a few days", "Both grow without sunlight"],
+            question: "What do praise and punishment have in common?",
+            options: ["They are ways of influencing behavior", "They cause pain to whoever receives them", "Only parents and teachers can give them", "They make a person more confident"],
           },
           q14: {
-            question: "What do a plane and a bird have in common?",
-            options: ["Both are able to fly", "Both have an engine", "Both have feathers", "Both are living beings"],
+            question: "What do an echo and a mirror have in common?",
+            options: ["Both send back what reaches them", "Both are made of polished glass", "Both exist only near mountains", "Both produce their own light and sound"],
           },
           q15: {
-            question: "What do a car and a motorcycle have in common?",
-            options: ["Both have wheels", "Both have handlebars", "Both have a roof", "Both run on rails"],
+            question: "What do a virus and a rumor have in common?",
+            options: ["Both can spread from person to person", "Both can be seen by anyone with the naked eye", "Both are cured with antibiotics", "Both travel only over the internet"],
           },
           q16: {
-            question: "What do a fish and a shark have in common?",
-            options: ["Both live in water", "Both have lungs", "Both live only in rivers", "Both are mammals"],
+            question: "What do a bridge and an interpreter have in common?",
+            options: ["Both link two sides that would otherwise be apart", "Both are built of concrete, iron and steel", "Both speak more than one language", "Both charge a toll to everyone who goes across them"],
           },
           q17: {
-            question: "What do a lamp and the sun have in common?",
-            options: ["Both give off light", "Both are in the sky", "Both have a power cord", "Both are made of glass"],
+            question: "What do a map and a compass have in common?",
+            options: ["Both help you find your way", "Both show the names of streets", "Both have a needle that points north", "Both need batteries to work"],
           },
           q18: {
             question: "What do the moon and the sun have in common?",
@@ -334,8 +334,8 @@ export const en = {
             options: ["Does everything any old way", "Takes care over every detail", "Finishes everything quickly", "Likes giving orders"],
           },
           q15: {
-            question: "What does 'ephemeral' mean?",
-            options: ["Happens only once", "Soon ceases to exist", "Weighs less than it looks", "Belongs to the past"],
+            question: "What does 'vehement' mean?",
+            options: ["Gets angry over the smallest thing", "Expresses views with great force", "Always speaks calmly and slowly", "Is always in a hurry"],
           },
           q16: {
             question: "What does 'prolific' mean?",
@@ -432,8 +432,8 @@ export const en = {
         },
         matrix: {
           q1: {
-            question: "What number completes the sequence: 2, 4, 8, 16, __?",
-            options: ["24", "32", "30", "28"],
+            question: "What number completes the sequence: 1, 3, 6, 11, 18, 29, __?",
+            options: ["40", "42", "39", "47"],
           },
           q2: {
             question: "Complete the sequence: 3, 6, 12, 24, __",
@@ -444,48 +444,48 @@ export const en = {
             options: ["13", "15", "16", "18"],
           },
           q4: {
-            question: "What number completes the pattern: 7, 14, 28, 56, __?",
-            options: ["96", "102", "112", "98"],
+            question: "What number completes the pattern: 2, 6, 3, 9, 6, 18, __?",
+            options: ["12", "9", "15", "21"],
           },
           q5: {
             question: "Complete the sequence: 2, 6, 12, 20, __",
             options: ["26", "28", "30", "32"],
           },
           q6: {
-            question: "What number completes the pattern: 1, 4, 9, 16, __?",
-            options: ["20", "23", "25", "21"],
+            question: "What number completes the pattern: 1, 4, 13, 40, __?",
+            options: ["80", "120", "121", "160"],
           },
           q7: {
             question: "Complete the sequence: 5, 10, 20, 35, __",
             options: ["45", "50", "55", "60"],
           },
           q8: {
-            question: "If the 1st term is 1, the 2nd is 3 and the 3rd is 6, what is the 4th?",
-            options: ["8", "9", "10", "12"],
+            question: "Complete the sequence: 1, 1, 2, 4, 7, 13, __",
+            options: ["20", "22", "24", "26"],
           },
           q9: {
-            question: "If 3² = 9, 4² = 16, then 5² = __?",
-            options: ["20", "21", "23", "25"],
+            question: "Complete the sequence: 1, 8, 27, 64, __",
+            options: ["96", "100", "128", "125"],
           },
           q10: {
             question: "Complete: 13, 21, 34, 55, __",
             options: ["76", "84", "89", "91"],
           },
           q11: {
-            question: "If 2³ = 8, 3³ = 27, then 4³ = __?",
-            options: ["54", "64", "72", "81"],
+            question: "What number completes the sequence: 3, 4, 8, 17, 33, __?",
+            options: ["49", "58", "66", "54"],
           },
           q12: {
             question: "Complete the sequence: 8, 11, 15, 20, 26, __",
             options: ["31", "32", "33", "35"],
           },
           q13: {
-            question: "Complete the sequence: 10, 15, 21, 28, __?",
-            options: ["36", "40", "45", "33"],
+            question: "Complete the sequence: 1, 4, 16, 64, __",
+            options: ["256", "128", "192", "320"],
           },
           q14: {
-            question: "What number completes the pattern: 2, 3, 5, 8, __?",
-            options: ["10", "11", "13", "15"],
+            question: "What number completes the pattern: 2, 5, 10, 17, 26, __?",
+            options: ["35", "36", "37", "39"],
           },
           q15: {
             question: "Complete the sequence: 3, 6, 9, 12, __",
@@ -504,8 +504,8 @@ export const en = {
             options: ["5", "6", "7", "8"],
           },
           q19: {
-            question: "Complete the sequence: 9, 12, 15, 18, __",
-            options: ["21", "20", "19", "22"],
+            question: "Complete the sequence: 4, 8, 12, 16, __",
+            options: ["20", "24", "18", "32"],
           },
           q20: {
             question: "What number completes the sequence: 2, 5, 8, 11, __?",
