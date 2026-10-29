@@ -116,6 +116,19 @@ export const en = {
       strength: "Strength",
       skipReveal: "Skip the animation",
       shareMessage: "I scored {{score}} on the IQ test — above {{percentile}}% of people. Try to beat it!",
+      band: "Likely range: {{lower}}–{{upper}}",
+      indices: {
+        title: "Indices",
+        reasoning: "Reasoning",
+        verbal: "Verbal",
+        value: "range {{lower}}–{{upper}}",
+      },
+      speed: {
+        title: "Speed (experimental)",
+        counts: "{{correct}} right and {{wrong}} wrong in {{seconds}} s",
+        note: "Not part of your IQ: there is no population reference for it yet.",
+      },
+      shareMessageBand: "I scored {{score}} on the IQ test (range {{lower}}–{{upper}}), above {{percentile}}% of people. Can you beat it?",
       missing: "We couldn't find this result.",
     },
     history: {

@@ -1,5 +1,5 @@
 ---
-status: todo
+status: done
 ---
 
 # Slice 03b — Results: band, indices, speed
@@ -30,3 +30,20 @@ compares the on-screen band with the stored one: `4/4 match`.
 
 **If stuck.** If the band does not fit on one line at 130% font scale, move it
 under the score as its own line rather than shrinking the score.
+
+**Result (2026-10-29, A15, dev build).**
+
+The hero's "± N" (half the band) became "Faixa provável: A–B" under the
+score, the stored band itself; the overline already reads "Seu QI estimado".
+In Detalhado the profile card opens with Raciocínio and Verbal, each score
+with its band; with `speed`, a "Velocidade (experimental)" card shows the
+score, the counts and that it stays out of the IQ. The share text carries
+the band when there is one. Slice 04 will put it on the image.
+
+| check | result |
+|---|---|
+| `scripts/device/check_results_band.py` (new): Results opened by link (`mode=history`, nothing saved) with a Rápido, a Normal + speed, a Detalhado + indices + speed and a legacy entry; band on screen vs stored, indices and speed shown, "Compartilhar resultado" on the first screen | `4/4 match` |
+| red: the same four on the old Results | `1/4 match` (only legacy, which shows no band either way) |
+
+The tests named a dev seed hook; a link with the entry as JSON opens the same
+screen without writing anything, so no hook was added.

@@ -16,7 +16,7 @@ import { STORE_URL } from "@/constants/app";
 import { CATEGORY_ICONS } from "@/constants/categories";
 import { useAppTheme } from "@/context/ThemeContext";
 import { useStorage } from "@/hooks/useStorage";
-import { ScoreBand } from "@/types";
+import { IndexDomain } from "@/types";
 import { HistoryItem } from "@/types/storage";
 import * as haptics from "@/utils/haptics";
 import { getIQClassification } from "@/utils/iqCalculator";
@@ -37,6 +37,9 @@ const FIRST_SCORE_CELEBRATION = 110;
 
 /** Altura da curva, em dp. */
 const CURVE_HEIGHT = 128;
+
+/** Ordem dos índices no perfil do Detalhado. */
+const INDEX_ORDER: IndexDomain[] = ["reasoning", "verbal"];
 
 export default function Results() {
   const { t } = useTranslation();
@@ -147,6 +150,11 @@ export default function Results() {
       ? t("results.betterThan", { percentile: entry.percentile })
       : t("results.strongest", { area: strongest.label, correct: strongest.correct, total: strongest.total });
 
+  const indexRows = INDEX_ORDER.flatMap((domain) => {
+    const index = entry.indices?.[domain];
+    return index ? [{ domain, ...index }] : [];
+  });
+
   const strip = [t("results.strip.correct", { correct: entry.correctAnswers, total: entry.totalQuestions })];
   if (entry.durationSeconds !== undefined) strip.push(formatDuration(entry.durationSeconds, t));
   strip.push(t("results.strip.areas", { count: entry.categories.length }));
@@ -165,9 +173,10 @@ export default function Results() {
   const handleShare = () => {
     // O link vai numa linha própria para os apps de mensagem gerarem a prévia
     // da loja — quem recebe o desafio instala dali mesmo.
-    Share.share({
-      message: `${t("results.shareMessage", { score: entry.iqScore, percentile: entry.percentile })}\n${STORE_URL}`,
-    }).catch((error) => console.error("Error sharing:", error));
+    const message = entry.band
+      ? t("results.shareMessageBand", { score: entry.iqScore, percentile: entry.percentile, ...entry.band })
+      : t("results.shareMessage", { score: entry.iqScore, percentile: entry.percentile });
+    Share.share({ message: `${message}\n${STORE_URL}` }).catch((error) => console.error("Error sharing:", error));
   };
 
   const gutter = spacing.xl;
@@ -184,7 +193,7 @@ export default function Results() {
 
       <ResultHero
         score={entry.iqScore}
-        band={entry.band ? bandHalfWidth(entry.iqScore, entry.band) : undefined}
+        bandLabel={entry.band ? t("results.band", { lower: entry.band.lower, upper: entry.band.upper }) : undefined}
         tierLabel={t(getIQClassification(entry.iqScore))}
         headline={headline}
         strip={strip}
@@ -256,6 +265,33 @@ export default function Results() {
           >
             {t("results.profile")}
           </ThemedText>
+          {indexRows.length > 0 && (
+            <View style={[styles.indices, { gap: spacing.sm, marginBottom: spacing.lg }]}>
+              {indexRows.map((index) => (
+                <View
+                  key={index.domain}
+                  style={[styles.indexRow, { backgroundColor: colors.surfaceAlt, borderRadius: radius.md, padding: spacing.md }]}
+                >
+                  <ThemedText variant="bodyStrong">{t(`results.indices.${index.domain}`)}</ThemedText>
+                  <View style={styles.indexValue}>
+                    <ThemedText
+                      variant="subheading"
+                      style={styles.tabular}
+                    >
+                      {index.score}
+                    </ThemedText>
+                    <ThemedText
+                      variant="caption"
+                      tone="muted"
+                      style={styles.tabular}
+                    >
+                      {t("results.indices.value", { lower: index.band.lower, upper: index.band.upper })}
+                    </ThemedText>
+                  </View>
+                </View>
+              ))}
+            </View>
+          )}
           <CategoryBars
             rows={rows}
             strengthLabel={t("results.strength")}
@@ -263,6 +299,31 @@ export default function Results() {
             delayMs={BARS_AT_MS}
           />
         </Card>
+
+        {entry.speed && (
+          <Card style={{ borderRadius: radius.xl }}>
+            <ThemedText variant="bodyStrong">{t("results.speed.title")}</ThemedText>
+            <ThemedText
+              variant="subheading"
+              style={[styles.tabular, { marginTop: spacing.xs }]}
+            >
+              {entry.speed.score}
+            </ThemedText>
+            <ThemedText
+              variant="caption"
+              tone="muted"
+            >
+              {t("results.speed.counts", { correct: entry.speed.correct, wrong: entry.speed.wrong, seconds: entry.speed.seconds })}
+            </ThemedText>
+            <ThemedText
+              variant="caption"
+              tone="faint"
+              style={{ marginTop: spacing.sm }}
+            >
+              {t("results.speed.note")}
+            </ThemedText>
+          </Card>
+        )}
 
         <ThemedText
           variant="caption"
@@ -274,15 +335,6 @@ export default function Results() {
       </View>
     </Screen>
   );
-}
-
-/**
- * Meia largura da faixa para o "± N" do herói. A faixa é simétrica em torno
- * do QI antes do limite 55–145; depois dele um dos lados pode ficar mais
- * curto, e o lado inteiro é o que ainda mede a incerteza.
- */
-function bandHalfWidth(score: number, band: ScoreBand): number {
-  return Math.max(score - band.lower, band.upper - score);
 }
 
 /** "11 min" a partir de um minuto; abaixo disso, segundos. */
@@ -314,5 +366,17 @@ const styles = StyleSheet.create({
   },
   profileTitle: {
     marginBottom: 14,
+  },
+  indices: {},
+  indexRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  indexValue: {
+    alignItems: "flex-end",
+  },
+  tabular: {
+    fontVariant: ["tabular-nums"],
   },
 });

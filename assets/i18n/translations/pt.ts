@@ -116,6 +116,19 @@ export const pt = {
       strength: "Ponto forte",
       skipReveal: "Pular a animação",
       shareMessage: "Fiz {{score}} no teste de QI — acima de {{percentile}}% das pessoas. Tenta bater!",
+      band: "Faixa provável: {{lower}}–{{upper}}",
+      indices: {
+        title: "Índices",
+        reasoning: "Raciocínio",
+        verbal: "Verbal",
+        value: "faixa {{lower}}–{{upper}}",
+      },
+      speed: {
+        title: "Velocidade (experimental)",
+        counts: "{{correct}} acertos e {{wrong}} erros em {{seconds}} s",
+        note: "Fica fora do QI: ainda não há uma referência de população para ela.",
+      },
+      shareMessageBand: "Fiz {{score}} no teste de QI (faixa {{lower}}–{{upper}}) — acima de {{percentile}}% das pessoas. Tenta bater!",
       missing: "Não encontramos este resultado.",
     },
     history: {

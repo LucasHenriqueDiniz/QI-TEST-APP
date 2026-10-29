@@ -116,6 +116,19 @@ export const es = {
       strength: "Punto fuerte",
       skipReveal: "Saltar la animación",
       shareMessage: "Saqué {{score}} en el test de CI — por encima del {{percentile}}% de las personas. ¡A ver si me superas!",
+      band: "Rango probable: {{lower}}–{{upper}}",
+      indices: {
+        title: "Índices",
+        reasoning: "Razonamiento",
+        verbal: "Verbal",
+        value: "rango {{lower}}–{{upper}}",
+      },
+      speed: {
+        title: "Velocidad (experimental)",
+        counts: "{{correct}} aciertos y {{wrong}} errores en {{seconds}} s",
+        note: "Queda fuera de tu CI: todavía no hay una referencia de población para ella.",
+      },
+      shareMessageBand: "Saqué {{score}} en el test de CI (rango {{lower}}–{{upper}}): por encima del {{percentile}}% de las personas. ¿Me superas?",
       missing: "No encontramos este resultado.",
     },
     history: {

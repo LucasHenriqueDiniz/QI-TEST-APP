@@ -24,10 +24,10 @@ interface ResultHeroProps {
   /** Pontuação final. */
   score: number;
   /**
-   * Meia largura da faixa de confiança, em pontos ("± 8"). Sem valor, nada é
-   * desenhado — o modelo de pontuação de hoje não a produz.
+   * Faixa provável, já traduzida ("Faixa provável: 108–122"). Sem valor,
+   * nada é desenhado: os testes pontuados pela fórmula antiga não a têm.
    */
-  band?: number;
+  bandLabel?: string;
   /** Rótulo da faixa ("Média", "Superior"…). */
   tierLabel: string;
   /** Linha de leitura: percentil ou ponto forte. */
@@ -58,7 +58,7 @@ interface ResultHeroProps {
  */
 export function ResultHero({
   score,
-  band,
+  bandLabel,
   tierLabel,
   headline,
   strip,
@@ -144,14 +144,14 @@ export function ResultHero({
             color={white}
           />
 
-          {band !== undefined && (
+          {bandLabel !== undefined && (
             <ThemedText
               variant="bodyStrong"
               color={white}
               center
               style={styles.band}
             >
-              ± {band}
+              {bandLabel}
             </ThemedText>
           )}
 
