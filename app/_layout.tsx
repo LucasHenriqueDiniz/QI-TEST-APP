@@ -46,6 +46,11 @@ function RootNavigator() {
           options={{ headerShown: false, gestureEnabled: false }}
         />
         <Stack.Screen
+          name="finishing"
+          // Sem cabeçalho e sem voltar: o teste acabou e o resultado vem já.
+          options={{ headerShown: false, gestureEnabled: false, animation: "fade" }}
+        />
+        <Stack.Screen
           name="results"
           options={{
             title: t("results.title"),

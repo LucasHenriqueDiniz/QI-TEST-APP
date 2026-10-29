@@ -70,6 +70,10 @@ export const en = {
         blockLast: "{{done}} of {{total}} — almost there",
       },
     },
+    finishing: {
+      title: "Test complete!",
+      adNotice: "A quick ad and then we'll show your result.",
+    },
     results: {
       title: "Your result",
       overline: "Your estimated IQ",

@@ -86,7 +86,8 @@ export default function Test() {
 
   // O anúncio começa a carregar assim que o teste abre, então já está pronto
   // quando o usuário chega na última questão — sem espera na hora de mostrar.
-  const { run } = useGatedInterstitial({ completedTests });
+  // Aqui só carrega o anúncio; quem mostra é `/finishing`, ao fim do teste.
+  useGatedInterstitial({ completedTests });
 
   const scrollRef = useRef<ScrollView>(null);
   const modeRef = useRef<TestMode>(DEFAULT_MODE);
@@ -285,10 +286,21 @@ export default function Test() {
       await storage.removeItem("testProgress");
     }
 
-    // O resultado já está salvo no histórico neste ponto. Se o anúncio falhar
-    // ou o usuário matar o app durante ele, nada se perde — a navegação é o
-    // único passo represado, e `run` a executa mesmo em caso de erro.
-    run(() => router.replace({ pathname: "/results", params: { entry: JSON.stringify(entry) } }));
+    // A rodada de conferência vai direto ao resultado, sem anúncio.
+    if (devMode) {
+      router.replace({ pathname: "/results", params: { entry: JSON.stringify(entry) } });
+      return;
+    }
+
+    // O resultado já está salvo no histórico neste ponto; `/finishing` mostra
+    // o anúncio, se houver, e segue para o resultado. Se o anúncio falhar ou
+    // o usuário matar o app durante ele, nada se perde. (A vibração de
+    // conclusão já sai do botão, `haptic="confirm"`.)
+    if (__DEV__) console.log("[finish] last answer");
+    router.replace({
+      pathname: "/finishing",
+      params: { entry: JSON.stringify(entry), completed: String(completedTests) },
+    });
   };
 
   // Segunda metade da troca de questão, depois de a atual ter sumido: mostra

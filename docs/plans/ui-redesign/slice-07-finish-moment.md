@@ -1,5 +1,5 @@
 ---
-status: todo
+status: done
 ---
 
 # Slice 07 — finish moment
@@ -28,3 +28,21 @@ checks as `PASS` (written in this slice).
 
 **If stuck.** If the interstitial sometimes is not ready at 2 s even when
 loading started on the test screen, start loading at question 20.
+
+**Result (2026-10-29, A15, dev build).**
+
+The interstitial is one module-level `InterstitialAd` in
+`hooks/useGatedInterstitial.ts` (it was a `useInterstitialAd` per screen): the
+test screen starts loading it, `/finishing` shows it. With one ad per screen,
+the one on `/finishing` would only start loading there and rarely be ready at
+2 s. The dev pattern round still goes straight to Results, without the ad.
+
+| check (`scripts/device/check_finish.py`, new; gaps from the app's `__DEV__` logcat lines) | result |
+|---|---|
+| timing: "Teste concluído!" after the last answer; the ad after ≥ 1.5 s on screen; Results after the ad | PASS: 0.37 s; ad after 2.02 s (AdActivity resumed); Results |
+| offline: airplane mode from the cold start | PASS: left for Results 2.30 s after the last answer, no ad, Results |
+| killed: force-stop while the ad is on screen | PASS: newest history entry is the round (Rápido, 20 questions) |
+| red: the hand-over at 0.5 s instead of 2 s | timing FAIL (ad after 0.51 s) |
+
+The confirm button already fires `haptics.confirm()`, so `/finishing` adds no
+second one.
