@@ -11,67 +11,63 @@ Test de CI - Quiz de Lógica
 ## Descrição curta (máx. 80)
 
 ```
-Test de CI: 30 preguntas de lógica y patrones. Resultado completo, sin registro.
+Test de CI en 3 modos: 20, 40 o 90 preguntas. Resultado completo, sin registro.
 ```
 
 ## Descrição completa (máx. 4000)
 
 ```
-Descubre tu puntuación en un test de CI completo, en unos 10 minutos, sin registro y sin pagar nada.
+Descubre tu puntuación en un test de CI completo, sin registro y sin resultados bloqueados.
 
-Son 30 preguntas sorteadas en cada ronda de un banco de más de 100, así que ningún test es igual al anterior. Al final recibes una puntuación, tu posición estimada en la población y un desglose de dónde te fue bien y dónde no.
+Elige el modo: Rápido (20 preguntas), Normal (40) o Detallado (90). Las preguntas se sortean en cada ronda entre un banco de 188, así que ningún test es igual al anterior. Al final recibes tu CI estimado, el rango probable en el que está, tu posición en la población y un detalle de dónde te fue bien — y dónde no.
 
 QUÉ MIDE EL TEST
 
-• Razonamiento visual: matrices de patrones, al estilo de las pruebas clásicas de inteligencia no verbal
-• Lógica numérica: secuencias y progresiones
-• Semejanzas: relaciones entre conceptos
-• Vocabulario: significado de palabras poco habituales
-• Comprensión: juicio sobre situaciones cotidianas
+• Razonamiento visual — matrices de patrones, al estilo de las pruebas clásicas de inteligencia no verbal
+• Lógica numérica — secuencias y progresiones
+• Semejanzas — qué tienen en común dos conceptos
+• Vocabulario — significado de palabras poco comunes
+• Comprensión — juicio sobre situaciones cotidianas
 
 CÓMO FUNCIONA LA PUNTUACIÓN
 
-Cada pregunta tiene un peso según su dificultad. Tu puntuación bruta se convierte a una escala con media 100 y desviación estándar 15, la misma convención que usan los tests de inteligencia tradicionales. El resultado también muestra el percentil: cuántas personas, en estimación, quedarían por debajo de ti.
+La puntuación tiene en cuenta la dificultad de cada pregunta y se expresa en la escala de los tests de inteligencia tradicionales, con media 100 y desviación estándar 15. Como todo test tiene margen de error, el resultado viene con un rango probable, más estrecho cuanto más largo es el modo. El percentil muestra cuántas personas, aproximadamente, quedarían por debajo de ti.
 
 QUÉ RECIBES AL FINAL
 
-• Puntuación y clasificación
-• Curva de distribución con tu posición marcada
-• Rendimiento separado por área de razonamiento
-• Historial de todos los tests, con gráfico de evolución
-• Botón para compartir el resultado
+• CI estimado, rango probable y clasificación
+• Curva de la población con tu posición marcada
+• Resultados por área y, en el modo Detallado, los índices Verbal y Razonamiento
+• Un test de velocidad opcional de 90 segundos (Normal y Detallado), aparte del CI
+• Historial de todos los tests, con gráfico de evolución y tu récord personal
+• Una imagen del resultado lista para compartir
 
 POR QUÉ ESTE Y NO OTRO
 
-• Totalmente gratis. Nada de resultados bloqueados tras un pago
+• El resultado completo, nada bloqueado tras un pago
 • Sin registro, sin inicio de sesión, sin correo
 • Funciona sin internet
-• Ningún dato sale del dispositivo: el historial se queda contigo
-• Modo claro y oscuro
+• Tu historial se queda en tu dispositivo
+• Tema claro y oscuro
 • Español, portugués e inglés
 
-SIN CRONÓMETRO
+SIN CRONÓMETRO EN LAS PREGUNTAS
 
-El test no tiene límite de tiempo. La idea es medir razonamiento, no velocidad de lectura ni prisa. Puedes cerrar la app a mitad de camino y retomar exactamente donde lo dejaste.
+Las preguntas no tienen límite de tiempo: la idea es medir razonamiento, no prisa. Puedes pausar y retomar exactamente donde lo dejaste. La velocidad se mide aparte, en un test opcional.
 
 PARA QUIÉN ES
 
-Para quien disfruta de un desafío mental y quiere ejercitar el razonamiento lógico: quiz de lógica, juegos de patrones, entrenamiento de atención y memoria de trabajo. Sirve como pasatiempo y como forma de seguir tu evolución con el tiempo, repitiendo el test de inteligencia cada cierto período y comparando en el historial.
+Para quien disfruta de un desafío mental y quiere ejercitar el razonamiento lógico: quiz de lógica, juegos de patrones, entrenamiento de la atención. Sirve como pasatiempo y para seguir tu evolución, repitiendo el test de vez en cuando y comparando en el historial.
 
 AVISO IMPORTANTE
 
-Esta aplicación es entretenimiento. No es un instrumento psicométrico validado, no produce diagnóstico y no sustituye una evaluación profesional. Las puntuaciones son estimaciones calculadas sobre un banco propio de preguntas, sin muestra normativa. Para una evaluación real de inteligencia, consulta a un psicólogo cualificado.
+Esta aplicación es entretenimiento. No es un instrumento psicométrico validado, no produce diagnósticos y no sustituye una evaluación profesional. Las puntuaciones son estimaciones calculadas sobre un banco propio de preguntas, sin muestra normativa. Para una evaluación real de inteligencia, consulta a un psicólogo calificado.
 
 DUDAS Y SUGERENCIAS
 
-Escribe a lucas.diniz.hdo@gmail.com. El feedback sobre preguntas confusas o traducciones incorrectas es muy bienvenido.
+Escribe a lucas.diniz.hdo@gmail.com. Los comentarios sobre preguntas confusas o traducciones incorrectas son muy bienvenidos.
 ```
 
-## Legendas das capturas de tela
+## Capturas de tela
 
-1. Descubre tu CI en 10 minutos
-2. 30 preguntas de razonamiento
-3. Mira tus puntos fuertes
-4. Sigue tu evolución
-5. Gratis, sin registro
-6. Modo oscuro y 3 idiomas
+As seis capturas e o feature graphic estão em `store/screenshots/es-419/` e `store/feature-graphic-es-419.png`; títulos e selos em `scripts/store/README.md`.

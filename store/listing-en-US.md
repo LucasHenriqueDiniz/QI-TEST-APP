@@ -11,67 +11,63 @@ IQ Test - Logic & Pattern Quiz
 ## Descrição curta (máx. 80)
 
 ```
-IQ test: 30 questions on logic and patterns. Full result, no sign-up needed.
+IQ test in 3 modes: 20, 40 or 90 questions. Full result, no sign-up.
 ```
 
 ## Descrição completa (máx. 4000)
 
 ```
-Find out your score on a full IQ test in about 10 minutes — no sign-up, nothing to pay.
+Find out your score on a complete IQ test, with no sign-up and nothing locked.
 
-Each round draws 30 questions at random from a bank of over 100, so no two tests are alike. At the end you get a score, your estimated standing in the population, and a breakdown of where you did well and where you didn't.
+Pick a mode: Quick (20 questions), Normal (40) or Detailed (90). Questions are drawn each round from a bank of 188, so no two tests are the same. At the end you get your estimated IQ, the likely range it falls in, your place in the population and a breakdown of where you did well — and where you didn't.
 
 WHAT THE TEST MEASURES
 
 • Visual reasoning — pattern matrices, in the style of classic non-verbal intelligence tests
 • Number logic — sequences and progressions
-• Similarities — relationships between concepts
-• Vocabulary — meaning of uncommon words
-• Comprehension — judgement about everyday situations
+• Similarities — what two concepts have in common
+• Vocabulary — the meaning of less common words
+• Comprehension — judgment about everyday situations
 
 HOW SCORING WORKS
 
-Every question carries a weight based on its difficulty. Your raw score is mapped onto a scale with a mean of 100 and a standard deviation of 15 — the same convention traditional intelligence tests use. The result also shows your percentile: how many people would be estimated to fall below you.
+The score takes each question's difficulty into account and is expressed on the scale of traditional intelligence tests, with a mean of 100 and a standard deviation of 15. Since every test has a margin of error, the result comes with a likely range, narrower the longer the mode. The percentile shows roughly how many people would score below you.
 
 WHAT YOU GET AT THE END
 
-• Score and classification
-• Distribution curve with your position marked
-• Performance broken down by reasoning area
-• History of every test, with a progress chart
-• A button to share your result
+• Estimated IQ, likely range and classification
+• Population curve with your position marked
+• Results by area and, in Detailed mode, the Verbal and Reasoning indices
+• An optional 90-second speed test (Normal and Detailed), kept apart from the IQ
+• History of every test, with a progress chart and your personal record
+• A result image ready to share
 
 WHY THIS ONE
 
-• Completely free. No results locked behind a paywall
-• No account, no login, no email
+• The full result, nothing locked behind a payment
+• No sign-up, no login, no email
 • Works offline
-• No data leaves your device — your history stays with you
-• Light and dark mode
+• Your history stays on your device
+• Light and dark theme
 • English, Portuguese and Spanish
 
-NO TIMER
+NO TIMER ON THE QUESTIONS
 
-The test has no time limit. The point is to measure reasoning, not reading speed or how fast you can rush. You can close the app halfway through and pick up exactly where you left off.
+Questions have no time limit: the point is to measure reasoning, not haste. You can pause and pick up exactly where you left off. Speed is measured separately, in an optional test.
 
 WHO IT'S FOR
 
-For anyone who enjoys a mental challenge and wants to exercise logical reasoning: logic quiz, pattern games, attention and working-memory practice. It works as a pastime and as a way to track your progress over time — retake the intelligence test now and then and compare in the history.
+For anyone who enjoys a mental challenge and wants to exercise logical reasoning: logic quizzes, pattern puzzles, attention training. Use it as a pastime and as a way to track your progress, retaking the test from time to time and comparing in your history.
 
 IMPORTANT NOTICE
 
-This app is entertainment. It is not a validated psychometric instrument, it does not produce a diagnosis, and it does not replace a professional assessment. Scores are estimates calculated over our own question bank, with no normative sample. For a real assessment of intelligence, consult a qualified psychologist.
+This app is entertainment. It is not a validated psychometric instrument, it does not produce a diagnosis and it does not replace a professional assessment. Scores are estimates calculated on our own question bank, without a normative sample. For a real intelligence assessment, see a qualified psychologist.
 
 QUESTIONS AND SUGGESTIONS
 
-Write to lucas.diniz.hdo@gmail.com. Feedback about confusing questions or bad translations is very welcome.
+Write to lucas.diniz.hdo@gmail.com. Feedback on confusing questions or wrong translations is very welcome.
 ```
 
-## Legendas das capturas de tela
+## Capturas de tela
 
-1. Find out your IQ in 10 minutes
-2. 30 reasoning questions
-3. See your strengths
-4. Track your progress
-5. Free, no sign-up
-6. Dark mode and 3 languages
+As seis capturas e o feature graphic estão em `store/screenshots/en-US/` e `store/feature-graphic-en-US.png`; títulos e selos em `scripts/store/README.md`.
