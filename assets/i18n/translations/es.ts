@@ -25,25 +25,57 @@ export const es = {
     },
     home: {
       title: "Test de CI",
-      subtitle: "{{count}} preguntas de lógica, patrones visuales y vocabulario. Sin registro, sin cronómetro.",
+      subtitle: "{{count}} preguntas de lógica, patrones visuales y vocabulario.",
       start: "Empezar test",
       measures: "Qué mide el test",
-      stats: {
-        last: "Último",
-        best: "Mejor",
-        taken: "Tests",
-      },
-      pitch: {
-        free: "Gratis y completo — nada queda bloqueado",
-        offline: "Funciona sin internet",
-        categories: "Resultado detallado por área de razonamiento",
-      },
       resume: {
         title: "Test en curso",
         message: "Dejaste un test a medias. ¿Quieres continuar donde lo dejaste?",
         continue: "Continuar",
         restart: "Empezar de nuevo",
         button: "Continuar test",
+      },
+      tagline: "Descubre tu CI",
+      newTest: "Hacer un test nuevo",
+      newQuestions: "Preguntas nuevas en cada ronda",
+      howItWorks: "Cómo funciona",
+      trust: {
+        complete: "Resultado completo, sin bloqueos",
+        noSignup: "Sin registro",
+        untimed: "Sin cronómetro",
+      },
+      record: {
+        overline: "Tu récord",
+        summary: "Último: {{last}} · Tests hechos: {{count}}",
+      },
+      progress: {
+        label: "Test en curso: sigue donde lo dejaste",
+        a11y: "{{done}} de {{total}} preguntas respondidas",
+        restart: "Empezar de nuevo",
+        confirm: {
+          title: "¿Empezar el test de nuevo?",
+          message: "Se descartarán las respuestas del test en curso.",
+          confirm: "Empezar de nuevo",
+          cancel: "Seguir con el test",
+        },
+      },
+      modes: {
+        count: "{{count}} preguntas",
+        rapido: {
+          label: "Rápido",
+          description: "Una estimación rápida, con el rango más amplio.",
+          a11y: "Rápido, {{count}} preguntas",
+        },
+        normal: {
+          label: "Normal",
+          description: "Equilibrio entre tiempo y precisión. Incluye un test de velocidad opcional.",
+          a11y: "Normal, {{count}} preguntas",
+        },
+        detalhado: {
+          label: "Detallado",
+          description: "El rango más estrecho y los índices Verbal y Razonamiento. Incluye un test de velocidad opcional.",
+          a11y: "Detallado, {{count}} preguntas",
+        },
       },
     },
     test: {

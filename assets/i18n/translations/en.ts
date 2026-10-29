@@ -25,25 +25,57 @@ export const en = {
     },
     home: {
       title: "IQ Test",
-      subtitle: "{{count}} questions on logic, visual patterns and vocabulary. No sign-up, no timer.",
+      subtitle: "{{count}} questions on logic, visual patterns and vocabulary.",
       start: "Start test",
       measures: "What the test measures",
-      stats: {
-        last: "Last",
-        best: "Best",
-        taken: "Tests",
-      },
-      pitch: {
-        free: "Free and complete — nothing is locked",
-        offline: "Works without internet",
-        categories: "Detailed results by reasoning area",
-      },
       resume: {
         title: "Test in progress",
         message: "You left a test halfway through. Want to pick up where you stopped?",
         continue: "Continue",
         restart: "Start over",
         button: "Continue test",
+      },
+      tagline: "Discover your IQ",
+      newTest: "Take a new test",
+      newQuestions: "New questions every round",
+      howItWorks: "How it works",
+      trust: {
+        complete: "Full result, nothing locked",
+        noSignup: "No sign-up",
+        untimed: "No timer",
+      },
+      record: {
+        overline: "Your record",
+        summary: "Last: {{last}} · Tests taken: {{count}}",
+      },
+      progress: {
+        label: "Test in progress — pick up where you left off",
+        a11y: "{{done}} of {{total}} questions answered",
+        restart: "Start over",
+        confirm: {
+          title: "Start the test over?",
+          message: "The answers of the test in progress will be discarded.",
+          confirm: "Start over",
+          cancel: "Keep the test",
+        },
+      },
+      modes: {
+        count: "{{count}} questions",
+        rapido: {
+          label: "Quick",
+          description: "A quick estimate, with the widest range.",
+          a11y: "Quick, {{count}} questions",
+        },
+        normal: {
+          label: "Normal",
+          description: "A balance of time and precision. Includes an optional speed test.",
+          a11y: "Normal, {{count}} questions",
+        },
+        detalhado: {
+          label: "Detailed",
+          description: "The narrowest range and the Verbal and Reasoning indices. Includes an optional speed test.",
+          a11y: "Detailed, {{count}} questions",
+        },
       },
     },
     test: {

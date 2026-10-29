@@ -63,10 +63,6 @@ def main():
         if not found:
             sys.exit("no start button on screen (expected Home)")
         ui.tap(found)
-        time.sleep(1.0)
-        resume = ui.resume_button(ui.dump())
-        if resume:
-            ui.tap(resume)
 
     total = None
     answered = 0

@@ -2,12 +2,13 @@
 
 usage: check_pause.py [--answers N] [--seed N]
 
-From a cold start: begins a fresh round from Home ("Começar de novo" if a
-round was in progress), answers N questions (default 5), presses the system
-back and expects the pause sheet; chooses "Continuar o teste" and expects the
-same question; presses back again, chooses "Sair e continuar depois" and
-expects Home with "Continuar teste"; taps it, confirms "CONTINUAR" on the
-resume prompt and expects the counter to read N+1/total. Prints each step with
+From a cold start: begins a fresh round from Home ("Recomeçar" and its
+confirm sheet first if a round was in progress), answers N questions (default
+5), presses the system back and expects the pause sheet; chooses "Continuar o
+teste" and expects the same question; presses back again, chooses "Sair e
+continuar depois" and expects Home with "Continuar teste"; taps it and expects
+the counter to read N+1/total (since slice 08 Home resumes at once, with no
+prompt). Prints each step with
 the texts it saw and `PASS`/`FAIL`; exit 0 on PASS. Leaves the round in
 progress at question N+1 (Home shows "Continuar teste").
 """
@@ -76,11 +77,9 @@ def main():
     start, _ = ui.wait_for(ui.start_button, timeout=45)
     if not start:
         sys.exit("Home did not appear after a cold start (is Metro running?)")
+    if ui.discard_progress():
+        start, _ = ui.wait_for(ui.start_button, timeout=10)
     ui.tap(start)
-    time.sleep(1.0)
-    restart = ui.restart_button(ui.dump())
-    if restart:
-        ui.tap(restart)
     options, nodes = ui.wait_for(radios, timeout=20)
     if not options:
         sys.exit("no question appeared")
@@ -125,14 +124,9 @@ def main():
     home, nodes = ui.wait_for(lambda ns: button(ns, CONTINUE_HOME), timeout=10)
     step("Home offers to continue", home is not None, f"button {home.label if home else None}")
 
-    # Continue → resume prompt → question N+1.
+    # Continue → question N+1.
     if home:
         ui.tap(home)
-        time.sleep(1.0)
-        prompt = ui.resume_button(ui.dump())
-        step("resume prompt shows CONTINUAR", prompt is not None, f"button {prompt.text if prompt else None}")
-        if prompt:
-            ui.tap(prompt)
     found, nodes = ui.wait_for(radios, timeout=15)
     prog = ui.progress(nodes)
     expected = (args.answers + 1, total)

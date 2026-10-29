@@ -210,29 +210,34 @@ def start_button(nodes):
     return hits[0] if hits else None
 
 
-RESTART_LABELS = r"(?i)^(começar de novo|comecar de novo|start over|empezar de nuevo)$"
+RESTART_LABELS = r"(?i)^(recomeçar|start over|empezar de nuevo)$"
 
 
 def restart_button(nodes):
-    """The "Começar de novo" button of Home's resume prompt, or None."""
-    for n in ours(nodes):
-        if n.cls == "android.widget.Button" and re.fullmatch(RESTART_LABELS, n.text.strip()):
-            return n
-    return None
+    """Home's "Recomeçar" (a test in progress), or the same button on its confirm sheet; None otherwise.
 
-
-def resume_button(nodes):
-    """The "Continuar" button of Home's resume prompt, or None when the prompt is not up.
-
-    Only a Button whose whole text is the verb: the prompt's message ("Quer
-    continuar de onde parou?") and Home's own "Continuar teste" button, which
-    stays in the dump behind the Alert, also contain it. Android renders
-    Alert buttons in upper case ("CONTINUAR").
+    Since slice 08 there is no resume prompt: Home's "Continuar teste" resumes
+    at once, and "Recomeçar" asks on a bottom sheet whose confirm button has
+    the same label (the sheet is its own window, so a dump shows one or the
+    other).
     """
     for n in ours(nodes):
-        if n.cls == "android.widget.Button" and re.fullmatch(r"(?i)(continuar|retomar|continue|resume)", n.text.strip()):
+        if n.cls == "android.widget.Button" and re.fullmatch(RESTART_LABELS, n.label.split(", ")[-1].strip()):
             return n
     return None
+
+
+def discard_progress():
+    """On Home with a test in progress: "Recomeçar", then confirm. Returns whether there was one."""
+    restart = restart_button(dump())
+    if not restart:
+        return False
+    tap(restart)
+    confirm, _ = wait_for(lambda ns: restart_button(ns) if not find(ours(ns), pattern=r"(?i)^(Continuar teste|Continue test|Continuar test)$") else None, timeout=10)
+    if confirm:
+        tap(confirm)
+    wait_for(lambda ns: not restart_button(ns), timeout=10)
+    return True
 
 
 def dismiss_logbox(nodes):

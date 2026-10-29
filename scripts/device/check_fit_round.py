@@ -55,10 +55,6 @@ def open_round(only):
         ui.open_dev_round()
     else:
         ui.tap(start)
-        time.sleep(1.0)
-        resume = ui.resume_button(ui.dump())
-        if resume:
-            ui.tap(resume)
     found, _ = ui.wait_for(radios, timeout=20)
     if not found:
         sys.exit("no question appeared")

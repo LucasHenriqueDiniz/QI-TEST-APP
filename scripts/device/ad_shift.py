@@ -42,10 +42,6 @@ def open_test():
     if not open_home():
         return False
     ui.tap(ui.start_button(ui.dump()))
-    time.sleep(1.0)
-    resume = ui.resume_button(ui.dump())
-    if resume:
-        ui.tap(resume)
     found, _ = ui.wait_for(lambda ns: [n for n in ui.ours(ns) if n.cls == RADIO])
     return bool(found)
 

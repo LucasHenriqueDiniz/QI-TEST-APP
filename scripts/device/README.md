@@ -47,8 +47,9 @@ library. Exit 0 means pass.
 | `speed_task.py [--restart]` | a Normal round, then the speed task: practice from the dev `testID`, the 90 s block from the dev `[speed] pair` logcat lines (the clock keeps uiautomator from dumping); every fifth answer wrong; `speed stored: c-w` vs what it tapped. `--restart`: HOME mid-block and back → `restarted` | `464-116` stored, `465-116` tapped (last tap after 90 s) → `PASS`; `restarted`; with the AppState listener off: not restarted (2026-10-29) |
 | `check_results_band.py` | Results opened by link with four entries written in the script (Rápido, Normal + speed, Detalhado + indices + speed, legacy); band on screen vs stored, indices and speed shown (over three scroll positions), share button on the first screen; `N/4 match` | `4/4 match`; on the Results before slice 03b `1/4` (2026-10-29) |
 | `check_share_image.py` | Results by link (Detalhado entry), tap share; the PNG path from the dev `[share] image` logcat line, copied out with `run-as`; its size from the PNG header; the Sharesheet shows an image preview, not "Compartilhando texto"; `<w>x<h> <size> KB OK` | `1080x1920 275 KB OK` (2026-10-29) |
+| `check_home_variants.py` | writes the app's storage for each Home variant (first run, returning, in progress; the owner's storage copied out first and put back), cold-starts and runs `check_fit` with the variant's button; first run also needs the three promises above the footer; prints the font scale it ran at (read only) | `3/3` at 1.0 (2026-10-29) |
 | `check_option_scale.py [--tolerance 2]` | dev pattern round; in a screenshot of each item, the matrix hole's width and option A's frame width, in dp (hole positions from `scripts/patterns/measure-holes.py --json`); `N/N same scale` | `54/54` (delta −1.1 to +0.4 dp); before slice 05.1 `0/54`, p25–p54 +16 to +18 dp (2026-10-29) |
-| `check_pause.py [--answers N]` | answers N (5), system back → pause sheet, "Continuar o teste" keeps the question, back again → "Sair e continuar depois" → Home "Continuar teste" → resume prompt → counter N+1/total | `PASS` (8 steps) → exit 0 (2026-10-20) |
+| `check_pause.py [--answers N]` | answers N (5), system back → pause sheet, "Continuar o teste" keeps the question, back again → "Sair e continuar depois" → Home "Continuar teste" → counter N+1/total (no resume prompt since slice 08) | `PASS` (8 steps) → exit 0 (2026-10-20); `PASS` (7 steps) on the new Home (2026-10-29) |
 | `check_double_finish.py [--mode rapido] [--gap 0.08]` | two taps on the last question's "Ver meu resultado", `--gap` s apart; reads `testHistory` from the app's AsyncStorage: grew by 1 and that entry has as many answers as the round | `PASS`, history +1 with 20 answers → exit 0; without the guard: +2 (20 and 21 answers) (2026-10-20) |
 | `check_relink.py [--answers 5]` | a Normal round answered 5 times, then a link to `/test?mode=rapido` onto the open screen: the counter reads 1/20 | `PASS` (6/40 → 1/20) → exit 0; without the reset: 11/40 → 11/20 (2026-10-20) |
 | `ad_shift.py --screen home\|test\|results` | the screen frame (primary button, scroll viewport) is identical offline (no banner) and online (banner loaded) | test screen: viewport bottom 1978 → 1809 px when the banner loads → exit 1 |
@@ -111,11 +112,10 @@ the longest text question of each language (`ui.open_single_question`).
 - **The test counter counts down on the last five questions** ("faltam 3",
   "última"): `ui.progress` falls back to the counter's accessibility label
   ("Questão 38 de 40") when the visible text has no `N/total`.
-- **Alert buttons are upper-case** ("CONTINUAR", "COMEÇAR DE NOVO");
-  `ui.resume_button` and `ui.restart_button` match case-insensitively.
-- **Home's resume prompt contains the verb three times** (the message, the
-  "CONTINUAR" button and Home's own "Continuar teste" behind the Alert):
-  `ui.resume_button` matches only a Button whose whole text is the verb.
+- **"Recomeçar" has the same label on Home and on its confirm sheet.** The
+  sheet is its own window, so a dump shows one or the other;
+  `ui.discard_progress()` taps Home's, waits for the sheet's and confirms.
+  (Until slice 08 Home asked with an `Alert` whose buttons were upper case.)
 - **Anything that brings another app to the front kills a round**: on this
   phone the dev build is reclaimed by `lmkd` seconds after going to the
   background. `check_fit_round.py` then stops with `round interrupted after N

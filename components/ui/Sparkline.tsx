@@ -7,11 +7,16 @@ interface SparklineProps {
   values: number[];
   width: number;
   height?: number;
+  /** Cor da linha, da área e do ponto. Padrão: `primary` do tema. */
+  color?: string;
+  /** Contorno do último ponto, para destacá-lo do fundo. Padrão: `background` do tema. */
+  dotStroke?: string;
 }
 
 /** Linha de evolução compacta, com área preenchida e destaque no último ponto. */
-export function Sparkline({ values, width, height = 90 }: SparklineProps) {
+export function Sparkline({ values, width, height = 90, color, dotStroke }: SparklineProps) {
   const { colors } = useAppTheme();
+  const stroke = color ?? colors.primary;
 
   if (values.length === 0) return null;
 
@@ -45,12 +50,12 @@ export function Sparkline({ values, width, height = 90 }: SparklineProps) {
         >
           <Stop
             offset="0"
-            stopColor={colors.primary}
+            stopColor={stroke}
             stopOpacity={0.3}
           />
           <Stop
             offset="1"
-            stopColor={colors.primary}
+            stopColor={stroke}
             stopOpacity={0}
           />
         </SvgGradient>
@@ -62,7 +67,7 @@ export function Sparkline({ values, width, height = 90 }: SparklineProps) {
       />
       <Path
         d={line}
-        stroke={colors.primary}
+        stroke={stroke}
         strokeWidth={2.5}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -72,8 +77,8 @@ export function Sparkline({ values, width, height = 90 }: SparklineProps) {
         cx={toX(lastIndex)}
         cy={toY(values[lastIndex])}
         r={4.5}
-        fill={colors.primary}
-        stroke={colors.background}
+        fill={stroke}
+        stroke={dotStroke ?? colors.background}
         strokeWidth={2}
       />
     </Svg>

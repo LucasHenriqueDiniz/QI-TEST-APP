@@ -2,26 +2,56 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Image, Pressable, StyleSheet, View } from "react-native";
-import { ThemedText } from "@/components/ThemedText";
+import { Image, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from "react-native";
 import { AboutSheet } from "@/components/AboutSheet";
+import { HomeHero } from "@/components/HomeHero";
+import { ModeChooser } from "@/components/ModeChooser";
+import { RecordCard } from "@/components/RecordCard";
+import { ThemedText } from "@/components/ThemedText";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ConfirmSheet } from "@/components/ui/ConfirmSheet";
+import { ProgressRing } from "@/components/ui/ProgressRing";
 import { Screen } from "@/components/ui/Screen";
-import { CATEGORY_ICONS, CATEGORY_ORDER } from "@/constants/categories";
 import { useAppTheme } from "@/context/ThemeContext";
-import { roundLength } from "@/hooks/useQuestionSelection";
 import { useStorage } from "@/hooks/useStorage";
-import { HistoryItem } from "@/types/storage";
+import type { TestMode } from "@/types";
+import { HistoryItem, TestProgress } from "@/types/storage";
+import { roundLength } from "@/utils/scoring/blueprints";
 
+/**
+ * O 3×3 da primeira visita: 15% da altura da tela, entre 96 e 180 dp. A 20%
+ * (166 dp no A15) as duas últimas promessas ficavam abaixo da dobra, atrás do
+ * rodapé fixo.
+ */
+function heroSizeFor(windowHeight: number): number {
+  return Math.round(Math.min(180, Math.max(96, windowHeight * 0.15)));
+}
+
+const TRUST: { icon: keyof typeof Ionicons.glyphMap; key: string }[] = [
+  { icon: "lock-open-outline", key: "home.trust.complete" },
+  { icon: "person-outline", key: "home.trust.noSignup" },
+  { icon: "timer-outline", key: "home.trust.untimed" },
+];
+
+/**
+ * Home em três variantes: primeira visita (o 3×3 do ícone, "Descubra seu
+ * QI" e o que o app promete), quem volta (o recorde, para tentar bater) e
+ * teste em andamento (anel de progresso, continuar ou recomeçar). O botão
+ * principal e o seletor de modo ficam presos acima do banner, fora da
+ * rolagem, para estarem sempre à vista, em qualquer tamanho de fonte.
+ */
 export default function Home() {
   const { t } = useTranslation();
   const { colors, spacing, radius } = useAppTheme();
+  const { height } = useWindowDimensions();
   const storage = useStorage();
 
   const [history, setHistory] = useState<HistoryItem[]>([]);
-  const [hasProgress, setHasProgress] = useState(false);
+  const [progress, setProgress] = useState<TestProgress | null>(null);
+  const [mode, setMode] = useState<TestMode>("normal");
   const [aboutVisible, setAboutVisible] = useState(false);
+  const [confirmRestart, setConfirmRestart] = useState(false);
 
   // Recarrega ao voltar de /test ou /settings, não só na montagem.
   useFocusEffect(
@@ -29,10 +59,10 @@ export default function Home() {
       let active = true;
 
       Promise.all([storage.getItem("testHistory"), storage.getItem("testProgress")])
-        .then(([storedHistory, progress]) => {
+        .then(([storedHistory, storedProgress]) => {
           if (!active) return;
           setHistory(storedHistory ?? []);
-          setHasProgress(!!progress && progress.savedAnswers.length > 0);
+          setProgress(storedProgress && storedProgress.savedAnswers.length > 0 ? storedProgress : null);
         })
         .catch((error) => console.error("Error loading home data:", error));
 
@@ -42,34 +72,20 @@ export default function Home() {
     }, [storage])
   );
 
-  const latest = history[0];
-  const best = history.reduce((max, item) => Math.max(max, item.iqScore), 0);
+  const returning = history.length > 0;
 
-  // Começa sempre no Normal até o seletor de modos da Home (fatia 08). A
-  // retomada não passa modo: o teste segue o que está salvo.
-  const startNormal = () => router.push({ pathname: "/test", params: { mode: "normal" } });
+  const start = () => router.push({ pathname: "/test", params: { mode } });
+  // A retomada não passa modo: o teste segue o que está salvo.
+  const resume = () => router.push("/test");
 
-  const startFresh = async () => {
+  const restart = async () => {
+    setConfirmRestart(false);
     await storage.removeItem("testProgress");
-    startNormal();
-  };
-
-  const handleStart = () => {
-    if (!hasProgress) {
-      startNormal();
-      return;
-    }
-
-    Alert.alert(t("home.resume.title"), t("home.resume.message"), [
-      { text: t("home.resume.continue"), onPress: () => router.push("/test") },
-      { text: t("home.resume.restart"), style: "destructive", onPress: startFresh },
-      { text: t("common.cancel"), style: "cancel" },
-    ]);
+    setProgress(null);
   };
 
   return (
     <Screen
-      scroll
       glow
       adPlacement="home-bottom"
       insetTop
@@ -77,11 +93,19 @@ export default function Home() {
     >
       <View style={styles.topBar}>
         {/* O mesmo desenho do ícone da loja: quem instalou reconhece o app. */}
-        <Image
-          source={require("@/assets/images/brand-mark.png")}
-          style={[styles.badge, { borderRadius: radius.md }]}
-          accessibilityIgnoresInvertColors
-        />
+        <View style={styles.brand}>
+          <Image
+            source={require("@/assets/images/brand-mark.png")}
+            style={[styles.badge, { borderRadius: radius.sm }]}
+            accessibilityIgnoresInvertColors
+          />
+          <ThemedText
+            variant="subheading"
+            accessibilityRole="header"
+          >
+            {t("home.title")}
+          </ThemedText>
+        </View>
 
         <View style={styles.topActions}>
           <IconButton
@@ -97,118 +121,145 @@ export default function Home() {
         </View>
       </View>
 
-      <View style={styles.hero}>
-        <ThemedText variant="display">{t("home.title")}</ThemedText>
-        <ThemedText
-          variant="body"
-          tone="muted"
-          style={styles.subtitle}
-        >
-          {t("home.subtitle", { count: roundLength("normal") })}
-        </ThemedText>
-      </View>
-
-      {latest ? (
-        <Card
-          variant="outlined"
-          style={styles.statsCard}
-        >
-          <Stat
-            label={t("home.stats.last")}
-            value={String(latest.iqScore)}
-            highlight
-          />
-          <Divider />
-          <Stat
-            label={t("home.stats.best")}
-            value={String(best)}
-          />
-          <Divider />
-          <Stat
-            label={t("home.stats.taken")}
-            value={String(history.length)}
-          />
-        </Card>
-      ) : (
-        <Card
-          variant="soft"
-          style={styles.pitchCard}
-        >
-          {[t("home.pitch.free"), t("home.pitch.offline"), t("home.pitch.categories")].map((line) => (
-            <View
-              key={line}
-              style={styles.pitchRow}
+      <ScrollView
+        style={styles.flex}
+        contentContainerStyle={[styles.scroll, { paddingVertical: spacing.lg, gap: spacing.lg }]}
+        showsVerticalScrollIndicator={false}
+      >
+        {returning ? (
+          <>
+            <RecordCard history={history} />
+            <ThemedText
+              tone="muted"
+              center
             >
-              <Ionicons
-                name="checkmark-circle"
-                size={19}
-                color={colors.primary}
+              {t("home.newQuestions")}
+            </ThemedText>
+          </>
+        ) : (
+          <View style={[styles.firstRun, { gap: spacing.md }]}>
+            <HomeHero size={heroSizeFor(height)} />
+            <ThemedText
+              variant="display"
+              center
+              style={{ marginTop: spacing.sm }}
+            >
+              {t("home.tagline")}
+            </ThemedText>
+            <ThemedText
+              tone="muted"
+              center
+            >
+              {t("home.subtitle", { count: roundLength(mode) })}
+            </ThemedText>
+            <View style={[styles.trust, { columnGap: spacing.md, rowGap: spacing.xs }]}>
+              {TRUST.map((item) => (
+                <View
+                  key={item.key}
+                  style={styles.trustItem}
+                >
+                  <Ionicons
+                    name={item.icon}
+                    size={16}
+                    color={colors.primaryText}
+                  />
+                  <ThemedText
+                    variant="caption"
+                    tone="muted"
+                  >
+                    {t(item.key)}
+                  </ThemedText>
+                </View>
+              ))}
+            </View>
+          </View>
+        )}
+      </ScrollView>
+
+      <View style={{ gap: spacing.md }}>
+        {progress ? (
+          <>
+            <Card
+              variant="outlined"
+              style={[styles.progressCard, { gap: spacing.md }]}
+            >
+              <ProgressRing
+                done={progress.savedAnswers.length}
+                total={progress.questionIds.length}
+                accessibilityLabel={t("home.progress.a11y", { done: progress.savedAnswers.length, total: progress.questionIds.length })}
               />
               <ThemedText
-                variant="caption"
-                tone="muted"
+                variant="bodyStrong"
                 style={styles.flex}
               >
-                {line}
+                {t("home.progress.label")}
               </ThemedText>
-            </View>
-          ))}
-        </Card>
-      )}
+            </Card>
+            <Button
+              block
+              size="large"
+              icon="play"
+              title={t("home.resume.button")}
+              onPress={resume}
+            />
+            <Button
+              block
+              variant="ghost"
+              title={t("home.progress.restart")}
+              onPress={() => setConfirmRestart(true)}
+            />
+          </>
+        ) : (
+          <>
+            <ModeChooser
+              value={mode}
+              onChange={setMode}
+            />
+            <Button
+              block
+              size="large"
+              icon={returning ? "refresh" : "arrow-forward"}
+              title={returning ? t("home.newTest") : t("home.start")}
+              onPress={start}
+            />
+          </>
+        )}
 
-      <View style={styles.measures}>
-        <ThemedText
-          variant="overline"
-          tone="faint"
-        >
-          {t("home.measures").toUpperCase()}
-        </ThemedText>
-
-        <View style={styles.measureGrid}>
-          {CATEGORY_ORDER.map((category) => (
-            <View
-              key={category}
-              style={[styles.measureChip, { backgroundColor: colors.surface, borderColor: colors.border, borderRadius: radius.md }]}
+        <View style={styles.footerLine}>
+          <ThemedText
+            variant="caption"
+            tone="faint"
+            style={styles.flex}
+          >
+            {t("about.disclaimerShort")}
+          </ThemedText>
+          <Pressable
+            accessibilityRole="button"
+            onPress={() => setAboutVisible(true)}
+            style={styles.link}
+          >
+            <ThemedText
+              variant="captionStrong"
+              tone="primary"
             >
-              <Ionicons
-                name={CATEGORY_ICONS[category]}
-                size={15}
-                color={colors.primary}
-              />
-              <ThemedText variant="caption">{t(`categories.${category}`)}</ThemedText>
-            </View>
-          ))}
+              {t("home.howItWorks")}
+            </ThemedText>
+          </Pressable>
         </View>
-      </View>
-
-      <View style={styles.spacer} />
-
-      <View style={styles.actions}>
-        <Button
-          block
-          size="large"
-          icon={hasProgress ? "play" : "flash"}
-          title={hasProgress ? t("home.resume.button") : t("home.start")}
-          onPress={handleStart}
-        />
-        <Button
-          block
-          variant="ghost"
-          title={t("about.title")}
-          onPress={() => setAboutVisible(true)}
-        />
-        <ThemedText
-          variant="caption"
-          tone="faint"
-          center
-        >
-          {t("about.disclaimerShort")}
-        </ThemedText>
       </View>
 
       <AboutSheet
         visible={aboutVisible}
         onClose={() => setAboutVisible(false)}
+      />
+      <ConfirmSheet
+        visible={confirmRestart}
+        title={t("home.progress.confirm.title")}
+        message={t("home.progress.confirm.message")}
+        confirmLabel={t("home.progress.confirm.confirm")}
+        cancelLabel={t("home.progress.confirm.cancel")}
+        onConfirm={restart}
+        onCancel={() => setConfirmRestart(false)}
       />
     </Screen>
   );
@@ -222,7 +273,7 @@ function IconButton({ icon, label, onPress }: { icon: keyof typeof Ionicons.glyp
       accessibilityRole="button"
       accessibilityLabel={label}
       onPress={onPress}
-      hitSlop={8}
+      hitSlop={4}
       style={({ pressed }) => [
         styles.iconButton,
         { backgroundColor: colors.surfaceAlt, borderRadius: radius.md },
@@ -238,32 +289,6 @@ function IconButton({ icon, label, onPress }: { icon: keyof typeof Ionicons.glyp
   );
 }
 
-function Stat({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
-  return (
-    <View style={styles.flex}>
-      <ThemedText
-        variant="title"
-        tone={highlight ? "primary" : "default"}
-        center
-      >
-        {value}
-      </ThemedText>
-      <ThemedText
-        variant="overline"
-        tone="faint"
-        center
-      >
-        {label.toUpperCase()}
-      </ThemedText>
-    </View>
-  );
-}
-
-function Divider() {
-  const { colors } = useAppTheme();
-  return <View style={[styles.divider, { backgroundColor: colors.border }]} />;
-}
-
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
@@ -273,68 +298,54 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  brand: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
   badge: {
-    width: 40,
-    height: 40,
+    width: 36,
+    height: 36,
   },
   topActions: {
     flexDirection: "row",
     gap: 8,
   },
   iconButton: {
-    width: 40,
-    height: 40,
+    width: 48,
+    height: 48,
     alignItems: "center",
     justifyContent: "center",
   },
-  hero: {
-    marginTop: 40,
-    gap: 12,
+  scroll: {
+    flexGrow: 1,
+    justifyContent: "center",
   },
-  subtitle: {
-    maxWidth: 320,
-  },
-  statsCard: {
-    marginTop: 32,
-    flexDirection: "row",
+  firstRun: {
     alignItems: "center",
   },
-  pitchCard: {
-    marginTop: 32,
-    gap: 12,
-  },
-  pitchRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
-  divider: {
-    width: 1,
-    alignSelf: "stretch",
-    marginHorizontal: 8,
-  },
-  measures: {
-    marginTop: 28,
-    gap: 10,
-  },
-  measureGrid: {
+  trust: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 8,
+    justifyContent: "center",
   },
-  measureChip: {
+  trustItem: {
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 9,
-    borderWidth: 1,
   },
-  spacer: {
-    flex: 1,
-    minHeight: 24,
+  progressCard: {
+    flexDirection: "row",
+    alignItems: "center",
   },
-  actions: {
-    gap: 10,
+  // 48 dp de alvo de toque, mesmo sendo um link de uma linha.
+  link: {
+    minHeight: 48,
+    justifyContent: "center",
+  },
+  footerLine: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
   },
 });
