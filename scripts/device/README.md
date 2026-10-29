@@ -51,6 +51,8 @@ library. Exit 0 means pass.
 | `check_history.py [--seed 10]` | writes N history entries (owner's storage copied out and put back), screenshots History with 0/1/2/N, then opens each row: Results in history mode shows its score, back returns to History; `N/N rows open` | `10/10 rows open` (2026-10-29) |
 | `check_haptics_off.py [--on]` | writes `hapticsEnabled` (owner's storage put back), plays a Rápido round to Results and counts the `[haptics]` logcat lines; `<n> haptic calls over 20/20` | `0` with Vibração off, `41` with `--on` (2026-10-29) |
 | `check_review_prompt.py` | one history entry (100), then Results by link: a 120 revealed, the same in history mode, a 100 revealed right after; reads the `[review]` logcat lines; `N/3` | `3/3` (2026-10-29) |
+| `release_gate.py <preview.apk> [--only=…]` | on a preview build (`QI_RELEASE=1`): reveal jank from `gfxinfo`, 16 KB alignment, contrast, a Normal round that fits, the offline finish timed on a screen recording, the banner shift | 6/6 PASS on preview e729f494 (2026-10-29) |
+| `store_shots.py <out>` | on a preview build, the six raw store shots per language (see `scripts/store/README.md`) | 18 shots (2026-10-29) |
 | `check_option_scale.py [--tolerance 2]` | dev pattern round; in a screenshot of each item, the matrix hole's width and option A's frame width, in dp (hole positions from `scripts/patterns/measure-holes.py --json`); `N/N same scale` | `54/54` (delta −1.1 to +0.4 dp); before slice 05.1 `0/54`, p25–p54 +16 to +18 dp (2026-10-29) |
 | `check_pause.py [--answers N]` | answers N (5), system back → pause sheet, "Continuar o teste" keeps the question, back again → "Sair e continuar depois" → Home "Continuar teste" → counter N+1/total (no resume prompt since slice 08) | `PASS` (8 steps) → exit 0 (2026-10-20); `PASS` (7 steps) on the new Home (2026-10-29) |
 | `check_double_finish.py [--mode rapido] [--gap 0.08]` | two taps on the last question's "Ver meu resultado", `--gap` s apart; reads `testHistory` from the app's AsyncStorage: grew by 1 and that entry has as many answers as the round | `PASS`, history +1 with 20 answers → exit 0; without the guard: +2 (20 and 21 answers) (2026-10-20) |
@@ -139,6 +141,12 @@ the longest text question of each language (`ui.open_single_question`).
   still loading the bundle, `testeqi://test?mode=detalhado` lands on Home and
   `answer_all.py` reports `0/0`. Wait for Home's start button
   (`ui.wait_for(ui.start_button)`) before sending it.
+- **uiautomator cannot time an animated screen.** While the reveal (or the
+  speed task's clock) animates, `uiautomator dump` fails and `ui.dump`
+  retries for up to ~8 s, so a "seconds until X shows" read that way is the
+  dump's latency. Record the screen (`adb shell screenrecord`) and read the
+  frames with `swift scripts/device/video_frames.swift <mp4> <dir> <fps>`
+  (AVFoundation; there is no ffmpeg on this Mac).
 - **The dev client's floating tools button sits on the top-right corner**,
   over Home's "Ajustes" and the test counter. A tap there opens the Expo
   menu; open Settings with `testeqi://settings` instead. Release builds do

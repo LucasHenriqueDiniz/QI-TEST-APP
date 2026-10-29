@@ -87,7 +87,7 @@ O ícone é a grade 3×3 com a célula faltando, do prompt principal de
 - [x] `splash-icon.png` coerente com o ícone
 - [x] Feature graphic 1024×500 — `feature-graphic-pt-BR.png`, `-es-419`, `-en-US`,
       mais `feature-graphic-base.png` sem texto, para outros idiomas
-- [ ] 6 capturas por idioma, com legendas (roteiro em `ASO.md` §4)
+- [x] 6 capturas por idioma, com legendas — `store/screenshots/{pt-BR,en-US,es-419}/`, 1080×1920 RGB, do build preview no A15 (como refazer: `scripts/store/README.md`)
 
 O violeta do arquivo gerado saiu em `#523CE6`; os derivados foram normalizados
 para o `#5B4FE9` da marca, senão o `icon.png` e o fundo do ícone adaptativo
@@ -124,7 +124,7 @@ loja). App criado em 19/10/2026 como "Teste de QI - Quiz de Lógica".
       chave final; a keystore do EAS vira chave de upload) e leis de exportação
 - [x] Ficha pt-BR (padrão), es-419 e en-US: título, descrições, ícone e um
       feature graphic por idioma, tudo de `store/`
-- [ ] **Capturas de tela nos 3 idiomas** — esperam o redesenho da UI
+- [ ] **Capturas de tela nos 3 idiomas** — prontas em `store/screenshots/`; falta subir no Play Console
       (`docs/pitches/ui-redesign.md`)
 - [x] Categoria Educação, contato `lucas.diniz.hdo@gmail.com`, site
       `https://lucashdo.com` (o site da ficha é onde o AdMob procura o
